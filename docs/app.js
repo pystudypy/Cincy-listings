@@ -10,7 +10,7 @@
 "use strict";
 
 // ── Config ────────────────────────────────────────────
-const DATA_URL = "../data/listings.json";
+const DATA_URL = "data/listings.json";
 const PAGE_SIZE = 24;
 
 // ── State ─────────────────────────────────────────────

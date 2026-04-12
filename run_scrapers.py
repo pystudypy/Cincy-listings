@@ -28,7 +28,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger("run_scrapers")
 
-DATA_FILE = Path(__file__).parent / "data" / "listings.json"
+DATA_FILE = Path(__file__).parent / "docs" / "data" / "listings.json"
 
 
 def run_all_scrapers(sources: list[str]) -> list[dict]:
