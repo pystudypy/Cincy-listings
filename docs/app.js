@@ -347,8 +347,7 @@ function analysis_html(analysis) {
         <div style="display:flex;align-items:center;gap:10px">
           <span style="font-size:18px">✨</span>
           <div>
-            <div style="font-weight:700;font-size:15px">AI Design Analysis</div>
-            <div style="font-size:12px;color:#6b7280">Powered by Claude</div>
+            <div style="font-weight:700;font-size:15px">Cincinnatus AI</div>
           </div>
         </div>
         <div style="text-align:right">
