@@ -1,0 +1,66 @@
+name: Scrape Cincinnati Listings
+
+on:
+  schedule:
+    # Run every day at 7 AM UTC (3 AM Eastern)
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+    # Allow manual trigger from GitHub Actions UI
+    inputs:
+      source:
+        description: "Which scraper to run"
+        required: false
+        default: "all"
+        type: choice
+        options: [all, zillow, redfin, local]
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    permissions:
+      contents: write   # needed to commit listings.json back to repo
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          playwright install chromium --with-deps
+
+      - name: Run scrapers
+        run: |
+          SOURCE="${{ github.event.inputs.source || 'all' }}"
+          if [ "$SOURCE" = "all" ]; then
+            python run_scrapers.py
+          else
+            python run_scrapers.py --source "$SOURCE"
+          fi
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet data/listings.json && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit updated listings
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/listings.json
+          COUNT=$(python -c "import json; d=json.load(open('data/listings.json')); print(d['total_count'])")
+          git commit -m "chore: update listings ($COUNT listings) $(date -u +'%Y-%m-%d')"
+          git push
+
+      - name: No changes
+        if: steps.changes.outputs.changed == 'false'
+        run: echo "No new listings found — skipping commit."
