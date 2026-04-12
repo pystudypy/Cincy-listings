@@ -26,6 +26,7 @@ const state = {
     type: "",
     zip: "",
     source: "",
+    aiScore: "",
     sort: "price_asc",
   },
 };
@@ -113,6 +114,7 @@ function apply_filters() {
   if (f.baths)    list = list.filter((l) => l.baths != null && l.baths >= +f.baths);
   if (f.zip)      list = list.filter((l) => (l.zip || "").startsWith(f.zip));
   if (f.source)   list = list.filter((l) => l.source === f.source);
+  if (f.aiScore)  list = list.filter((l) => (l.image_analysis?.overall_score ?? 0) >= +f.aiScore);
   if (f.type) {
     list = list.filter((l) => normalize_type(l.property_type) === f.type);
   }
@@ -134,6 +136,9 @@ function apply_filters() {
       break;
     case "dom_asc":
       list.sort((a, b) => (a.days_on_market ?? 999) - (b.days_on_market ?? 999));
+      break;
+    case "ai_score_desc":
+      list.sort((a, b) => (b.image_analysis?.overall_score ?? 0) - (a.image_analysis?.overall_score ?? 0));
       break;
   }
 
@@ -442,10 +447,11 @@ function wire_events() {
       apply_filters();
     });
   }
-  wire_chips("filter-beds",   "beds");
-  wire_chips("filter-baths",  "baths");
-  wire_chips("filter-type",   "type");
-  wire_chips("filter-source", "source");
+  wire_chips("filter-beds",     "beds");
+  wire_chips("filter-baths",    "baths");
+  wire_chips("filter-type",     "type");
+  wire_chips("filter-source",   "source");
+  wire_chips("filter-ai-score", "aiScore");
 
   // Zip
   $("filter-zip").addEventListener("input", (e) => {
@@ -463,7 +469,7 @@ function wire_events() {
   $("clear-filters").addEventListener("click", () => {
     state.filters = {
       priceMin: "", priceMax: "", beds: "", baths: "",
-      type: "", zip: "", source: "", sort: "price_asc",
+      type: "", zip: "", source: "", aiScore: "", sort: "price_asc",
     };
     // Reset UI
     $("filter-price-min").value = "";
