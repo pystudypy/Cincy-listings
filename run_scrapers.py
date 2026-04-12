@@ -19,7 +19,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from scrapers import zillow, redfin, local_sites
-from utils.deduplicator import deduplicate, filter_cincinnati
+from utils.deduplicator import deduplicate, filter_cincinnati, filter_for_sale
 
 logging.basicConfig(
     level=logging.INFO,
@@ -104,7 +104,7 @@ def main():
             logger.warning(f"Could not load existing listings: {e}")
 
     # Filter to Cincinnati metro area
-    filtered = filter_cincinnati(raw_listings)
+    filtered = filter_for_sale(filter_cincinnati(raw_listings))
 
     # Deduplicate
     unique = deduplicate(filtered)

@@ -138,6 +138,19 @@ def deduplicate(listings: list[dict]) -> list[dict]:
     return result
 
 
+def filter_for_sale(listings: list[dict]) -> list[dict]:
+    """Remove rental listings — keep only for-sale properties."""
+    rental_keywords = ("rent", "rental", "for_rent", "for rent", "lease")
+    result = [
+        l for l in listings
+        if not any(kw in (l.get("status") or "").lower() for kw in rental_keywords)
+    ]
+    removed = len(listings) - len(result)
+    if removed:
+        logger.info(f"Rental filter: removed {removed} rental listings")
+    return result
+
+
 def filter_cincinnati(listings: list[dict]) -> list[dict]:
     """
     Keep only listings that appear to be in the Cincinnati metro area.
