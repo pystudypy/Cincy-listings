@@ -92,12 +92,43 @@ def main():
         help="Run AI image analysis on new listings (requires ANTHROPIC_API_KEY env var)",
     )
     parser.add_argument(
+        "--analyze-only",
+        action="store_true",
+        help="Skip scraping — only run AI analysis on existing listings.json",
+    )
+    parser.add_argument(
         "--analyze-max",
         type=int,
         default=200,
         help="Max listings to analyze per run (default: 200)",
     )
     args = parser.parse_args()
+
+    # --analyze-only: skip scraping, load existing listings directly
+    if args.analyze_only:
+        if not DATA_FILE.exists():
+            logger.error("No listings.json found — run without --analyze-only first")
+            return
+        existing = json.loads(DATA_FILE.read_text())
+        unique = existing.get("listings", [])
+        source_counts = existing.get("source_counts", {})
+        logger.info(f"Loaded {len(unique)} existing listings for analysis-only run")
+
+        api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+        if not api_key:
+            logger.error("ANTHROPIC_API_KEY not set")
+            return
+        from utils.image_analyzer import analyze_listings
+        unique = analyze_listings(unique, api_key=api_key, max_per_run=args.analyze_max)
+        analyzed = sum(1 for l in unique if l.get("image_analysis"))
+        logger.info(f"Listings with AI analysis: {analyzed}/{len(unique)}")
+
+        if not args.dry_run:
+            existing["listings"] = unique
+            existing["last_updated"] = datetime.now(timezone.utc).isoformat()
+            DATA_FILE.write_text(json.dumps(existing, indent=2, ensure_ascii=False))
+            logger.info(f"Wrote updated listings → {DATA_FILE}")
+        return
 
     sources = ["zillow", "redfin", "local"] if args.source == "all" else [args.source]
 
