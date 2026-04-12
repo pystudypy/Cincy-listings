@@ -27,6 +27,9 @@ const state = {
     zip: "",
     source: "",
     aiScore: "",
+    aiModernity: "",
+    aiLuxury: "",
+    aiCondition: "",
     sort: "price_asc",
   },
 };
@@ -103,6 +106,15 @@ async function load_data() {
   }
 }
 
+// ── Helpers ───────────────────────────────────────────
+function avg_room_score(listing, field) {
+  const rooms = listing.image_analysis?.rooms;
+  if (!rooms?.length) return 0;
+  const vals = rooms.map((r) => r[field] ?? 0).filter((v) => v > 0);
+  if (!vals.length) return 0;
+  return vals.reduce((a, b) => a + b, 0) / vals.length;
+}
+
 // ── Filtering & sorting ───────────────────────────────
 function apply_filters() {
   const f = state.filters;
@@ -114,7 +126,10 @@ function apply_filters() {
   if (f.baths)    list = list.filter((l) => l.baths != null && l.baths >= +f.baths);
   if (f.zip)      list = list.filter((l) => (l.zip || "").startsWith(f.zip));
   if (f.source)   list = list.filter((l) => l.source === f.source);
-  if (f.aiScore)  list = list.filter((l) => (l.image_analysis?.overall_score ?? 0) >= +f.aiScore);
+  if (f.aiScore)     list = list.filter((l) => (l.image_analysis?.overall_score ?? 0) >= +f.aiScore);
+  if (f.aiModernity) list = list.filter((l) => avg_room_score(l, "modernity_score") >= +f.aiModernity);
+  if (f.aiLuxury)    list = list.filter((l) => avg_room_score(l, "luxury_score")    >= +f.aiLuxury);
+  if (f.aiCondition) list = list.filter((l) => avg_room_score(l, "condition_score") >= +f.aiCondition);
   if (f.type) {
     list = list.filter((l) => normalize_type(l.property_type) === f.type);
   }
@@ -450,7 +465,10 @@ function wire_events() {
   wire_chips("filter-baths",    "baths");
   wire_chips("filter-type",     "type");
   wire_chips("filter-source",   "source");
-  wire_chips("filter-ai-score", "aiScore");
+  wire_chips("filter-ai-score",     "aiScore");
+  wire_chips("filter-ai-modernity", "aiModernity");
+  wire_chips("filter-ai-luxury",    "aiLuxury");
+  wire_chips("filter-ai-condition", "aiCondition");
 
   // Zip
   $("filter-zip").addEventListener("input", (e) => {
@@ -468,7 +486,7 @@ function wire_events() {
   $("clear-filters").addEventListener("click", () => {
     state.filters = {
       priceMin: "", priceMax: "", beds: "", baths: "",
-      type: "", zip: "", source: "", aiScore: "", sort: "price_asc",
+      type: "", zip: "", source: "", aiScore: "", aiModernity: "", aiLuxury: "", aiCondition: "", sort: "price_asc",
     };
     // Reset UI
     $("filter-price-min").value = "";
