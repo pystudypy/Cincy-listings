@@ -5,6 +5,7 @@ Usage:
   python run_scrapers.py              # run all scrapers
   python run_scrapers.py --source zillow   # run one scraper only
   python run_scrapers.py --dry-run    # print stats, don't write file
+  python run_scrapers.py --analyze    # also run AI image analysis (needs ANTHROPIC_API_KEY)
 """
 
 import argparse
@@ -85,6 +86,17 @@ def main():
         action="store_true",
         help="Merge new listings with existing listings.json instead of replacing",
     )
+    parser.add_argument(
+        "--analyze",
+        action="store_true",
+        help="Run AI image analysis on new listings (requires ANTHROPIC_API_KEY env var)",
+    )
+    parser.add_argument(
+        "--analyze-max",
+        type=int,
+        default=200,
+        help="Max listings to analyze per run (default: 200)",
+    )
     args = parser.parse_args()
 
     sources = ["zillow", "redfin", "local"] if args.source == "all" else [args.source]
@@ -93,7 +105,7 @@ def main():
     raw_listings = run_all_scrapers(sources)
     logger.info(f"Total raw listings collected: {len(raw_listings)}")
 
-    # If merging, load existing listings first
+    # If merging, load existing listings first (preserves image_analysis from prior runs)
     if args.merge and DATA_FILE.exists():
         try:
             existing = json.loads(DATA_FILE.read_text())
@@ -103,7 +115,7 @@ def main():
         except Exception as e:
             logger.warning(f"Could not load existing listings: {e}")
 
-    # Filter to Cincinnati metro area
+    # Filter to Cincinnati metro area, for-sale only
     filtered = filter_for_sale(filter_cincinnati(raw_listings))
 
     # Deduplicate
@@ -119,6 +131,19 @@ def main():
         source_counts[src] = source_counts.get(src, 0) + 1
     for src, count in sorted(source_counts.items(), key=lambda x: -x[1]):
         logger.info(f"  {src:20s}: {count:,}")
+
+    # AI image analysis (optional — only runs when --analyze flag is passed)
+    if args.analyze:
+        api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+        if not api_key:
+            logger.warning("--analyze passed but ANTHROPIC_API_KEY not set — skipping")
+        else:
+            logger.info("=" * 50)
+            logger.info("Running AI image analysis on new listings…")
+            from utils.image_analyzer import analyze_listings
+            unique = analyze_listings(unique, api_key=api_key, max_per_run=args.analyze_max)
+            analyzed = sum(1 for l in unique if l.get("image_analysis"))
+            logger.info(f"Listings with AI analysis: {analyzed}/{len(unique)}")
 
     if args.dry_run:
         logger.info("Dry run — not writing to disk.")

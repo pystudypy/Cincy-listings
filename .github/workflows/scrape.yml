@@ -38,12 +38,18 @@ jobs:
           playwright install chromium --with-deps
 
       - name: Run scrapers
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           SOURCE="${{ github.event.inputs.source || 'all' }}"
+          ANALYZE_FLAG=""
+          if [ -n "$ANTHROPIC_API_KEY" ]; then
+            ANALYZE_FLAG="--analyze"
+          fi
           if [ "$SOURCE" = "all" ]; then
-            python run_scrapers.py
+            python run_scrapers.py --merge $ANALYZE_FLAG
           else
-            python run_scrapers.py --source "$SOURCE"
+            python run_scrapers.py --source "$SOURCE" --merge $ANALYZE_FLAG
           fi
 
       - name: Check for changes

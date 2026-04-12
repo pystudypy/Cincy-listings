@@ -467,3 +467,37 @@ select:focus, input[type="text"]:focus {
   .listings-grid { grid-template-columns: 1fr; }
   .modal-stats { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* ── AI Analysis Panel ────────────────────────────────── */
+.ai-analysis-section {
+  margin-top: 20px;
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+}
+
+.ai-analysis-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.ai-rooms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.ai-room-card {
+  background: #f9fafb;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+@media (max-width: 600px) {
+  .ai-rooms-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 400px) {
+  .ai-rooms-grid { grid-template-columns: 1fr; }
+}

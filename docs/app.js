@@ -283,6 +283,84 @@ function popup_html(l) {
     </div>`;
 }
 
+// ── AI Analysis panel ─────────────────────────────────
+function score_bar(score, max = 10) {
+  const pct = Math.round((score / max) * 100);
+  const color = score >= 8 ? "#16a34a" : score >= 6 ? "#d97706" : "#dc2626";
+  return `<div style="display:flex;align-items:center;gap:8px">
+    <div style="flex:1;height:6px;background:#e5e7eb;border-radius:3px;overflow:hidden">
+      <div style="width:${pct}%;height:100%;background:${color};border-radius:3px"></div>
+    </div>
+    <span style="font-size:12px;font-weight:700;color:${color};min-width:24px">${score}</span>
+  </div>`;
+}
+
+function room_type_label(rt) {
+  const map = {
+    kitchen: "Kitchen", living_room: "Living Room", master_bedroom: "Master Bedroom",
+    bedroom: "Bedroom", bathroom: "Bathroom", master_bathroom: "Master Bathroom",
+    dining_room: "Dining Room", backyard: "Backyard / Outdoor", garage: "Garage",
+    basement: "Basement", exterior: "Exterior", other: "Other",
+  };
+  return map[rt] || rt.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function analysis_html(analysis) {
+  const score = analysis.overall_score ?? 0;
+  const score_color = score >= 8 ? "#16a34a" : score >= 6 ? "#d97706" : "#dc2626";
+
+  const rooms_html = (analysis.rooms || []).map((room) => `
+    <div class="ai-room-card">
+      ${room.image_url
+        ? `<img src="${room.image_url}" alt="${room_type_label(room.room_type)}"
+             style="width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:10px"
+             loading="lazy" onerror="this.style.display='none'">`
+        : ""}
+      <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+                  color:#6b7280;margin-bottom:6px">${room_type_label(room.room_type)}</div>
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:4px 8px;font-size:12px;margin-bottom:8px">
+        <span style="color:#6b7280">Modernity</span>${score_bar(room.modernity_score)}
+        <span style="color:#6b7280">Luxury</span>${score_bar(room.luxury_score)}
+        <span style="color:#6b7280">Condition</span>${score_bar(room.condition_score)}
+      </div>
+      ${room.features?.length
+        ? `<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px">
+             ${room.features.map((f) =>
+               `<span style="font-size:11px;background:#f3f4f6;color:#374151;
+                             padding:2px 8px;border-radius:12px">${f}</span>`
+             ).join("")}
+           </div>`
+        : ""}
+      ${room.insight
+        ? `<div style="font-size:12px;color:#4b5563;line-height:1.5;font-style:italic">"${room.insight}"</div>`
+        : ""}
+    </div>`).join("");
+
+  return `
+    <div class="ai-analysis-section">
+      <div class="ai-analysis-header">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:18px">✨</span>
+          <div>
+            <div style="font-weight:700;font-size:15px">AI Design Analysis</div>
+            <div style="font-size:12px;color:#6b7280">Powered by Claude</div>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:28px;font-weight:800;color:${score_color}">${score.toFixed(1)}</div>
+          <div style="font-size:11px;color:#6b7280">Overall Score</div>
+        </div>
+      </div>
+      ${analysis.summary
+        ? `<div style="font-size:13px;color:#374151;line-height:1.6;padding:12px;
+                       background:#f9fafb;border-radius:8px;margin-bottom:14px">
+             ${analysis.summary}
+           </div>`
+        : ""}
+      <div class="ai-rooms-grid">${rooms_html}</div>
+    </div>`;
+}
+
 // ── Modal ─────────────────────────────────────────────
 function open_modal(listing) {
   const content = $("modal-content");
@@ -304,6 +382,10 @@ function open_modal(listing) {
     `<strong>Source:</strong> <span class="source-badge source-${listing.source}" style="position:static;display:inline">${source_label(listing.source)}</span>`,
   ].filter(Boolean).join("  ·  ");
 
+  const ai_section = listing.image_analysis
+    ? analysis_html(listing.image_analysis)
+    : "";
+
   content.innerHTML = `
     ${img_section}
     <div class="modal-body">
@@ -324,6 +406,7 @@ function open_modal(listing) {
           ? `<a class="btn-primary" href="${listing.url}" target="_blank" rel="noopener">View on ${source_label(listing.source)} ↗</a>`
           : ""}
       </div>
+      ${ai_section}
     </div>`;
 
   $("modal-overlay").style.display = "flex";
