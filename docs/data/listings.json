@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-13T05:43:42.317928+00:00",
+  "last_updated": "2026-04-13T05:45:16.049019+00:00",
   "total_count": 4594,
   "source_counts": {
     "coldwell_banker": 1215,
@@ -116625,7 +116625,43 @@
       "source": "comey",
       "lat": 39.093529,
       "lng": -84.496155,
-      "last_updated": "2026-04-12T18:29:44.999037"
+      "last_updated": "2026-04-12T18:29:44.999037",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 4,
+            "luxury_score": 5,
+            "condition_score": 7,
+            "features": [
+              "large white Victorian-style house",
+              "multiple windows",
+              "porch with columns"
+            ],
+            "insight": "This exterior view shows a classic Victorian-style house with a porch and multiple windows. It's in good condition but could use some updates to the exterior paint and landscaping. The porch is a nice feature for entertaining or relaxing.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6389/638926q.jpg?1767373562"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 4,
+            "luxury_score": 5,
+            "condition_score": 7,
+            "features": [
+              "large white Victorian-style house",
+              "multiple windows",
+              "porch with columns"
+            ],
+            "insight": "This exterior view shows a classic Victorian-style house with a porch and multiple windows. It's in good condition but could use some updates to the exterior paint and landscaping. The porch is a nice feature for entertaining or relaxing.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6389/638926l.jpg"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition but could benefit from some exterior updates and landscaping. The style is classic Victorian, which might appeal to those who appreciate traditional architecture. It's a good fit for a family or couple looking for a home with character and a porch for outdoor activities.",
+        "analyzed_at": "2026-04-13T05:43:53.803400+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "0c8b5c3a0665d2d5",
@@ -116650,7 +116686,29 @@
       "source": "sibcy_cline",
       "lat": 39.1239,
       "lng": -84.4629,
-      "last_updated": "2026-04-13T00:27:58.274880"
+      "last_updated": "2026-04-13T00:27:58.274880",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "neatly landscaped front yard",
+              "modern architectural design",
+              "multiple windows for natural light"
+            ],
+            "insight": "The exterior of the house is well-maintained and has a modern architectural design. The landscaping is neat and tidy, with a variety of shrubs and plants. The multiple windows allow for plenty of natural light to enter the interior spaces. This home is in good condition and would be a great fit for someone who appreciates a modern aesthetic and well-maintained property.",
+            "image_url": "https://online.sibcycline.com/retsphotos/CIN/1850775_1.jpg?ts=639104346643400000"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and would be a great fit for someone who appreciates a modern aesthetic and well-maintained property. The exterior design is contemporary and the landscaping is neat and tidy. The home is move-in ready and would be a good choice for a family or couple looking for a modern living space.",
+        "analyzed_at": "2026-04-13T05:44:06.426636+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "18ae8aae39631bd2",
@@ -116673,7 +116731,31 @@
       "source": "sibcy_cline",
       "lat": null,
       "lng": null,
-      "last_updated": "2026-04-13T00:27:58.274893"
+      "last_updated": "2026-04-13T00:27:58.274893",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 9,
+            "features": [
+              "brick exterior",
+              "modern architectural design",
+              "multiple balconies",
+              "landscaped yard",
+              "garage with automatic door"
+            ],
+            "insight": "The exterior of the house is in excellent condition with a modern architectural design. The multiple balconies offer great outdoor living space, and the landscaped yard provides a nice front yard. The garage has an automatic door, making it easy to enter and exit. This home is move-in ready with a clean and modern look.",
+            "image_url": "https://online.sibcycline.com/retsphotos/CIN/1873042_1.jpg?ts=639114761447800000"
+          }
+        ],
+        "overall_score": 8,
+        "summary": "This home is move-in ready with a clean and modern exterior. It has a good amount of outdoor space and a garage with an automatic door. The style is contemporary and would be a good fit for a family or couple who values modern design and outdoor living.",
+        "analyzed_at": "2026-04-13T05:44:15.130189+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "61f7537b3922b344",
@@ -116697,7 +116779,43 @@
       "source": "comey",
       "lat": 39.150242,
       "lng": -84.367706,
-      "last_updated": "2026-04-12T18:29:04.935600"
+      "last_updated": "2026-04-12T18:29:04.935600",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "large driveway",
+              "two-car garage",
+              "well-maintained landscaping"
+            ],
+            "insight": "The exterior of the house is in good condition and well-maintained. The large driveway and two-car garage provide ample parking space. The landscaping is neat and tidy, with mature trees providing shade.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18736/1873689q.jpg?1775145847"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "large driveway",
+              "two-car garage",
+              "stone accents"
+            ],
+            "insight": "The exterior of the house is in good condition and well-maintained. The large driveway and two-car garage provide ample parking space. The stone accents add a touch of elegance to the home.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/full/18736/1873689l.jpg"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a clean, traditional style. It's a good fit for a family or couple who values a well-maintained property with ample parking and a welcoming exterior. The home is move-in ready with no major renovations needed.",
+        "analyzed_at": "2026-04-13T05:44:26.570146+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "5abb85f40d941706",
@@ -116721,7 +116839,29 @@
       "source": "cincinky",
       "lat": 39.1397,
       "lng": -84.4399,
-      "last_updated": "2026-04-13T01:01:16.373708"
+      "last_updated": "2026-04-13T01:01:16.373708",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 8,
+            "luxury_score": 7,
+            "condition_score": 10,
+            "features": [
+              "brick exterior",
+              "large windows",
+              "modern architectural design"
+            ],
+            "insight": "The exterior of the house is in excellent condition and has a modern architectural design with large windows and a brick exterior. This home would be a great fit for someone who appreciates a contemporary style and wants a well-maintained property.",
+            "image_url": "https://m.cbhomes.com/p/220/1873042/41a655b45EdA4a8/m23cc.webp"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready with a modern and clean exterior design. It would be a good fit for a family or couple who appreciates a contemporary style and wants a well-maintained property.",
+        "analyzed_at": "2026-04-13T05:44:34.593626+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "5ee409a8cdb60a4c",
@@ -116744,7 +116884,29 @@
       "source": "sibcy_cline",
       "lat": null,
       "lng": null,
-      "last_updated": "2026-04-13T00:27:58.274826"
+      "last_updated": "2026-04-13T00:27:58.274826",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 4,
+            "luxury_score": 3,
+            "condition_score": 6,
+            "features": [
+              "brick exterior",
+              "balcony with railing",
+              "front door with glass panel"
+            ],
+            "insight": "The exterior looks like it could use some updating. The brick facade and balcony are classic, but the overall condition seems a bit dated. The front door with glass panel adds a touch of elegance, but the overall appearance is more basic.",
+            "image_url": "https://online.sibcycline.com/retsphotos/CIN/1859114_1.jpg?ts=639108253433100000"
+          }
+        ],
+        "overall_score": 5.5,
+        "summary": "This home is in need of some updates to make it move-in ready. The exterior is classic but dated, and the condition score reflects some wear. It's a good fit for someone looking to add their own personal touch and make it their own.",
+        "analyzed_at": "2026-04-13T05:44:42.538933+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "09156ecc3779948d",
@@ -116768,7 +116930,30 @@
       "source": "sibcy_cline",
       "lat": null,
       "lng": null,
-      "last_updated": "2026-04-13T00:27:58.274769"
+      "last_updated": "2026-04-13T00:27:58.274769",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large front porch",
+              "well-maintained landscaping",
+              "two-car garage",
+              "shingle-style siding"
+            ],
+            "insight": "The exterior of the house is in good condition and has a classic, well-maintained look. The large front porch and landscaping add to the curb appeal. The two-car garage is a plus for car storage. The shingle-style siding gives it a traditional, timeless feel.",
+            "image_url": "https://cdn.listingphotos.sierrastatic.com/pics2x/v1768598335/27/27_1865505_01.jpg"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a classic, timeless style. It's a good fit for a family or couple who appreciates a well-maintained home with a traditional look. The two-car garage and large front porch add to its appeal.",
+        "analyzed_at": "2026-04-13T05:44:52.027186+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "9ac4c12679e34be0",
@@ -116792,7 +116977,29 @@
       "source": "coldwell_banker",
       "lat": 39.0434,
       "lng": -84.3464,
-      "last_updated": "2026-04-13T01:34:03.371772+00:00"
+      "last_updated": "2026-04-13T01:34:03.371772+00:00",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 4,
+            "condition_score": 8,
+            "features": [
+              "new construction",
+              "wooden roof",
+              "concrete foundation"
+            ],
+            "insight": "This is a new construction home with a wooden roof and concrete foundation. The exterior looks like it's in good condition, but it's not yet finished. The style is simple and functional, with a focus on the structure rather than the finishes. A buyer with a family or someone looking for a blank canvas to personalize would find this appealing.",
+            "image_url": "https://m1.cbhomes.com/p/220/1847396/2BC44d357e274a7/m23cc.webp"
+          }
+        ],
+        "overall_score": 6.5,
+        "summary": "This home is in the early stages of construction and is not yet move-in ready. The style is simple and functional, with a focus on the structure. It's a good fit for someone looking to build their dream home or for a family that wants to start from scratch.",
+        "analyzed_at": "2026-04-13T05:45:01.699950+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "2c402581237bcd73",
@@ -116816,7 +117023,29 @@
       "source": "comey",
       "lat": 39.256615,
       "lng": -84.320946,
-      "last_updated": "2026-04-12T18:29:04.933482"
+      "last_updated": "2026-04-12T18:29:04.933482",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large front yard",
+              "manicured lawn",
+              "brick exterior"
+            ],
+            "insight": "The exterior of the house is in good condition with a well-maintained lawn and brick exterior. It's a classic style that would appeal to those who appreciate traditional architecture. The front yard is spacious and could be used for outdoor activities or landscaping.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18742/1874273q.jpg?1775562427"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a classic exterior that would suit a family or couple looking for a traditional style. The front yard is spacious, making it a good fit for those who enjoy outdoor spaces.",
+        "analyzed_at": "2026-04-13T05:45:08.412329+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "7a763208840a7bc6",
@@ -116839,7 +117068,29 @@
       "source": "sibcy_cline",
       "lat": null,
       "lng": null,
-      "last_updated": "2026-04-13T00:27:55.953770"
+      "last_updated": "2026-04-13T00:27:55.953770",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "kitchen",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "big island with seating",
+              "brand new appliances",
+              "tons of cabinet storage"
+            ],
+            "insight": "The kitchen looks completely updated and ready to use from day one. The large island has room for four people to sit, making it great for families or anyone who likes to cook and entertain. Storage is generous with cabinets covering all walls.",
+            "image_url": "https://online.sibcycline.com/retsphotos/CIN/1840552_1.jpg?ts=639109986646800000"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready — the kitchen and bathrooms have already been updated so you won't need to spend extra fixing them up right away. The style is clean and modern without being cold. Good fit for a family or couple who wants a turnkey home and space to entertain.",
+        "analyzed_at": "2026-04-13T05:45:16.048207+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "f0b95c8294167802",
