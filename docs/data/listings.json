@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-13T05:36:30.215446+00:00",
+  "last_updated": "2026-04-13T05:39:10.666242+00:00",
   "total_count": 4594,
   "source_counts": {
     "coldwell_banker": 1215,
@@ -114600,7 +114600,31 @@
       "source": "comey",
       "lat": 39.090637,
       "lng": -84.501709,
-      "last_updated": "2026-04-12T18:29:44.999847"
+      "last_updated": "2026-04-12T18:29:44.999847",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "kitchen",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "big island with seating",
+              "brand new appliances",
+              "tons of cabinet storage",
+              "marble backsplash",
+              "stunning city view"
+            ],
+            "insight": "The kitchen is completely updated and ready to use from day one. The large island has room for four people to sit, making it great for families or anyone who likes to cook and entertain. Storage is generous with cabinets covering all walls, and the marble backsplash adds a touch of luxury. The stunning city view is a major plus for anyone who enjoys the outdoors and wants to enjoy the cityscape from the comfort of their home.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6347/634794l.jpg"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready — the kitchen and bathrooms have already been updated so you won't need to spend extra fixing them up right away. The style is clean and modern with a touch of luxury, and the stunning city view makes it a great fit for a family or couple who wants a turnkey home and space to entertain. The large island and marble backsplash add to the overall appeal.",
+        "analyzed_at": "2026-04-13T05:36:42.014548+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "1143ab7c2b294851",
@@ -114625,7 +114649,29 @@
       "source": "cincinky",
       "lat": 39.0901,
       "lng": -84.5017,
-      "last_updated": "2026-04-13T01:01:44.459875"
+      "last_updated": "2026-04-13T01:01:44.459875",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "kitchen",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "big island with seating",
+              "brand new appliances",
+              "tons of cabinet storage"
+            ],
+            "insight": "The kitchen looks completely updated and ready to use from day one. The large island has room for four people to sit, making it great for families or anyone who likes to cook and entertain. Storage is generous with cabinets covering all walls.",
+            "image_url": "https://cdn.listingphotos.sierrastatic.com/pics2x/v1753809845/16/16_634793_01.jpg"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready — the kitchen and bathrooms have already been updated so you won't need to spend extra fixing them up right away. The style is clean and modern without being cold. Good fit for a family or couple who wants a turnkey home and space to entertain.",
+        "analyzed_at": "2026-04-13T05:36:51.794380+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "fee3fbe0821e19c5",
@@ -114677,7 +114723,31 @@
       "source": "sibcy_cline",
       "lat": 39.1568,
       "lng": -84.4336,
-      "last_updated": "2026-04-13T00:28:05.822536"
+      "last_updated": "2026-04-13T00:28:05.822536",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "modern architecture",
+              "stone and wood accents",
+              "landscaped yard",
+              "landscaped flower beds",
+              "landscaped lawn"
+            ],
+            "insight": "The exterior of the house is beautifully landscaped with a modern architectural design featuring stone and wood accents. The yard is well-maintained with flower beds and a lawn, making it a great space for outdoor activities. The home is move-in ready with no visible signs of wear or damage.",
+            "image_url": "https://m1.cbhomes.com/p/220/1856594/3c422a577f86485/m23cc.webp"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready with a modern and stylish exterior. It's a good fit for someone who appreciates a well-maintained and landscaped property. The home is ideal for a family or couple looking for a turnkey living space.",
+        "analyzed_at": "2026-04-13T05:37:05.777172+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "be50f4aa87ad2158",
@@ -114703,7 +114773,71 @@
       "source": "sibcy_cline",
       "lat": 39.1085,
       "lng": -84.4959,
-      "last_updated": "2026-04-13T00:28:05.822429"
+      "last_updated": "2026-04-13T00:28:05.822429",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large tree in front",
+              "neatly trimmed bushes",
+              "American flag on porch"
+            ],
+            "insight": "The exterior of the house is in good condition with a well-maintained appearance. The large tree in front adds a nice touch of greenery, and the American flag on the porch suggests a sense of pride and patriotism. This is a great home for someone who appreciates a well-kept and traditional look.",
+            "image_url": "https://cdn.listingphotos.sierrastatic.com/pics2x/v1774518943/27/27_1870820_01.jpg"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large tree in front",
+              "neatly trimmed bushes",
+              "American flag on porch"
+            ],
+            "insight": "The exterior of the house is in good condition with a well-maintained appearance. The large tree in front adds a nice touch of greenery, and the American flag on the porch suggests a sense of pride and patriotism. This is a great home for someone who appreciates a well-kept and traditional look.",
+            "image_url": "https://m.cbhomes.com/p/220/1870820/3511790032F344F/m23cc.webp"
+          },
+          {
+            "image_index": 3,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large tree in front",
+              "neatly trimmed bushes",
+              "American flag on porch"
+            ],
+            "insight": "The exterior of the house is in good condition with a well-maintained appearance. The large tree in front adds a nice touch of greenery, and the American flag on the porch suggests a sense of pride and patriotism. This is a great home for someone who appreciates a well-kept and traditional look.",
+            "image_url": "https://m1.cbhomes.com/p/220/1870820/3511790032F344F/m23cc.webp"
+          },
+          {
+            "image_index": 4,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large tree in front",
+              "neatly trimmed bushes",
+              "American flag on porch"
+            ],
+            "insight": "The exterior of the house is in good condition with a well-maintained appearance. The large tree in front adds a nice touch of greenery, and the American flag on the porch suggests a sense of pride and patriotism. This is a great home for someone who appreciates a well-kept and traditional look.",
+            "image_url": "https://online.sibcycline.com/retsphotos/CIN/1870820_1.jpg?ts=639113761953400000"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a traditional exterior. It's a good fit for someone who appreciates a well-maintained and classic look. The large tree in front and the American flag on the porch add a nice touch of character.",
+        "analyzed_at": "2026-04-13T05:37:28.132830+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "458282b41d76cfa5",
@@ -114728,7 +114862,29 @@
       "source": "sibcy_cline",
       "lat": 39.1665,
       "lng": -84.5408,
-      "last_updated": "2026-04-13T00:28:05.822492"
+      "last_updated": "2026-04-13T00:28:05.822492",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 4,
+            "condition_score": 7,
+            "features": [
+              "brick exterior",
+              "large windows",
+              "landscaping"
+            ],
+            "insight": "The exterior of the house is in good condition with a brick facade and large windows. The landscaping is simple but well-maintained. This home is ready for a fresh coat of paint and some landscaping improvements to enhance its curb appeal.",
+            "image_url": "https://online.sibcycline.com/retsphotos/CIN/1867293_1.jpg?ts=639115164749100000"
+          }
+        ],
+        "overall_score": 6.5,
+        "summary": "This home is in good condition and has a classic brick exterior. It's a good fit for someone looking for a home that needs some updates and improvements. The style is traditional and would suit a family or couple who appreciates a classic look.",
+        "analyzed_at": "2026-04-13T05:37:38.969959+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "4507c964ed940f31",
@@ -114753,7 +114909,29 @@
       "source": "sibcy_cline",
       "lat": 39.1139,
       "lng": -84.5073,
-      "last_updated": "2026-04-13T00:28:05.822411"
+      "last_updated": "2026-04-13T00:28:05.822411",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 8,
+            "luxury_score": 7,
+            "condition_score": 9,
+            "features": [
+              "modern architecture",
+              "large windows",
+              "landscaped garden"
+            ],
+            "insight": "The exterior of the house is modern and well-maintained. The large windows allow for plenty of natural light, and the landscaped garden adds a touch of elegance. This home is move-in ready and would be a great fit for someone who appreciates contemporary design and outdoor space.",
+            "image_url": "https://online.sibcycline.com/retsphotos/CIN/1855579_1.jpg?ts=639113855755300000"
+          }
+        ],
+        "overall_score": 8.25,
+        "summary": "This home is move-in ready with a modern and stylish exterior. It's a good fit for someone who values contemporary design and outdoor living space.",
+        "analyzed_at": "2026-04-13T05:37:49.024356+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "4907817cefb84560",
@@ -114778,7 +114956,29 @@
       "source": "sibcy_cline",
       "lat": 39.091587,
       "lng": -84.480797,
-      "last_updated": "2026-04-13T00:28:03.181115"
+      "last_updated": "2026-04-13T00:28:03.181115",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "modern design",
+              "large windows",
+              "well-maintained landscaping"
+            ],
+            "insight": "The exterior of the house is in excellent condition and showcases a modern design with large windows and well-maintained landscaping. This home would be a great fit for someone who appreciates contemporary architecture and a well-kept outdoor space.",
+            "image_url": "https://online.sibcycline.com/retsphotos/NKY/636653_1.jpg?ts=639103487450300000"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready with a modern exterior and a well-maintained landscape. The style is contemporary and would appeal to a family or couple looking for a stylish and functional home with a focus on aesthetics.",
+        "analyzed_at": "2026-04-13T05:37:59.637292+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "2faf1b1dbe0201d2",
@@ -114825,7 +115025,124 @@
       "source": "coldwell_banker",
       "lat": 39.0916,
       "lng": -84.4808,
-      "last_updated": "2026-04-13T01:34:54.105633+00:00"
+      "last_updated": "2026-04-13T01:34:54.105633+00:00",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "living_room",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "modern fireplace",
+              "large windows",
+              "minimalist decor"
+            ],
+            "insight": "The living room is a spacious and modern space with a minimalist design. The large windows provide plenty of natural light and a stunning view of the city. The fireplace adds a cozy touch to the room. The space is ready to use as-is and is perfect for entertaining guests or relaxing at home.",
+            "image_url": "https://m.cbhomes.com/p/192/636653/134742d63F204Cf/m23cc.webp"
+          },
+          {
+            "image_index": 2,
+            "room_type": "living_room",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "modern fireplace",
+              "large windows",
+              "minimalist decor"
+            ],
+            "insight": "The living room is a spacious and modern space with a minimalist design. The large windows provide plenty of natural light and a stunning view of the city. The fireplace adds a cozy touch to the room. The space is ready to use as-is and is perfect for entertaining guests or relaxing at home.",
+            "image_url": "https://m1.cbhomes.com/p/192/636653/4F005e903e7947C/pds23tp.webp"
+          },
+          {
+            "image_index": 3,
+            "room_type": "exterior",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "stunning city view",
+              "modern architecture"
+            ],
+            "insight": "The exterior of the house showcases a modern architectural design with a stunning city view. The house is in excellent condition and is ready to move into. The view from the balcony is breathtaking and perfect for enjoying the city skyline.",
+            "image_url": "https://m.cbhomes.com/p/192/636653/C2040035575745b/pds23tp.webp"
+          },
+          {
+            "image_index": 4,
+            "room_type": "living_room",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "modern fireplace",
+              "large windows",
+              "minimalist decor"
+            ],
+            "insight": "The living room is a spacious and modern space with a minimalist design. The large windows provide plenty of natural light and a stunning view of the city. The fireplace adds a cozy touch to the room. The space is ready to use as-is and is perfect for entertaining guests or relaxing at home.",
+            "image_url": "https://m1.cbhomes.com/p/192/636653/3b0e372Ee7b74E4/pds23tp.webp"
+          },
+          {
+            "image_index": 5,
+            "room_type": "living_room",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "modern fireplace",
+              "large windows",
+              "minimalist decor"
+            ],
+            "insight": "The living room is a spacious and modern space with a minimalist design. The large windows provide plenty of natural light and a stunning view of the city. The fireplace adds a cozy touch to the room. The space is ready to use as-is and is perfect for entertaining guests or relaxing at home.",
+            "image_url": "https://m.cbhomes.com/p/192/636653/7ce852E5E965479/pds23tp.webp"
+          },
+          {
+            "image_index": 6,
+            "room_type": "exterior",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "stunning city view",
+              "modern architecture"
+            ],
+            "insight": "The exterior of the house showcases a modern architectural design with a stunning city view. The house is in excellent condition and is ready to move into. The view from the balcony is breathtaking and perfect for enjoying the city skyline.",
+            "image_url": "https://m1.cbhomes.com/p/192/636653/9C9f0F9bFA334B3/pds23tp.webp"
+          },
+          {
+            "image_index": 7,
+            "room_type": "exterior",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "stunning city view",
+              "modern architecture"
+            ],
+            "insight": "The exterior of the house showcases a modern architectural design with a stunning city view. The house is in excellent condition and is ready to move into. The view from the balcony is breathtaking and perfect for enjoying the city skyline.",
+            "image_url": "https://m.cbhomes.com/p/192/636653/8E321568813e418/pds23tp.webp"
+          },
+          {
+            "image_index": 8,
+            "room_type": "living_room",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "modern fireplace",
+              "large windows",
+              "minimalist decor"
+            ],
+            "insight": "The living room is a spacious and modern space with a minimalist design. The large windows provide plenty of natural light and a stunning view of the city. The fireplace adds a cozy touch to the room. The space is ready to use as-is and is perfect for entertaining guests or relaxing at home.",
+            "image_url": "https://m1.cbhomes.com/p/192/636653/4678B618337D4AA/pds23tp.webp"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready — the living rooms and exterior have already been updated and are in excellent condition. The style is modern and minimalist, with a focus on natural light and a stunning city view. Good fit for a family or couple who wants a turnkey home and space to entertain. The house has a large balcony with a view of the city, making it perfect for enjoying the city skyline.",
+        "analyzed_at": "2026-04-13T05:38:35.152163+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "17c86c57bafabf6c",
@@ -114848,7 +115165,31 @@
       "source": "sibcy_cline",
       "lat": null,
       "lng": null,
-      "last_updated": "2026-04-13T00:28:03.181028"
+      "last_updated": "2026-04-13T00:28:03.181028",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 4,
+            "luxury_score": 3,
+            "condition_score": 6,
+            "features": [
+              "American flag",
+              "flowers",
+              "stop sign",
+              "brick building",
+              "green umbrellas"
+            ],
+            "insight": "This exterior view shows a charming scene with a mix of old and new elements. The American flag adds a patriotic touch, while the flowers and green umbrellas give it a welcoming feel. The brick building suggests a historic or traditional style, which might be appealing to some buyers. The stop sign indicates it's a street corner, which could be a good location for a business or a residential area.",
+            "image_url": "https://online.sibcycline.com/retsphotos/CIN/1868908_1.jpg?ts=639107930058100000"
+          }
+        ],
+        "overall_score": 5.5,
+        "summary": "This home is not move-in ready and would require significant updates. The exterior has a mix of old and new elements, which might be appealing to some buyers looking for a historic or traditional style. However, the condition score suggests it needs some work, and the overall score reflects this. It might be a good fit for someone who enjoys DIY projects and is looking for a project home.",
+        "analyzed_at": "2026-04-13T05:38:45.299699+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "e9adb0067e5f0ad1",
@@ -114875,7 +115216,85 @@
       "source": "sibcy_cline",
       "lat": 39.071999,
       "lng": -84.581734,
-      "last_updated": "2026-04-13T00:28:03.181070"
+      "last_updated": "2026-04-13T00:28:03.181070",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "living_room",
+            "modernity_score": 8,
+            "luxury_score": 7,
+            "condition_score": 9,
+            "features": [
+              "large windows with a view",
+              "cozy seating area",
+              "neutral color palette"
+            ],
+            "insight": "The living room is spacious and has a cozy seating area with large windows that offer a stunning view of the river. The neutral color palette makes it versatile and easy to decorate. It's ready to use as-is and perfect for entertaining guests.",
+            "image_url": "https://m1.cbhomes.com/p/192/639377/150c3C1E132b495/m23cc.webp"
+          },
+          {
+            "image_index": 2,
+            "room_type": "bedroom",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large windows",
+              "neutral color palette",
+              "comfortable bed"
+            ],
+            "insight": "This bedroom is spacious and has large windows that let in plenty of natural light. The neutral color palette makes it a calming space. The bed looks comfortable and inviting. It's in good condition and ready to use as-is.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6393/639377q.jpg?1768909901"
+          },
+          {
+            "image_index": 3,
+            "room_type": "bedroom",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large windows",
+              "neutral color palette",
+              "comfortable bed"
+            ],
+            "insight": "This bedroom is spacious and has large windows that let in plenty of natural light. The neutral color palette makes it a calming space. The bed looks comfortable and inviting. It's in good condition and ready to use as-is.",
+            "image_url": "https://online.sibcycline.com/retsphotos/NKY/639377_1.jpg?ts=639109517525400000"
+          },
+          {
+            "image_index": 4,
+            "room_type": "bedroom",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large windows",
+              "neutral color palette",
+              "comfortable bed"
+            ],
+            "insight": "This bedroom is spacious and has large windows that let in plenty of natural light. The neutral color palette makes it a calming space. The bed looks comfortable and inviting. It's in good condition and ready to use as-is.",
+            "image_url": "https://cdn.listingphotos.sierrastatic.com/pics2x/v1768928900/16/16_639377_01.jpg"
+          },
+          {
+            "image_index": 5,
+            "room_type": "bedroom",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large windows",
+              "neutral color palette",
+              "comfortable bed"
+            ],
+            "insight": "This bedroom is spacious and has large windows that let in plenty of natural light. The neutral color palette makes it a calming space. The bed looks comfortable and inviting. It's in good condition and ready to use as-is.",
+            "image_url": "https://m.cbhomes.com/p/192/639377/150c3C1E132b495/m23cc.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is move-in ready with updated bedrooms and bathrooms. The style is modern and neutral, making it a good fit for a family or couple who wants a comfortable and stylish home. The outdoor space and river view add to the appeal.",
+        "analyzed_at": "2026-04-13T05:39:10.665483+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "3c854d646fc62c76",
