@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-13T05:01:22.542943+00:00",
+  "last_updated": "2026-04-13T05:03:18.714713+00:00",
   "total_count": 4594,
   "source_counts": {
     "coldwell_banker": 1215,
@@ -105114,7 +105114,29 @@
       "source": "coldwell_banker",
       "lat": 39.2697,
       "lng": -84.3455,
-      "last_updated": "2026-04-13T01:32:19.514023+00:00"
+      "last_updated": "2026-04-13T01:32:19.514023+00:00",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "brick exterior",
+              "large windows",
+              "garage with double doors"
+            ],
+            "insight": "The exterior of the house is in good condition with a brick facade and large windows that let in plenty of natural light. The garage is spacious and has double doors, making it easy to park and access vehicles. The landscaping is simple but well-maintained.",
+            "image_url": "https://m.cbhomes.com/p/220/1873117/eE952798c44F451/m23cc.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a classic, slightly dated look. It's a good fit for someone who appreciates a traditional style and has a preference for a home that's not overly modern. The garage and exterior are functional and well-maintained.",
+        "analyzed_at": "2026-04-13T05:01:34.833826+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "58dac99b8936d8b9",
@@ -105138,7 +105160,31 @@
       "source": "coldwell_banker",
       "lat": 39.1426,
       "lng": -84.4402,
-      "last_updated": "2026-04-13T01:32:48.958655+00:00"
+      "last_updated": "2026-04-13T01:32:48.958655+00:00",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 4,
+            "luxury_score": 5,
+            "condition_score": 7,
+            "features": [
+              "large front porch",
+              "well-maintained lawn",
+              "neatly trimmed bushes",
+              "two-car garage",
+              "brick exterior"
+            ],
+            "insight": "The exterior of the house is in good condition but shows signs of wear. The large front porch is a nice feature for sitting or entertaining guests. The lawn and bushes are well-maintained, and the two-car garage is a plus for storage or parking. The brick exterior gives it a classic, slightly dated look.",
+            "image_url": "https://m1.cbhomes.com/p/220/1871522/Df055481FFAD47e/m23cc.webp"
+          }
+        ],
+        "overall_score": 6.5,
+        "summary": "This home is in good condition but could use some updates. The exterior is classic and well-maintained, but the interior may need some work. It's a good fit for someone who appreciates a classic style and is willing to invest in updates.",
+        "analyzed_at": "2026-04-13T05:01:48.793305+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "32c8c576226c12c5",
@@ -105163,7 +105209,29 @@
       "source": "cincinky",
       "lat": 39.1088,
       "lng": -84.7146,
-      "last_updated": "2026-04-13T01:01:41.275012"
+      "last_updated": "2026-04-13T01:01:41.275012",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 9,
+            "features": [
+              "stone exterior",
+              "large windows",
+              "manicured landscaping"
+            ],
+            "insight": "The exterior of the house is well-maintained and features a stone facade that gives it a classic and timeless appeal. The large windows allow for plenty of natural light and the landscaping is neatly trimmed, making it a welcoming entry point. This home would be a good fit for someone who appreciates a traditional style with modern updates.",
+            "image_url": "https://m1.cbhomes.com/p/192/635805/AF931e5A2091440/m23cc.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in excellent condition and has a classic exterior that would appeal to those who value a traditional style. The landscaping and stone exterior give it a timeless feel, making it a good fit for a family or couple looking for a move-in ready home.",
+        "analyzed_at": "2026-04-13T05:02:01.736464+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "6b43254e39afbaa5",
@@ -105189,7 +105257,29 @@
       "source": "redfin",
       "lat": 39.1455689,
       "lng": -84.4406003,
-      "last_updated": "2026-04-12T19:18:58.717839"
+      "last_updated": "2026-04-12T19:18:58.717839",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "living_room",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "large windows",
+              "modern furniture",
+              "cozy seating area"
+            ],
+            "insight": "The living room is spacious and well-lit with large windows, making it perfect for entertaining or relaxing. The modern furniture and cozy seating area create a welcoming atmosphere. The room is move-in ready and would be ideal for a family or someone who enjoys hosting guests.",
+            "image_url": "https://m1.cbhomes.com/p/220/1874416/bF338F2AeB0040d/m23cc.webp"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready with a modern and cozy living room. The style is clean and contemporary, making it a great fit for a family or couple who values comfort and aesthetics. The living room is spacious and well-lit, perfect for entertaining or relaxing.",
+        "analyzed_at": "2026-04-13T05:02:14.267123+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "893eacbcfdeb130c",
@@ -105213,7 +105303,29 @@
       "source": "comey",
       "lat": 39.091362,
       "lng": -84.501579,
-      "last_updated": "2026-04-12T18:29:44.998780"
+      "last_updated": "2026-04-12T18:29:44.998780",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "modern glass doors",
+              "reflective windows",
+              "clean lines"
+            ],
+            "insight": "This exterior view showcases a modern and sleek design with large glass doors and reflective windows. It's a great space for a family or anyone who appreciates a contemporary aesthetic. The clean lines and modern design make it a great fit for someone who wants a stylish and functional home.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639437q.jpg?1769087854"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready — the exterior has already been updated and looks modern and stylish. The style is clean and contemporary, making it a good fit for a family or couple who wants a turnkey home with a modern design.",
+        "analyzed_at": "2026-04-13T05:02:25.695194+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "6bab644616c997f8",
@@ -105237,7 +105349,43 @@
       "source": "comey",
       "lat": 39.09124,
       "lng": -84.500916,
-      "last_updated": "2026-04-12T18:29:44.998790"
+      "last_updated": "2026-04-12T18:29:44.998790",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 8,
+            "luxury_score": 6,
+            "condition_score": 9,
+            "features": [
+              "modern glass doors",
+              "reflective windows",
+              "clean lines"
+            ],
+            "insight": "This exterior view shows a modern entrance with sleek glass doors and reflective windows. It's in excellent condition and ready for use. The clean lines and modern design would appeal to someone who appreciates contemporary architecture.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639435q.jpg?1769086926"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 8,
+            "luxury_score": 6,
+            "condition_score": 9,
+            "features": [
+              "modern glass doors",
+              "reflective windows",
+              "clean lines"
+            ],
+            "insight": "This exterior view shows a modern entrance with sleek glass doors and reflective windows. It's in excellent condition and ready for use. The clean lines and modern design would appeal to someone who appreciates contemporary architecture.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6394/639435l.jpg"
+          }
+        ],
+        "overall_score": 8,
+        "summary": "This home is move-in ready — the exterior has been updated with modern glass doors and reflective windows, making it a great fit for someone who appreciates contemporary design. The style is clean and modern, ideal for a couple or small family looking for a stylish home.",
+        "analyzed_at": "2026-04-13T05:02:35.760546+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "c7043cb3f8d07b66",
@@ -105261,7 +105409,43 @@
       "source": "comey",
       "lat": 39.091297,
       "lng": -84.501678,
-      "last_updated": "2026-04-12T18:29:44.998799"
+      "last_updated": "2026-04-12T18:29:44.998799",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "modern glass doors",
+              "reflective windows",
+              "sidewalk access"
+            ],
+            "insight": "This exterior view shows modern glass doors leading into a building. The reflective windows give a sleek look, and the sidewalk access suggests easy pedestrian access. The condition appears good, with no visible signs of wear or damage.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639433q.jpg?1769086192"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "modern glass doors",
+              "reflective windows",
+              "sidewalk access"
+            ],
+            "insight": "This exterior view shows modern glass doors leading into a building. The reflective windows give a sleek look, and the sidewalk access suggests easy pedestrian access. The condition appears good, with no visible signs of wear or damage.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6394/639433l.jpg"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a modern exterior with glass doors and reflective windows. It's a good fit for someone looking for a move-in ready home with a contemporary style. The location seems accessible with sidewalk access.",
+        "analyzed_at": "2026-04-13T05:02:45.952843+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "751ce8167708f4f7",
@@ -105286,7 +105470,29 @@
       "source": "cincinky",
       "lat": 39.0912,
       "lng": -84.5009,
-      "last_updated": "2026-04-13T01:01:44.459327"
+      "last_updated": "2026-04-13T01:01:44.459327",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "living_room",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "large windows with city view",
+              "modern lighting fixtures",
+              "minimalist decor"
+            ],
+            "insight": "The living room is a spacious and modern space with stunning city views. The large windows allow plenty of natural light and the minimalist decor creates a serene atmosphere. It's perfect for someone who enjoys entertaining and appreciates a stylish living environment.",
+            "image_url": "https://cdn.listingphotos.sierrastatic.com/pics2x/v1753806174/16/16_634790_01.jpg"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready — the living room is already beautifully designed and offers a stunning city view. The style is modern and sophisticated, making it a great fit for a couple or a small family who values aesthetics and city living.",
+        "analyzed_at": "2026-04-13T05:02:57.904757+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "e56f794de44e29d8",
@@ -105310,7 +105516,29 @@
       "source": "coldwell_banker",
       "lat": 39.1155,
       "lng": -84.5116,
-      "last_updated": "2026-04-13T01:33:38.158913+00:00"
+      "last_updated": "2026-04-13T01:33:38.158913+00:00",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "brick exterior",
+              "garage doors visible",
+              "multiple windows"
+            ],
+            "insight": "The exterior of the house is in good condition with a brick facade and multiple windows. The garage doors are visible, indicating a car parking area. The windows suggest natural light inside, which is a plus for any home. The house appears to be in a good condition with some updates needed.",
+            "image_url": "https://m.cbhomes.com/p/220/1865300/A94D2Fa224db4aA/m23cc.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition with some updates needed. The exterior is brick, and there's a garage for car parking. It's a good fit for someone looking for a home that needs some cosmetic updates but is otherwise in decent shape.",
+        "analyzed_at": "2026-04-13T05:03:09.365447+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "a6f7c84161a96bff",
@@ -105334,7 +105562,29 @@
       "source": "comey",
       "lat": 39.227638,
       "lng": -84.470955,
-      "last_updated": "2026-04-12T18:29:04.932500"
+      "last_updated": "2026-04-12T18:29:04.932500",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 4,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large tree in front yard",
+              "well-maintained lawn",
+              "stone pathway leading to house"
+            ],
+            "insight": "The exterior of the house is in good condition with a well-maintained lawn and a large tree providing shade. The stone pathway leading to the house adds a nice touch of elegance. This home would be a good fit for someone who appreciates a classic, slightly dated look and enjoys outdoor spaces.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18737/1873741q.jpg?1775800572"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a classic, slightly dated exterior. It's a good fit for someone who appreciates a traditional style and enjoys outdoor spaces. The stone pathway and large tree add a nice touch of elegance.",
+        "analyzed_at": "2026-04-13T05:03:18.714351+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "dc6e435750acb976",
