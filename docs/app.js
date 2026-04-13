@@ -39,6 +39,13 @@ const state = {
     features: [],   // multi-select array
     sort: "price_asc",
   },
+  quiz: {
+    budgetMin: "",
+    budgetMax: "",
+    style: "",        // "modern" | "traditional" | ""
+    features: [],     // must-have feature tags
+    completed: false,
+  },
 };
 
 // ── Leaflet map instance
@@ -92,6 +99,8 @@ async function load_data() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
 
+    load_quiz_from_storage();
+    if (state.quiz.completed) $("btn-clear-quiz").style.display = "inline-block";
     state.all = data.listings || [];
 
     const meta = $("header-meta");
@@ -123,6 +132,78 @@ function avg_room_score(listing, field) {
   const vals = rooms.map((r) => r[field] ?? 0).filter((v) => v > 0);
   if (!vals.length) return 0;
   return vals.reduce((a, b) => a + b, 0) / vals.length;
+}
+
+// ── Match scoring ─────────────────────────────────────
+function compute_match_score(listing, quiz) {
+  if (!quiz.completed) return null;
+  let score = 0;
+
+  // ── Budget (35 pts) ──────────────────────────────────
+  const price = listing.price;
+  const pMin  = quiz.budgetMin ? +quiz.budgetMin : null;
+  const pMax  = quiz.budgetMax ? +quiz.budgetMax : null;
+  if (price == null) {
+    score += 17; // neutral
+  } else if (pMin != null && pMax != null) {
+    if (price >= pMin && price <= pMax) score += 35;
+    else if (price > pMax && price <= pMax * 1.2) score += 15;
+    else if (price < pMin && price >= pMin * 0.8) score += 15;
+  } else if (pMax != null) {
+    if (price <= pMax) score += 35;
+    else if (price <= pMax * 1.2) score += 15;
+  } else if (pMin != null) {
+    if (price >= pMin) score += 35;
+  } else {
+    score += 35; // no budget set
+  }
+
+  // ── Style (30 pts) ───────────────────────────────────
+  if (!quiz.style) {
+    score += 30;
+  } else if (quiz.style === "modern") {
+    const avgModernity = avg_room_score(listing, "modernity_score");
+    if (avgModernity >= 7) {
+      score += 30;
+    } else if (avgModernity >= 5) {
+      score += 20;
+    } else {
+      const modernSignals = ["new_construction", "updated_kitchen", "open_floor_plan",
+                             "quartz_counters", "new_flooring", "new_appliances"];
+      const hits = (listing.features || []).filter(f => modernSignals.includes(f)).length;
+      const kwHits = (listing.keywords || []).some(k =>
+        /modern|contemporary|updated|renovated|new construction/i.test(k)
+      );
+      if (hits >= 2 || kwHits) score += 20;
+      else if (hits === 1) score += 10;
+      else score += 5;
+    }
+  } else if (quiz.style === "traditional") {
+    const avgModernity = avg_room_score(listing, "modernity_score");
+    if (avgModernity > 0 && avgModernity < 6) {
+      score += 30; // lower modernity = more traditional
+    } else if (avgModernity === 0) {
+      // No AI score — check keywords
+      const tradSignals = ["colonial", "craftsman", "ranch", "brick", "character", "original"];
+      const kwHits = (listing.keywords || []).some(k =>
+        tradSignals.some(s => k.toLowerCase().includes(s))
+      );
+      score += kwHits ? 25 : 15;
+    } else {
+      score += 8;
+    }
+  }
+
+  // ── Must-have features (35 pts) ──────────────────────
+  if (!quiz.features.length) {
+    score += 35;
+  } else {
+    const listingFeatures = listing.features || [];
+    const matched = quiz.features.filter(f => listingFeatures.includes(f)).length;
+    score += Math.round((matched / quiz.features.length) * 35);
+  }
+
+  return Math.min(100, Math.round(score));
 }
 
 // ── Filtering & sorting ───────────────────────────────
@@ -203,6 +284,9 @@ function apply_filters() {
     case "ai_score_desc":
       list.sort((a, b) => (b.image_analysis?.overall_score ?? 0) - (a.image_analysis?.overall_score ?? 0));
       break;
+    case "match_desc":
+      list.sort((a, b) => (compute_match_score(b, state.quiz) ?? 0) - (compute_match_score(a, state.quiz) ?? 0));
+      break;
   }
 
   state.filtered = list;
@@ -247,6 +331,11 @@ function card_html(listing, idx) {
     ? `<img src="${listing.images[0]}" alt="Property photo" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-photo>🏠</div>'">`
     : `<div class="no-photo">🏠</div>`;
 
+  const match_score = compute_match_score(listing, state.quiz);
+  const match_badge_html = match_score != null
+    ? `<span class="match-badge match-badge-${match_score >= 70 ? "green" : match_score >= 40 ? "amber" : "gray"}">${match_score}% match</span>`
+    : "";
+
   const beds  = fmt_num(listing.beds);
   const baths = fmt_num(listing.baths);
   const sqft  = fmt_num(listing.sqft, "sqft");
@@ -266,6 +355,7 @@ function card_html(listing, idx) {
       <div class="card-image">
         ${img_html}
         <span class="source-badge source-${listing.source}">${source_label(listing.source)}</span>
+        ${match_badge_html}
       </div>
       <div class="card-body">
         <div class="card-price">${fmt_price(listing.price)}</div>
@@ -618,6 +708,75 @@ function close_modal() {
   document.body.style.overflow = "";
 }
 
+// ── Quiz ──────────────────────────────────────────────
+function open_quiz() {
+  const q = state.quiz;
+  // Pre-fill from saved state
+  $("quiz-budget-min").value = q.budgetMin;
+  $("quiz-budget-max").value = q.budgetMax;
+  $("quiz-modal-overlay").querySelectorAll(".quiz-style-chip").forEach(c => {
+    c.classList.toggle("active", c.dataset.val === q.style);
+  });
+  $("quiz-features-group").querySelectorAll(".chip").forEach(c => {
+    c.classList.toggle("active", q.features.includes(c.dataset.val));
+  });
+  $("quiz-modal-overlay").style.display = "flex";
+  document.body.style.overflow = "hidden";
+}
+
+function close_quiz() {
+  $("quiz-modal-overlay").style.display = "none";
+  document.body.style.overflow = "";
+}
+
+function save_quiz() {
+  const style = $("quiz-modal-overlay").querySelector(".quiz-style-chip.active")?.dataset.val || "";
+  const features = [...$("quiz-features-group").querySelectorAll(".chip.active")]
+    .map(c => c.dataset.val).filter(Boolean);
+
+  state.quiz = {
+    budgetMin: $("quiz-budget-min").value,
+    budgetMax: $("quiz-budget-max").value,
+    style,
+    features,
+    completed: true,
+  };
+
+  try {
+    localStorage.setItem("buyer-quiz", JSON.stringify(state.quiz));
+  } catch (_) {}
+
+  // Auto-switch sort to Best Match
+  state.filters.sort = "match_desc";
+  $("filter-sort").value = "match_desc";
+
+  $("btn-clear-quiz").style.display = "inline-block";
+  close_quiz();
+  apply_filters();
+}
+
+function load_quiz_from_storage() {
+  try {
+    const saved = localStorage.getItem("buyer-quiz");
+    if (saved) {
+      const q = JSON.parse(saved);
+      if (q.completed) state.quiz = q;
+    }
+  } catch (_) {}
+}
+
+function clear_quiz() {
+  state.quiz = { budgetMin: "", budgetMax: "", style: "", features: [], completed: false };
+  try { localStorage.removeItem("buyer-quiz"); } catch (_) {}
+  $("btn-clear-quiz").style.display = "none";
+  apply_filters();
+  // Reset sort if it was on match
+  if (state.filters.sort === "match_desc") {
+    state.filters.sort = "price_asc";
+    $("filter-sort").value = "price_asc";
+  }
+}
+
 // ── Event wiring ──────────────────────────────────────
 function wire_events() {
   // Price selects
@@ -755,6 +914,30 @@ function wire_events() {
   // Mobile sidebar
   $("mobile-filter-btn").addEventListener("click", () => {
     $("sidebar").classList.toggle("open");
+  });
+
+  // Quiz
+  $("btn-find-match").addEventListener("click", open_quiz);
+  $("btn-clear-quiz").addEventListener("click", clear_quiz);
+  $("quiz-modal-overlay").addEventListener("click", (e) => {
+    if (e.target === $("quiz-modal-overlay")) close_quiz();
+  });
+  $("quiz-close").addEventListener("click", close_quiz);
+  $("quiz-save").addEventListener("click", save_quiz);
+
+  // Quiz style chips (single-select)
+  $("quiz-modal-overlay").querySelectorAll(".quiz-style-chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      $("quiz-modal-overlay").querySelectorAll(".quiz-style-chip").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+    });
+  });
+
+  // Quiz feature chips (multi-select)
+  $("quiz-features-group").addEventListener("click", (e) => {
+    const chip = e.target.closest(".chip");
+    if (!chip) return;
+    chip.classList.toggle("active");
   });
 }
 

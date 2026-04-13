@@ -35,6 +35,12 @@
       <button class="btn-ghost" id="clear-filters">Clear all</button>
     </div>
 
+    <!-- Match quiz -->
+    <div class="quiz-cta" id="quiz-cta-area">
+      <button class="btn-find-match" id="btn-find-match">✨ Find My Match</button>
+      <button class="btn-ghost btn-clear-quiz" id="btn-clear-quiz" style="display:none">Clear match</button>
+    </div>
+
     <!-- Search -->
     <div class="filter-group">
       <label class="filter-label">Search</label>
@@ -270,6 +276,7 @@
         <option value="sqft_desc">Largest</option>
         <option value="dom_asc">Newest</option>
         <option value="ai_score_desc">AI Score: Best First</option>
+        <option value="match_desc">✨ Best Match</option>
       </select>
     </div>
 
@@ -317,6 +324,89 @@
   <div class="modal" id="modal">
     <button class="modal-close" id="modal-close">✕</button>
     <div id="modal-content"></div>
+  </div>
+</div>
+
+<!-- ── QUIZ MODAL ─────────────────────────────────────── -->
+<div class="modal-overlay quiz-modal-overlay" id="quiz-modal-overlay" style="display:none">
+  <div class="modal quiz-modal" id="quiz-modal">
+    <button class="modal-close" id="quiz-close">✕</button>
+
+    <div class="quiz-header">
+      <div class="quiz-title">✨ Find My Match</div>
+      <div class="quiz-subtitle">Answer 3 quick questions and we'll score every listing for you.</div>
+    </div>
+
+    <!-- Step 1: Budget -->
+    <div class="quiz-step">
+      <div class="quiz-step-label"><span class="quiz-step-num">1</span> What's your budget?</div>
+      <div class="range-row">
+        <div class="range-col">
+          <span class="range-hint">Min</span>
+          <select id="quiz-budget-min">
+            <option value="">Any</option>
+            <option value="50000">$50k</option>
+            <option value="100000">$100k</option>
+            <option value="150000">$150k</option>
+            <option value="200000">$200k</option>
+            <option value="250000">$250k</option>
+            <option value="300000">$300k</option>
+            <option value="400000">$400k</option>
+            <option value="500000">$500k</option>
+            <option value="750000">$750k</option>
+            <option value="1000000">$1M</option>
+          </select>
+        </div>
+        <span class="range-dash">–</span>
+        <div class="range-col">
+          <span class="range-hint">Max</span>
+          <select id="quiz-budget-max">
+            <option value="">Any</option>
+            <option value="100000">$100k</option>
+            <option value="150000">$150k</option>
+            <option value="200000">$200k</option>
+            <option value="250000">$250k</option>
+            <option value="300000">$300k</option>
+            <option value="400000">$400k</option>
+            <option value="500000">$500k</option>
+            <option value="750000">$750k</option>
+            <option value="1000000">$1M</option>
+            <option value="1500000">$1.5M+</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Style -->
+    <div class="quiz-step">
+      <div class="quiz-step-label"><span class="quiz-step-num">2</span> What style do you prefer?</div>
+      <div class="chip-group">
+        <button class="chip quiz-style-chip active" data-val="">No preference</button>
+        <button class="chip quiz-style-chip" data-val="modern">Modern &amp; Updated</button>
+        <button class="chip quiz-style-chip" data-val="traditional">Classic &amp; Traditional</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Must-have features -->
+    <div class="quiz-step">
+      <div class="quiz-step-label"><span class="quiz-step-num">3</span> Must-have features? <span class="quiz-step-hint">(pick any)</span></div>
+      <div class="chip-group chip-group-wrap" id="quiz-features-group">
+        <button class="chip" data-val="updated_kitchen">Updated Kitchen</button>
+        <button class="chip" data-val="open_floor_plan">Open Floor Plan</button>
+        <button class="chip" data-val="hardwood_floors">Hardwood Floors</button>
+        <button class="chip" data-val="quartz_counters">Quartz Counters</button>
+        <button class="chip" data-val="pool">Pool</button>
+        <button class="chip" data-val="finished_basement">Finished Basement</button>
+        <button class="chip" data-val="new_roof">New Roof</button>
+        <button class="chip" data-val="new_hvac">New HVAC</button>
+        <button class="chip" data-val="fireplace">Fireplace</button>
+        <button class="chip" data-val="master_suite">Master Suite</button>
+        <button class="chip" data-val="fenced_yard">Fenced Yard</button>
+        <button class="chip" data-val="two_car_garage">2-Car Garage</button>
+      </div>
+    </div>
+
+    <button class="btn-quiz-save" id="quiz-save">See My Matches →</button>
   </div>
 </div>
 
