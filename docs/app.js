@@ -35,6 +35,8 @@ const state = {
     roomModernity: "",
     roomLuxury: "",
     roomCondition: "",
+    search: "",
+    feature: "",
     sort: "price_asc",
   },
 };
@@ -140,6 +142,29 @@ function apply_filters() {
   if (f.aiModernity) list = list.filter((l) => avg_room_score(l, "modernity_score") >= +f.aiModernity);
   if (f.aiLuxury)    list = list.filter((l) => avg_room_score(l, "luxury_score")    >= +f.aiLuxury);
   if (f.aiCondition) list = list.filter((l) => avg_room_score(l, "condition_score") >= +f.aiCondition);
+
+  // Free-text search (description + address + ai keywords)
+  if (f.search) {
+    const q = f.search.toLowerCase();
+    list = list.filter((l) => {
+      const haystack = [
+        l.description || "",
+        l.address || "",
+        (l.keywords || []).join(" "),
+        (l.features || []).join(" ").replace(/_/g, " "),
+      ].join(" ").toLowerCase();
+      return haystack.includes(q);
+    });
+  }
+
+  // Feature tag filter
+  if (f.feature) {
+    list = list.filter((l) => {
+      const tags = l.features || [];
+      const kwds = (l.keywords || []).join(" ").toLowerCase();
+      return tags.includes(f.feature) || kwds.includes(f.feature.replace(/_/g, " "));
+    });
+  }
 
   // Room-specific filter
   if (f.roomType || f.roomModernity || f.roomLuxury || f.roomCondition) {
@@ -248,6 +273,9 @@ function card_html(listing, idx) {
         <div class="card-address">${listing.address}${listing.city ? ", " + listing.city : ""}${listing.zip ? " " + listing.zip : ""}</div>
         <div class="card-stats">${stats || '<span style="color:#9ca3af">Details unavailable</span>'}</div>
       </div>
+      ${listing.features?.length
+        ? `<div class="card-features">${listing.features.slice(0, 4).map(f => `<span class="card-feature-tag">${feature_label(f)}</span>`).join("")}</div>`
+        : ""}
       <div class="card-footer">
         <span>${dom}</span>
         ${listing.url ? `<a href="${listing.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">View →</a>` : ""}
@@ -419,6 +447,45 @@ function score_badge(score, type, label_text) {
   </div>`;
 }
 
+const FEATURE_LABELS = {
+  updated_kitchen:   "Updated Kitchen",
+  quartz_counters:   "Quartz Counters",
+  granite_counters:  "Granite Counters",
+  kitchen_island:    "Kitchen Island",
+  new_appliances:    "New Appliances",
+  hardwood_floors:   "Hardwood Floors",
+  new_flooring:      "New Flooring",
+  open_floor_plan:   "Open Floor Plan",
+  pool:              "Pool",
+  fenced_yard:       "Fenced Yard",
+  deck_patio:        "Deck / Patio",
+  large_lot:         "Large Lot",
+  new_roof:          "New Roof",
+  new_hvac:          "New HVAC",
+  new_windows:       "New Windows",
+  finished_basement: "Finished Basement",
+  fireplace:         "Fireplace",
+  master_suite:      "Master Suite",
+  walk_in_closet:    "Walk-in Closet",
+  bonus_room:        "Bonus Room",
+  in_law_suite:      "In-Law Suite",
+  two_car_garage:    "2-Car Garage",
+  three_car_garage:  "3-Car Garage",
+  move_in_ready:     "Move-in Ready",
+  new_construction:  "New Construction",
+  needs_work:        "Needs Work",
+  smart_home:        "Smart Home",
+  solar:             "Solar Panels",
+  ev_charger:        "EV Charger",
+  updated_bathrooms: "Updated Bathrooms",
+  soaking_tub:       "Soaking Tub",
+  walk_in_shower:    "Walk-in Shower",
+};
+
+function feature_label(tag) {
+  return FEATURE_LABELS[tag] || tag.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+}
+
 function room_type_label(rt) {
   const map = {
     kitchen: "Kitchen", living_room: "Living Room", master_bedroom: "Master Bedroom",
@@ -525,6 +592,16 @@ function open_modal(listing) {
           </div>`).join("")}
       </div>
       ${extra ? `<div class="modal-desc" style="font-size:13px">${extra}</div>` : ""}
+      ${listing.features?.length || listing.keywords?.length ? `
+        <div class="modal-features">
+          ${(listing.features || []).map(f => `<span class="modal-feature-tag">${feature_label(f)}</span>`).join("")}
+          ${(listing.keywords || []).map(k => `<span class="modal-keyword-tag">${k}</span>`).join("")}
+        </div>` : ""}
+      ${listing.description ? `
+        <div class="modal-description">
+          <div class="modal-description-label">About this home</div>
+          <p>${listing.description}</p>
+        </div>` : ""}
       <div class="modal-actions">
         ${listing.url
           ? `<a class="btn-primary" href="${listing.url}" target="_blank" rel="noopener">View on ${source_label(listing.source)} ↗</a>`
@@ -580,6 +657,15 @@ function wire_events() {
   wire_chips("filter-ai-luxury",    "aiLuxury");
   wire_chips("filter-ai-condition", "aiCondition");
 
+  // Search
+  $("filter-search").addEventListener("input", (e) => {
+    state.filters.search = e.target.value.trim();
+    apply_filters();
+  });
+
+  // Feature chips
+  wire_chips("filter-features", "feature");
+
   // Zip
   $("filter-zip").addEventListener("input", (e) => {
     state.filters.zip = e.target.value.trim();
@@ -597,12 +683,14 @@ function wire_events() {
     state.filters = {
       priceMin: "", priceMax: "", beds: "", baths: "",
       type: "", zip: "", source: "", area: "", aiScore: "", aiModernity: "", aiLuxury: "", aiCondition: "",
-      roomType: "", roomModernity: "", roomLuxury: "", roomCondition: "", sort: "price_asc",
+      roomType: "", roomModernity: "", roomLuxury: "", roomCondition: "",
+      search: "", feature: "", sort: "price_asc",
     };
     // Reset UI
     $("filter-price-min").value = "";
     $("filter-price-max").value = "";
     $("filter-zip").value = "";
+    $("filter-search").value = "";
     $("filter-sort").value = "price_asc";
     document.querySelectorAll(".chip-group .chip").forEach((c) => {
       c.classList.toggle("active", c.dataset.val === "");

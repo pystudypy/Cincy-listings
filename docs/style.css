@@ -302,6 +302,72 @@ select:focus, input[type="text"]:focus {
 }
 .card-footer a:hover { text-decoration: underline; }
 
+/* ── Card feature tags ────────────────────────────────── */
+.card-features {
+  padding: 0 14px 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.card-feature-tag {
+  font-size: 10px;
+  font-weight: 600;
+  background: #eff6ff;
+  color: #1d4ed8;
+  padding: 2px 8px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+/* ── Chip group wrap (features) ───────────────────────── */
+.chip-group-wrap {
+  flex-wrap: wrap;
+}
+
+/* ── Modal description + features ────────────────────── */
+.modal-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.modal-feature-tag {
+  font-size: 12px;
+  font-weight: 600;
+  background: #eff6ff;
+  color: #1d4ed8;
+  padding: 3px 12px;
+  border-radius: 20px;
+}
+.modal-keyword-tag {
+  font-size: 12px;
+  font-weight: 500;
+  background: #f0fdf4;
+  color: #15803d;
+  padding: 3px 12px;
+  border-radius: 20px;
+}
+.modal-description {
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+.modal-description-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+.modal-description p {
+  font-size: 13px;
+  color: #374151;
+  line-height: 1.65;
+  margin: 0;
+}
+
 /* ── Map ──────────────────────────────────────────────── */
 #map {
   height: calc(100vh - 58px - 80px);

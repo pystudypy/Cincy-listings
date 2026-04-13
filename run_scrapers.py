@@ -102,7 +102,96 @@ def main():
         default=200,
         help="Max listings to analyze per run (default: 200)",
     )
+    parser.add_argument(
+        "--describe",
+        action="store_true",
+        help="Fetch description text from each listing's detail page",
+    )
+    parser.add_argument(
+        "--tag",
+        action="store_true",
+        help="Run feature tagging (keyword + Qwen LLM) on listings with descriptions",
+    )
+    parser.add_argument(
+        "--describe-only",
+        action="store_true",
+        help="Skip scraping — only fetch descriptions for existing listings",
+    )
+    parser.add_argument(
+        "--tag-only",
+        action="store_true",
+        help="Skip scraping — only run feature tagging on existing listings",
+    )
     args = parser.parse_args()
+
+    # --describe-only: fetch descriptions without re-scraping
+    if args.describe_only:
+        if not DATA_FILE.exists():
+            logger.error("No listings.json found — run without --describe-only first")
+            return
+        existing = json.loads(DATA_FILE.read_text())
+        unique = existing.get("listings", [])
+        logger.info(f"Loaded {len(unique)} existing listings for description enrichment")
+
+        def save_desc_checkpoint(listings):
+            if args.dry_run:
+                return
+            existing["listings"] = listings
+            existing["last_updated"] = datetime.now(timezone.utc).isoformat()
+            DATA_FILE.write_text(json.dumps(existing, indent=2, ensure_ascii=False))
+            with_desc = sum(1 for l in listings if l.get("description"))
+            logger.info(f"Checkpoint saved — {with_desc} listings with descriptions")
+
+        from utils.detail_descriptions import enrich_descriptions
+        unique = enrich_descriptions(
+            unique,
+            checkpoint_every=50,
+            checkpoint_fn=save_desc_checkpoint,
+        )
+        with_desc = sum(1 for l in unique if l.get("description"))
+        logger.info(f"Listings with description: {with_desc}/{len(unique)}")
+
+        if not args.dry_run:
+            existing["listings"] = unique
+            existing["last_updated"] = datetime.now(timezone.utc).isoformat()
+            DATA_FILE.write_text(json.dumps(existing, indent=2, ensure_ascii=False))
+            logger.info(f"Wrote updated listings → {DATA_FILE}")
+        return
+
+    # --tag-only: run feature tagging without re-scraping
+    if args.tag_only:
+        if not DATA_FILE.exists():
+            logger.error("No listings.json found — run without --tag-only first")
+            return
+        existing = json.loads(DATA_FILE.read_text())
+        unique = existing.get("listings", [])
+        logger.info(f"Loaded {len(unique)} existing listings for feature tagging")
+
+        def save_tag_checkpoint(listings):
+            if args.dry_run:
+                return
+            existing["listings"] = listings
+            existing["last_updated"] = datetime.now(timezone.utc).isoformat()
+            DATA_FILE.write_text(json.dumps(existing, indent=2, ensure_ascii=False))
+            tagged = sum(1 for l in listings if l.get("features") is not None)
+            logger.info(f"Checkpoint saved — {tagged} listings tagged")
+
+        from utils.feature_tagger import tag_listings
+        unique = tag_listings(
+            unique,
+            use_llm=True,
+            checkpoint_every=100,
+            checkpoint_fn=save_tag_checkpoint,
+        )
+        tagged = sum(1 for l in unique if l.get("features") is not None)
+        logger.info(f"Listings with features: {tagged}/{len(unique)}")
+
+        if not args.dry_run:
+            existing["listings"] = unique
+            existing["last_updated"] = datetime.now(timezone.utc).isoformat()
+            DATA_FILE.write_text(json.dumps(existing, indent=2, ensure_ascii=False))
+            logger.info(f"Wrote updated listings → {DATA_FILE}")
+        return
 
     # --analyze-only: skip scraping, load existing listings directly
     if args.analyze_only:
@@ -220,6 +309,59 @@ def main():
             )
             analyzed = sum(1 for l in unique if l.get("image_analysis"))
             logger.info(f"Listings with AI analysis: {analyzed}/{len(unique)}")
+
+    # Description enrichment (optional — --describe flag)
+    if args.describe:
+        logger.info("=" * 50)
+        logger.info("Fetching listing descriptions from detail pages…")
+        from utils.detail_descriptions import enrich_descriptions
+
+        def save_desc_checkpoint_main(listings):
+            if args.dry_run:
+                return
+            out = {
+                "last_updated": datetime.now(timezone.utc).isoformat(),
+                "total_count": len(listings),
+                "source_counts": source_counts,
+                "listings": listings,
+            }
+            DATA_FILE.write_text(json.dumps(out, indent=2, ensure_ascii=False))
+            with_desc = sum(1 for l in listings if l.get("description"))
+            logger.info(f"Checkpoint saved — {with_desc} listings with descriptions")
+
+        unique = enrich_descriptions(
+            unique,
+            checkpoint_every=50,
+            checkpoint_fn=save_desc_checkpoint_main,
+        )
+        with_desc = sum(1 for l in unique if l.get("description"))
+        logger.info(f"Listings with description: {with_desc}/{len(unique)}")
+
+    # Feature tagging (optional — --tag flag, requires descriptions)
+    if args.tag:
+        logger.info("=" * 50)
+        logger.info("Running feature tagging (keyword + Qwen LLM)…")
+        from utils.feature_tagger import tag_listings
+
+        def save_tag_checkpoint_main(listings):
+            if args.dry_run:
+                return
+            out = {
+                "last_updated": datetime.now(timezone.utc).isoformat(),
+                "total_count": len(listings),
+                "source_counts": source_counts,
+                "listings": listings,
+            }
+            DATA_FILE.write_text(json.dumps(out, indent=2, ensure_ascii=False))
+
+        unique = tag_listings(
+            unique,
+            use_llm=True,
+            checkpoint_every=100,
+            checkpoint_fn=save_tag_checkpoint_main,
+        )
+        tagged = sum(1 for l in unique if l.get("features") is not None)
+        logger.info(f"Listings with features: {tagged}/{len(unique)}")
 
     if args.dry_run:
         logger.info("Dry run — not writing to disk.")
