@@ -289,6 +289,8 @@ def analyze_listings(
     backend: str = "auto",   # "auto" | "ollama" | "claude"
     force: bool = False,
     max_per_run: int = 400,
+    checkpoint_every: int = 10,
+    checkpoint_fn=None,       # called with (listings) every checkpoint_every successes
 ) -> list[dict]:
     """
     Analyze images for listings that don't yet have analysis.
@@ -358,8 +360,10 @@ def analyze_listings(
             logger.warning(f"Analysis failed for {listing.get('address', '?')}: {e}")
             errors += 1
 
-        if done % 10 == 0 and done > 0:
+        if done % checkpoint_every == 0 and done > 0:
             logger.info(f"Image analysis: {done}/{total} done…")
+            if checkpoint_fn:
+                checkpoint_fn(listings)
 
         time.sleep(REQUEST_DELAY)
 

@@ -115,9 +115,6 @@ def main():
         logger.info(f"Loaded {len(unique)} existing listings for analysis-only run")
 
         api_key = os.environ.get("ANTHROPIC_API_KEY", "")
-        if not api_key:
-            logger.error("ANTHROPIC_API_KEY not set")
-            return
 
         # Enrich images from detail pages before analysis
         logger.info("=" * 50)
@@ -125,8 +122,23 @@ def main():
         from utils.detail_images import enrich_images
         unique = enrich_images(unique, min_price=900_000)
 
+        def save_checkpoint(listings):
+            if args.dry_run:
+                return
+            existing["listings"] = listings
+            existing["last_updated"] = datetime.now(timezone.utc).isoformat()
+            DATA_FILE.write_text(json.dumps(existing, indent=2, ensure_ascii=False))
+            analyzed = sum(1 for l in listings if l.get("image_analysis"))
+            logger.info(f"Checkpoint saved — {analyzed} listings with AI analysis")
+
         from utils.image_analyzer import analyze_listings
-        unique = analyze_listings(unique, api_key=api_key, max_per_run=args.analyze_max)
+        unique = analyze_listings(
+            unique,
+            api_key=api_key,
+            max_per_run=args.analyze_max,
+            checkpoint_every=10,
+            checkpoint_fn=save_checkpoint,
+        )
         analyzed = sum(1 for l in unique if l.get("image_analysis"))
         logger.info(f"Listings with AI analysis: {analyzed}/{len(unique)}")
 
@@ -185,7 +197,27 @@ def main():
             logger.info("=" * 50)
             logger.info("Running AI image analysis on new listings…")
             from utils.image_analyzer import analyze_listings
-            unique = analyze_listings(unique, api_key=api_key, max_per_run=args.analyze_max)
+
+            def save_checkpoint_analyze(listings):
+                if args.dry_run:
+                    return
+                out = {
+                    "last_updated": datetime.now(timezone.utc).isoformat(),
+                    "total_count": len(listings),
+                    "source_counts": source_counts,
+                    "listings": listings,
+                }
+                DATA_FILE.write_text(json.dumps(out, indent=2, ensure_ascii=False))
+                analyzed = sum(1 for l in listings if l.get("image_analysis"))
+                logger.info(f"Checkpoint saved — {analyzed} listings with AI analysis")
+
+            unique = analyze_listings(
+                unique,
+                api_key=api_key,
+                max_per_run=args.analyze_max,
+                checkpoint_every=10,
+                checkpoint_fn=save_checkpoint_analyze,
+            )
             analyzed = sum(1 for l in unique if l.get("image_analysis"))
             logger.info(f"Listings with AI analysis: {analyzed}/{len(unique)}")
 
