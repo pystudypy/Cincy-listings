@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-13T05:41:34.296827+00:00",
+  "last_updated": "2026-04-13T05:43:42.317928+00:00",
   "total_count": 4594,
   "source_counts": {
     "coldwell_banker": 1215,
@@ -116038,7 +116038,127 @@
       "source": "coldwell_banker",
       "lat": 39.2054,
       "lng": -84.3606,
-      "last_updated": "2026-04-13T01:32:17.819928+00:00"
+      "last_updated": "2026-04-13T01:32:17.819928+00:00",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "brick exterior",
+              "large windows",
+              "landscaped yard"
+            ],
+            "insight": "The exterior of the house is well-maintained and has a classic brick design with large windows that let in plenty of natural light. The landscaping is neat and tidy, with a variety of shrubs and trees. This home would be a good fit for someone who appreciates a traditional style and enjoys outdoor spaces.",
+            "image_url": "https://m1.cbhomes.com/p/220/1873073/724157dfdC1C4Ff/m23cc.webp"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "driveway",
+              "landscaped yard",
+              "large windows"
+            ],
+            "insight": "The exterior of the house is well-maintained and has a classic brick design with large windows that let in plenty of natural light. The landscaping is neat and tidy, with a variety of shrubs and trees. This home would be a good fit for someone who appreciates a traditional style and enjoys outdoor spaces.",
+            "image_url": "https://m1.cbhomes.com/p/220/1873073/65BB8B2a3776453/pds23tp.webp"
+          },
+          {
+            "image_index": 3,
+            "room_type": "living_room",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "staircase",
+              "hardwood floors",
+              "open layout"
+            ],
+            "insight": "The living room is spacious and has a warm, inviting feel with hardwood floors and a staircase leading to the upper level. The open layout allows for easy flow between the living room and dining area. The room is well-lit with natural light coming in from the windows. This home would be a good fit for someone who appreciates a traditional style and enjoys entertaining guests.",
+            "image_url": "https://m.cbhomes.com/p/220/1873073/cD5b39602EC842F/pds23tp.webp"
+          },
+          {
+            "image_index": 4,
+            "room_type": "home_office",
+            "modernity_score": 8,
+            "luxury_score": 7,
+            "condition_score": 9,
+            "features": [
+              "coffered ceiling",
+              "hardwood floors",
+              "French doors"
+            ],
+            "insight": "The home office is spacious and has a coffered ceiling, hardwood floors, and French doors leading to the backyard. The room is well-lit with natural light coming in from the windows. This home would be a good fit for someone who appreciates a traditional style and enjoys working from home.",
+            "image_url": "https://m1.cbhomes.com/p/220/1873073/B316A6D1C6C4469/pds23tp.webp"
+          },
+          {
+            "image_index": 5,
+            "room_type": "living_room",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "hardwood floors",
+              "open layout",
+              "large windows"
+            ],
+            "insight": "The living room is spacious and has a warm, inviting feel with hardwood floors and a large window that lets in plenty of natural light. The open layout allows for easy flow between the living room and dining area. This home would be a good fit for someone who appreciates a traditional style and enjoys entertaining guests.",
+            "image_url": "https://m.cbhomes.com/p/220/1873073/DbADF678746B479/pds23tp.webp"
+          },
+          {
+            "image_index": 6,
+            "room_type": "living_room",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "hardwood floors",
+              "open layout",
+              "large windows"
+            ],
+            "insight": "The living room is spacious and has a warm, inviting feel with hardwood floors and a large window that lets in plenty of natural light. The open layout allows for easy flow between the living room and dining area. This home would be a good fit for someone who appreciates a traditional style and enjoys entertaining guests.",
+            "image_url": "https://m1.cbhomes.com/p/220/1873073/a65B61060B854c0/pds23tp.webp"
+          },
+          {
+            "image_index": 7,
+            "room_type": "dining_room",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "hardwood floors",
+              "large dining table",
+              "French doors"
+            ],
+            "insight": "The dining room is spacious and has a warm, inviting feel with hardwood floors and a large dining table that can seat eight people. The room is well-lit with natural light coming in from the windows. This home would be a good fit for someone who appreciates a traditional style and enjoys entertaining guests.",
+            "image_url": "https://m.cbhomes.com/p/220/1873073/A353a6eD3891421/pds23tp.webp"
+          },
+          {
+            "image_index": 8,
+            "room_type": "dining_room",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "hardwood floors",
+              "large dining table",
+              "French doors"
+            ],
+            "insight": "The dining room is spacious and has a warm, inviting feel with hardwood floors and a large dining table that can seat eight people. The room is well-lit with natural light coming in from the windows. This home would be a good fit for someone who appreciates a traditional style and enjoys entertaining guests.",
+            "image_url": "https://m1.cbhomes.com/p/220/1873073/6A946Cec247949f/pds23tp.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is move-in ready with a traditional style and a good amount of natural light. The living and dining areas are spacious and well-lit, making it a great fit for a family or couple who enjoys entertaining guests. The home office is a nice touch for someone who works from home. The exterior is well-maintained and has a classic brick design. Overall, this home is a good fit for someone who appreciates a traditional style and enjoys outdoor spaces.",
+        "analyzed_at": "2026-04-13T05:42:11.837199+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "fe941caa3d24fee4",
@@ -116064,7 +116184,57 @@
       "source": "sibcy_cline",
       "lat": 38.915791,
       "lng": -84.63765,
-      "last_updated": "2026-04-13T01:31:40.508714"
+      "last_updated": "2026-04-13T01:31:40.508714",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "living_room",
+            "modernity_score": 8,
+            "luxury_score": 7,
+            "condition_score": 9,
+            "features": [
+              "large windows",
+              "neutral color palette",
+              "cozy seating area"
+            ],
+            "insight": "The living room is spacious and well-lit, with large windows allowing plenty of natural light. The neutral color palette and cozy seating area make it a welcoming space for relaxation and entertaining. It's in excellent condition and ready to move in.",
+            "image_url": "https://m.cbhomes.com/p/192/641176/c4776667B45D41B/m23cc.webp"
+          },
+          {
+            "image_index": 3,
+            "room_type": "bedroom",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "large windows",
+              "neutral color palette",
+              "cozy seating area"
+            ],
+            "insight": "This bedroom is spacious and well-lit, with large windows allowing plenty of natural light. The neutral color palette and cozy seating area make it a welcoming space for relaxation and entertaining. It's in good condition and ready to move in.",
+            "image_url": "https://online.sibcycline.com/retsphotos/NKY/641176_1.jpg?ts=639108094548200000"
+          },
+          {
+            "image_index": 4,
+            "room_type": "bedroom",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "large windows",
+              "neutral color palette",
+              "cozy seating area"
+            ],
+            "insight": "This bedroom is spacious and well-lit, with large windows allowing plenty of natural light. The neutral color palette and cozy seating area make it a welcoming space for relaxation and entertaining. It's in good condition and ready to move in.",
+            "image_url": "https://m1.cbhomes.com/p/192/641176/c4776667B45D41B/m23cc.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is move-in ready with updated bedrooms and living spaces. The style is modern and clean, making it a good fit for a family or couple looking for a comfortable and stylish home. The outdoor space is large and well-maintained, perfect for entertaining and enjoying the outdoors.",
+        "analyzed_at": "2026-04-13T05:42:29.656296+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "862257c059a76a24",
@@ -116090,7 +116260,29 @@
       "source": "redfin",
       "lat": 39.178733,
       "lng": -84.359876,
-      "last_updated": "2026-04-12T19:18:58.717189"
+      "last_updated": "2026-04-12T19:18:58.717189",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "landscaped garden",
+              "brick exterior",
+              "fountain"
+            ],
+            "insight": "The exterior is well-maintained and features a landscaped garden with a fountain, adding a touch of elegance. The brick exterior gives the house a classic and timeless look. The garden is a nice feature for those who enjoy outdoor spaces and entertaining.",
+            "image_url": "https://static1.sibcycline.com/photos/61/a7/e/61a7ec804db82bb821f7fe82580755f32c975b30_640.jpg?ts=639114225029500000"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home has a classic exterior with a well-maintained garden and a fountain. It's a good fit for someone who appreciates a traditional style and enjoys outdoor spaces. The house is in good condition and would be a nice addition to a neighborhood.",
+        "analyzed_at": "2026-04-13T05:42:39.133542+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "cc549139d5ef16f1",
@@ -116113,7 +116305,29 @@
       "source": "sibcy_cline",
       "lat": null,
       "lng": null,
-      "last_updated": "2026-04-13T00:27:58.274921"
+      "last_updated": "2026-04-13T00:27:58.274921",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 4,
+            "luxury_score": 5,
+            "condition_score": 7,
+            "features": [
+              "historic architecture",
+              "colorful exterior",
+              "small tree in front"
+            ],
+            "insight": "The exterior of the house has a charming, historic feel with its colorful exterior and small tree in front. It's in good condition but could benefit from some updates to the paint and landscaping. A buyer who appreciates older homes with character would find this appealing.",
+            "image_url": "https://online.sibcycline.com/retsphotos/CIN/1856057_1.jpg?ts=639106456293100000"
+          }
+        ],
+        "overall_score": 6.5,
+        "summary": "This home has a historic charm but is in need of some updates. It's a good fit for someone who appreciates older homes and is willing to put in some work to make it their own. The location and architecture suggest it could be a great investment.",
+        "analyzed_at": "2026-04-13T05:42:47.587181+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "26695ea06b6a47db",
@@ -116136,7 +116350,30 @@
       "source": "sibcy_cline",
       "lat": null,
       "lng": null,
-      "last_updated": "2026-04-13T00:28:00.577542"
+      "last_updated": "2026-04-13T00:28:00.577542",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large patio with outdoor seating",
+              "well-maintained landscaping",
+              "covered entryway",
+              "ample parking spaces"
+            ],
+            "insight": "The exterior of the home is in good condition with a well-maintained patio and landscaping. The covered entryway provides a nice touch for guests. The ample parking spaces are a plus for those with cars.",
+            "image_url": "https://online.sibcycline.com/retsphotos/CIN/1868426_1.jpg?ts=639104008474200000"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a nice outdoor space, but it's not as modern or luxurious as it could be. It's a good fit for someone who values a spacious outdoor area and doesn't mind a slightly dated interior.",
+        "analyzed_at": "2026-04-13T05:42:56.004546+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "afd2c80e44e0d17d",
@@ -116160,7 +116397,29 @@
       "source": "sibcy_cline",
       "lat": null,
       "lng": null,
-      "last_updated": "2026-04-13T00:28:00.577671"
+      "last_updated": "2026-04-13T00:28:00.577671",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "backyard",
+            "modernity_score": 6,
+            "luxury_score": 4,
+            "condition_score": 7,
+            "features": [
+              "open grassy area",
+              "baseball fields",
+              "near river"
+            ],
+            "insight": "The backyard is a spacious, open grassy area with baseball fields, perfect for outdoor activities and family fun. It's located near a river, adding a serene element to the space. The area looks well-maintained but may benefit from some updates to the baseball fields.",
+            "image_url": "https://online.sibcycline.com/retsphotos/CIN/1847677_1.jpg?ts=639102819175500000"
+          }
+        ],
+        "overall_score": 6.5,
+        "summary": "This home has a large, open backyard with baseball fields and a river view, making it ideal for families who enjoy outdoor activities. The space is currently in good condition but may need some updates to the baseball fields. It's a good fit for families or individuals who value outdoor space and a connection to nature.",
+        "analyzed_at": "2026-04-13T05:43:08.787741+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "9cbe6fe1dae11342",
@@ -116183,7 +116442,29 @@
       "source": "sibcy_cline",
       "lat": null,
       "lng": null,
-      "last_updated": "2026-04-13T00:28:00.577683"
+      "last_updated": "2026-04-13T00:28:00.577683",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large parking lot",
+              "modern building design",
+              "well-maintained landscaping"
+            ],
+            "insight": "The exterior of the building is in good condition and the landscaping is well-maintained. The large parking lot is convenient for visitors and residents. The building design is modern but not overly luxurious.",
+            "image_url": "https://online.sibcycline.com/retsphotos/CIN/1870074_1.jpg?ts=639106672321100000"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a modern exterior. It's a good fit for someone looking for a professional or commercial space with ample parking and landscaping. It's not luxurious but is well-maintained and practical.",
+        "analyzed_at": "2026-04-13T05:43:17.041065+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "54831e924eaa8e01",
@@ -116206,7 +116487,29 @@
       "source": "sibcy_cline",
       "lat": null,
       "lng": null,
-      "last_updated": "2026-04-13T00:28:00.577698"
+      "last_updated": "2026-04-13T00:28:00.577698",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 4,
+            "luxury_score": 3,
+            "condition_score": 6,
+            "features": [
+              "brick exterior",
+              "air conditioning units",
+              "front porch"
+            ],
+            "insight": "The exterior of the house is in good condition but shows signs of wear. The brick exterior gives it a classic look, and the air conditioning units are functional. The front porch provides a welcoming entrance. This home is suitable for someone looking for a simple, functional home with a classic aesthetic.",
+            "image_url": "https://online.sibcycline.com/retsphotos/DTON/951869_1.jpg?ts=639112788721600000"
+          }
+        ],
+        "overall_score": 5.5,
+        "summary": "This home is in need of some updates but is still a good value. The exterior is brick, which is a classic style, but the condition score indicates some wear. It's a good fit for someone who wants a simple, functional home and doesn't mind making some improvements.",
+        "analyzed_at": "2026-04-13T05:43:24.977359+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "6fcc358f7ad4a8a5",
@@ -116229,7 +116532,29 @@
       "source": "sibcy_cline",
       "lat": null,
       "lng": null,
-      "last_updated": "2026-04-13T00:28:00.577712"
+      "last_updated": "2026-04-13T00:28:00.577712",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 4,
+            "luxury_score": 3,
+            "condition_score": 5,
+            "features": [
+              "Dollar General store",
+              "fenced yard",
+              "street view"
+            ],
+            "insight": "This is an exterior view of a Dollar General store. The store appears to be in good condition but may need some updates to the exterior. The fenced yard is a nice feature for privacy and outdoor space. The street view shows a typical commercial area with some traffic.",
+            "image_url": "https://online.sibcycline.com/retsphotos/CIN/1869806_1.jpg?ts=639115203722900000"
+          }
+        ],
+        "overall_score": 5.5,
+        "summary": "This is a commercial property, not a residential home. It's a Dollar General store with a fenced yard and street view. It's suitable for someone looking to invest in a commercial property or for a business to use as a location.",
+        "analyzed_at": "2026-04-13T05:43:33.205843+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "9ba1950fda8c99f6",
@@ -116254,7 +116579,29 @@
       "source": "sibcy_cline",
       "lat": 38.873001,
       "lng": -84.685539,
-      "last_updated": "2026-04-13T01:31:40.508552"
+      "last_updated": "2026-04-13T01:31:40.508552",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "manicured lawn",
+              "driveway",
+              "landscaped garden"
+            ],
+            "insight": "The exterior of the house is well-maintained with a manicured lawn and a landscaped garden. The driveway provides easy access for vehicles. The home has a classic design with a brick exterior and a large front porch.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6402/640231q.jpg?1775051667"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home has a classic and well-maintained exterior. It's a good fit for someone who appreciates a traditional style and enjoys outdoor spaces. The landscaping and driveway are well cared for, making it a pleasant place to live.",
+        "analyzed_at": "2026-04-13T05:43:42.316874+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "d362ba87438dc201",
