@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-13T04:46:24.335465+00:00",
+  "last_updated": "2026-04-13T04:48:54.286951+00:00",
   "total_count": 4594,
   "source_counts": {
     "coldwell_banker": 1215,
@@ -101653,7 +101653,45 @@
       "source": "comey",
       "lat": 39.080574,
       "lng": -84.404144,
-      "last_updated": "2026-04-12T18:29:04.934462"
+      "last_updated": "2026-04-12T18:29:04.934462",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "living_room",
+            "modernity_score": 8,
+            "luxury_score": 7,
+            "condition_score": 9,
+            "features": [
+              "large windows",
+              "cozy seating area",
+              "neutral color palette",
+              "modern fireplace"
+            ],
+            "insight": "The living room is spacious and well-lit with large windows, making it perfect for entertaining or relaxing. The cozy seating area and modern fireplace create a warm and inviting atmosphere. The neutral color palette gives the room a timeless appeal.",
+            "image_url": "https://m.cbhomes.com/p/220/1871835/A4dbf3DE6ff047f/m23cc.webp"
+          },
+          {
+            "image_index": 3,
+            "room_type": "living_room",
+            "modernity_score": 8,
+            "luxury_score": 7,
+            "condition_score": 9,
+            "features": [
+              "large windows",
+              "cozy seating area",
+              "neutral color palette",
+              "modern fireplace"
+            ],
+            "insight": "The living room is spacious and well-lit with large windows, making it perfect for entertaining or relaxing. The cozy seating area and modern fireplace create a warm and inviting atmosphere. The neutral color palette gives the room a timeless appeal.",
+            "image_url": "https://m1.cbhomes.com/p/220/1871835/A4dbf3DE6ff047f/m23cc.webp"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready — the living room is spacious and well-lit, perfect for entertaining or relaxing. The style is clean and modern without being cold. Good fit for a family or couple who wants a turnkey home and space to entertain.",
+        "analyzed_at": "2026-04-13T04:46:38.475939+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "0e4fce20498947d2",
@@ -101677,7 +101715,43 @@
       "source": "comey",
       "lat": 39.383316,
       "lng": -84.334869,
-      "last_updated": "2026-04-12T18:29:21.879392"
+      "last_updated": "2026-04-12T18:29:21.879392",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "brick exterior",
+              "landscaped yard",
+              "driveway"
+            ],
+            "insight": "The exterior of the house is in good condition with a brick facade and a landscaped yard. The driveway provides easy access for cars. The landscaping is well-maintained, but the house could benefit from some updates to the exterior paint and landscaping to enhance its curb appeal.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18693/1869325q.jpg?1774709094"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "brick exterior",
+              "landscaped yard",
+              "driveway"
+            ],
+            "insight": "The exterior of the house is in good condition with a brick facade and a landscaped yard. The driveway provides easy access for cars. The landscaping is well-maintained, but the house could benefit from some updates to the exterior paint and landscaping to enhance its curb appeal.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/full/18693/1869325l.jpg"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a traditional brick exterior with a landscaped yard and driveway. It's a good fit for a family or couple who wants a home with a classic look and easy maintenance. The house could benefit from some updates to the exterior paint and landscaping to enhance its curb appeal.",
+        "analyzed_at": "2026-04-13T04:46:52.996977+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "1920b8cedf77716c",
@@ -101701,7 +101775,43 @@
       "source": "comey",
       "lat": 39.390598,
       "lng": -84.330452,
-      "last_updated": "2026-04-12T18:29:21.879772"
+      "last_updated": "2026-04-12T18:29:21.879772",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large front yard",
+              "manicured landscaping",
+              "multiple windows"
+            ],
+            "insight": "The exterior of the house is in good condition with a well-maintained front yard and landscaping. The multiple windows allow for plenty of natural light, which is great for a family or anyone who enjoys a bright and airy home. The style is traditional with a focus on curb appeal.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18684/1868432q.jpg?1770802856"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large front yard",
+              "manicured landscaping",
+              "multiple windows"
+            ],
+            "insight": "The exterior of the house is in good condition with a well-maintained front yard and landscaping. The multiple windows allow for plenty of natural light, which is great for a family or anyone who enjoys a bright and airy home. The style is traditional with a focus on curb appeal.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/full/18684/1868432l.jpg"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a traditional style with a focus on curb appeal. The front yard is well-maintained, and the multiple windows allow for plenty of natural light. It's a good fit for a family or couple who enjoys a traditional home with a focus on curb appeal.",
+        "analyzed_at": "2026-04-13T04:47:09.122396+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "051ffa728fb2e218",
@@ -101727,7 +101837,30 @@
       "source": "comey",
       "lat": 39.086662,
       "lng": -84.515472,
-      "last_updated": "2026-04-12T18:29:37.333399"
+      "last_updated": "2026-04-12T18:29:37.333399",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "brick facade",
+              "arched windows",
+              "balcony",
+              "wooden door"
+            ],
+            "insight": "The exterior of the house is in good condition with a classic brick facade and arched windows. The balcony adds a charming touch, and the wooden door gives it a warm, inviting feel. This home would be a great fit for someone who appreciates traditional architecture and enjoys outdoor spaces.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6409/640970q.jpg?1774621917"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home has a classic and timeless exterior that would appeal to those who value traditional design. The exterior is well-maintained, and the arched windows and balcony add character. It's a good fit for a family or couple looking for a home with a classic aesthetic and a welcoming atmosphere.",
+        "analyzed_at": "2026-04-13T04:47:22.079235+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "78e265e3fba5bebd",
@@ -101753,7 +101886,75 @@
       "source": "comey",
       "lat": 39.086651,
       "lng": -84.514824,
-      "last_updated": "2026-04-12T18:29:37.333876"
+      "last_updated": "2026-04-12T18:29:37.333876",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "brick facade",
+              "arched windows",
+              "balcony",
+              "wooden door"
+            ],
+            "insight": "The exterior of the house is in good condition with a classic brick facade and arched windows. The balcony adds a charming touch, and the wooden door gives it a warm, inviting feel. This home would be a great fit for someone who appreciates traditional architecture and enjoys outdoor spaces.",
+            "image_url": "https://cdn.listingphotos.sierrastatic.com/pics2x/v1774630365/16/16_640744_01.jpg"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "brick facade",
+              "arched windows",
+              "balcony",
+              "wooden door"
+            ],
+            "insight": "The exterior of the house is in good condition with a classic brick facade and arched windows. The balcony adds a charming touch, and the wooden door gives it a warm, inviting feel. This home would be a great fit for someone who appreciates traditional architecture and enjoys outdoor spaces.",
+            "image_url": "https://m.cbhomes.com/p/192/640744/7B0c2F5F33B74A7/m23cc.webp"
+          },
+          {
+            "image_index": 3,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "brick facade",
+              "arched windows",
+              "balcony",
+              "wooden door"
+            ],
+            "insight": "The exterior of the house is in good condition with a classic brick facade and arched windows. The balcony adds a charming touch, and the wooden door gives it a warm, inviting feel. This home would be a great fit for someone who appreciates traditional architecture and enjoys outdoor spaces.",
+            "image_url": "https://m1.cbhomes.com/p/192/640744/7B0c2F5F33B74A7/m23cc.webp"
+          },
+          {
+            "image_index": 4,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "brick facade",
+              "arched windows",
+              "balcony",
+              "wooden door"
+            ],
+            "insight": "The exterior of the house is in good condition with a classic brick facade and arched windows. The balcony adds a charming touch, and the wooden door gives it a warm, inviting feel. This home would be a great fit for someone who appreciates traditional architecture and enjoys outdoor spaces.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6407/640744q.jpg?1774612720"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home has a classic and timeless exterior with a brick facade and arched windows. It's in good condition and would be a great fit for someone who appreciates traditional architecture and enjoys outdoor spaces. The home is move-in ready, with no major renovations needed.",
+        "analyzed_at": "2026-04-13T04:47:46.973711+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "7e83d00745dc0213",
@@ -101778,7 +101979,29 @@
       "source": "comey",
       "lat": 39.085686,
       "lng": -84.505127,
-      "last_updated": "2026-04-12T18:29:37.333910"
+      "last_updated": "2026-04-12T18:29:37.333910",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 4,
+            "luxury_score": 5,
+            "condition_score": 7,
+            "features": [
+              "brick facade",
+              "balconies",
+              "landscaping"
+            ],
+            "insight": "The exterior of the house is in good condition with a classic brick facade and balconies. The landscaping is simple but well-maintained. This home would be a good fit for someone who appreciates a traditional style and enjoys outdoor spaces.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6406/640684q.jpg?1773832765"
+          }
+        ],
+        "overall_score": 6.5,
+        "summary": "This home is in good condition and has a classic, traditional style. It's a good fit for someone who appreciates a traditional aesthetic and enjoys outdoor spaces. The exterior could benefit from some updates to bring it up to a higher score.",
+        "analyzed_at": "2026-04-13T04:47:57.435240+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "c8c724a7e214c818",
@@ -101803,7 +102026,57 @@
       "source": "cincinky",
       "lat": 39.1149,
       "lng": -84.3088,
-      "last_updated": "2026-04-13T01:01:13.526371"
+      "last_updated": "2026-04-13T01:01:13.526371",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "large front porch",
+              "stone accents",
+              "well-maintained landscaping"
+            ],
+            "insight": "The exterior of the house is in good condition with a well-maintained front porch and stone accents. The landscaping is lush and adds a nice touch to the home. This is a great home for someone who appreciates a traditional style with a welcoming front porch.",
+            "image_url": "https://cdn.listingphotos.sierrastatic.com/pics2x/v1763998487/27/27_1862809_01.jpg"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "large front porch",
+              "stone accents",
+              "well-maintained landscaping"
+            ],
+            "insight": "The exterior of the house is in good condition with a well-maintained front porch and stone accents. The landscaping is lush and adds a nice touch to the home. This is a great home for someone who appreciates a traditional style with a welcoming front porch.",
+            "image_url": "https://m1.cbhomes.com/p/220/1862809/14C29238790A451/m23cc.webp"
+          },
+          {
+            "image_index": 3,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "large front porch",
+              "stone accents",
+              "well-maintained landscaping"
+            ],
+            "insight": "The exterior of the house is in good condition with a well-maintained front porch and stone accents. The landscaping is lush and adds a nice touch to the home. This is a great home for someone who appreciates a traditional style with a welcoming front porch.",
+            "image_url": "https://m.cbhomes.com/p/220/1862809/14C29238790A451/m23cc.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition with a traditional exterior that has a warm and inviting front porch. It's a good fit for someone who appreciates a classic style and enjoys a well-maintained home. The landscaping is lush and adds a nice touch to the property.",
+        "analyzed_at": "2026-04-13T04:48:16.308532+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "cc36fef1de6ec096",
@@ -101827,7 +102100,29 @@
       "source": "coldwell_banker",
       "lat": 39.0734,
       "lng": -84.3736,
-      "last_updated": "2026-04-13T01:34:07.358261+00:00"
+      "last_updated": "2026-04-13T01:34:07.358261+00:00",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 8,
+            "luxury_score": 7,
+            "condition_score": 9,
+            "features": [
+              "porch with seating area",
+              "stone accents",
+              "landscaped front yard"
+            ],
+            "insight": "The exterior of the house is in excellent condition and features a welcoming porch with seating, stone accents, and a landscaped front yard. This is a great home for someone who appreciates a well-maintained and inviting front entrance.",
+            "image_url": "https://m.cbhomes.com/p/220/1847435/8e311E15e59f4dB/m23cc.webp"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready with a well-maintained exterior and a welcoming porch. The style is modern with a touch of traditional charm. It's a good fit for a family or couple who values a clean and inviting front entrance.",
+        "analyzed_at": "2026-04-13T04:48:26.273981+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "7d4d48487901fd76",
@@ -101851,7 +102146,45 @@
       "source": "comey",
       "lat": 39.361698,
       "lng": -84.283897,
-      "last_updated": "2026-04-12T18:29:21.879624"
+      "last_updated": "2026-04-12T18:29:21.879624",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 9,
+            "features": [
+              "large front porch",
+              "well-maintained landscaping",
+              "symmetrical design",
+              "large windows"
+            ],
+            "insight": "The exterior of the house is in excellent condition and has a classic, well-maintained look. The large front porch and symmetrical design make it welcoming and inviting. The landscaping is lush and well-kept, adding to the overall appeal. The large windows allow for plenty of natural light to enter the interior.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18687/1868798q.jpg?1771242676"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 9,
+            "features": [
+              "large front porch",
+              "well-maintained landscaping",
+              "symmetrical design",
+              "large windows"
+            ],
+            "insight": "The exterior of the house is in excellent condition and has a classic, well-maintained look. The large front porch and symmetrical design make it welcoming and inviting. The landscaping is lush and well-kept, adding to the overall appeal. The large windows allow for plenty of natural light to enter the interior.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/full/18687/1868798l.jpg"
+          }
+        ],
+        "overall_score": 8,
+        "summary": "This home is move-in ready with a classic and well-maintained exterior. It has a welcoming front porch and symmetrical design, making it a good fit for a family or couple who appreciates a traditional style. The landscaping is lush and well-kept, adding to the overall appeal.",
+        "analyzed_at": "2026-04-13T04:48:41.450264+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "ed548902fa279b45",
@@ -101876,7 +102209,29 @@
       "source": "cincinky",
       "lat": 39.1207,
       "lng": -84.4502,
-      "last_updated": "2026-04-13T01:02:10.293406"
+      "last_updated": "2026-04-13T01:02:10.293406",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "modern architecture",
+              "large windows",
+              "landscaped yard"
+            ],
+            "insight": "This exterior view showcases a modern architectural design with large windows and a landscaped yard. The home is in excellent condition and ready for immediate use. The large windows allow for plenty of natural light and a connection to the outdoors.",
+            "image_url": "https://m.cbhomes.com/p/220/1864479/c89370C819D2426/m23cc.webp"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready — the exterior is modern and well-maintained. The style is contemporary and would appeal to those who appreciate clean lines and a connection to nature. Good fit for a family or couple looking for a stylish and functional home.",
+        "analyzed_at": "2026-04-13T04:48:54.286782+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "a6daddee73a7429b",
