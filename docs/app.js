@@ -171,10 +171,7 @@ function compute_match_score(listing, quiz) {
       const modernSignals = ["new_construction", "updated_kitchen", "open_floor_plan",
                              "quartz_counters", "new_flooring", "new_appliances"];
       const hits = (listing.features || []).filter(f => modernSignals.includes(f)).length;
-      const kwHits = (listing.keywords || []).some(k =>
-        /modern|contemporary|updated|renovated|new construction/i.test(k)
-      );
-      if (hits >= 2 || kwHits) score += 20;
+      if (hits >= 2) score += 20;
       else if (hits === 1) score += 10;
       else score += 5;
     }
@@ -183,12 +180,8 @@ function compute_match_score(listing, quiz) {
     if (avgModernity > 0 && avgModernity < 6) {
       score += 30; // lower modernity = more traditional
     } else if (avgModernity === 0) {
-      // No AI score — check keywords
-      const tradSignals = ["colonial", "craftsman", "ranch", "brick", "character", "original"];
-      const kwHits = (listing.keywords || []).some(k =>
-        tradSignals.some(s => k.toLowerCase().includes(s))
-      );
-      score += kwHits ? 25 : 15;
+      // No AI score — neutral score, no LLM keywords used
+      score += 15;
     } else {
       score += 8;
     }
@@ -204,6 +197,62 @@ function compute_match_score(listing, quiz) {
   }
 
   return Math.min(100, Math.round(score));
+}
+
+function compute_match_breakdown(listing, quiz) {
+  if (!quiz.completed) return null;
+  const result = { budget: null, style: null, features: [] };
+
+  // Budget
+  const price = listing.price;
+  const pMin  = quiz.budgetMin ? +quiz.budgetMin : null;
+  const pMax  = quiz.budgetMax ? +quiz.budgetMax : null;
+  if (price == null) {
+    result.budget = { status: "unknown", label: "Price not listed" };
+  } else if (pMin != null || pMax != null) {
+    const inRange = (pMin == null || price >= pMin) && (pMax == null || price <= pMax);
+    if (inRange) {
+      result.budget = { status: "match", label: "In your budget" };
+    } else if (pMax != null && price > pMax) {
+      const over = Math.round((price - pMax) / 1000);
+      result.budget = { status: "partial", label: `$${over}K over budget` };
+    } else {
+      const under = Math.round((pMin - price) / 1000);
+      result.budget = { status: "miss", label: `$${under}K below min` };
+    }
+  }
+
+  // Style
+  if (quiz.style) {
+    const avgModernity = avg_room_score(listing, "modernity_score");
+    if (quiz.style === "modern") {
+      if (avgModernity >= 7) result.style = { status: "match", label: "Looks modern" };
+      else if (avgModernity >= 5) result.style = { status: "partial", label: "Somewhat modern" };
+      else {
+        const modernSignals = ["new_construction", "updated_kitchen", "open_floor_plan",
+                               "quartz_counters", "new_flooring", "new_appliances"];
+        const hits = (listing.features || []).filter(f => modernSignals.includes(f)).length;
+        if (hits >= 2) result.style = { status: "partial", label: "Modern features found" };
+        else result.style = { status: "miss", label: "Few modern signals" };
+      }
+    } else if (quiz.style === "traditional") {
+      if (avgModernity > 0 && avgModernity < 6) result.style = { status: "match", label: "Traditional style" };
+      else if (avgModernity === 0) result.style = { status: "unknown", label: "No style data yet" };
+      else result.style = { status: "miss", label: "Appears more modern" };
+    }
+  }
+
+  // Must-have features
+  if (quiz.features.length) {
+    const listingFeatures = listing.features || [];
+    result.features = quiz.features.map(f => ({
+      tag: f,
+      label: feature_label(f),
+      matched: listingFeatures.includes(f),
+    }));
+  }
+
+  return result;
 }
 
 // ── Filtering & sorting ───────────────────────────────
@@ -332,8 +381,27 @@ function card_html(listing, idx) {
     : `<div class="no-photo">🏠</div>`;
 
   const match_score = compute_match_score(listing, state.quiz);
+  const breakdown   = compute_match_breakdown(listing, state.quiz);
+  let breakdown_html = "";
+  if (breakdown) {
+    const rows = [];
+    if (breakdown.budget) {
+      const icon = breakdown.budget.status === "match" ? "✓" : breakdown.budget.status === "miss" ? "✗" : "~";
+      rows.push(`<div class="bd-row bd-${breakdown.budget.status}"><span class="bd-icon">${icon}</span><span class="bd-cat">Budget</span><span class="bd-note">${breakdown.budget.label}</span></div>`);
+    }
+    if (breakdown.style) {
+      const icon = breakdown.style.status === "match" ? "✓" : breakdown.style.status === "miss" ? "✗" : "~";
+      rows.push(`<div class="bd-row bd-${breakdown.style.status}"><span class="bd-icon">${icon}</span><span class="bd-cat">Style</span><span class="bd-note">${breakdown.style.label}</span></div>`);
+    }
+    if (breakdown.features.length) {
+      breakdown.features.forEach(f => {
+        rows.push(`<div class="bd-row bd-${f.matched ? "match" : "miss"}"><span class="bd-icon">${f.matched ? "✓" : "✗"}</span><span class="bd-note">${f.label}</span></div>`);
+      });
+    }
+    breakdown_html = `<div class="match-breakdown" id="bd-${idx}">${rows.join("")}</div>`;
+  }
   const match_badge_html = match_score != null
-    ? `<span class="match-badge match-badge-${match_score >= 70 ? "green" : match_score >= 40 ? "amber" : "gray"}">${match_score}% match</span>`
+    ? `<span class="match-badge match-badge-${match_score >= 70 ? "green" : match_score >= 40 ? "amber" : "gray"}" onclick="event.stopPropagation();document.getElementById('bd-${idx}')?.classList.toggle('bd-open')">${match_score}% match ▾</span>${breakdown_html}`
     : "";
 
   const beds  = fmt_num(listing.beds);

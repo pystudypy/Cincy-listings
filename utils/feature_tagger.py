@@ -233,7 +233,7 @@ def tag_listings(
     """
     to_tag = [
         l for l in listings
-        if l.get("description") and (force or not l.get("features"))
+        if l.get("description") and (force or not l.get("features") or (use_llm and not l.get("keywords")))
     ]
 
     if not to_tag:
