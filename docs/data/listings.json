@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-13T05:11:06.917536+00:00",
+  "last_updated": "2026-04-13T05:14:20.941108+00:00",
   "total_count": 4594,
   "source_counts": {
     "coldwell_banker": 1215,
@@ -107556,7 +107556,30 @@
       "source": "comey",
       "lat": 39.036045,
       "lng": -84.552864,
-      "last_updated": "2026-04-12T18:29:37.334664"
+      "last_updated": "2026-04-12T18:29:37.334664",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "white siding",
+              "black roof",
+              "stone accents",
+              "garage with windows"
+            ],
+            "insight": "The exterior of the house is in good condition with a fresh paint job and clean lines. The stone accents add a touch of elegance, and the garage with windows is a nice feature for natural light. This home is ready for a family or couple who appreciates a well-maintained and updated exterior.",
+            "image_url": "https://m.cbhomes.com/p/192/640312/38EdC3d4dF2d44C/m23cc.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home has a clean and updated exterior, making it a good fit for a family or couple who values a well-maintained property. The style is modern with a touch of traditional charm, and the garage with windows adds a practical and stylish element.",
+        "analyzed_at": "2026-04-13T05:11:17.139364+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "4c038eac12bbd266",
@@ -107580,7 +107603,29 @@
       "source": "comey",
       "lat": 39.091354,
       "lng": -84.501656,
-      "last_updated": "2026-04-12T18:29:44.998761"
+      "last_updated": "2026-04-12T18:29:44.998761",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "modern glass doors",
+              "reflective glass panels",
+              "clean lines"
+            ],
+            "insight": "This exterior view showcases a modern and sleek design with large glass doors and reflective panels. It's a great fit for someone who appreciates contemporary architecture and wants a home that stands out. The clean lines and modern aesthetic make it ideal for a family or couple who values style and functionality.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639438q.jpg?1769088147"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready — the exterior has already been updated with modern glass doors and reflective panels, so you won't need to spend extra fixing them up right away. The style is clean and modern without being cold. Good fit for a family or couple who wants a home that stands out and values style and functionality.",
+        "analyzed_at": "2026-04-13T05:11:28.196786+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "0e57c2cac33672f0",
@@ -107619,7 +107664,29 @@
       "source": "coldwell_banker",
       "lat": 39.1571,
       "lng": -84.4332,
-      "last_updated": "2026-04-13T01:34:05.040434+00:00"
+      "last_updated": "2026-04-13T01:34:05.040434+00:00",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "living_room",
+            "modernity_score": 8,
+            "luxury_score": 7,
+            "condition_score": 9,
+            "features": [
+              "large windows",
+              "modern furniture",
+              "cozy seating area"
+            ],
+            "insight": "The living room is spacious and well-lit with large windows, making it perfect for entertaining or relaxing. The modern furniture and cozy seating area give it a welcoming feel. It's in excellent condition with minimal wear.",
+            "image_url": "https://m.cbhomes.com/p/220/1851568/d7Cbe15c4630446/m23cc.webp"
+          }
+        ],
+        "overall_score": 8.2,
+        "summary": "This home is move-in ready with a modern living room that's perfect for entertaining. The style is contemporary and stylish. Good fit for a couple or family who enjoys a modern living space and has guests often.",
+        "analyzed_at": "2026-04-13T05:11:41.511844+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "af7f516e858dfb81",
@@ -107643,7 +107710,31 @@
       "source": "comey",
       "lat": 39.090504,
       "lng": -84.501747,
-      "last_updated": "2026-04-12T18:29:44.999875"
+      "last_updated": "2026-04-12T18:29:44.999875",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "kitchen",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "big island with seating",
+              "brand new appliances",
+              "tons of cabinet storage",
+              "marble backsplash",
+              "stunning city view"
+            ],
+            "insight": "The kitchen is completely updated and ready to use from day one. The large island has room for four people to sit, making it great for families or anyone who likes to cook and entertain. Storage is generous with cabinets covering all walls, and the marble backsplash adds a touch of luxury. The stunning city view from the large windows is a standout feature.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6347/634793l.jpg"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready — the kitchen and bathrooms have already been updated so you won't need to spend extra fixing them up right away. The style is clean and modern with a touch of luxury, and the city view is a major plus. Good fit for a family or couple who wants a turnkey home and space to entertain.",
+        "analyzed_at": "2026-04-13T05:11:53.006691+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "4f4d74d247ee14aa",
@@ -107668,7 +107759,43 @@
       "source": "comey",
       "lat": 38.915287,
       "lng": -84.642532,
-      "last_updated": "2026-04-13T01:31:00.700644"
+      "last_updated": "2026-04-13T01:31:00.700644",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "living_room",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "large windows",
+              "cozy fireplace",
+              "comfortable seating area"
+            ],
+            "insight": "The living room is spacious and well-lit with large windows, making it a great place to relax or entertain guests. The cozy fireplace adds a touch of warmth and charm. The seating area is comfortable and inviting.",
+            "image_url": "https://m.cbhomes.com/p/192/640893/fAB682355Af4405/m23cc.webp"
+          },
+          {
+            "image_index": 3,
+            "room_type": "bedroom",
+            "modernity_score": 5,
+            "luxury_score": 4,
+            "condition_score": 6,
+            "features": [
+              "large windows",
+              "neutral color scheme",
+              "spacious closet"
+            ],
+            "insight": "This bedroom is spacious and has large windows that let in plenty of natural light. The neutral color scheme makes it feel calm and relaxing. The closet is spacious, providing ample storage space.",
+            "image_url": "https://m1.cbhomes.com/p/192/640893/fAB682355Af4405/m23cc.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a cozy, traditional style. The living room is a great space for entertaining, while the bedrooms are spacious and comfortable. It's a good fit for a family or couple looking for a home with a traditional feel and a cozy atmosphere.",
+        "analyzed_at": "2026-04-13T05:12:06.691797+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "bf65b1e1eda4e96f",
@@ -107715,7 +107842,127 @@
       "source": "coldwell_banker",
       "lat": 39.1143,
       "lng": -84.5874,
-      "last_updated": "2026-04-13T01:34:11.367204+00:00"
+      "last_updated": "2026-04-13T01:34:11.367204+00:00",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 4,
+            "condition_score": 7,
+            "features": [
+              "brick exterior",
+              "neatly trimmed bushes",
+              "stairs leading to entrance"
+            ],
+            "insight": "This exterior view shows a well-maintained brick building with a tidy lawn and steps leading to the entrance. It's a classic style that could be updated with some fresh paint and landscaping. The location looks peaceful and quiet.",
+            "image_url": "https://m.cbhomes.com/p/220/1840112/37F2aD832b4A452/m23cc.webp"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 4,
+            "condition_score": 7,
+            "features": [
+              "brick exterior",
+              "neatly trimmed bushes",
+              "stairs leading to entrance"
+            ],
+            "insight": "This exterior view shows a well-maintained brick building with a tidy lawn and steps leading to the entrance. It's a classic style that could be updated with some fresh paint and landscaping. The location looks peaceful and quiet.",
+            "image_url": "https://m1.cbhomes.com/p/220/1840112/DABD230f48b44fc/pds23tp.webp"
+          },
+          {
+            "image_index": 3,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 4,
+            "condition_score": 7,
+            "features": [
+              "brick exterior",
+              "neatly trimmed bushes",
+              "stairs leading to entrance"
+            ],
+            "insight": "This exterior view shows a well-maintained brick building with a tidy lawn and steps leading to the entrance. It's a classic style that could be updated with some fresh paint and landscaping. The location looks peaceful and quiet.",
+            "image_url": "https://m.cbhomes.com/p/220/1840112/3a73Db41bE8c4F3/pds23tp.webp"
+          },
+          {
+            "image_index": 4,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 4,
+            "condition_score": 7,
+            "features": [
+              "brick exterior",
+              "neatly trimmed bushes",
+              "stairs leading to entrance"
+            ],
+            "insight": "This exterior view shows a well-maintained brick building with a tidy lawn and steps leading to the entrance. It's a classic style that could be updated with some fresh paint and landscaping. The location looks peaceful and quiet.",
+            "image_url": "https://m1.cbhomes.com/p/220/1840112/7bD7156f5234422/pds23tp.webp"
+          },
+          {
+            "image_index": 5,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 4,
+            "condition_score": 7,
+            "features": [
+              "brick exterior",
+              "neatly trimmed bushes",
+              "stairs leading to entrance"
+            ],
+            "insight": "This exterior view shows a well-maintained brick building with a tidy lawn and steps leading to the entrance. It's a classic style that could be updated with some fresh paint and landscaping. The location looks peaceful and quiet.",
+            "image_url": "https://m.cbhomes.com/p/220/1840112/B75171146Ebf4E7/pds23tp.webp"
+          },
+          {
+            "image_index": 6,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 4,
+            "condition_score": 7,
+            "features": [
+              "brick exterior",
+              "neatly trimmed bushes",
+              "stairs leading to entrance"
+            ],
+            "insight": "This exterior view shows a well-maintained brick building with a tidy lawn and steps leading to the entrance. It's a classic style that could be updated with some fresh paint and landscaping. The location looks peaceful and quiet.",
+            "image_url": "https://m1.cbhomes.com/p/220/1840112/bf73B0f528BC487/pds23tp.webp"
+          },
+          {
+            "image_index": 7,
+            "room_type": "bathroom",
+            "modernity_score": 4,
+            "luxury_score": 3,
+            "condition_score": 5,
+            "features": [
+              "white sink",
+              "mirror",
+              "tiled walls"
+            ],
+            "insight": "This bathroom looks like it needs some updates. The sink and mirror are in good condition, but the walls could use some fresh paint. It's a basic setup that could be improved with some new fixtures and a fresh coat of paint.",
+            "image_url": "https://m.cbhomes.com/p/220/1840112/Dc90f0b327C940e/pds23tp.webp"
+          },
+          {
+            "image_index": 8,
+            "room_type": "kitchen",
+            "modernity_score": 4,
+            "luxury_score": 3,
+            "condition_score": 5,
+            "features": [
+              "white refrigerator",
+              "white stove",
+              "wooden cabinets"
+            ],
+            "insight": "This kitchen is functional but dated. The white appliances and wooden cabinets are basic, and the flooring looks worn. It's a good starting point for someone who wants to update the space, but it's not currently move-in ready.",
+            "image_url": "https://m1.cbhomes.com/p/220/1840112/233143A749c7404/pds23tp.webp"
+          }
+        ],
+        "overall_score": 6.5,
+        "summary": "This home is in a classic style and could use some updates. The exterior is well-maintained, but the interior needs some work. The kitchen and bathroom are functional but dated. It's a good fit for someone who wants to make some updates and has a budget for renovations. The location is quiet and peaceful, making it a good choice for a family or someone who enjoys a more traditional style.",
+        "analyzed_at": "2026-04-13T05:12:45.436825+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "5eab11a4602704a8",
@@ -107760,7 +108007,110 @@
       "source": "coldwell_banker",
       "lat": 39.1379,
       "lng": -84.6757,
-      "last_updated": "2026-04-13T01:32:28.879495+00:00"
+      "last_updated": "2026-04-13T01:32:28.879495+00:00",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "stone accents",
+              "large front porch",
+              "double garage"
+            ],
+            "insight": "The exterior is in good condition with stone accents and a large front porch, perfect for relaxing or entertaining guests. The double garage provides ample parking space. The home is in a transitional style, blending traditional and modern elements.",
+            "image_url": "https://m.cbhomes.com/p/220/1872134/2cd06a0a7C4F444/m23cc.webp"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 3,
+            "luxury_score": 4,
+            "condition_score": 5,
+            "features": [
+              "wood framing",
+              "construction materials visible"
+            ],
+            "insight": "This is a construction site, so the exterior is not yet finished. The home is in the early stages of construction, with wood framing visible. It's a good time to see the layout and design before the final touches are added.",
+            "image_url": "https://m1.cbhomes.com/p/220/1872134/F474f09537C6420/pds23tp.webp"
+          },
+          {
+            "image_index": 3,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "stone accents",
+              "large front porch",
+              "double garage"
+            ],
+            "insight": "The exterior is in good condition with stone accents and a large front porch, perfect for relaxing or entertaining guests. The double garage provides ample parking space. The home is in a transitional style, blending traditional and modern elements.",
+            "image_url": "https://m.cbhomes.com/p/220/1872134/a36A4FfE450941d/pds23tp.webp"
+          },
+          {
+            "image_index": 4,
+            "room_type": "living_room",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "open floor plan",
+              "large windows"
+            ],
+            "insight": "The living room is spacious and open, with large windows allowing plenty of natural light. The layout is ideal for entertaining and family gatherings. The room is in good condition and ready for furnishings.",
+            "image_url": "https://m1.cbhomes.com/p/220/1872134/eDD933B4b10d43d/pds23tp.webp"
+          },
+          {
+            "image_index": 5,
+            "room_type": "bedroom",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "large windows",
+              "attached bathroom"
+            ],
+            "insight": "This is a bedroom with large windows and an attached bathroom. The room is in good condition and ready for furnishings. It's a good size for a guest room or a child's room.",
+            "image_url": "https://m.cbhomes.com/p/220/1872134/EccD2246Ad354dD/pds23tp.webp"
+          },
+          {
+            "image_index": 6,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "stone accents",
+              "large front porch",
+              "double garage"
+            ],
+            "insight": "The exterior is in good condition with stone accents and a large front porch, perfect for relaxing or entertaining guests. The double garage provides ample parking space. The home is in a transitional style, blending traditional and modern elements.",
+            "image_url": "https://m1.cbhomes.com/p/220/1872134/efcBfDF24B0e434/pds23tp.webp"
+          },
+          {
+            "image_index": 7,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "stone accents",
+              "large front porch",
+              "double garage"
+            ],
+            "insight": "The exterior is in good condition with stone accents and a large front porch, perfect for relaxing or entertaining guests. The double garage provides ample parking space. The home is in a transitional style, blending traditional and modern elements.",
+            "image_url": "https://m.cbhomes.com/p/220/1872134/4DB05857a1bF452/pds23tp.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in the construction phase, so it's not yet move-in ready. The exterior design is modern and transitional, with stone accents and a large front porch. The layout is open and spacious, ideal for entertaining and family gatherings. The home is a good fit for a couple or family who wants a turnkey home with a modern design.",
+        "analyzed_at": "2026-04-13T05:13:18.564358+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "d42b98aec660c8a8",
@@ -107784,7 +108134,43 @@
       "source": "comey",
       "lat": 39.414486,
       "lng": -84.369148,
-      "last_updated": "2026-04-12T18:29:12.027596"
+      "last_updated": "2026-04-12T18:29:12.027596",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 3,
+            "luxury_score": 4,
+            "condition_score": 6,
+            "features": [
+              "large open field",
+              "trees and vegetation",
+              "road intersection"
+            ],
+            "insight": "This is an exterior view of a large open field with trees and vegetation. The area looks like it could be used for various purposes, such as a future home site or recreational space. The road intersection suggests easy access to other areas. It's in good condition but may need some landscaping or development.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18743/1874393q.jpg?1775575174"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 3,
+            "luxury_score": 4,
+            "condition_score": 6,
+            "features": [
+              "large open field",
+              "trees and vegetation",
+              "road intersection"
+            ],
+            "insight": "This is an exterior view of a large open field with trees and vegetation. The area looks like it could be used for various purposes, such as a future home site or recreational space. The road intersection suggests easy access to other areas. It's in good condition but may need some landscaping or development.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/full/18743/1874393l.jpg"
+          }
+        ],
+        "overall_score": 6.5,
+        "summary": "This property is a large open field with potential for future development. It's in good condition but may need some landscaping or development. Good fit for someone looking to build a new home or create a large outdoor space.",
+        "analyzed_at": "2026-04-13T05:13:32.133279+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "b3f9cd760a7398f4",
@@ -107808,7 +108194,30 @@
       "source": "cincinky",
       "lat": 39.1395,
       "lng": -84.4398,
-      "last_updated": "2026-04-13T01:01:18.070878"
+      "last_updated": "2026-04-13T01:01:18.070878",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 8,
+            "luxury_score": 7,
+            "condition_score": 10,
+            "features": [
+              "modern brick exterior",
+              "large windows",
+              "balconies on each floor",
+              "manicured landscaping"
+            ],
+            "insight": "This exterior is in excellent condition and looks brand new. The large windows and balconies on each floor give it a modern and airy feel. The manicured landscaping adds to the overall appeal and makes it a great fit for someone who appreciates a well-maintained home.",
+            "image_url": "https://m1.cbhomes.com/p/220/1873039/5C8aE0CD2bcc468/m23cc.webp"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready — the exterior has been recently updated and looks pristine. The style is modern and clean, with a focus on natural light and outdoor living spaces. Good fit for a family or couple who values a well-maintained home and outdoor spaces.",
+        "analyzed_at": "2026-04-13T05:13:42.017875+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "143d9905c3d27c1d",
@@ -107855,7 +108264,127 @@
       "source": "coldwell_banker",
       "lat": 39.1511,
       "lng": -84.4817,
-      "last_updated": "2026-04-13T01:33:26.373761+00:00"
+      "last_updated": "2026-04-13T01:33:26.373761+00:00",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large wrap-around porch",
+              "brick exterior",
+              "multiple windows"
+            ],
+            "insight": "The exterior is in good condition with a wrap-around porch that provides a nice space to relax or entertain guests. The brick exterior and multiple windows give the house a classic, warm feel. The porch is spacious and could be used for outdoor dining or lounging.",
+            "image_url": "https://m1.cbhomes.com/p/220/1868313/5e0f9f71D89b4Cd/m23cc.webp"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large wrap-around porch",
+              "brick exterior",
+              "multiple windows"
+            ],
+            "insight": "The exterior is in good condition with a wrap-around porch that provides a nice space to relax or entertain guests. The brick exterior and multiple windows give the house a classic, warm feel. The porch is spacious and could be used for outdoor dining or lounging.",
+            "image_url": "https://m1.cbhomes.com/p/220/1868313/55369096737147a/pds23tp.webp"
+          },
+          {
+            "image_index": 3,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large wrap-around porch",
+              "brick exterior",
+              "multiple windows"
+            ],
+            "insight": "The exterior is in good condition with a wrap-around porch that provides a nice space to relax or entertain guests. The brick exterior and multiple windows give the house a classic, warm feel. The porch is spacious and could be used for outdoor dining or lounging.",
+            "image_url": "https://m.cbhomes.com/p/220/1868313/43DF32e9768146a/pds23tp.webp"
+          },
+          {
+            "image_index": 4,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large wrap-around porch",
+              "brick exterior",
+              "multiple windows"
+            ],
+            "insight": "The exterior is in good condition with a wrap-around porch that provides a nice space to relax or entertain guests. The brick exterior and multiple windows give the house a classic, warm feel. The porch is spacious and could be used for outdoor dining or lounging.",
+            "image_url": "https://m1.cbhomes.com/p/220/1868313/c392542c7BDf4A9/pds23tp.webp"
+          },
+          {
+            "image_index": 5,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large wrap-around porch",
+              "brick exterior",
+              "multiple windows"
+            ],
+            "insight": "The exterior is in good condition with a wrap-around porch that provides a nice space to relax or entertain guests. The brick exterior and multiple windows give the house a classic, warm feel. The porch is spacious and could be used for outdoor dining or lounging.",
+            "image_url": "https://m.cbhomes.com/p/220/1868313/138314C335A84B2/pds23tp.webp"
+          },
+          {
+            "image_index": 6,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large wrap-around porch",
+              "brick exterior",
+              "multiple windows"
+            ],
+            "insight": "The exterior is in good condition with a wrap-around porch that provides a nice space to relax or entertain guests. The brick exterior and multiple windows give the house a classic, warm feel. The porch is spacious and could be used for outdoor dining or lounging.",
+            "image_url": "https://m1.cbhomes.com/p/220/1868313/A8Ed3CA7340642b/pds23tp.webp"
+          },
+          {
+            "image_index": 7,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large wrap-around porch",
+              "brick exterior",
+              "multiple windows"
+            ],
+            "insight": "The exterior is in good condition with a wrap-around porch that provides a nice space to relax or entertain guests. The brick exterior and multiple windows give the house a classic, warm feel. The porch is spacious and could be used for outdoor dining or lounging.",
+            "image_url": "https://m.cbhomes.com/p/220/1868313/C8273F09e7ff41a/pds23tp.webp"
+          },
+          {
+            "image_index": 8,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large wrap-around porch",
+              "brick exterior",
+              "multiple windows"
+            ],
+            "insight": "The exterior is in good condition with a wrap-around porch that provides a nice space to relax or entertain guests. The brick exterior and multiple windows give the house a classic, warm feel. The porch is spacious and could be used for outdoor dining or lounging.",
+            "image_url": "https://m1.cbhomes.com/p/220/1868313/1ddB076330F5468/pds23tp.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is move-in ready — the exterior is in good condition with a wrap-around porch that provides a nice space to relax or entertain guests. The style is classic and warm, leaning towards a traditional aesthetic. Good fit for a family or couple who wants a home with a classic charm and space to entertain.",
+        "analyzed_at": "2026-04-13T05:14:20.939939+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "76290e8b9965f02b",
