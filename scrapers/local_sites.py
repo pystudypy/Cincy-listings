@@ -389,6 +389,15 @@ def scrape() -> list[dict]:
             logger.error(f"{name} failed entirely: {e}")
         time.sleep(1)
 
+    # ListingsCincinnati.com — Brivity/BlueRoof MLS feed
+    try:
+        from scrapers import listings_cincinnati as lc_scraper
+        results = lc_scraper.scrape()
+        logger.info(f"ListingsCincinnati: {len(results)} listings")
+        all_listings.extend(results)
+    except Exception as e:
+        logger.error(f"ListingsCincinnati failed entirely: {e}")
+
     # Huff Realty — requires Playwright (headless browser)
     try:
         from scrapers import huff as huff_scraper

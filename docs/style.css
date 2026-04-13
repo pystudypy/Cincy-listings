@@ -18,6 +18,7 @@
   --c-sibcy_cline:#5b21b6;
   --c-huff:       #b45309;
   --c-comey:      #0f766e;
+  --c-listings_cincinnati: #be185d;
   --c-cabr:       #374151;
 
   --radius:  10px;
@@ -255,6 +256,7 @@ select:focus, input[type="text"]:focus {
 .source-sibcy_cline{ background: var(--c-sibcy_cline); }
 .source-huff       { background: var(--c-huff); }
 .source-comey      { background: var(--c-comey); }
+.source-listings_cincinnati { background: var(--c-listings_cincinnati); }
 .source-cabr       { background: var(--c-cabr); }
 
 .card-body { padding: 12px 14px; }
