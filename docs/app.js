@@ -30,6 +30,7 @@ const state = {
     aiModernity: "",
     aiLuxury: "",
     aiCondition: "",
+    area: "",
     sort: "price_asc",
   },
 };
@@ -129,6 +130,8 @@ function apply_filters() {
   if (f.baths)    list = list.filter((l) => l.baths != null && l.baths >= +f.baths);
   if (f.zip)      list = list.filter((l) => (l.zip || "").startsWith(f.zip));
   if (f.source)   list = list.filter((l) => l.source === f.source);
+  if (f.area === "OH") list = list.filter((l) => (l.state || "").toUpperCase() === "OH");
+  if (f.area === "KY") list = list.filter((l) => (l.state || "").toUpperCase() === "KY");
   if (f.aiScore)     list = list.filter((l) => (l.image_analysis?.overall_score ?? 0) >= +f.aiScore);
   if (f.aiModernity) list = list.filter((l) => avg_room_score(l, "modernity_score") >= +f.aiModernity);
   if (f.aiLuxury)    list = list.filter((l) => avg_room_score(l, "luxury_score")    >= +f.aiLuxury);
@@ -471,6 +474,7 @@ function wire_events() {
   wire_chips("filter-baths",    "baths");
   wire_chips("filter-type",     "type");
   wire_chips("filter-source",   "source");
+  wire_chips("filter-area",          "area");
   wire_chips("filter-ai-score",     "aiScore");
   wire_chips("filter-ai-modernity", "aiModernity");
   wire_chips("filter-ai-luxury",    "aiLuxury");
@@ -492,7 +496,7 @@ function wire_events() {
   $("clear-filters").addEventListener("click", () => {
     state.filters = {
       priceMin: "", priceMax: "", beds: "", baths: "",
-      type: "", zip: "", source: "", aiScore: "", aiModernity: "", aiLuxury: "", aiCondition: "", sort: "price_asc",
+      type: "", zip: "", source: "", area: "", aiScore: "", aiModernity: "", aiLuxury: "", aiCondition: "", sort: "price_asc",
     };
     // Reset UI
     $("filter-price-min").value = "";
