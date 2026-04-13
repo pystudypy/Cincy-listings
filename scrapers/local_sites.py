@@ -389,6 +389,15 @@ def scrape() -> list[dict]:
             logger.error(f"{name} failed entirely: {e}")
         time.sleep(1)
 
+    # CincinKY Real Estate — 94 community pages via Sierra Interactive IDX
+    try:
+        from scrapers import cincinky as cincinky_scraper
+        results = cincinky_scraper.scrape()
+        logger.info(f"CincinKY: {len(results)} listings")
+        all_listings.extend(results)
+    except Exception as e:
+        logger.error(f"CincinKY failed entirely: {e}")
+
     # ListingsCincinnati.com — Brivity/BlueRoof MLS feed
     try:
         from scrapers import listings_cincinnati as lc_scraper

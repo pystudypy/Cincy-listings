@@ -59,6 +59,7 @@ function source_label(src) {
     huff: "Huff",
     comey: "Comey",
     listings_cincinnati: "CincyMLS",
+    cincinky: "CincinKY",
     cabr: "CABR",
   };
   return map[src] || src;
@@ -286,6 +287,7 @@ function source_color(src) {
     huff: "#b45309",
     comey: "#0f766e",
     listings_cincinnati: "#be185d",
+    cincinky: "#7c3aed",
     cabr: "#374151",
   };
   return map[src] || "#374151";
