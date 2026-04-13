@@ -35,6 +35,15 @@
       <button class="btn-ghost" id="clear-filters">Clear all</button>
     </div>
 
+    <!-- Luxury toggle -->
+    <div class="luxury-toggle-row">
+      <label class="luxury-toggle-label" for="luxury-toggle">✦ Luxury Only</label>
+      <label class="toggle-switch">
+        <input type="checkbox" id="luxury-toggle" checked>
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
     <!-- Match quiz -->
     <div class="quiz-cta" id="quiz-cta-area">
       <button class="btn-find-match" id="btn-find-match">✨ Find My Match</button>
@@ -276,6 +285,7 @@
         <option value="sqft_desc">Largest</option>
         <option value="dom_asc">Newest</option>
         <option value="ai_score_desc">AI Score: Best First</option>
+        <option value="luxury_desc">✦ Luxury Score</option>
         <option value="match_desc">✨ Best Match</option>
       </select>
     </div>
@@ -377,32 +387,31 @@
       </div>
     </div>
 
-    <!-- Step 2: Style -->
+    <!-- Step 2: Lifestyle -->
     <div class="quiz-step">
-      <div class="quiz-step-label"><span class="quiz-step-num">2</span> What style do you prefer?</div>
-      <div class="chip-group">
+      <div class="quiz-step-label"><span class="quiz-step-num">2</span> What's your luxury lifestyle?</div>
+      <div class="chip-group chip-group-wrap">
         <button class="chip quiz-style-chip active" data-val="">No preference</button>
-        <button class="chip quiz-style-chip" data-val="modern">Modern &amp; Updated</button>
-        <button class="chip quiz-style-chip" data-val="traditional">Classic &amp; Traditional</button>
+        <button class="chip quiz-style-chip" data-val="entertainer">🥂 Entertainer</button>
+        <button class="chip quiz-style-chip" data-val="retreat">🛁 Modern Retreat</button>
+        <button class="chip quiz-style-chip" data-val="estate">🏛 Classic Estate</button>
       </div>
     </div>
 
-    <!-- Step 3: Must-have features -->
+    <!-- Step 3: Luxury must-haves -->
     <div class="quiz-step">
-      <div class="quiz-step-label"><span class="quiz-step-num">3</span> Must-have features? <span class="quiz-step-hint">(pick any)</span></div>
+      <div class="quiz-step-label"><span class="quiz-step-num">3</span> Luxury must-haves? <span class="quiz-step-hint">(pick any)</span></div>
       <div class="chip-group chip-group-wrap" id="quiz-features-group">
-        <button class="chip" data-val="updated_kitchen">Updated Kitchen</button>
-        <button class="chip" data-val="open_floor_plan">Open Floor Plan</button>
-        <button class="chip" data-val="hardwood_floors">Hardwood Floors</button>
-        <button class="chip" data-val="quartz_counters">Quartz Counters</button>
         <button class="chip" data-val="pool">Pool</button>
-        <button class="chip" data-val="finished_basement">Finished Basement</button>
-        <button class="chip" data-val="new_roof">New Roof</button>
-        <button class="chip" data-val="new_hvac">New HVAC</button>
-        <button class="chip" data-val="fireplace">Fireplace</button>
         <button class="chip" data-val="master_suite">Master Suite</button>
-        <button class="chip" data-val="fenced_yard">Fenced Yard</button>
-        <button class="chip" data-val="two_car_garage">2-Car Garage</button>
+        <button class="chip" data-val="walk_in_shower">Walk-in Shower</button>
+        <button class="chip" data-val="soaking_tub">Soaking Tub</button>
+        <button class="chip" data-val="updated_kitchen">Chef's Kitchen</button>
+        <button class="chip" data-val="smart_home">Smart Home</button>
+        <button class="chip" data-val="three_car_garage">3-Car Garage</button>
+        <button class="chip" data-val="in_law_suite">In-Law Suite</button>
+        <button class="chip" data-val="ev_charger">EV Charger</button>
+        <button class="chip" data-val="solar">Solar</button>
       </div>
     </div>
 

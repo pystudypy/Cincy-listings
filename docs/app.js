@@ -38,11 +38,12 @@ const state = {
     search: "",
     features: [],   // multi-select array
     sort: "price_asc",
+    luxuryOnly: true,  // default ON — show only luxury-tier listings
   },
   quiz: {
     budgetMin: "",
     budgetMax: "",
-    style: "",        // "modern" | "traditional" | ""
+    lifestyle: "",    // "entertainer" | "retreat" | "estate" | ""
     features: [],     // must-have feature tags
     completed: false,
   },
@@ -134,6 +135,41 @@ function avg_room_score(listing, field) {
   return vals.reduce((a, b) => a + b, 0) / vals.length;
 }
 
+// ── Luxury scoring ────────────────────────────────────
+const LUXURY_FEATURES = [
+  "pool", "master_suite", "walk_in_shower", "soaking_tub", "kitchen_island",
+  "updated_kitchen", "quartz_counters", "updated_bathrooms", "smart_home",
+  "three_car_garage", "in_law_suite", "ev_charger", "solar", "new_construction",
+];
+
+function compute_luxury_score(listing) {
+  let score = 0;
+
+  // Price (40 pts)
+  const p = listing.price || 0;
+  if      (p >= 1_000_000) score += 40;
+  else if (p >= 800_000)   score += 32;
+  else if (p >= 600_000)   score += 22;
+  else if (p >= 400_000)   score += 12;
+
+  // AI luxury score (35 pts; neutral 17 when no data)
+  const avgLux = avg_room_score(listing, "luxury_score");
+  if      (avgLux >= 7) score += 35;
+  else if (avgLux >= 6) score += 26;
+  else if (avgLux >= 5) score += 17;
+  else if (avgLux >  0) score += 8;
+  else                   score += 17; // no AI data → neutral
+
+  // Luxury feature signals (25 pts)
+  const luxHits = (listing.features || []).filter(f => LUXURY_FEATURES.includes(f)).length;
+  if      (luxHits >= 4) score += 25;
+  else if (luxHits === 3) score += 19;
+  else if (luxHits === 2) score += 13;
+  else if (luxHits === 1) score += 6;
+
+  return Math.min(100, Math.round(score));
+}
+
 // ── Match scoring ─────────────────────────────────────
 function compute_match_score(listing, quiz) {
   if (!quiz.completed) return null;
@@ -158,33 +194,38 @@ function compute_match_score(listing, quiz) {
     score += 35; // no budget set
   }
 
-  // ── Style (30 pts) ───────────────────────────────────
-  if (!quiz.style) {
+  // ── Lifestyle (30 pts) ───────────────────────────────
+  const lifestyle = quiz.lifestyle || quiz.style || "";  // fallback for old saved quizzes
+  if (!lifestyle) {
     score += 30;
-  } else if (quiz.style === "modern") {
-    const avgModernity = avg_room_score(listing, "modernity_score");
-    if (avgModernity >= 7) {
+  } else if (lifestyle === "entertainer") {
+    const signals = ["pool", "kitchen_island", "open_floor_plan", "deck_patio", "updated_kitchen"];
+    const hits = (listing.features || []).filter(f => signals.includes(f)).length;
+    if      (hits >= 3) score += 30;
+    else if (hits >= 2) score += 20;
+    else if (hits >= 1) score += 10;
+    else                score += 5;
+  } else if (lifestyle === "retreat") {
+    const avgLux = avg_room_score(listing, "luxury_score");
+    if (avgLux >= 7) {
       score += 30;
-    } else if (avgModernity >= 5) {
+    } else if (avgLux >= 5) {
       score += 20;
     } else {
-      const modernSignals = ["new_construction", "updated_kitchen", "open_floor_plan",
-                             "quartz_counters", "new_flooring", "new_appliances"];
-      const hits = (listing.features || []).filter(f => modernSignals.includes(f)).length;
-      if (hits >= 2) score += 20;
-      else if (hits === 1) score += 10;
-      else score += 5;
+      const signals = ["walk_in_shower", "soaking_tub", "master_suite", "smart_home", "updated_bathrooms"];
+      const hits = (listing.features || []).filter(f => signals.includes(f)).length;
+      if      (hits >= 3) score += 25;
+      else if (hits >= 2) score += 15;
+      else if (hits >= 1) score += 8;
+      else                score += 5;
     }
-  } else if (quiz.style === "traditional") {
-    const avgModernity = avg_room_score(listing, "modernity_score");
-    if (avgModernity > 0 && avgModernity < 6) {
-      score += 30; // lower modernity = more traditional
-    } else if (avgModernity === 0) {
-      // No AI score — neutral score, no LLM keywords used
-      score += 15;
-    } else {
-      score += 8;
-    }
+  } else if (lifestyle === "estate") {
+    const signals = ["fireplace", "large_lot", "hardwood_floors", "finished_basement", "walk_in_closet"];
+    const hits = (listing.features || []).filter(f => signals.includes(f)).length;
+    if      (hits >= 3) score += 30;
+    else if (hits >= 2) score += 20;
+    else if (hits >= 1) score += 10;
+    else                score += 5;
   }
 
   // ── Must-have features (35 pts) ──────────────────────
@@ -222,23 +263,31 @@ function compute_match_breakdown(listing, quiz) {
     }
   }
 
-  // Style
-  if (quiz.style) {
-    const avgModernity = avg_room_score(listing, "modernity_score");
-    if (quiz.style === "modern") {
-      if (avgModernity >= 7) result.style = { status: "match", label: "Looks modern" };
-      else if (avgModernity >= 5) result.style = { status: "partial", label: "Somewhat modern" };
+  // Lifestyle
+  const lifestyle = quiz.lifestyle || quiz.style || "";
+  if (lifestyle) {
+    if (lifestyle === "entertainer") {
+      const signals = ["pool", "kitchen_island", "open_floor_plan", "deck_patio", "updated_kitchen"];
+      const hits = (listing.features || []).filter(f => signals.includes(f)).length;
+      if (hits >= 3) result.style = { status: "match", label: "Great for entertaining" };
+      else if (hits >= 1) result.style = { status: "partial", label: `${hits} entertainer feature${hits > 1 ? "s" : ""} found` };
+      else result.style = { status: "miss", label: "Few entertainer signals" };
+    } else if (lifestyle === "retreat") {
+      const avgLux = avg_room_score(listing, "luxury_score");
+      if (avgLux >= 7) result.style = { status: "match", label: "Luxury retreat feel" };
+      else if (avgLux >= 5) result.style = { status: "partial", label: "Good luxury details" };
       else {
-        const modernSignals = ["new_construction", "updated_kitchen", "open_floor_plan",
-                               "quartz_counters", "new_flooring", "new_appliances"];
-        const hits = (listing.features || []).filter(f => modernSignals.includes(f)).length;
-        if (hits >= 2) result.style = { status: "partial", label: "Modern features found" };
-        else result.style = { status: "miss", label: "Few modern signals" };
+        const signals = ["walk_in_shower", "soaking_tub", "master_suite", "smart_home", "updated_bathrooms"];
+        const hits = (listing.features || []).filter(f => signals.includes(f)).length;
+        if (hits >= 2) result.style = { status: "partial", label: `${hits} retreat features found` };
+        else result.style = { status: "miss", label: "Few retreat signals" };
       }
-    } else if (quiz.style === "traditional") {
-      if (avgModernity > 0 && avgModernity < 6) result.style = { status: "match", label: "Traditional style" };
-      else if (avgModernity === 0) result.style = { status: "unknown", label: "No style data yet" };
-      else result.style = { status: "miss", label: "Appears more modern" };
+    } else if (lifestyle === "estate") {
+      const signals = ["fireplace", "large_lot", "hardwood_floors", "finished_basement", "walk_in_closet"];
+      const hits = (listing.features || []).filter(f => signals.includes(f)).length;
+      if (hits >= 3) result.style = { status: "match", label: "Classic estate feel" };
+      else if (hits >= 1) result.style = { status: "partial", label: `${hits} estate feature${hits > 1 ? "s" : ""} found` };
+      else result.style = { status: "miss", label: "Few estate signals" };
     }
   }
 
@@ -312,6 +361,11 @@ function apply_filters() {
     list = list.filter((l) => normalize_type(l.property_type) === f.type);
   }
 
+  // Luxury-only filter
+  if (f.luxuryOnly) {
+    list = list.filter((l) => compute_luxury_score(l) >= 40);
+  }
+
   // Sort
   list = [...list];
   switch (f.sort) {
@@ -335,6 +389,9 @@ function apply_filters() {
       break;
     case "match_desc":
       list.sort((a, b) => (compute_match_score(b, state.quiz) ?? 0) - (compute_match_score(a, state.quiz) ?? 0));
+      break;
+    case "luxury_desc":
+      list.sort((a, b) => compute_luxury_score(b) - compute_luxury_score(a));
       break;
   }
 
@@ -418,11 +475,18 @@ function card_html(listing, idx) {
     ? `${listing.days_on_market}d on market`
     : listing.property_type || "";
 
+  const lux_score = compute_luxury_score(listing);
+  const lux_tier  = lux_score >= 80 ? "platinum" : lux_score >= 60 ? "gold" : lux_score >= 40 ? "silver" : null;
+  const lux_badge = lux_tier
+    ? `<span class="luxury-badge luxury-${lux_tier}">✦ ${lux_tier.charAt(0).toUpperCase() + lux_tier.slice(1)}</span>`
+    : "";
+
   return `
     <div class="listing-card" data-idx="${idx}">
       <div class="card-image">
         ${img_html}
         <span class="source-badge source-${listing.source}">${source_label(listing.source)}</span>
+        ${lux_badge}
         ${match_badge_html}
       </div>
       <div class="card-body">
@@ -782,8 +846,9 @@ function open_quiz() {
   // Pre-fill from saved state
   $("quiz-budget-min").value = q.budgetMin;
   $("quiz-budget-max").value = q.budgetMax;
+  const lifestyle = q.lifestyle || q.style || "";
   $("quiz-modal-overlay").querySelectorAll(".quiz-style-chip").forEach(c => {
-    c.classList.toggle("active", c.dataset.val === q.style);
+    c.classList.toggle("active", c.dataset.val === lifestyle);
   });
   $("quiz-features-group").querySelectorAll(".chip").forEach(c => {
     c.classList.toggle("active", q.features.includes(c.dataset.val));
@@ -798,14 +863,14 @@ function close_quiz() {
 }
 
 function save_quiz() {
-  const style = $("quiz-modal-overlay").querySelector(".quiz-style-chip.active")?.dataset.val || "";
+  const lifestyle = $("quiz-modal-overlay").querySelector(".quiz-style-chip.active")?.dataset.val || "";
   const features = [...$("quiz-features-group").querySelectorAll(".chip.active")]
     .map(c => c.dataset.val).filter(Boolean);
 
   state.quiz = {
     budgetMin: $("quiz-budget-min").value,
     budgetMax: $("quiz-budget-max").value,
-    style,
+    lifestyle,
     features,
     completed: true,
   };
@@ -834,7 +899,7 @@ function load_quiz_from_storage() {
 }
 
 function clear_quiz() {
-  state.quiz = { budgetMin: "", budgetMax: "", style: "", features: [], completed: false };
+  state.quiz = { budgetMin: "", budgetMax: "", lifestyle: "", features: [], completed: false };
   try { localStorage.removeItem("buyer-quiz"); } catch (_) {}
   $("btn-clear-quiz").style.display = "none";
   apply_filters();
@@ -982,6 +1047,12 @@ function wire_events() {
   // Mobile sidebar
   $("mobile-filter-btn").addEventListener("click", () => {
     $("sidebar").classList.toggle("open");
+  });
+
+  // Luxury toggle
+  $("luxury-toggle").addEventListener("change", (e) => {
+    state.filters.luxuryOnly = e.target.checked;
+    apply_filters();
   });
 
   // Quiz

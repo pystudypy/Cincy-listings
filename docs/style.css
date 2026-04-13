@@ -731,6 +731,68 @@ select:focus, input[type="text"]:focus {
 .bd-partial .bd-icon { color: #fbbf24; }
 .bd-unknown .bd-icon { color: #94a3b8; }
 
+/* ── Luxury tier badge ────────────────────────────────── */
+.luxury-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 20px;
+  letter-spacing: .4px;
+  backdrop-filter: blur(4px);
+  border: 1.5px solid rgba(255,255,255,.5);
+  pointer-events: none;
+}
+.luxury-platinum { background: linear-gradient(135deg, #6d28d9, #a855f7); color: #fff; }
+.luxury-gold     { background: linear-gradient(135deg, #92400e, #d97706); color: #fff; }
+.luxury-silver   { background: rgba(100,116,139,.85); color: #fff; }
+
+/* ── Luxury toggle ────────────────────────────────────── */
+.luxury-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0 8px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+.luxury-toggle-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #a855f7;
+  letter-spacing: .3px;
+}
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+}
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-slider {
+  position: absolute;
+  inset: 0;
+  background: #334155;
+  border-radius: 22px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.toggle-slider::before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 3px;
+  top: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform .2s;
+}
+.toggle-switch input:checked + .toggle-slider { background: #7c3aed; }
+.toggle-switch input:checked + .toggle-slider::before { transform: translateX(18px); }
+
 /* ── Find My Match button ─────────────────────────────── */
 .quiz-cta {
   display: flex;
