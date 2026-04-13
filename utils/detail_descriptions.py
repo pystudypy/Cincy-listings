@@ -13,7 +13,8 @@ Usage:
 import json
 import logging
 import re
-import time
+import threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import requests
 from bs4 import BeautifulSoup
@@ -30,8 +31,8 @@ HEADERS = {
     "Accept-Language": "en-US,en;q=0.5",
 }
 
-REQUEST_DELAY  = 0.8   # seconds between requests
-REQUEST_TIMEOUT = 25
+REQUEST_TIMEOUT = 12   # fail fast — slow sites aren't worth waiting for
+WORKERS = 8            # parallel fetches (8 threads, one per source roughly)
 
 # Words that signal we're looking at actual listing description text
 _RE_ESTATE_WORDS = re.compile(
@@ -222,34 +223,54 @@ def enrich_descriptions(
     total = len(to_enrich)
     logger.info(f"Description enrichment: fetching {total} listing descriptions…")
 
-    done = errors = 0
-    for listing in to_enrich:
+    def fetch_one(listing: dict) -> tuple[dict, str]:
+        """Fetch description for a single listing. Returns (listing, desc_or_empty)."""
         url    = listing["url"]
         source = listing.get("source", "")
-
-        # Fix malformed Zillow URLs
         if source == "zillow" and url.startswith("https://www.zillow.comhttps://"):
             url = url.replace("https://www.zillow.comhttps://", "https://")
-
         soup = _fetch_html(url)
-        if soup:
-            extractor = _EXTRACTORS.get(source, _extract_generic)
-            desc = _clean(extractor(soup))
-            if desc:
-                listing["description"] = desc
-                done += 1
-            else:
-                errors += 1
-                logger.debug(f"No description found: {url[:80]}")
-        else:
-            errors += 1
+        if not soup:
+            return listing, ""
+        extractor = _EXTRACTORS.get(source, _extract_generic)
+        return listing, _clean(extractor(soup))
 
-        if done > 0 and done % checkpoint_every == 0:
-            logger.info(f"Description enrichment: {done}/{total} done…")
-            if checkpoint_fn:
-                checkpoint_fn(listings)
+    done = errors = 0
+    lock = threading.Lock()
+    last_checkpoint = 0
 
-        time.sleep(REQUEST_DELAY)
+    with ThreadPoolExecutor(max_workers=WORKERS) as pool:
+        futures = {pool.submit(fetch_one, l): l for l in to_enrich}
+        for future in as_completed(futures):
+            try:
+                listing, desc = future.result()
+                if desc:
+                    listing["description"] = desc
+                    with lock:
+                        done += 1
+                        milestone = (done // checkpoint_every) * checkpoint_every
+                else:
+                    with lock:
+                        errors += 1
+                    milestone = 0
+            except Exception as e:
+                with lock:
+                    errors += 1
+                logger.debug(f"Fetch error: {e}")
+                milestone = 0
+
+            # Only checkpoint once per milestone (lock prevents duplicates)
+            if milestone > 0:
+                with lock:
+                    if milestone > last_checkpoint:
+                        last_checkpoint = milestone
+                        do_checkpoint = True
+                    else:
+                        do_checkpoint = False
+                if do_checkpoint:
+                    logger.info(f"Description enrichment: {milestone}/{total} done…")
+                    if checkpoint_fn:
+                        checkpoint_fn(listings)
 
     logger.info(f"Description enrichment complete: {done} fetched, {errors} failed")
     return listings

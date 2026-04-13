@@ -133,6 +133,8 @@ def main():
         unique = existing.get("listings", [])
         logger.info(f"Loaded {len(unique)} existing listings for description enrichment")
 
+        _desc_push_counter = [0]
+
         def save_desc_checkpoint(listings):
             if args.dry_run:
                 return
@@ -141,6 +143,24 @@ def main():
             DATA_FILE.write_text(json.dumps(existing, indent=2, ensure_ascii=False))
             with_desc = sum(1 for l in listings if l.get("description"))
             logger.info(f"Checkpoint saved — {with_desc} listings with descriptions")
+            # Push to GitHub every 500 descriptions
+            _desc_push_counter[0] += 50
+            if _desc_push_counter[0] % 500 == 0:
+                import subprocess
+                subprocess.run(
+                    ["git", "add", "docs/data/listings.json"],
+                    cwd=Path(__file__).parent, check=False,
+                )
+                subprocess.run(
+                    ["git", "commit", "-m",
+                     f"chore: description enrichment checkpoint — {with_desc} listings"],
+                    cwd=Path(__file__).parent, check=False,
+                )
+                subprocess.run(
+                    ["git", "push"],
+                    cwd=Path(__file__).parent, check=False,
+                )
+                logger.info(f"Pushed to GitHub — {with_desc} listings with descriptions")
 
         from utils.detail_descriptions import enrich_descriptions
         unique = enrich_descriptions(
@@ -167,6 +187,8 @@ def main():
         unique = existing.get("listings", [])
         logger.info(f"Loaded {len(unique)} existing listings for feature tagging")
 
+        _tag_push_counter = [0]
+
         def save_tag_checkpoint(listings):
             if args.dry_run:
                 return
@@ -175,6 +197,17 @@ def main():
             DATA_FILE.write_text(json.dumps(existing, indent=2, ensure_ascii=False))
             tagged = sum(1 for l in listings if l.get("features") is not None)
             logger.info(f"Checkpoint saved — {tagged} listings tagged")
+            _tag_push_counter[0] += 100
+            if _tag_push_counter[0] % 500 == 0:
+                import subprocess
+                subprocess.run(["git", "add", "docs/data/listings.json"],
+                               cwd=Path(__file__).parent, check=False)
+                subprocess.run(["git", "commit", "-m",
+                                f"chore: feature tagging checkpoint — {tagged} listings"],
+                               cwd=Path(__file__).parent, check=False)
+                subprocess.run(["git", "push"],
+                               cwd=Path(__file__).parent, check=False)
+                logger.info(f"Pushed to GitHub — {tagged} listings tagged")
 
         from utils.feature_tagger import tag_listings
         unique = tag_listings(
