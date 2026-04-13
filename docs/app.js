@@ -157,14 +157,11 @@ function apply_filters() {
     });
   }
 
-  // Feature tag filter (multi-select — listing must match ALL selected)
+  // Feature tag filter (multi-select — keyword regex only, no LLM to avoid hallucinations)
   if (f.features.length) {
     list = list.filter((l) => {
       const tags = l.features || [];
-      const kwds = (l.keywords || []).join(" ").toLowerCase();
-      return f.features.every((feat) =>
-        tags.includes(feat) || kwds.includes(feat.replace(/_/g, " "))
-      );
+      return f.features.every((feat) => tags.includes(feat));
     });
   }
 
