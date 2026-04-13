@@ -283,11 +283,6 @@ function render_photos() {
     return;
   }
 
-  const score_dot = (score) => {
-    const color = score >= 8 ? "#16a34a" : score >= 6 ? "#d97706" : "#dc2626";
-    return `<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${color};margin-right:3px"></span>`;
-  };
-
   container.innerHTML = photos.map(({ room, listing }) => `
     <div class="photo-card" data-id="${listing.id}" style="cursor:pointer">
       <div class="photo-card-img-wrap">
@@ -299,9 +294,11 @@ function render_photos() {
         <div class="photo-card-address">${listing.address}${listing.city ? ", " + listing.city : ""}</div>
         <div class="photo-card-price">${fmt_price(listing.price)}</div>
         <div class="photo-card-scores">
-          <span title="Modernity">${score_dot(room.modernity_score)}M ${room.modernity_score ?? "—"}</span>
-          <span title="Luxury">${score_dot(room.luxury_score)}L ${room.luxury_score ?? "—"}</span>
-          <span title="Condition">${score_dot(room.condition_score)}C ${room.condition_score ?? "—"}</span>
+          ${["modernity","luxury","condition"].map(t => {
+            const s = room[t+"_score"];
+            const {text,color,bg} = score_label(s, t);
+            return `<span style="font-size:10px;font-weight:700;color:${color};background:${bg};padding:1px 7px;border-radius:12px">${text}</span>`;
+          }).join("")}
         </div>
         ${room.features?.length
           ? `<div class="photo-card-features">${room.features.slice(0,3).map(f => `<span class="feature-tag">${f}</span>`).join("")}</div>`
@@ -398,14 +395,27 @@ function popup_html(l) {
 }
 
 // ── AI Analysis panel ─────────────────────────────────
-function score_bar(score, max = 10) {
-  const pct = Math.round((score / max) * 100);
-  const color = score >= 8 ? "#16a34a" : score >= 6 ? "#d97706" : "#dc2626";
-  return `<div style="display:flex;align-items:center;gap:8px">
-    <div style="flex:1;height:6px;background:#e5e7eb;border-radius:3px;overflow:hidden">
-      <div style="width:${pct}%;height:100%;background:${color};border-radius:3px"></div>
-    </div>
-    <span style="font-size:12px;font-weight:700;color:${color};min-width:24px">${score}</span>
+function score_label(score, type) {
+  if (!score) return { text: "—", color: "#9ca3af", bg: "#f3f4f6" };
+  const scales = {
+    modernity:  [[9,"Ultra-Modern","#6d28d9","#ede9fe"],[7,"Modern","#2563eb","#dbeafe"],[5,"Updated","#0891b2","#cffafe"],[3,"Traditional","#b45309","#fef3c7"],[0,"Outdated","#dc2626","#fee2e2"]],
+    luxury:     [[9,"Luxury","#7c3aed","#ede9fe"],[7,"Upscale","#1d4ed8","#dbeafe"],[5,"Quality","#0369a1","#e0f2fe"],[3,"Standard","#6b7280","#f3f4f6"],[0,"Basic","#9ca3af","#f9fafb"]],
+    condition:  [[9,"Pristine","#16a34a","#dcfce7"],[7,"Great","#15803d","#d1fae5"],[5,"Good","#ca8a04","#fef9c3"],[3,"Needs Updates","#d97706","#fef3c7"],[0,"Needs Work","#dc2626","#fee2e2"]],
+    overall:    [[9,"Excellent","#16a34a","#dcfce7"],[7,"Very Good","#2563eb","#dbeafe"],[5,"Good","#ca8a04","#fef9c3"],[3,"Fair","#d97706","#fef3c7"],[0,"Poor","#dc2626","#fee2e2"]],
+  };
+  const tiers = scales[type] || scales.overall;
+  for (const [min, text, color, bg] of tiers) {
+    if (score >= min) return { text, color, bg };
+  }
+  return { text: "—", color: "#9ca3af", bg: "#f3f4f6" };
+}
+
+function score_badge(score, type, label_text) {
+  const { text, color, bg } = score_label(score, type);
+  return `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+    <span style="font-size:12px;color:#6b7280">${label_text}</span>
+    <span style="font-size:11px;font-weight:700;color:${color};background:${bg};
+                 padding:2px 10px;border-radius:20px">${text}</span>
   </div>`;
 }
 
@@ -421,7 +431,7 @@ function room_type_label(rt) {
 
 function analysis_html(analysis) {
   const score = analysis.overall_score ?? 0;
-  const score_color = score >= 8 ? "#16a34a" : score >= 6 ? "#d97706" : "#dc2626";
+  const { text: score_text, color: score_color, bg: score_bg } = score_label(score, "overall");
 
   const rooms_html = (analysis.rooms || []).map((room) => `
     <div class="ai-room-card">
@@ -432,10 +442,10 @@ function analysis_html(analysis) {
         : ""}
       <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
                   color:#6b7280;margin-bottom:6px">${room_type_label(room.room_type)}</div>
-      <div style="display:grid;grid-template-columns:80px 1fr;gap:4px 8px;font-size:12px;margin-bottom:8px">
-        <span style="color:#6b7280">Modernity</span>${score_bar(room.modernity_score)}
-        <span style="color:#6b7280">Luxury</span>${score_bar(room.luxury_score)}
-        <span style="color:#6b7280">Condition</span>${score_bar(room.condition_score)}
+      <div style="margin-bottom:8px">
+        ${score_badge(room.modernity_score, "modernity", "Modernity")}
+        ${score_badge(room.luxury_score,    "luxury",    "Luxury")}
+        ${score_badge(room.condition_score, "condition", "Condition")}
       </div>
       ${room.features?.length
         ? `<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px">
@@ -460,8 +470,9 @@ function analysis_html(analysis) {
           </div>
         </div>
         <div style="text-align:right">
-          <div style="font-size:28px;font-weight:800;color:${score_color}">${score.toFixed(1)}</div>
-          <div style="font-size:11px;color:#6b7280">Overall Score</div>
+          <div style="font-size:22px;font-weight:800;color:${score_color};background:${score_bg};
+                      padding:4px 14px;border-radius:20px">${score_text}</div>
+          <div style="font-size:11px;color:#6b7280;margin-top:4px">${score.toFixed(1)} / 10</div>
         </div>
       </div>
       ${analysis.summary

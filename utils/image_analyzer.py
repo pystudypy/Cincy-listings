@@ -37,34 +37,58 @@ CLAUDE_MODEL           = "claude-haiku-4-5-20251001"
 MAX_IMAGES_PER_LISTING = 20
 REQUEST_DELAY          = 0.3   # seconds between API calls (local is fast)
 
-PROMPT = """You are a real estate interior design expert helping home buyers who care about modern, luxury, and high-quality design. Analyze each listing image carefully.
+PROMPT = """You are helping everyday home buyers understand what they are looking at in listing photos. Write like a knowledgeable friend walking through the house with them — clear, honest, no real estate jargon.
 
 For EACH image, identify:
-1. room_type — pick EXACTLY one from this list based on what you actually see:
-   - "kitchen": visible countertops, cabinets, appliances, or sink
-   - "living_room": sofas/seating area, TV, fireplace — NOT a bedroom
-   - "master_bedroom": large bedroom, often with ensuite or sitting area
-   - "bedroom": any other bedroom
-   - "master_bathroom": large bathroom with double vanity, soaking tub, or walk-in shower
-   - "bathroom": smaller bathroom, single vanity or powder room
-   - "dining_room": dining table and chairs as the main focus
-   - "backyard": outdoor space, yard, pool, patio
-   - "garage": cars, garage doors, or workshop
-   - "basement": below-grade space, recreation room
-   - "exterior": front/back of house from outside
-   - "other": laundry, hallway, office, gym, or anything else
 
-2. modernity_score: 1–10 (10 = ultra-modern 2024 design, 1 = very dated 1980s style)
-3. luxury_score: 1–10 (10 = high-end luxury finishes, 1 = basic builder-grade)
-4. condition_score: 1–10 (10 = pristine/new, 1 = needs major renovation)
-5. features: up to 5 notable features visible (e.g. "quartz countertops", "waterfall island", "soaking tub", "coffered ceiling", "hardwood floors", "floor-to-ceiling windows", "smart home panel")
-6. insight: one sentence about what makes this room stand out (or not)
+1. room_type — pick EXACTLY one based strictly on what you can see:
+   - "kitchen": countertops, cabinets, stove, sink, or appliances are visible
+   - "living_room": sofa or seating area is the main focus — NOT a bedroom
+   - "master_bedroom": the largest bedroom, often has more space or an attached sitting area
+   - "bedroom": any other bedroom with a bed as the main focus
+   - "master_bathroom": large bathroom with double sinks, soaking tub, or oversized shower
+   - "bathroom": smaller bathroom, single sink, or powder/half bath
+   - "dining_room": dining table and chairs are the clear focus
+   - "backyard": outdoor yard, patio, deck, or pool
+   - "garage": car parking area, garage doors visible
+   - "basement": below-grade finished or unfinished space
+   - "exterior": outside view of the house from the street or yard
+   - "other": laundry room, hallway, home office, gym, or anything else
+
+2. modernity_score: 1–10
+   10=brand new ultra-modern, 8-9=very modern updated feel, 6-7=updated but not cutting edge,
+   4-5=dated but functional, 2-3=clearly old-fashioned, 1=very run-down look
+
+3. luxury_score: 1–10
+   10=high-end luxury (think magazine-worthy), 8-9=upscale finishes, 6-7=above average quality,
+   4-5=standard builder finishes, 2-3=very basic, 1=cheap materials visible
+
+4. condition_score: 1–10
+   10=looks brand new or just renovated, 8-9=excellent shape, 6-7=good condition minor wear,
+   4-5=needs cosmetic updates (paint, fixtures), 2-3=needs real work, 1=major renovation needed
+
+5. features: up to 5 things a buyer would actually notice and care about, in plain language.
+   Good examples: "big island with seating", "brand new appliances", "walk-in shower with glass doors",
+   "soaking tub", "tons of cabinet storage", "hardwood floors throughout", "lots of natural light",
+   "open layout — kitchen connects to living area", "finished basement", "two-car garage",
+   "large fenced backyard", "in-ground pool", "high ceilings".
+   Avoid jargon like "coffered ceiling", "waterfall edge", "quartz substrate".
+
+6. insight: 2–3 sentences written like a friend explaining this room to the buyer.
+   Focus on: Is this room ready to use as-is or does it need work? What's the best thing about it?
+   What would a buyer with a family / who likes to cook / who entertains notice most?
+   Be honest — if something looks dated or basic, say so clearly but constructively.
+   Example: "The kitchen looks fully updated with new counters and appliances — you could move in and
+   start cooking day one. The big island has seating for four, which is great if you like to cook and
+   have people over. Storage looks generous with cabinets on all sides."
 
 Then provide overall:
-- overall_score: weighted average 1–10 (weight kitchens and master bathrooms more heavily)
-- summary: 2–3 sentences on design quality, style, and who this home would appeal to
+- overall_score: 1–10, weighted average giving extra weight to kitchen and master bathroom
+- summary: 2–3 plain-English sentences answering: Is this home move-in ready? What style does it lean toward?
+  Who is this home a good fit for? Be direct and practical — mention things like basement, garage, outdoor
+  space if visible. Avoid vague phrases like "appeals to discerning buyers".
 
-Respond ONLY with valid JSON, no markdown, no explanation:
+Respond ONLY with valid JSON, no markdown fences, no explanation before or after:
 {
   "rooms": [
     {
@@ -73,12 +97,12 @@ Respond ONLY with valid JSON, no markdown, no explanation:
       "modernity_score": 9,
       "luxury_score": 8,
       "condition_score": 10,
-      "features": ["quartz countertops", "waterfall island", "stainless appliances"],
-      "insight": "Stunning modern kitchen with premium finishes throughout."
+      "features": ["big island with seating", "brand new appliances", "tons of cabinet storage"],
+      "insight": "The kitchen looks completely updated and ready to use from day one. The large island has room for four people to sit, making it great for families or anyone who likes to cook and entertain. Storage is generous with cabinets covering all walls."
     }
   ],
   "overall_score": 8.5,
-  "summary": "A beautifully renovated contemporary home..."
+  "summary": "This home is move-in ready — the kitchen and bathrooms have already been updated so you won't need to spend extra fixing them up right away. The style is clean and modern without being cold. Good fit for a family or couple who wants a turnkey home and space to entertain."
 }"""
 
 
