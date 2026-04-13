@@ -166,10 +166,16 @@ def filter_cincinnati(listings: list[dict]) -> list[dict]:
         "45236", "45237", "45238", "45239", "45240", "45241", "45242",
         "45243", "45244", "45245", "45246", "45247", "45248", "45249",
         "45250", "45251", "45252", "45253", "45254", "45255",
-        # Northern KY suburbs (Covington, Newport, Florence)
-        "41011", "41012", "41014", "41015", "41016", "41017", "41018",
-        "41042", "41048", "41051", "41071", "41072", "41073", "41074",
-        "41075", "41076",
+        # Northern KY — Kenton County (Covington, Independence, Erlanger, Fort Mitchell, Fort Wright, Edgewood)
+        "41011", "41012", "41014", "41015", "41016", "41017", "41018", "41019",
+        "41051", "41053", "41059",
+        # Northern KY — Campbell County (Newport, Fort Thomas, Cold Spring, Alexandria, Bellevue, Dayton, Silver Grove)
+        "41071", "41072", "41073", "41074", "41075", "41076",
+        "41001", "41007", "41085",
+        # Northern KY — Boone County (Florence, Burlington, Union, Hebron, Walton, Petersburg, Verona)
+        "41042", "41005", "41048", "41080", "41091", "41092", "41094",
+        # Northern KY — Grant & Pendleton Counties (border communities)
+        "41010", "41035", "41040", "41097",
         # Ohio suburbs
         "45030", "45033", "45040", "45041", "45042", "45044", "45050",
         "45052", "45053", "45054", "45056", "45064", "45065", "45067",

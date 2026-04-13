@@ -20,6 +20,7 @@
   --c-comey:      #0f766e;
   --c-listings_cincinnati: #be185d;
   --c-cincinky: #7c3aed;
+  --c-coldwell_banker: #1a56db;
   --c-cabr:       #374151;
 
   --radius:  10px;
@@ -259,6 +260,7 @@ select:focus, input[type="text"]:focus {
 .source-comey      { background: var(--c-comey); }
 .source-listings_cincinnati { background: var(--c-listings_cincinnati); }
 .source-cincinky { background: var(--c-cincinky); }
+.source-coldwell_banker { background: var(--c-coldwell_banker); }
 .source-cabr       { background: var(--c-cabr); }
 
 .card-body { padding: 12px 14px; }

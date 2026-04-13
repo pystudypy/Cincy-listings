@@ -60,6 +60,7 @@ function source_label(src) {
     comey: "Comey",
     listings_cincinnati: "CincyMLS",
     cincinky: "CincinKY",
+    coldwell_banker: "Coldwell Banker",
     cabr: "CABR",
   };
   return map[src] || src;
@@ -288,6 +289,7 @@ function source_color(src) {
     comey: "#0f766e",
     listings_cincinnati: "#be185d",
     cincinky: "#7c3aed",
+    coldwell_banker: "#1a56db",
     cabr: "#374151",
   };
   return map[src] || "#374151";

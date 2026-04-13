@@ -389,6 +389,15 @@ def scrape() -> list[dict]:
             logger.error(f"{name} failed entirely: {e}")
         time.sleep(1)
 
+    # Coldwell Banker — Cincinnati OH + NKY cities
+    try:
+        from scrapers import coldwell_banker as cb_scraper
+        results = cb_scraper.scrape()
+        logger.info(f"Coldwell Banker: {len(results)} listings")
+        all_listings.extend(results)
+    except Exception as e:
+        logger.error(f"Coldwell Banker failed entirely: {e}")
+
     # CincinKY Real Estate — 94 community pages via Sierra Interactive IDX
     try:
         from scrapers import cincinky as cincinky_scraper
