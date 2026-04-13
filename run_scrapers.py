@@ -123,7 +123,7 @@ def main():
         logger.info("=" * 50)
         logger.info("Fetching gallery images from detail pages…")
         from utils.detail_images import enrich_images
-        unique = enrich_images(unique, min_price=500_000)
+        unique = enrich_images(unique, min_price=900_000)
 
         from utils.image_analyzer import analyze_listings
         unique = analyze_listings(unique, api_key=api_key, max_per_run=args.analyze_max)
@@ -180,7 +180,7 @@ def main():
             logger.info("=" * 50)
             logger.info("Fetching gallery images from detail pages…")
             from utils.detail_images import enrich_images
-            unique = enrich_images(unique, min_price=500_000)
+            unique = enrich_images(unique, min_price=900_000)
 
             logger.info("=" * 50)
             logger.info("Running AI image analysis on new listings…")

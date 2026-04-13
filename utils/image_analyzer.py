@@ -176,7 +176,7 @@ def analyze_listings(
     to_analyze = [
         l for l in listings
         if l.get("images")
-        and (l.get("price") or 0) >= 500_000
+        and (l.get("price") or 0) >= 900_000
         and (force or not l.get("image_analysis"))
     ]
 
