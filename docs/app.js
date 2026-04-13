@@ -186,6 +186,7 @@ function apply_filters() {
   $("result-count").textContent = `${list.length.toLocaleString()} listing${list.length !== 1 ? "s" : ""}`;
   render_list();
   if (map) render_map_markers();
+  if ($("view-photos").style.display !== "none") render_photos();
 }
 
 // ── Rendering: List ───────────────────────────────────
@@ -252,6 +253,72 @@ function card_html(listing, idx) {
         ${listing.url ? `<a href="${listing.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">View →</a>` : ""}
       </div>
     </div>`;
+}
+
+// ── Rendering: Photos ─────────────────────────────────
+function render_photos() {
+  const container = $("photos-grid");
+  const f = state.filters;
+
+  // Collect all matching room photos from filtered listings
+  const photos = [];
+  for (const listing of state.filtered) {
+    const rooms = listing.image_analysis?.rooms;
+    if (!rooms?.length) continue;
+    for (const room of rooms) {
+      if (!room.image_url) continue;
+      // If room type filter active, only show that room type
+      if (f.roomType && room.room_type !== f.roomType) continue;
+      photos.push({ room, listing });
+    }
+  }
+
+  $("photos-count").textContent = `${photos.length.toLocaleString()} photo${photos.length !== 1 ? "s" : ""} across ${state.filtered.filter(l => l.image_analysis?.rooms?.length).length} listings`;
+
+  if (!photos.length) {
+    container.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
+      <h3>No photos available</h3>
+      <p>Photos are only available for analyzed listings ($900k+). Try removing room or AI filters.</p>
+    </div>`;
+    return;
+  }
+
+  const score_dot = (score) => {
+    const color = score >= 8 ? "#16a34a" : score >= 6 ? "#d97706" : "#dc2626";
+    return `<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${color};margin-right:3px"></span>`;
+  };
+
+  container.innerHTML = photos.map(({ room, listing }) => `
+    <div class="photo-card" data-id="${listing.id}" style="cursor:pointer">
+      <div class="photo-card-img-wrap">
+        <img src="${room.image_url}" alt="${room_type_label(room.room_type)}"
+             loading="lazy" onerror="this.closest('.photo-card').style.display='none'">
+        <span class="photo-room-badge">${room_type_label(room.room_type)}</span>
+      </div>
+      <div class="photo-card-body">
+        <div class="photo-card-address">${listing.address}${listing.city ? ", " + listing.city : ""}</div>
+        <div class="photo-card-price">${fmt_price(listing.price)}</div>
+        <div class="photo-card-scores">
+          <span title="Modernity">${score_dot(room.modernity_score)}M ${room.modernity_score ?? "—"}</span>
+          <span title="Luxury">${score_dot(room.luxury_score)}L ${room.luxury_score ?? "—"}</span>
+          <span title="Condition">${score_dot(room.condition_score)}C ${room.condition_score ?? "—"}</span>
+        </div>
+        ${room.features?.length
+          ? `<div class="photo-card-features">${room.features.slice(0,3).map(f => `<span class="feature-tag">${f}</span>`).join("")}</div>`
+          : ""}
+        ${room.insight
+          ? `<div class="photo-card-insight">"${room.insight}"</div>`
+          : ""}
+      </div>
+    </div>`).join("");
+
+  // Click → open listing modal
+  container.querySelectorAll(".photo-card").forEach((el) => {
+    el.addEventListener("click", () => {
+      const listing = state.filtered.find(l => l.id === el.dataset.id);
+      if (listing) open_modal(listing);
+    });
+  });
 }
 
 // ── Rendering: Map ────────────────────────────────────
@@ -539,20 +606,17 @@ function wire_events() {
   });
 
   // Tabs
-  $("tab-list").addEventListener("click", () => {
-    $("tab-list").classList.add("active");
-    $("tab-map").classList.remove("active");
-    $("view-list").style.display = "block";
-    $("view-map").style.display = "none";
-  });
-  $("tab-map").addEventListener("click", () => {
-    $("tab-map").classList.add("active");
-    $("tab-list").classList.remove("active");
-    $("view-list").style.display = "none";
-    $("view-map").style.display = "block";
-    init_map();
-    setTimeout(() => map && map.invalidateSize(), 100);
-  });
+  function set_tab(tab) {
+    ["tab-list","tab-map","tab-photos"].forEach(id => $( id).classList.remove("active"));
+    ["view-list","view-map","view-photos"].forEach(id => $(id).style.display = "none");
+    $(  "tab-" + tab).classList.add("active");
+    $("view-" + tab).style.display = "block";
+    if (tab === "map") { init_map(); setTimeout(() => map && map.invalidateSize(), 100); }
+    if (tab === "photos") render_photos();
+  }
+  $("tab-list"  ).addEventListener("click", () => set_tab("list"));
+  $("tab-map"   ).addEventListener("click", () => set_tab("map"));
+  $("tab-photos").addEventListener("click", () => set_tab("photos"));
 
   // Modal close
   $("modal-close").addEventListener("click", close_modal);

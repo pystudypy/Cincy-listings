@@ -255,6 +255,7 @@
     <div class="view-tabs">
       <button class="tab active" id="tab-list">List view</button>
       <button class="tab" id="tab-map">Map view</button>
+      <button class="tab" id="tab-photos">📷 Photos</button>
       <div class="mobile-filter-toggle" id="mobile-filter-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg>
         Filters
@@ -272,6 +273,12 @@
     <!-- Map view -->
     <div id="view-map" style="display:none">
       <div id="map"></div>
+    </div>
+
+    <!-- Photos view -->
+    <div id="view-photos" style="display:none">
+      <div class="photos-header" id="photos-count"></div>
+      <div id="photos-grid" class="photos-grid"></div>
     </div>
 
   </main>
