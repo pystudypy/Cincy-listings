@@ -36,7 +36,7 @@ const state = {
     roomLuxury: "",
     roomCondition: "",
     search: "",
-    feature: "",
+    features: [],   // multi-select array
     sort: "price_asc",
   },
 };
@@ -157,12 +157,14 @@ function apply_filters() {
     });
   }
 
-  // Feature tag filter
-  if (f.feature) {
+  // Feature tag filter (multi-select — listing must match ALL selected)
+  if (f.features.length) {
     list = list.filter((l) => {
       const tags = l.features || [];
       const kwds = (l.keywords || []).join(" ").toLowerCase();
-      return tags.includes(f.feature) || kwds.includes(f.feature.replace(/_/g, " "));
+      return f.features.every((feat) =>
+        tags.includes(feat) || kwds.includes(feat.replace(/_/g, " "))
+      );
     });
   }
 
@@ -663,8 +665,35 @@ function wire_events() {
     apply_filters();
   });
 
-  // Feature chips
-  wire_chips("filter-features", "feature");
+  // Feature chips — multi-select
+  $("filter-features").addEventListener("click", (e) => {
+    const chip = e.target.closest(".chip");
+    if (!chip) return;
+    const val = chip.dataset.val;
+    if (val === "") {
+      // "Any" clears all
+      state.filters.features = [];
+      $("filter-features").querySelectorAll(".chip").forEach((c) => {
+        c.classList.toggle("active", c.dataset.val === "");
+      });
+    } else {
+      // Toggle this feature on/off
+      const idx = state.filters.features.indexOf(val);
+      if (idx === -1) {
+        state.filters.features.push(val);
+      } else {
+        state.filters.features.splice(idx, 1);
+      }
+      // Update chip active states
+      const anyChip = $("filter-features").querySelector(".chip[data-val='']");
+      const hasAny = state.filters.features.length === 0;
+      anyChip.classList.toggle("active", hasAny);
+      $("filter-features").querySelectorAll(".chip:not([data-val=''])").forEach((c) => {
+        c.classList.toggle("active", state.filters.features.includes(c.dataset.val));
+      });
+    }
+    apply_filters();
+  });
 
   // Zip
   $("filter-zip").addEventListener("input", (e) => {
@@ -684,7 +713,7 @@ function wire_events() {
       priceMin: "", priceMax: "", beds: "", baths: "",
       type: "", zip: "", source: "", area: "", aiScore: "", aiModernity: "", aiLuxury: "", aiCondition: "",
       roomType: "", roomModernity: "", roomLuxury: "", roomCondition: "",
-      search: "", feature: "", sort: "price_asc",
+      search: "", features: [], sort: "price_asc",
     };
     // Reset UI
     $("filter-price-min").value = "";
