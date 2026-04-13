@@ -31,11 +31,13 @@ import requests
 
 logger = logging.getLogger(__name__)
 
-OLLAMA_HOST            = "http://localhost:11434"
-OLLAMA_MODEL           = "qwen2.5vl:72b"
-CLAUDE_MODEL           = "claude-haiku-4-5-20251001"
-MAX_IMAGES_PER_LISTING = 20
-REQUEST_DELAY          = 0.3   # seconds between API calls (local is fast)
+OLLAMA_HOST                 = "http://localhost:11434"
+OLLAMA_MODEL                = "qwen2.5vl:72b"
+CLAUDE_MODEL                = "claude-haiku-4-5-20251001"
+MAX_IMAGES_PER_LISTING      = 20   # stored / sent to Claude
+MAX_IMAGES_OLLAMA           = 8    # Ollama: 72B struggles with more than 8-10 images
+OLLAMA_IMAGE_MAX_PX         = 768  # resize images to max this dimension before sending
+REQUEST_DELAY               = 0.3
 
 PROMPT = """You are helping everyday home buyers understand what they are looking at in listing photos. Write like a knowledgeable friend walking through the house with them — clear, honest, no real estate jargon.
 
@@ -106,8 +108,8 @@ Respond ONLY with valid JSON, no markdown fences, no explanation before or after
 }"""
 
 
-def _fetch_image_b64(url: str, timeout: int = 10) -> Optional[tuple[str, str]]:
-    """Download an image and return (base64_data, media_type) or None on failure."""
+def _fetch_image_b64(url: str, timeout: int = 10, max_px: int = 0) -> Optional[tuple[str, str]]:
+    """Download an image, optionally resize it, return (base64_data, media_type) or None."""
     try:
         resp = requests.get(url, timeout=timeout, headers={
             "User-Agent": "Mozilla/5.0 (compatible; CincyListings/1.0)"
@@ -116,7 +118,29 @@ def _fetch_image_b64(url: str, timeout: int = 10) -> Optional[tuple[str, str]]:
         content_type = resp.headers.get("Content-Type", "image/jpeg").split(";")[0].strip()
         if content_type not in ("image/jpeg", "image/jpg", "image/png", "image/webp", "image/gif"):
             content_type = "image/jpeg"
-        return base64.standard_b64encode(resp.content).decode("utf-8"), content_type
+
+        img_bytes = resp.content
+
+        # Resize if requested (keeps aspect ratio, caps longest side to max_px)
+        if max_px > 0:
+            try:
+                from PIL import Image as PILImage
+                import io
+                img = PILImage.open(io.BytesIO(img_bytes))
+                w, h = img.size
+                if max(w, h) > max_px:
+                    scale = max_px / max(w, h)
+                    img = img.resize((int(w * scale), int(h * scale)), PILImage.LANCZOS)
+                buf = io.BytesIO()
+                img.convert("RGB").save(buf, format="JPEG", quality=85)
+                img_bytes = buf.getvalue()
+                content_type = "image/jpeg"
+            except ImportError:
+                pass  # PIL not installed — send original size
+            except Exception:
+                pass  # resize failed — send original size
+
+        return base64.standard_b64encode(img_bytes).decode("utf-8"), content_type
     except Exception as e:
         logger.debug(f"Image fetch failed ({url[:60]}…): {e}")
         return None
@@ -145,13 +169,13 @@ def _parse_json_response(raw: str) -> Optional[dict]:
 
 def _analyze_with_ollama(images: list[str]) -> Optional[dict]:
     """Send images to local Ollama qwen2.5vl model via OpenAI-compatible API."""
-    selected = images[:MAX_IMAGES_PER_LISTING]
+    selected = images[:MAX_IMAGES_OLLAMA]
 
-    # Fetch and encode images
+    # Fetch, resize, and encode images
     encoded = []
     url_map = {}
     for url in selected:
-        result = _fetch_image_b64(url)
+        result = _fetch_image_b64(url, max_px=OLLAMA_IMAGE_MAX_PX)
         if result:
             b64, _ = result
             idx = len(encoded) + 1
@@ -161,29 +185,28 @@ def _analyze_with_ollama(images: list[str]) -> Optional[dict]:
     if not encoded:
         return None
 
-    # Build OpenAI-compatible message with images
-    content = []
-    for i, b64 in enumerate(encoded):
-        content.append({
-            "type": "image_url",
-            "image_url": {"url": f"data:image/jpeg;base64,{b64}"}
-        })
-        content.append({"type": "text", "text": f"[Image {i + 1}]"})
-    content.append({"type": "text", "text": PROMPT})
+    # Native Ollama API: images go in the `images` field, text in `content`
+    img_markers = "\n".join([f"[Image {i+1}]" for i in range(len(encoded))])
+    message_content = img_markers + "\n\n" + PROMPT
 
     try:
+        # Use native Ollama API so num_ctx is respected (OpenAI compat ignores it)
         resp = requests.post(
-            f"{OLLAMA_HOST}/v1/chat/completions",
+            f"{OLLAMA_HOST}/api/chat",
             json={
                 "model": OLLAMA_MODEL,
-                "messages": [{"role": "user", "content": content}],
-                "temperature": 0.1,
-                "max_tokens": 4096,
+                "stream": False,
+                "options": {
+                    "num_ctx": 12288,   # fits comfortably in 128GB: ~8GB KV cache
+                    "temperature": 0.1,
+                    "num_predict": 4096,
+                },
+                "messages": [{"role": "user", "content": message_content, "images": encoded}],
             },
-            timeout=300,  # local model can be slow for many images
+            timeout=600,
         )
         resp.raise_for_status()
-        raw = resp.json()["choices"][0]["message"]["content"]
+        raw = resp.json()["message"]["content"]
         analysis = _parse_json_response(raw)
         if not analysis:
             return None
