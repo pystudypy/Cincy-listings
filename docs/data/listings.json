@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-13T04:48:54.286951+00:00",
+  "last_updated": "2026-04-13T04:51:42.589791+00:00",
   "total_count": 4594,
   "source_counts": {
     "coldwell_banker": 1215,
@@ -102255,7 +102255,29 @@
       "source": "cincinky",
       "lat": null,
       "lng": null,
-      "last_updated": "2026-04-13T01:02:45.512496"
+      "last_updated": "2026-04-13T01:02:45.512496",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "brick exterior",
+              "balconies",
+              "landscaping"
+            ],
+            "insight": "The exterior of the home is well-maintained and has a classic brick design with balconies, which adds a touch of charm. The landscaping is neat and tidy, with trees and shrubs providing a pleasant environment. This home would be a good fit for someone who appreciates a traditional aesthetic and enjoys outdoor spaces.",
+            "image_url": "https://cdn.listingphotos.sierrastatic.com/pics2x/v1753043145/27/27_1848754_01.jpg"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a classic, traditional style. It's a good fit for someone who values a well-maintained exterior and enjoys outdoor living spaces. The home is move-in ready, with no major renovations needed.",
+        "analyzed_at": "2026-04-13T04:49:04.835072+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "ba86c77c70f5e4ff",
@@ -102280,7 +102302,30 @@
       "source": "comey",
       "lat": 38.991444,
       "lng": -84.565804,
-      "last_updated": "2026-04-12T18:29:37.333440"
+      "last_updated": "2026-04-12T18:29:37.333440",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "manicured lawn",
+              "landscaped garden",
+              "large tree in front yard",
+              "neatly trimmed shrubs"
+            ],
+            "insight": "The exterior of the house is well-maintained with a manicured lawn and landscaped garden. The large tree in the front yard provides shade and adds to the curb appeal. The shrubs are neatly trimmed, giving the property a polished look. This is a great home for someone who appreciates a well-kept and inviting front yard.",
+            "image_url": "https://m1.cbhomes.com/p/192/640926/e490A06DA5D4446/m23cc.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home has a well-maintained exterior with a manicured lawn and landscaped garden. It's a good fit for someone who values a clean and inviting front yard. The property leans towards a traditional style with a focus on landscaping and curb appeal.",
+        "analyzed_at": "2026-04-13T04:49:16.687955+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "8a2040334b580f31",
@@ -102304,7 +102349,29 @@
       "source": "comey",
       "lat": 39.063522,
       "lng": -84.463844,
-      "last_updated": "2026-04-12T18:29:45.000031"
+      "last_updated": "2026-04-12T18:29:45.000031",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "custom ranch manor home",
+              "large fenced backyard",
+              "two-car garage"
+            ],
+            "insight": "The exterior of the house is a custom ranch manor style, which is a classic and timeless design. The large fenced backyard is a great space for outdoor activities and entertaining. The two-car garage provides ample parking and storage.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6118/611857q.jpg?1760950098"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is a solid choice for those looking for a classic ranch style with a spacious backyard and a two-car garage. It's in good condition and would be a good fit for a family or couple who enjoys outdoor living.",
+        "analyzed_at": "2026-04-13T04:49:25.082074+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "3b0952c15f8fefea",
@@ -102329,7 +102396,30 @@
       "source": "cincinky",
       "lat": 39.067,
       "lng": -84.6094,
-      "last_updated": "2026-04-13T01:01:46.077062"
+      "last_updated": "2026-04-13T01:01:46.077062",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 9,
+            "features": [
+              "brick exterior",
+              "newly landscaped yard",
+              "white trim accents",
+              "large windows"
+            ],
+            "insight": "The exterior of the house is in excellent condition with a fresh coat of paint and new landscaping. The large windows allow for plenty of natural light, and the brick exterior gives it a classic, timeless look. This home would be a great fit for someone who appreciates a well-maintained and charming exterior.",
+            "image_url": "https://cdn.listingphotos.sierrastatic.com/pics2x/v1760629624/16/16_630877_01.jpg"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home has a classic and timeless exterior that is in excellent condition. It's a good fit for someone who appreciates a well-maintained and charming home. The landscaping and paint job give it a fresh and inviting look.",
+        "analyzed_at": "2026-04-13T04:49:37.683054+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "4974573245deca16",
@@ -102353,7 +102443,30 @@
       "source": "comey",
       "lat": 39.369923,
       "lng": -84.273392,
-      "last_updated": "2026-04-12T18:29:21.877661"
+      "last_updated": "2026-04-12T18:29:21.877661",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "brick exterior",
+              "well-maintained lawn",
+              "large front porch",
+              "evening lighting"
+            ],
+            "insight": "The exterior of the house is in good condition with a well-maintained lawn and a large front porch. The evening lighting adds a warm and inviting feel. This home would be a good fit for someone who appreciates a traditional style with a welcoming front entrance.",
+            "image_url": "https://cdn.listingphotos.sierrastatic.com/pics2x/v1774634014/27/27_1873105_01.jpg"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a traditional style with a welcoming front porch. It's a good fit for a family or couple who values a classic look and a spacious front yard for outdoor activities.",
+        "analyzed_at": "2026-04-13T04:49:47.253627+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "07eced815ff08247",
@@ -102377,7 +102490,43 @@
       "source": "comey",
       "lat": 39.005421,
       "lng": -84.618896,
-      "last_updated": "2026-04-12T18:29:51.849395"
+      "last_updated": "2026-04-12T18:29:51.849395",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 4,
+            "condition_score": 7,
+            "features": [
+              "brick exterior",
+              "single-story house",
+              "large windows"
+            ],
+            "insight": "The exterior of the house is in good condition but shows signs of wear. The large windows let in plenty of natural light, which is great for a home office or a space to relax. The brick exterior gives it a classic, timeless look.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6401/640177q.jpg?1772191266"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 4,
+            "condition_score": 7,
+            "features": [
+              "brick exterior",
+              "single-story house",
+              "large windows"
+            ],
+            "insight": "The exterior of the house is in good condition but shows signs of wear. The large windows let in plenty of natural light, which is great for a home office or a space to relax. The brick exterior gives it a classic, timeless look.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6401/640177l.jpg"
+          }
+        ],
+        "overall_score": 7,
+        "summary": "This home is in good condition but could use some updates. The exterior is classic and timeless, making it a good fit for someone who appreciates a traditional style. The large windows and brick exterior give it a warm and inviting feel.",
+        "analyzed_at": "2026-04-13T04:50:02.346725+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "0dd1702ac50c1235",
@@ -102401,7 +102550,43 @@
       "source": "comey",
       "lat": 39.023228,
       "lng": -84.334755,
-      "last_updated": "2026-04-13T01:30:52.645966"
+      "last_updated": "2026-04-13T01:30:52.645966",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "backyard",
+            "modernity_score": 4,
+            "luxury_score": 3,
+            "condition_score": 6,
+            "features": [
+              "large grassy area",
+              "trees and shrubs",
+              "several houses nearby"
+            ],
+            "insight": "The backyard is spacious and surrounded by trees, making it a nice place to relax or entertain. It's in good condition but could benefit from some landscaping to enhance its appeal. The presence of several houses nearby suggests it's a community-oriented area.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6412/641207q.jpg?1775469323"
+          },
+          {
+            "image_index": 2,
+            "room_type": "backyard",
+            "modernity_score": 4,
+            "luxury_score": 3,
+            "condition_score": 6,
+            "features": [
+              "large grassy area",
+              "trees and shrubs",
+              "several houses nearby"
+            ],
+            "insight": "The backyard is spacious and surrounded by trees, making it a nice place to relax or entertain. It's in good condition but could benefit from some landscaping to enhance its appeal. The presence of several houses nearby suggests it's a community-oriented area.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6412/641207l.jpg"
+          }
+        ],
+        "overall_score": 6.5,
+        "summary": "This property has a large, grassy backyard with trees, making it suitable for outdoor activities. It's in a community setting with several houses nearby. The home is move-in ready, but the backyard could use some landscaping to enhance its appeal. It's a good fit for someone looking for a spacious outdoor area and a community-oriented neighborhood.",
+        "analyzed_at": "2026-04-13T04:50:18.536423+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "1faea686b31d7027",
@@ -102425,7 +102610,43 @@
       "source": "comey",
       "lat": 39.021816,
       "lng": -84.335159,
-      "last_updated": "2026-04-13T01:30:52.646184"
+      "last_updated": "2026-04-13T01:30:52.646184",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "backyard",
+            "modernity_score": 4,
+            "luxury_score": 3,
+            "condition_score": 6,
+            "features": [
+              "large grassy area",
+              "trees and shrubs",
+              "views of the river"
+            ],
+            "insight": "The backyard is spacious and has a nice view of the river, but it looks a bit dated. There's plenty of space for outdoor activities, but it might need some landscaping to make it more appealing. It's a good spot for a family or someone who enjoys gardening.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6412/641204q.jpg?1775644318"
+          },
+          {
+            "image_index": 2,
+            "room_type": "backyard",
+            "modernity_score": 4,
+            "luxury_score": 3,
+            "condition_score": 6,
+            "features": [
+              "large grassy area",
+              "trees and shrubs",
+              "views of the river"
+            ],
+            "insight": "The backyard is spacious and has a nice view of the river, but it looks a bit dated. There's plenty of space for outdoor activities, but it might need some landscaping to make it more appealing. It's a good spot for a family or someone who enjoys gardening.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6412/641204l.jpg"
+          }
+        ],
+        "overall_score": 6.5,
+        "summary": "This home has a spacious backyard with a view of the river, but it's in need of some updates. The style is more rustic and natural, leaning towards a countryside feel. It's a good fit for someone who enjoys outdoor activities and wants a home with a lot of green space.",
+        "analyzed_at": "2026-04-13T04:50:35.416985+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "6217886b9a036d6c",
@@ -102450,7 +102671,29 @@
       "source": "comey",
       "lat": 38.913647,
       "lng": -84.65081,
-      "last_updated": "2026-04-13T01:31:00.699064"
+      "last_updated": "2026-04-13T01:31:00.699064",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "manicured lawn",
+              "brick exterior",
+              "landscaped garden"
+            ],
+            "insight": "The exterior of the house is well-maintained with a manicured lawn and landscaped garden. The brick exterior gives it a classic and timeless look. The property is surrounded by trees, which adds to the privacy and aesthetic appeal. This home would be a great fit for someone who appreciates a well-kept and traditional style home.",
+            "image_url": "https://m.cbhomes.com/p/192/641468/949ADa960A4c495/m23cc.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is move-in ready with a classic and timeless exterior. The property is well-maintained and surrounded by trees, making it a great fit for someone who appreciates a traditional style home and a peaceful environment.",
+        "analyzed_at": "2026-04-13T04:50:47.278331+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "182368b0333747c4",
@@ -102497,7 +102740,127 @@
       "source": "coldwell_banker",
       "lat": 39.1062,
       "lng": -84.3691,
-      "last_updated": "2026-04-13T01:32:41.677530+00:00"
+      "last_updated": "2026-04-13T01:32:41.677530+00:00",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large driveway",
+              "well-maintained lawn",
+              "trees for shade"
+            ],
+            "insight": "The exterior of the house is in good condition with a spacious driveway and a well-maintained lawn. The trees provide some shade, which is nice for outdoor relaxation. This home would be a good fit for someone who enjoys a quiet neighborhood and likes to spend time outdoors.",
+            "image_url": "https://m.cbhomes.com/p/220/1871137/c16A7C66Ad09415/m23cc.webp"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large driveway",
+              "well-maintained lawn",
+              "trees for shade"
+            ],
+            "insight": "The exterior of the house is in good condition with a spacious driveway and a well-maintained lawn. The trees provide some shade, which is nice for outdoor relaxation. This home would be a good fit for someone who enjoys a quiet neighborhood and likes to spend time outdoors.",
+            "image_url": "https://m1.cbhomes.com/p/220/1871137/b62A84DaE9Ba48D/pds23tp.webp"
+          },
+          {
+            "image_index": 3,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large driveway",
+              "well-maintained lawn",
+              "trees for shade"
+            ],
+            "insight": "The exterior of the house is in good condition with a spacious driveway and a well-maintained lawn. The trees provide some shade, which is nice for outdoor relaxation. This home would be a good fit for someone who enjoys a quiet neighborhood and likes to spend time outdoors.",
+            "image_url": "https://m.cbhomes.com/p/220/1871137/9cA007D641684C5/pds23tp.webp"
+          },
+          {
+            "image_index": 4,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large driveway",
+              "well-maintained lawn",
+              "trees for shade"
+            ],
+            "insight": "The exterior of the house is in good condition with a spacious driveway and a well-maintained lawn. The trees provide some shade, which is nice for outdoor relaxation. This home would be a good fit for someone who enjoys a quiet neighborhood and likes to spend time outdoors.",
+            "image_url": "https://m1.cbhomes.com/p/220/1871137/0e2d65713Ecd4E6/pds23tp.webp"
+          },
+          {
+            "image_index": 5,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large driveway",
+              "well-maintained lawn",
+              "trees for shade"
+            ],
+            "insight": "The exterior of the house is in good condition with a spacious driveway and a well-maintained lawn. The trees provide some shade, which is nice for outdoor relaxation. This home would be a good fit for someone who enjoys a quiet neighborhood and likes to spend time outdoors.",
+            "image_url": "https://m.cbhomes.com/p/220/1871137/3a094F83e2c04e4/pds23tp.webp"
+          },
+          {
+            "image_index": 6,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large driveway",
+              "well-maintained lawn",
+              "trees for shade"
+            ],
+            "insight": "The exterior of the house is in good condition with a spacious driveway and a well-maintained lawn. The trees provide some shade, which is nice for outdoor relaxation. This home would be a good fit for someone who enjoys a quiet neighborhood and likes to spend time outdoors.",
+            "image_url": "https://m1.cbhomes.com/p/220/1871137/c1992169f9e34Db/pds23tp.webp"
+          },
+          {
+            "image_index": 7,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large driveway",
+              "well-maintained lawn",
+              "trees for shade"
+            ],
+            "insight": "The exterior of the house is in good condition with a spacious driveway and a well-maintained lawn. The trees provide some shade, which is nice for outdoor relaxation. This home would be a good fit for someone who enjoys a quiet neighborhood and likes to spend time outdoors.",
+            "image_url": "https://m.cbhomes.com/p/220/1871137/51876285dA50458/pds23tp.webp"
+          },
+          {
+            "image_index": 8,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "large driveway",
+              "well-maintained lawn",
+              "trees for shade"
+            ],
+            "insight": "The exterior of the house is in good condition with a spacious driveway and a well-maintained lawn. The trees provide some shade, which is nice for outdoor relaxation. This home would be a good fit for someone who enjoys a quiet neighborhood and likes to spend time outdoors.",
+            "image_url": "https://m1.cbhomes.com/p/220/1871137/927F84ECa0cc48a/pds23tp.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is move-in ready with a spacious driveway and a well-maintained lawn. The style is clean and modern without being cold. Good fit for a family or couple who enjoys a quiet neighborhood and likes to spend time outdoors.",
+        "analyzed_at": "2026-04-13T04:51:42.589062+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "ff2e7ccc47b29d8a",
