@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-13T05:31:55.116129+00:00",
+  "last_updated": "2026-04-13T05:34:03.987393+00:00",
   "total_count": 4594,
   "source_counts": {
     "coldwell_banker": 1215,
@@ -113255,7 +113255,29 @@
       "source": "sibcy_cline",
       "lat": null,
       "lng": null,
-      "last_updated": "2026-04-13T00:28:10.624841"
+      "last_updated": "2026-04-13T00:28:10.624841",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 7,
+            "condition_score": 8,
+            "features": [
+              "large wrap-around porch",
+              "manicured landscaping",
+              "driveway with garage"
+            ],
+            "insight": "The exterior of the house is in good condition with a well-maintained lawn and landscaping. The wrap-around porch is a nice feature for relaxing or entertaining guests. The driveway and attached garage provide convenient parking.",
+            "image_url": "https://static1.sibcycline.com/photos/02/f5/1/02f513ee14b381cba6b9cdcfb2ac712a78a4cf6f_640.jpg?ts=638932808876900000"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a classic, well-maintained exterior. It's a good fit for someone who appreciates a traditional style and enjoys outdoor living spaces. The attached garage and driveway provide ample parking.",
+        "analyzed_at": "2026-04-13T05:32:03.334002+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "e807286668f8ce06",
@@ -113302,7 +113324,107 @@
       "source": "coldwell_banker",
       "lat": 39.1566,
       "lng": -84.4349,
-      "last_updated": "2026-04-13T01:34:09.230795+00:00"
+      "last_updated": "2026-04-13T01:34:09.230795+00:00",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "living_room",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "large windows for natural light",
+              "neutral color palette",
+              "modern furniture"
+            ],
+            "insight": "The living room is spacious and well-lit with large windows. The neutral color palette and modern furniture give it a fresh, updated look. It's ready to use as-is, but might benefit from some personal touches to make it truly feel like home.",
+            "image_url": "https://m1.cbhomes.com/p/220/1842439/67BA1d50B26b483/pds23tp.webp"
+          },
+          {
+            "image_index": 3,
+            "room_type": "bedroom",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 7,
+            "features": [
+              "large windows",
+              "modern decor"
+            ],
+            "insight": "This bedroom is spacious with large windows allowing plenty of natural light. The modern decor gives it a fresh feel, but it might need some finishing touches to make it truly luxurious.",
+            "image_url": "https://m.cbhomes.com/p/220/1842439/FEc8cb63038b4C9/pds23tp.webp"
+          },
+          {
+            "image_index": 4,
+            "room_type": "bedroom",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 7,
+            "features": [
+              "large windows",
+              "modern decor"
+            ],
+            "insight": "Similar to the previous bedroom, this one is spacious with large windows and modern decor. It's ready to use as-is, but might need some finishing touches to make it truly luxurious.",
+            "image_url": "https://m1.cbhomes.com/p/220/1842439/fbf972fe893c402/pds23tp.webp"
+          },
+          {
+            "image_index": 5,
+            "room_type": "bedroom",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 7,
+            "features": [
+              "large windows",
+              "modern decor"
+            ],
+            "insight": "This bedroom is spacious with large windows allowing plenty of natural light. The modern decor gives it a fresh feel, but it might need some finishing touches to make it truly luxurious.",
+            "image_url": "https://m.cbhomes.com/p/220/1842439/ecbfCdb0e54C431/pds23tp.webp"
+          },
+          {
+            "image_index": 6,
+            "room_type": "bedroom",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 7,
+            "features": [
+              "large windows",
+              "modern decor"
+            ],
+            "insight": "Similar to the previous bedrooms, this one is spacious with large windows and modern decor. It's ready to use as-is, but might need some finishing touches to make it truly luxurious.",
+            "image_url": "https://m1.cbhomes.com/p/220/1842439/be207F032EEB4DD/pds23tp.webp"
+          },
+          {
+            "image_index": 7,
+            "room_type": "bedroom",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 7,
+            "features": [
+              "large windows",
+              "modern decor"
+            ],
+            "insight": "This bedroom is spacious with large windows allowing plenty of natural light. The modern decor gives it a fresh feel, but it might need some finishing touches to make it truly luxurious.",
+            "image_url": "https://m.cbhomes.com/p/220/1842439/384F88699e05495/pds23tp.webp"
+          },
+          {
+            "image_index": 8,
+            "room_type": "bedroom",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 7,
+            "features": [
+              "large windows",
+              "modern decor"
+            ],
+            "insight": "Similar to the previous bedrooms, this one is spacious with large windows and modern decor. It's ready to use as-is, but might need some finishing touches to make it truly luxurious.",
+            "image_url": "https://m1.cbhomes.com/p/220/1842439/69a6a5af9d2a4b5/pds23tp.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is move-in ready with updated bedrooms and bathrooms. The style is modern and clean, but some finishing touches might be needed to make it truly luxurious. Good fit for a family or couple looking for a turnkey home with a modern aesthetic.",
+        "analyzed_at": "2026-04-13T05:32:32.269370+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "9f990fae094e80b7",
@@ -113327,7 +113449,60 @@
       "source": "sibcy_cline",
       "lat": 39.1106,
       "lng": -84.7201,
-      "last_updated": "2026-04-13T00:28:10.624824"
+      "last_updated": "2026-04-13T00:28:10.624824",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 9,
+            "features": [
+              "large front yard",
+              "stone exterior",
+              "dark shutters",
+              "two-car garage"
+            ],
+            "insight": "The exterior of the house is in excellent condition with a clean and modern look. The large front yard provides a welcoming space for outdoor activities. The two-car garage is a plus for those who need extra parking space.",
+            "image_url": "https://online.sibcycline.com/retsphotos/NKY/633777_1.jpg?ts=639113552722900000"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 9,
+            "features": [
+              "large front yard",
+              "stone exterior",
+              "dark shutters",
+              "two-car garage"
+            ],
+            "insight": "The exterior of the house is in excellent condition with a clean and modern look. The large front yard provides a welcoming space for outdoor activities. The two-car garage is a plus for those who need extra parking space.",
+            "image_url": "https://cdn.listingphotos.sierrastatic.com/pics2x/v1757447986/16/16_633777_01.jpg"
+          },
+          {
+            "image_index": 3,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 9,
+            "features": [
+              "large front yard",
+              "stone exterior",
+              "dark shutters",
+              "two-car garage"
+            ],
+            "insight": "The exterior of the house is in excellent condition with a clean and modern look. The large front yard provides a welcoming space for outdoor activities. The two-car garage is a plus for those who need extra parking space.",
+            "image_url": "https://m1.cbhomes.com/p/192/633777/89f2fE0C070E41e/m23cc.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is move-in ready with a clean and modern exterior. It's a good fit for a family or couple who wants a spacious home with a two-car garage and a large front yard for outdoor activities. The style is contemporary and practical.",
+        "analyzed_at": "2026-04-13T05:32:47.973778+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "a2149f0a40a9945d",
@@ -113353,7 +113528,57 @@
       "source": "sibcy_cline",
       "lat": 39.081871,
       "lng": -84.488968,
-      "last_updated": "2026-04-13T00:28:10.624807"
+      "last_updated": "2026-04-13T00:28:10.624807",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "modern architecture",
+              "large windows",
+              "car parked in front"
+            ],
+            "insight": "This exterior view showcases a modern home with clean lines and large windows that let in plenty of natural light. The car parked in front suggests it's a practical home for someone who values convenience and style.",
+            "image_url": "https://online.sibcycline.com/retsphotos/NKY/638050_1.jpg?ts=639106466884200000"
+          },
+          {
+            "image_index": 3,
+            "room_type": "exterior",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "modern architecture",
+              "large windows",
+              "car parked in front"
+            ],
+            "insight": "This exterior view showcases a modern home with clean lines and large windows that let in plenty of natural light. The car parked in front suggests it's a practical home for someone who values convenience and style.",
+            "image_url": "https://cdn.listingphotos.sierrastatic.com/pics2x/v1763285828/16/16_638050_01.jpg"
+          },
+          {
+            "image_index": 4,
+            "room_type": "exterior",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "modern architecture",
+              "large windows",
+              "car parked in front"
+            ],
+            "insight": "This exterior view showcases a modern home with clean lines and large windows that let in plenty of natural light. The car parked in front suggests it's a practical home for someone who values convenience and style.",
+            "image_url": "https://m1.cbhomes.com/p/192/638050/08e3fF5fc1654A7/m23cc.webp"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready — the exterior has a modern and sleek design with large windows and a practical car parking area. The style is contemporary and would appeal to a family or couple who values a stylish and convenient living space.",
+        "analyzed_at": "2026-04-13T05:33:05.880996+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "4823dd521d7c2934",
@@ -113379,7 +113604,29 @@
       "source": "sibcy_cline",
       "lat": 39.1201,
       "lng": -84.4451,
-      "last_updated": "2026-04-13T00:28:10.624759"
+      "last_updated": "2026-04-13T00:28:10.624759",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "brick exterior",
+              "black garage doors",
+              "stairs leading to upper level"
+            ],
+            "insight": "The exterior of the house is in good condition with a brick facade and black garage doors. The stairs leading to the upper level add a nice architectural touch. This home is move-in ready with a clean and modern look.",
+            "image_url": "https://m1.cbhomes.com/p/220/1872194/bb53Aafc01E04c0/m23cc.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is move-in ready with a clean and modern exterior. It has a brick facade and black garage doors, making it a good fit for someone who appreciates a classic yet contemporary style. The home is suitable for a family or couple looking for a well-maintained property.",
+        "analyzed_at": "2026-04-13T05:33:17.209268+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "2aa75b7bc8897a3d",
@@ -113402,7 +113649,30 @@
       "source": "sibcy_cline",
       "lat": null,
       "lng": null,
-      "last_updated": "2026-04-13T00:28:10.624639"
+      "last_updated": "2026-04-13T00:28:10.624639",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 9,
+            "features": [
+              "stone exterior",
+              "large windows",
+              "landscaped yard",
+              "solar panels"
+            ],
+            "insight": "The exterior of the house is in excellent condition with a stone exterior and large windows that let in plenty of natural light. The landscaping is well-maintained, and the solar panels suggest an environmentally conscious homeowner. This home is move-in ready and would be a great fit for someone who appreciates a blend of modern and traditional design.",
+            "image_url": "https://online.sibcycline.com/retsphotos/CIN/1872588_1.jpg?ts=639113849666300000"
+          }
+        ],
+        "overall_score": 8,
+        "summary": "This home is move-in ready with a blend of modern and traditional design elements. The stone exterior and large windows make it a great fit for someone who appreciates a classic look with modern touches. The landscaping and solar panels add to the home's appeal and sustainability.",
+        "analyzed_at": "2026-04-13T05:33:26.786204+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "62fdd7a5f5e12fa3",
@@ -113428,7 +113698,30 @@
       "source": "sibcy_cline",
       "lat": 39.1144,
       "lng": -84.521,
-      "last_updated": "2026-04-13T00:28:10.624685"
+      "last_updated": "2026-04-13T00:28:10.624685",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "brick facade",
+              "wooden front door",
+              "multiple windows",
+              "tree in front"
+            ],
+            "insight": "The exterior of the house is in good condition with a brick facade and a wooden front door. The multiple windows allow for plenty of natural light. The tree in front adds a touch of greenery and shade. The house appears to be a mid-century modern style, which is a classic and timeless look.",
+            "image_url": "https://online.sibcycline.com/retsphotos/CIN/1868884_1.jpg?ts=639110125845000000"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a classic mid-century modern style. It's a good fit for someone who appreciates a timeless design and doesn't need immediate updates. The exterior is well-maintained and the house has a welcoming feel.",
+        "analyzed_at": "2026-04-13T05:33:39.950409+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "c1bb7b82d1754fb9",
@@ -113451,7 +113744,29 @@
       "source": "sibcy_cline",
       "lat": null,
       "lng": null,
-      "last_updated": "2026-04-13T00:28:10.624706"
+      "last_updated": "2026-04-13T00:28:10.624706",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 4,
+            "luxury_score": 3,
+            "condition_score": 6,
+            "features": [
+              "brick exterior",
+              "large windows",
+              "modern signage"
+            ],
+            "insight": "The exterior of the house is in good condition but shows signs of wear. The large windows let in plenty of natural light, and the modern signage indicates it might be a business or office space. The brick exterior gives it a classic look.",
+            "image_url": "https://online.sibcycline.com/retsphotos/CIN/1830639_1.jpg?ts=639115741149600000"
+          }
+        ],
+        "overall_score": 5.5,
+        "summary": "This home is in need of some updates and is not move-in ready. The style leans towards a classic office or business space. It would be a good fit for someone looking to renovate and turn it into a home office or small business.",
+        "analyzed_at": "2026-04-13T05:33:48.463411+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "c0ab85a23628e470",
@@ -113474,7 +113789,29 @@
       "source": "sibcy_cline",
       "lat": null,
       "lng": null,
-      "last_updated": "2026-04-13T00:28:10.624724"
+      "last_updated": "2026-04-13T00:28:10.624724",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "stone exterior",
+              "double garage",
+              "landscaped front yard"
+            ],
+            "insight": "The exterior of the house is well-maintained and has a classic, slightly updated look. The double garage is a plus for those who need extra parking. The landscaping is neat and tidy, with a mix of shrubs and flowers that add a touch of color to the front yard.",
+            "image_url": "https://static1.sibcycline.com/photos/fa/2f/8/fa2f86e6cb1ecac9bc807bebf92eadbcf52e93d8_640.jpg?ts=638967255330700000"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a classic, slightly updated exterior. It's a good fit for someone who appreciates a well-maintained property with a double garage and a landscaped front yard. The style is traditional and would appeal to those who value a classic look.",
+        "analyzed_at": "2026-04-13T05:33:56.522553+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "49c6fd5d835a88e2",
@@ -113497,7 +113834,29 @@
       "source": "comey",
       "lat": 39.360687,
       "lng": -84.208229,
-      "last_updated": "2026-04-12T18:29:21.877707"
+      "last_updated": "2026-04-12T18:29:21.877707",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 8,
+            "features": [
+              "stone exterior",
+              "large windows",
+              "landscaped yard"
+            ],
+            "insight": "The exterior of the house is in good condition with a stone exterior and large windows that let in plenty of natural light. The landscaping is well-maintained, with shrubs and trees around the house. This home is ready to move in and enjoy the outdoor space.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18725/1872588q.jpg?1774535660"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is move-in ready with a well-maintained exterior and a spacious yard. The style is traditional with a focus on quality materials. It's a good fit for a family or couple who values a solid, established home with a nice outdoor space.",
+        "analyzed_at": "2026-04-13T05:34:03.987033+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "e066f281f346f802",
