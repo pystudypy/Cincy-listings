@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 
 # Use Haiku for cost efficiency — still excellent at vision tasks
 MODEL = "claude-haiku-4-5-20251001"
-MAX_IMAGES_PER_LISTING = 5
+MAX_IMAGES_PER_LISTING = 20
 REQUEST_DELAY = 0.5  # seconds between API calls
 
 
@@ -116,7 +116,7 @@ def _analyze_images(images: list[str], client) -> Optional[dict]:
     try:
         response = client.messages.create(
             model=MODEL,
-            max_tokens=1024,
+            max_tokens=4096,
             messages=[{"role": "user", "content": content}],
         )
         raw = response.content[0].text.strip()

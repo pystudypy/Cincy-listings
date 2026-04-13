@@ -29,7 +29,7 @@ HEADERS = {
 }
 
 REQUEST_DELAY = 0.6   # seconds between requests
-MAX_IMAGES    = 10    # max images to store per listing
+MAX_IMAGES    = 25    # max images to store per listing
 
 
 def _fetch_html(session: requests.Session, url: str) -> BeautifulSoup | None:
