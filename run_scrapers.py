@@ -118,6 +118,13 @@ def main():
         if not api_key:
             logger.error("ANTHROPIC_API_KEY not set")
             return
+
+        # Enrich images from detail pages before analysis
+        logger.info("=" * 50)
+        logger.info("Fetching gallery images from detail pages…")
+        from utils.detail_images import enrich_images
+        unique = enrich_images(unique, min_price=500_000)
+
         from utils.image_analyzer import analyze_listings
         unique = analyze_listings(unique, api_key=api_key, max_per_run=args.analyze_max)
         analyzed = sum(1 for l in unique if l.get("image_analysis"))
@@ -169,6 +176,12 @@ def main():
         if not api_key:
             logger.warning("--analyze passed but ANTHROPIC_API_KEY not set — skipping")
         else:
+            # Enrich images from detail pages before analysis
+            logger.info("=" * 50)
+            logger.info("Fetching gallery images from detail pages…")
+            from utils.detail_images import enrich_images
+            unique = enrich_images(unique, min_price=500_000)
+
             logger.info("=" * 50)
             logger.info("Running AI image analysis on new listings…")
             from utils.image_analyzer import analyze_listings
