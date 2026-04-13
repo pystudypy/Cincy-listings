@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-13T02:36:53.994293+00:00",
+  "last_updated": "2026-04-13T04:37:32.462552+00:00",
   "total_count": 4594,
   "source_counts": {
     "coldwell_banker": 1215,
@@ -99083,7 +99083,43 @@
       "source": "comey",
       "lat": 39.25885,
       "lng": -84.252785,
-      "last_updated": "2026-04-12T18:29:30.431485"
+      "last_updated": "2026-04-12T18:29:30.431485",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "stone exterior",
+              "large front porch",
+              "manicured lawn"
+            ],
+            "insight": "The exterior of the house is in good condition with a stone facade and a well-maintained lawn. The large front porch is a nice touch, perfect for relaxing or entertaining guests. The landscaping is neat and tidy, indicating regular care.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18738/1873892q.jpg?1775151824"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "stone exterior",
+              "large front porch",
+              "manicured lawn"
+            ],
+            "insight": "The exterior of the house is in good condition with a stone facade and a well-maintained lawn. The large front porch is a nice touch, perfect for relaxing or entertaining guests. The landscaping is neat and tidy, indicating regular care.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/full/18738/1873892l.jpg"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a classic, timeless appeal with a stone exterior and a large front porch. It's a good fit for a family or couple who appreciates a well-maintained home with a traditional style. The outdoor space is spacious and well-kept, making it ideal for outdoor activities and entertaining.",
+        "analyzed_at": "2026-04-13T04:35:20.484940+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "a282f8e3e7e20cfb",
@@ -99107,7 +99143,43 @@
       "source": "comey",
       "lat": 39.073036,
       "lng": -84.486702,
-      "last_updated": "2026-04-12T18:29:44.999103"
+      "last_updated": "2026-04-12T18:29:44.999103",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "brick exterior",
+              "large front porch",
+              "double-car garage"
+            ],
+            "insight": "The exterior of the house is in good condition with a brick facade and a spacious front porch. The double-car garage is a plus for those who need extra parking. The overall look is classic and well-maintained.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6386/638638q.jpg?1773609841"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "brick exterior",
+              "large front porch",
+              "double-car garage"
+            ],
+            "insight": "The exterior of the house is in good condition with a brick facade and a spacious front porch. The double-car garage is a plus for those who need extra parking. The overall look is classic and well-maintained.",
+            "image_url": "https://m1.cbhomes.com/p/192/638638/3998433D4BB248b/m23cc.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a classic, timeless look. It's a good fit for a family or couple who appreciates a well-maintained home with a spacious front porch and a double-car garage. The style is traditional and would be a great choice for someone looking for a move-in ready home.",
+        "analyzed_at": "2026-04-13T04:35:31.648216+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "67de94851e70d7d8",
@@ -99132,7 +99204,63 @@
       "source": "comey",
       "lat": 39.113335,
       "lng": -84.479874,
-      "last_updated": "2026-04-12T18:29:44.999553"
+      "last_updated": "2026-04-12T18:29:44.999553",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "brick exterior",
+              "wooden garage door",
+              "landscaped front yard",
+              "driveway",
+              "large windows"
+            ],
+            "insight": "The exterior of the house is in good condition with a brick exterior and a well-maintained front yard. The wooden garage door adds a nice touch, and the large windows let in plenty of natural light. This home is ready to move in and enjoy the outdoor space.",
+            "image_url": "https://m.cbhomes.com/p/192/637139/F9a1C1E5FA9d4ee/m23cc.webp"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "brick exterior",
+              "wooden garage door",
+              "landscaped front yard",
+              "driveway",
+              "large windows"
+            ],
+            "insight": "The exterior of the house is in good condition with a brick exterior and a well-maintained front yard. The wooden garage door adds a nice touch, and the large windows let in plenty of natural light. This home is ready to move in and enjoy the outdoor space.",
+            "image_url": "https://cdn.listingphotos.sierrastatic.com/pics2x/v1760467236/16/16_637139_01.jpg"
+          },
+          {
+            "image_index": 3,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "brick exterior",
+              "wooden garage door",
+              "landscaped front yard",
+              "driveway",
+              "large windows"
+            ],
+            "insight": "The exterior of the house is in good condition with a brick exterior and a well-maintained front yard. The wooden garage door adds a nice touch, and the large windows let in plenty of natural light. This home is ready to move in and enjoy the outdoor space.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6371/637139q.jpg?1760452126"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is move-in ready with a well-maintained exterior and a spacious driveway. The style is traditional with a modern twist, making it a good fit for a family or couple who appreciates a classic look with updated features. The outdoor space is ideal for entertaining and enjoying the fresh air.",
+        "analyzed_at": "2026-04-13T04:35:47.780411+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "868b1ce4f1720619",
@@ -99157,7 +99285,29 @@
       "source": "cincinky",
       "lat": 39.1209,
       "lng": -84.4499,
-      "last_updated": "2026-04-13T01:02:10.293774"
+      "last_updated": "2026-04-13T01:02:10.293774",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 9,
+            "features": [
+              "white exterior paint",
+              "balconies on each floor",
+              "well-maintained landscaping"
+            ],
+            "insight": "The exterior of the house is in excellent condition with fresh white paint and well-maintained landscaping. The balconies on each floor add a nice touch and provide outdoor living space. This home is move-in ready and would be a great fit for someone who appreciates a clean and modern design.",
+            "image_url": "https://m.cbhomes.com/p/220/1864467/150A9c496002471/m23cc.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is move-in ready with a clean and modern exterior design. It would be a good fit for a family or couple who values a well-maintained and stylish home. The landscaping and balconies add to the appeal and functionality of the property.",
+        "analyzed_at": "2026-04-13T04:35:58.142513+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "b47b7fbe1ee70089",
@@ -99183,7 +99333,30 @@
       "source": "comey",
       "lat": 38.919392,
       "lng": -84.657051,
-      "last_updated": "2026-04-13T01:31:00.699509"
+      "last_updated": "2026-04-13T01:31:00.699509",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "large front yard",
+              "manicured landscaping",
+              "stone exterior",
+              "arched entryway"
+            ],
+            "insight": "The exterior of the house is well-maintained and has a classic, upscale look. The manicured landscaping and stone exterior give it a timeless appeal. The large front yard and arched entryway make it inviting and perfect for a family or someone who enjoys outdoor entertaining.",
+            "image_url": "https://m.cbhomes.com/p/192/641323/647c89AAa69443a/m23cc.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a classic, upscale exterior. It's a good fit for a family or couple who appreciates a well-maintained property with a large front yard and arched entryway. The style leans towards traditional and would be a great choice for someone looking for a move-in ready home.",
+        "analyzed_at": "2026-04-13T04:36:07.985818+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "29f3092b1b5b7293",
@@ -99207,7 +99380,29 @@
       "source": "redfin",
       "lat": 39.2236609,
       "lng": -84.3798957,
-      "last_updated": "2026-04-12T19:18:58.718887"
+      "last_updated": "2026-04-12T19:18:58.718887",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 9,
+            "features": [
+              "two-car garage",
+              "large front porch",
+              "well-maintained landscaping"
+            ],
+            "insight": "The exterior of the house is in excellent condition with a well-maintained lawn and landscaping. The two-car garage provides ample parking space. The front porch adds a welcoming touch for guests. The home is ready for immediate use and would be a great fit for a family or couple looking for a home with a classic, slightly updated look.",
+            "image_url": "https://cdn.listingphotos.sierrastatic.com/pics2x/v1775163194/27/27_1872729_01.jpg"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is move-in ready with a classic, slightly updated exterior. It has a two-car garage and a welcoming front porch. The style is traditional and would be a good fit for a family or couple who values a classic home with a comfortable and inviting feel.",
+        "analyzed_at": "2026-04-13T04:36:15.221345+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "55eafbab970f6614",
@@ -99233,7 +99428,29 @@
       "source": "comey",
       "lat": 38.919415,
       "lng": -84.656548,
-      "last_updated": "2026-04-13T01:31:00.699313"
+      "last_updated": "2026-04-13T01:31:00.699313",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "brick exterior",
+              "large windows",
+              "well-maintained lawn"
+            ],
+            "insight": "The exterior of the house is in good condition with a classic brick design and large windows that let in plenty of natural light. The lawn is well-maintained, suggesting the home is cared for. This is a good fit for someone who appreciates a traditional style and enjoys outdoor spaces.",
+            "image_url": "https://m1.cbhomes.com/p/192/641410/D770b6Ce4B0146b/m23cc.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in good condition and has a classic, traditional exterior. It's a good fit for someone who appreciates a traditional style and enjoys outdoor spaces. The home is move-in ready, with no major renovations needed.",
+        "analyzed_at": "2026-04-13T04:36:24.004975+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "de06994a87ee341e",
@@ -99280,7 +99497,109 @@
       "source": "coldwell_banker",
       "lat": 39.1564,
       "lng": -84.4334,
-      "last_updated": "2026-04-13T01:33:53.795029+00:00"
+      "last_updated": "2026-04-13T01:33:53.795029+00:00",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "living_room",
+            "modernity_score": 8,
+            "luxury_score": 7,
+            "condition_score": 9,
+            "features": [
+              "large windows",
+              "cozy seating area",
+              "modern decor"
+            ],
+            "insight": "The living room is spacious and well-lit with large windows. The cozy seating area is perfect for relaxing or entertaining guests. The modern decor gives the space a fresh and inviting feel.",
+            "image_url": "https://m1.cbhomes.com/p/220/1862306/37aD7cc2eA0D46a/pds23tp.webp"
+          },
+          {
+            "image_index": 3,
+            "room_type": "bedroom",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "large closet",
+              "neutral color scheme"
+            ],
+            "insight": "This bedroom is spacious with a large closet for storage. The neutral color scheme makes it versatile and easy to decorate. It's a good size for a primary or secondary bedroom.",
+            "image_url": "https://m.cbhomes.com/p/220/1862306/2b9EE43acfBd466/pds23tp.webp"
+          },
+          {
+            "image_index": 4,
+            "room_type": "bedroom",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "large closet",
+              "neutral color scheme"
+            ],
+            "insight": "This bedroom is spacious with a large closet for storage. The neutral color scheme makes it versatile and easy to decorate. It's a good size for a primary or secondary bedroom.",
+            "image_url": "https://m1.cbhomes.com/p/220/1862306/ce507D0d51A847D/pds23tp.webp"
+          },
+          {
+            "image_index": 5,
+            "room_type": "bedroom",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "large closet",
+              "neutral color scheme"
+            ],
+            "insight": "This bedroom is spacious with a large closet for storage. The neutral color scheme makes it versatile and easy to decorate. It's a good size for a primary or secondary bedroom.",
+            "image_url": "https://m.cbhomes.com/p/220/1862306/40aC7fe1a021449/pds23tp.webp"
+          },
+          {
+            "image_index": 6,
+            "room_type": "other",
+            "modernity_score": 6,
+            "luxury_score": 5,
+            "condition_score": 7,
+            "features": [
+              "stairs leading to attic",
+              "attic access"
+            ],
+            "insight": "The attic access is a nice feature, but the space is not finished. It's a good idea to consider how you might use this area in the future. The stairs leading to the attic are functional and provide access to the upper level.",
+            "image_url": "https://m1.cbhomes.com/p/220/1862306/0d7C561cA19d464/pds23tp.webp"
+          },
+          {
+            "image_index": 7,
+            "room_type": "exterior",
+            "modernity_score": 8,
+            "luxury_score": 7,
+            "condition_score": 9,
+            "features": [
+              "landscaped yard",
+              "paved driveway",
+              "modern architecture"
+            ],
+            "insight": "The exterior of the home is well-maintained with a landscaped yard and paved driveway. The modern architecture gives the home a sleek and contemporary look. The landscaping adds a touch of greenery and enhances the curb appeal.",
+            "image_url": "https://m.cbhomes.com/p/220/1862306/22556a7E7eAe48b/pds23tp.webp"
+          },
+          {
+            "image_index": 8,
+            "room_type": "exterior",
+            "modernity_score": 8,
+            "luxury_score": 7,
+            "condition_score": 9,
+            "features": [
+              "landscaped yard",
+              "paved driveway",
+              "modern architecture"
+            ],
+            "insight": "The exterior of the home is well-maintained with a landscaped yard and paved driveway. The modern architecture gives the home a sleek and contemporary look. The landscaping adds a touch of greenery and enhances the curb appeal.",
+            "image_url": "https://m1.cbhomes.com/p/220/1862306/1C01d15166CB471/pds23tp.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is move-in ready with updated kitchens and bathrooms. The style is modern and clean, making it a good fit for a family or couple who want a turnkey home. The outdoor space is well-maintained and adds to the overall appeal of the property.",
+        "analyzed_at": "2026-04-13T04:36:53.060105+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "fa523feecba12fd5",
@@ -99327,7 +99646,113 @@
       "source": "coldwell_banker",
       "lat": 39.1564,
       "lng": -84.4333,
-      "last_updated": "2026-04-13T01:34:07.377355+00:00"
+      "last_updated": "2026-04-13T01:34:07.377355+00:00",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "living_room",
+            "modernity_score": 8,
+            "luxury_score": 7,
+            "condition_score": 9,
+            "features": [
+              "open layout",
+              "large windows",
+              "cozy seating area"
+            ],
+            "insight": "The living room has an open layout that connects well with the dining area, making it perfect for entertaining. The large windows let in plenty of natural light, and the cozy seating area is ideal for relaxing or watching TV. The space is in excellent condition and ready to move in.",
+            "image_url": "https://m1.cbhomes.com/p/220/1844465/d8Af882904e9434/pds23tp.webp"
+          },
+          {
+            "image_index": 3,
+            "room_type": "bedroom",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "large closet",
+              "neutral color scheme",
+              "modern furnishings"
+            ],
+            "insight": "This bedroom is spacious and has a modern feel with neutral colors and contemporary furnishings. The large closet provides ample storage space. The room is in good condition and ready for a new occupant.",
+            "image_url": "https://m.cbhomes.com/p/220/1844465/D6f3534bbe0b444/pds23tp.webp"
+          },
+          {
+            "image_index": 4,
+            "room_type": "bedroom",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "large closet",
+              "neutral color scheme",
+              "modern furnishings"
+            ],
+            "insight": "This bedroom is spacious and has a modern feel with neutral colors and contemporary furnishings. The large closet provides ample storage space. The room is in good condition and ready for a new occupant.",
+            "image_url": "https://m1.cbhomes.com/p/220/1844465/b79c4FA109E94F7/pds23tp.webp"
+          },
+          {
+            "image_index": 5,
+            "room_type": "bathroom",
+            "modernity_score": 8,
+            "luxury_score": 7,
+            "condition_score": 9,
+            "features": [
+              "modern fixtures",
+              "large vanity",
+              "tiled shower"
+            ],
+            "insight": "The bathroom is modern and well-equipped with contemporary fixtures and a large vanity. The tiled shower adds a touch of luxury. The space is in excellent condition and ready to use.",
+            "image_url": "https://m.cbhomes.com/p/220/1844465/55887f4c1F8d453/pds23tp.webp"
+          },
+          {
+            "image_index": 6,
+            "room_type": "exterior",
+            "modernity_score": 8,
+            "luxury_score": 7,
+            "condition_score": 9,
+            "features": [
+              "landscaped yard",
+              "paved walkways",
+              "landscaping"
+            ],
+            "insight": "The exterior of the home is well-maintained with landscaped yards and paved walkways. The landscaping adds a touch of greenery and enhances the curb appeal. The home is in excellent condition and ready to move in.",
+            "image_url": "https://m1.cbhomes.com/p/220/1844465/c2e02828D12f440/pds23tp.webp"
+          },
+          {
+            "image_index": 7,
+            "room_type": "exterior",
+            "modernity_score": 8,
+            "luxury_score": 7,
+            "condition_score": 9,
+            "features": [
+              "landscaped yard",
+              "paved walkways",
+              "landscaping"
+            ],
+            "insight": "The exterior of the home is well-maintained with landscaped yards and paved walkways. The landscaping adds a touch of greenery and enhances the curb appeal. The home is in excellent condition and ready to move in.",
+            "image_url": "https://m.cbhomes.com/p/220/1844465/F19733263b1046d/pds23tp.webp"
+          },
+          {
+            "image_index": 8,
+            "room_type": "exterior",
+            "modernity_score": 8,
+            "luxury_score": 7,
+            "condition_score": 9,
+            "features": [
+              "landscaped yard",
+              "paved walkways",
+              "landscaping"
+            ],
+            "insight": "The exterior of the home is well-maintained with landscaped yards and paved walkways. The landscaping adds a touch of greenery and enhances the curb appeal. The home is in excellent condition and ready to move in.",
+            "image_url": "https://m1.cbhomes.com/p/220/1844465/1daD12C9D58748A/pds23tp.webp"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready with updated kitchens and bathrooms. The style is modern and clean, making it a good fit for a family or couple who wants a turnkey home. The outdoor space is landscaped and well-maintained, adding to the overall appeal.",
+        "analyzed_at": "2026-04-13T04:37:22.361763+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "f9c78b4e500f0ea7",
@@ -99351,7 +99776,45 @@
       "source": "redfin",
       "lat": 39.2399777,
       "lng": -84.4110202,
-      "last_updated": "2026-04-12T19:18:58.716561"
+      "last_updated": "2026-04-12T19:18:58.716561",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "manicured lawn",
+              "white picket fence",
+              "landscaped garden",
+              "driveway with parking"
+            ],
+            "insight": "The exterior of the house is well-maintained with a manicured lawn and a white picket fence. The landscaping is neat and adds to the curb appeal. The driveway provides ample parking space for a couple of cars. This home is in good condition and would be a nice addition to any neighborhood.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18645/1864516q.jpg?1775125592"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "manicured lawn",
+              "white picket fence",
+              "landscaped garden",
+              "driveway with parking"
+            ],
+            "insight": "The exterior of the house is well-maintained with a manicured lawn and a white picket fence. The landscaping is neat and adds to the curb appeal. The driveway provides ample parking space for a couple of cars. This home is in good condition and would be a nice addition to any neighborhood.",
+            "image_url": "https://cdn.listingphotos.sierrastatic.com/pics2x/v1775978782/27/27_1864516_01.jpg"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is move-in ready with a well-maintained exterior and a spacious yard. The style is traditional with a modern twist, making it a good fit for a family or couple who values a clean and welcoming home. The landscaping and driveway provide a nice touch to the overall appeal.",
+        "analyzed_at": "2026-04-13T04:37:32.462097+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "ace2bd78572f84b3",
@@ -101947,7 +102410,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6390/639076q.jpg?1767949847"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6390/639076q.jpg?1767949847",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6390/639076l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/nky/639076/257-Old-Nicholson-Road-Walton-KY-41094/",
       "source": "comey",
@@ -102115,7 +102579,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639431q.jpg?1769085174"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639431q.jpg?1769085174",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6394/639431l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/nky/639431/200-Ovation-Way-303-Newport-KY-41071/",
       "source": "comey",
@@ -102210,7 +102675,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6347/634788q.jpg?1753791337"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6347/634788q.jpg?1753791337",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6347/634788l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/nky/634788/400-Ovation-Way-Way-207-Newport-KY-41071/",
       "source": "comey",
@@ -102357,7 +102823,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6408/640848q.jpg?1774432992"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6408/640848q.jpg?1774432992",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6408/640848l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/nky/640848/1-Colonel-Pointe-Drive-Wilder-KY-41076/",
       "source": "comey",
@@ -102380,7 +102847,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6332/633227q.jpg?1755107631"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6332/633227q.jpg?1755107631",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6332/633227l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/nky/633227/101-Harbor-Greene-Drive-W705-Bellevue-KY-41073/",
       "source": "comey",
@@ -102714,7 +103182,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639438q.jpg?1769088147"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639438q.jpg?1769088147",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6394/639438l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/nky/639438/400-Ovation-Way-308-Newport-KY-41071/",
       "source": "comey",
@@ -102776,7 +103245,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6347/634793q.jpg?1753792188"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6347/634793q.jpg?1753792188",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6347/634793l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/nky/634793/100-Ovation-Way-302-Newport-KY-41071/",
       "source": "comey",
@@ -102916,7 +103386,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18743/1874393q.jpg?1775575174"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18743/1874393q.jpg?1775575174",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/full/18743/1874393l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/cincy/1874393/7580-Kyles-Station-Road-Liberty-Twp-OH-45044/",
       "source": "comey",
@@ -103154,7 +103625,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639440q.jpg?1769088407"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639440q.jpg?1769088407",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6394/639440l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/nky/639440/400-Ovation-Way-408-Newport-KY-41071/",
       "source": "comey",
@@ -103324,7 +103796,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18724/1872471q.jpg?1774606367"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18724/1872471q.jpg?1774606367",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/full/18724/1872471l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/cincy/1872471/7174-Traditions-Turn-Mason-OH-45040/",
       "source": "comey",
@@ -103373,7 +103846,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639497q.jpg?1769521728"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639497q.jpg?1769521728",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6394/639497l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/nky/639497/1150-Shavano-Drive-35-Covington-KY-41011/",
       "source": "comey",
@@ -103396,7 +103870,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/5314/531424q.jpg?1688998037"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/5314/531424q.jpg?1688998037",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/5314/531424l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/nky/531424/10743-S-Licking-Pike-Alexandria-KY-41001/",
       "source": "comey",
@@ -103650,7 +104125,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639441q.jpg?1769088632"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639441q.jpg?1769088632",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6394/639441l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/nky/639441/400-Ovation-Way-508-Newport-KY-41071/",
       "source": "comey",
@@ -103795,7 +104271,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6347/634792q.jpg?1755704032"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6347/634792q.jpg?1755704032",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6347/634792l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/nky/634792/1000-Ovation-Way-420-Newport-KY-41071/",
       "source": "comey",
@@ -103818,7 +104295,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6347/634790q.jpg?1753791446"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6347/634790q.jpg?1753791446",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6347/634790l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/nky/634790/300-Ovation-Way-405-Newport-KY-41071/",
       "source": "comey",
@@ -103984,7 +104462,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18740/1874037q.jpg?1775252222"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18740/1874037q.jpg?1775252222",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/full/18740/1874037l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/cincy/1874037/6967-Hamilton-Mason-Road-West-Chester-OH-45069/",
       "source": "comey",
@@ -104007,7 +104486,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18720/1872085q.jpg?1774191190"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18720/1872085q.jpg?1774191190",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/full/18720/1872085l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/cincy/1872085/7314-Preserve-Place-West-Chester-OH-45069/",
       "source": "comey",
@@ -104030,7 +104510,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639432q.jpg?1769085771"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639432q.jpg?1769085771",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6394/639432l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/nky/639432/200-Ovation-Way-503-Newport-KY-41071/",
       "source": "comey",
@@ -104243,7 +104724,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18701/1870188q.jpg?1772448103"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18701/1870188q.jpg?1772448103",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/full/18701/1870188l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/cincy/1870188/117-Bares-Creek-Court-Loveland-OH-45140/",
       "source": "comey",
@@ -104363,7 +104845,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18738/1873851q.jpg?1775137165"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18738/1873851q.jpg?1775137165",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/full/18738/1873851l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/cincy/1873851/4598-Braid-Lane-Mason-OH-45040/",
       "source": "comey",
@@ -104558,7 +105041,8 @@
       "status": "FOR_SALE",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6398/639841q.jpg?1771172732"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6398/639841q.jpg?1771172732",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6398/639841l.jpg"
       ],
       "url": "https://www.comey.com/real-estate/nky/639841/785-Horsebranch-Road-Edgewood-KY-41017/",
       "source": "comey",
@@ -106316,7 +106800,8 @@
       "status": "Active",
       "days_on_market": 274,
       "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1847677_1.jpg?ts=639102819175500000"
+        "https://online.sibcycline.com/retsphotos/CIN/1847677_1.jpg?ts=639102819175500000",
+        "https://online.sibcycline.com/retsphotos/CIN/1847677_1.jpg?ts=639116320250600000"
       ],
       "url": "https://www.sibcycline.com/listing/2752995/240-260-Watson-Street-East-End-OH-45226",
       "source": "sibcy_cline",
