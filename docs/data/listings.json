@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-13T04:37:32.462552+00:00",
+  "last_updated": "2026-04-13T04:40:10.699993+00:00",
   "total_count": 4594,
   "source_counts": {
     "coldwell_banker": 1215,
@@ -99838,7 +99838,29 @@
       "source": "comey",
       "lat": 39.372528,
       "lng": -84.463371,
-      "last_updated": "2026-04-12T18:29:12.031208"
+      "last_updated": "2026-04-12T18:29:12.031208",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "stone exterior",
+              "manicured lawn",
+              "well-maintained landscaping"
+            ],
+            "insight": "The exterior of the house is in good condition with a stone facade that gives it a classic and timeless look. The manicured lawn and well-maintained landscaping add to the overall appeal. This home would be a good fit for someone who appreciates a well-kept and traditional style home.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18714/1871419q.jpg?1775553176"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is move-in ready with a classic and timeless exterior. The landscaping and stone facade give it a traditional feel. It would be a good fit for someone who values a well-maintained home and enjoys a traditional style.",
+        "analyzed_at": "2026-04-13T04:37:40.653797+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "141eabc089e4f33f",
@@ -99862,7 +99884,43 @@
       "source": "comey",
       "lat": 39.115875,
       "lng": -84.476173,
-      "last_updated": "2026-04-12T18:29:44.999837"
+      "last_updated": "2026-04-12T18:29:44.999837",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "large yard",
+              "proximity to river",
+              "modern building"
+            ],
+            "insight": "This exterior view shows a spacious yard with a modern building and a river nearby. The yard is well-maintained and offers a great space for outdoor activities. The building itself looks like it has been recently updated, but there might be some minor cosmetic updates needed.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6351/635172q.jpg?1754918084"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "large yard",
+              "proximity to river",
+              "modern building"
+            ],
+            "insight": "This exterior view shows a spacious yard with a modern building and a river nearby. The yard is well-maintained and offers a great space for outdoor activities. The building itself looks like it has been recently updated, but there might be some minor cosmetic updates needed.",
+            "image_url": "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/full/6351/635172l.jpg"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is move-in ready with a modern building and a spacious yard. The style is contemporary and suitable for a family or couple who enjoys outdoor activities and a riverside location. The yard is large and well-maintained, making it a great space for relaxation and entertaining.",
+        "analyzed_at": "2026-04-13T04:37:51.420970+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "0df6bf2e15b8d0d1",
@@ -99886,7 +99944,29 @@
       "source": "cincinky",
       "lat": null,
       "lng": null,
-      "last_updated": "2026-04-13T01:02:02.716266"
+      "last_updated": "2026-04-13T01:02:02.716266",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 8,
+            "luxury_score": 7,
+            "condition_score": 9,
+            "features": [
+              "modern exterior design",
+              "large covered porch",
+              "neatly landscaped yard"
+            ],
+            "insight": "The exterior of the house is in excellent condition and has a modern design with a large covered porch. The landscaping is well-maintained, and the overall appearance is inviting. This home would be a great fit for someone who appreciates a well-designed and maintained exterior.",
+            "image_url": "https://cdn.listingphotos.sierrastatic.com/pics2x/v1774532241/27/27_1872706_02.jpg"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready with a modern exterior and a well-maintained yard. The style leans towards a contemporary design with a focus on comfort and functionality. It's a good fit for a family or couple who values a well-designed home with a welcoming front porch.",
+        "analyzed_at": "2026-04-13T04:38:01.929188+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "d394669938e3eeab",
@@ -99911,7 +99991,29 @@
       "source": "cincinky",
       "lat": 39.1158,
       "lng": -84.4761,
-      "last_updated": "2026-04-13T01:01:34.449691"
+      "last_updated": "2026-04-13T01:01:34.449691",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "beautiful view of the river",
+              "neatly maintained lawn",
+              "modern apartment building"
+            ],
+            "insight": "The exterior of the home is in good condition and offers a beautiful view of the river. The lawn is well-maintained, and the modern apartment building adds a touch of sophistication. This home is a good fit for someone who appreciates a peaceful riverside location and a modern living environment.",
+            "image_url": "https://m.cbhomes.com/p/192/635172/3a1a6c6aBA97427/m23cc.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is move-in ready with a modern apartment building and a beautiful riverside view. It's a good fit for someone who values a peaceful and modern living environment.",
+        "analyzed_at": "2026-04-13T04:38:13.148223+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "14cd1a62ccfdb5e4",
@@ -99935,7 +100037,29 @@
       "source": "coldwell_banker",
       "lat": 39.1191,
       "lng": -84.4376,
-      "last_updated": "2026-04-13T01:32:23.040734+00:00"
+      "last_updated": "2026-04-13T01:32:23.040734+00:00",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 9,
+            "features": [
+              "modern exterior design",
+              "large covered entryway",
+              "neat landscaping"
+            ],
+            "insight": "The exterior of the house is in excellent condition and has a modern design with a covered entryway that provides a welcoming entrance. The landscaping is well-maintained, and the overall appearance is clean and inviting. This home would be a good fit for someone who appreciates a well-designed and maintained exterior.",
+            "image_url": "https://m1.cbhomes.com/p/220/1872706/fD16c80985A944b/m23cc.webp"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home has a modern exterior design and is in excellent condition, making it a good choice for someone who values a well-maintained and stylish home. The covered entryway adds a touch of elegance and practicality. This home would be a great fit for a family or couple looking for a move-in ready property with a modern aesthetic.",
+        "analyzed_at": "2026-04-13T04:38:22.983125+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "9ea8763d44b63fc5",
@@ -99982,7 +100106,130 @@
       "source": "coldwell_banker",
       "lat": 39.2669,
       "lng": -84.3364,
-      "last_updated": "2026-04-13T01:33:30.714326+00:00"
+      "last_updated": "2026-04-13T01:33:30.714326+00:00",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "white brick exterior",
+              "black roof",
+              "large windows"
+            ],
+            "insight": "The exterior of the house is in good condition with a clean, modern look. The large windows let in plenty of natural light, and the white brick and black roof combination gives it a classic yet updated appearance. The landscaping is simple but well-maintained.",
+            "image_url": "https://m.cbhomes.com/p/220/1868130/959f0dDf8291403/m23cc.webp"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "white brick exterior",
+              "black roof",
+              "large windows"
+            ],
+            "insight": "The exterior of the house is in good condition with a clean, modern look. The large windows let in plenty of natural light, and the white brick and black roof combination gives it a classic yet updated appearance. The landscaping is simple but well-maintained.",
+            "image_url": "https://m1.cbhomes.com/p/220/1868130/2a7A6016AE0A4F6/pds23tp.webp"
+          },
+          {
+            "image_index": 3,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "white brick exterior",
+              "black roof",
+              "large windows"
+            ],
+            "insight": "The exterior of the house is in good condition with a clean, modern look. The large windows let in plenty of natural light, and the white brick and black roof combination gives it a classic yet updated appearance. The landscaping is simple but well-maintained.",
+            "image_url": "https://m.cbhomes.com/p/220/1868130/596ce3A44D7f4e4/pds23tp.webp"
+          },
+          {
+            "image_index": 4,
+            "room_type": "exterior",
+            "modernity_score": 7,
+            "luxury_score": 6,
+            "condition_score": 8,
+            "features": [
+              "white brick exterior",
+              "black roof",
+              "large windows"
+            ],
+            "insight": "The exterior of the house is in good condition with a clean, modern look. The large windows let in plenty of natural light, and the white brick and black roof combination gives it a classic yet updated appearance. The landscaping is simple but well-maintained.",
+            "image_url": "https://m1.cbhomes.com/p/220/1868130/D3651EE9384f4b7/pds23tp.webp"
+          },
+          {
+            "image_index": 5,
+            "room_type": "hallway",
+            "modernity_score": 8,
+            "luxury_score": 7,
+            "condition_score": 9,
+            "features": [
+              "staircase with wooden banister",
+              "white walls",
+              "lighting fixtures"
+            ],
+            "insight": "The hallway is in excellent condition with a clean and modern look. The staircase has a wooden banister, and the lighting fixtures add a touch of elegance. The walls are painted white, which makes the space feel bright and airy.",
+            "image_url": "https://m.cbhomes.com/p/220/1868130/048Fa468E0944e9/pds23tp.webp"
+          },
+          {
+            "image_index": 6,
+            "room_type": "kitchen",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "white countertops",
+              "dark wood cabinets",
+              "stainless steel appliances",
+              "island with sink"
+            ],
+            "insight": "The kitchen looks completely updated and ready to use from day one. The large island has room for four people to sit, making it great for families or anyone who likes to cook and entertain. Storage is generous with cabinets covering all walls.",
+            "image_url": "https://m1.cbhomes.com/p/220/1868130/75CC122d6707447/pds23tp.webp"
+          },
+          {
+            "image_index": 7,
+            "room_type": "kitchen",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "white countertops",
+              "dark wood cabinets",
+              "stainless steel appliances",
+              "island with sink"
+            ],
+            "insight": "The kitchen looks completely updated and ready to use from day one. The large island has room for four people to sit, making it great for families or anyone who likes to cook and entertain. Storage is generous with cabinets covering all walls.",
+            "image_url": "https://m.cbhomes.com/p/220/1868130/3223e08DD85F4df/pds23tp.webp"
+          },
+          {
+            "image_index": 8,
+            "room_type": "kitchen",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "white countertops",
+              "dark wood cabinets",
+              "stainless steel appliances",
+              "island with sink"
+            ],
+            "insight": "The kitchen looks completely updated and ready to use from day one. The large island has room for four people to sit, making it great for families or anyone who likes to cook and entertain. Storage is generous with cabinets covering all walls.",
+            "image_url": "https://m1.cbhomes.com/p/220/1868130/d5F87565E0564b6/pds23tp.webp"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready — the kitchen and bathrooms have already been updated so you won't need to spend extra fixing them up right away. The style is clean and modern without being cold. Good fit for a family or couple who wants a turnkey home and space to entertain. The exterior is well-maintained and has a classic yet updated appearance.",
+        "analyzed_at": "2026-04-13T04:39:04.411704+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "0feb7a004eae978f",
@@ -100007,7 +100254,29 @@
       "source": "cincinky",
       "lat": 39.1174,
       "lng": -84.4427,
-      "last_updated": "2026-04-13T01:02:02.720226"
+      "last_updated": "2026-04-13T01:02:02.720226",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 8,
+            "luxury_score": 6,
+            "condition_score": 9,
+            "features": [
+              "modern architecture",
+              "wood accents",
+              "stairs leading to upper level"
+            ],
+            "insight": "The exterior of the house is modern and well-maintained. The wood accents add a touch of warmth to the sleek black exterior. The stairs leading to the upper level suggest a multi-level design, which could be appealing for those who enjoy a vertical living space. The landscaping is simple but tidy.",
+            "image_url": "https://cdn.listingphotos.sierrastatic.com/pics2x/v1749744843/27/27_1842326_01.jpg"
+          }
+        ],
+        "overall_score": 7.5,
+        "summary": "This home is in excellent condition and has a modern aesthetic. It's a good fit for someone who appreciates contemporary design and a multi-level living space. The exterior is well-maintained, and the landscaping is simple and tidy.",
+        "analyzed_at": "2026-04-13T04:39:18.309697+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "7f9f7d7fe82b8823",
@@ -100031,7 +100300,45 @@
       "source": "cincinky",
       "lat": 39.1173,
       "lng": -84.4427,
-      "last_updated": "2026-04-13T01:02:02.720503"
+      "last_updated": "2026-04-13T01:02:02.720503",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 8,
+            "luxury_score": 6,
+            "condition_score": 9,
+            "features": [
+              "modern design",
+              "black and white color scheme",
+              "large windows",
+              "landscaped yard"
+            ],
+            "insight": "The exterior of the house is modern and well-maintained. The black and white color scheme gives it a clean and contemporary look. The large windows allow for plenty of natural light and make the house feel bright and airy. The landscaped yard adds a touch of greenery and privacy.",
+            "image_url": "https://m.cbhomes.com/p/220/1842324/4061b4f14741413/m23cc.webp"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 8,
+            "luxury_score": 6,
+            "condition_score": 9,
+            "features": [
+              "modern design",
+              "black and white color scheme",
+              "large windows",
+              "landscaped yard"
+            ],
+            "insight": "The exterior of the house is modern and well-maintained. The black and white color scheme gives it a clean and contemporary look. The large windows allow for plenty of natural light and make the house feel bright and airy. The landscaped yard adds a touch of greenery and privacy.",
+            "image_url": "https://cdn.listingphotos.sierrastatic.com/pics2x/v1748453490/27/27_1842324_01.jpg"
+          }
+        ],
+        "overall_score": 8,
+        "summary": "This home is move-in ready — the exterior is modern and well-maintained, with a clean and contemporary look. The style is modern and would appeal to buyers who appreciate a clean, minimalist design. Good fit for a family or couple who want a modern home with a landscaped yard for outdoor enjoyment.",
+        "analyzed_at": "2026-04-13T04:39:34.729776+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "e5bcc71565946d04",
@@ -100055,7 +100362,45 @@
       "source": "cincinky",
       "lat": 39.1172,
       "lng": -84.4427,
-      "last_updated": "2026-04-13T01:02:02.720801"
+      "last_updated": "2026-04-13T01:02:02.720801",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "modern exterior design",
+              "black brick exterior",
+              "wood accent panels",
+              "stairs leading to entrance"
+            ],
+            "insight": "The exterior of the house is modern and well-maintained. The black brick and wood accents give it a stylish and contemporary look. The stairs leading to the entrance add a touch of elegance and practicality. This home is ready to move in and enjoy the outdoors.",
+            "image_url": "https://m.cbhomes.com/p/220/1842323/5f03527AF489448/m23cc.webp"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 9,
+            "luxury_score": 8,
+            "condition_score": 10,
+            "features": [
+              "modern exterior design",
+              "black brick exterior",
+              "wood accent panels",
+              "stairs leading to entrance"
+            ],
+            "insight": "The exterior of the house is modern and well-maintained. The black brick and wood accents give it a stylish and contemporary look. The stairs leading to the entrance add a touch of elegance and practicality. This home is ready to move in and enjoy the outdoors.",
+            "image_url": "https://cdn.listingphotos.sierrastatic.com/pics2x/v1749744882/27/27_1842323_01.jpg"
+          }
+        ],
+        "overall_score": 8.5,
+        "summary": "This home is move-in ready — the exterior has already been updated and maintained so you won't need to spend extra fixing it up right away. The style is clean and modern without being cold. Good fit for a family or couple who wants a turnkey home and space to enjoy the outdoors.",
+        "analyzed_at": "2026-04-13T04:39:52.622808+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "e2ba641c70f44cd9",
@@ -100079,7 +100424,45 @@
       "source": "cincinky",
       "lat": 39.1172,
       "lng": -84.4428,
-      "last_updated": "2026-04-13T01:02:02.721079"
+      "last_updated": "2026-04-13T01:02:02.721079",
+      "image_analysis": {
+        "rooms": [
+          {
+            "image_index": 1,
+            "room_type": "exterior",
+            "modernity_score": 8,
+            "luxury_score": 6,
+            "condition_score": 9,
+            "features": [
+              "modern design",
+              "black and white color scheme",
+              "large windows",
+              "landscaped yard"
+            ],
+            "insight": "This exterior is modern and well-maintained. The black and white color scheme gives it a sleek look, and the large windows let in plenty of natural light. The landscaped yard adds a touch of greenery and privacy.",
+            "image_url": "https://cdn.listingphotos.sierrastatic.com/pics2x/v1748453493/27/27_1842321_01.jpg"
+          },
+          {
+            "image_index": 2,
+            "room_type": "exterior",
+            "modernity_score": 8,
+            "luxury_score": 6,
+            "condition_score": 9,
+            "features": [
+              "modern design",
+              "black and white color scheme",
+              "large windows",
+              "landscaped yard"
+            ],
+            "insight": "This exterior is modern and well-maintained. The black and white color scheme gives it a sleek look, and the large windows let in plenty of natural light. The landscaped yard adds a touch of greenery and privacy.",
+            "image_url": "https://m1.cbhomes.com/p/220/1842321/8E135ebF76e04F7/m23cc.webp"
+          }
+        ],
+        "overall_score": 8,
+        "summary": "This home is move-in ready — the exterior is modern and well-maintained, with a clean and contemporary design. It's a good fit for someone who appreciates a modern aesthetic and enjoys a landscaped yard for outdoor relaxation.",
+        "analyzed_at": "2026-04-13T04:40:10.699434+00:00",
+        "backend": "ollama"
+      }
     },
     {
       "id": "659143ba3e248734",
