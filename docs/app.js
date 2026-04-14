@@ -27,6 +27,7 @@ const state = {
     zip: "",
     source: "",
     area: "",
+    status: "",
     search: "",
     features: [],   // multi-select array
     sort: "price_asc",
@@ -291,6 +292,15 @@ function apply_filters() {
   if (f.source)   list = list.filter((l) => l.source === f.source);
   if (f.area === "OH") list = list.filter((l) => (l.state || "").toUpperCase() === "OH");
   if (f.area === "KY") list = list.filter((l) => (l.state || "").toUpperCase() === "KY");
+  if (f.status) {
+    list = list.filter((l) => {
+      const s = (l.status || "").toUpperCase().replace(/[\s-]/g, "_");
+      if (f.status === "for_sale")    return s.includes("SALE") || s.includes("ACTIVE");
+      if (f.status === "pending")     return s.includes("PENDING");
+      if (f.status === "contingent")  return s.includes("CONTINGENT");
+      return true;
+    });
+  }
 
   // Free-text search (description + address + ai keywords)
   if (f.search) {
@@ -738,7 +748,8 @@ function wire_events() {
   wire_chips("filter-baths",    "baths");
   wire_chips("filter-type",     "type");
   wire_chips("filter-source",   "source");
-  wire_chips("filter-area", "area");
+  wire_chips("filter-area",   "area");
+  wire_chips("filter-status", "status");
 
   // Search
   $("filter-search").addEventListener("input", (e) => {
@@ -792,7 +803,7 @@ function wire_events() {
   $("clear-filters").addEventListener("click", () => {
     state.filters = {
       priceMin: "", priceMax: "", beds: "", baths: "",
-      type: "", zip: "", source: "", area: "",
+      type: "", zip: "", source: "", area: "", status: "",
       search: "", features: [], sort: "price_asc",
     };
     // Reset UI
