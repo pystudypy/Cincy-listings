@@ -758,17 +758,84 @@ function feature_label(tag) {
 }
 
 
+// ── Carousel state ────────────────────────────────────
+let _carousel_photos = [];
+let _carousel_idx    = 0;
+let _carousel_touch_x = null;
+
+function carousel_html(photos, idx) {
+  if (!photos.length) return `<div class="modal-no-img">🏠</div>`;
+  const total = photos.length;
+  const src   = photos[idx];
+  // Dots: show up to 15; beyond that just show counter
+  const show_dots = total <= 15;
+  const dots = show_dots
+    ? `<div class="carousel-dots">${photos.map((_, i) =>
+        `<button class="carousel-dot${i === idx ? " active" : ""}" onclick="event.stopPropagation();go_to_photo(${i})"></button>`
+      ).join("")}</div>`
+    : "";
+  const arrows = total > 1 ? `
+    <button class="carousel-btn carousel-prev" onclick="event.stopPropagation();prev_photo()" aria-label="Previous photo">&#8249;</button>
+    <button class="carousel-btn carousel-next" onclick="event.stopPropagation();next_photo()" aria-label="Next photo">&#8250;</button>` : "";
+  const counter = total > 1
+    ? `<div class="carousel-counter">${idx + 1} / ${total}</div>` : "";
+  return `
+    <div class="carousel-wrap" id="modal-carousel" onclick="next_photo()">
+      <img class="carousel-img" id="carousel-img" src="${src}" alt="Photo ${idx + 1} of ${total}">
+      ${arrows}
+      ${counter}
+      ${dots}
+    </div>`;
+}
+
+function update_carousel() {
+  const wrap = $("modal-carousel");
+  if (!wrap) return;
+  wrap.outerHTML = carousel_html(_carousel_photos, _carousel_idx);
+  // Re-wire touch events after replacing DOM
+  wire_carousel_touch();
+}
+
+function next_photo() {
+  if (!_carousel_photos.length) return;
+  _carousel_idx = (_carousel_idx + 1) % _carousel_photos.length;
+  update_carousel();
+}
+
+function prev_photo() {
+  if (!_carousel_photos.length) return;
+  _carousel_idx = (_carousel_idx - 1 + _carousel_photos.length) % _carousel_photos.length;
+  update_carousel();
+}
+
+function go_to_photo(i) {
+  _carousel_idx = i;
+  update_carousel();
+}
+
+function wire_carousel_touch() {
+  const wrap = $("modal-carousel");
+  if (!wrap) return;
+  wrap.addEventListener("touchstart", (e) => {
+    _carousel_touch_x = e.touches[0].clientX;
+  }, { passive: true });
+  wrap.addEventListener("touchend", (e) => {
+    if (_carousel_touch_x === null) return;
+    const dx = e.changedTouches[0].clientX - _carousel_touch_x;
+    _carousel_touch_x = null;
+    if (dx < -40) next_photo();
+    else if (dx > 40) prev_photo();
+  });
+}
+
 // ── Modal ─────────────────────────────────────────────
 function open_modal(listing) {
   const content = $("modal-content");
 
-  // ── Photo gallery strip ──
-  const photos = listing.images?.length ? listing.images : [];
-  const photo_strip = photos.length
-    ? `<div class="detail-photos">${photos.map(src =>
-        `<img src="${src}" alt="Property photo" loading="lazy" onclick="open_lightbox('${src.replace(/'/g,"\\'")}')">`)
-        .join("")}</div>`
-    : `<div class="modal-no-img">🏠</div>`;
+  // ── Photo carousel ──
+  _carousel_photos = listing.images?.length ? listing.images : [];
+  _carousel_idx    = 0;
+  const photo_strip = carousel_html(_carousel_photos, 0);
 
   // ── Stats ──
   const stat_items = [
@@ -882,6 +949,8 @@ function open_modal(listing) {
 
   $("modal-overlay").style.display = "flex";
   document.body.style.overflow = "hidden";
+  // Wire touch + keyboard for carousel
+  wire_carousel_touch();
 }
 
 function open_lightbox(src) {
@@ -1104,7 +1173,10 @@ function wire_events() {
     if (e.target === $("modal-overlay")) close_modal();
   });
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") close_modal();
+    const modalOpen = $("modal-overlay")?.style.display !== "none";
+    if (e.key === "Escape") { close_modal(); return; }
+    if (modalOpen && e.key === "ArrowRight") next_photo();
+    if (modalOpen && e.key === "ArrowLeft")  prev_photo();
   });
 
   // Mobile sidebar + backdrop

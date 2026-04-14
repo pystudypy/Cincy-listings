@@ -1074,26 +1074,6 @@ select:focus, input[type="text"]:focus {
 .saved-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
 
 /* ── Enhanced detail modal ────────────────────────────── */
-.detail-photos {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding: 16px 20px 0;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
-.detail-photos img {
-  height: 220px;
-  min-width: 320px;
-  object-fit: cover;
-  border-radius: 10px;
-  scroll-snap-align: start;
-  cursor: zoom-in;
-  flex-shrink: 0;
-}
-.detail-photos::-webkit-scrollbar { height: 4px; }
-.detail-photos::-webkit-scrollbar-track { background: transparent; }
-.detail-photos::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 .detail-section {
   padding: 14px 22px;
   border-bottom: 1px solid var(--border);
@@ -1168,6 +1148,90 @@ select:focus, input[type="text"]:focus {
 .detail-ai-score { color: var(--text-muted); font-size: 11px; }
 .detail-ai-note  { color: var(--text-muted); font-style: italic; margin-top: 4px; line-height: 1.4; }
 
+/* ── Image Carousel ───────────────────────────────────── */
+.carousel-wrap {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background: #0f172a;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
+}
+.carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,.5);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  z-index: 5;
+  transition: background .15s, transform .15s;
+  padding: 0;
+}
+.carousel-btn:hover { background: rgba(0,0,0,.75); transform: translateY(-50%) scale(1.1); }
+.carousel-prev { left: 10px; }
+.carousel-next { right: 10px; }
+.carousel-counter {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0,0,0,.55);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+.carousel-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  pointer-events: none; /* dots themselves have onclick */
+}
+.carousel-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.45);
+  cursor: pointer;
+  transition: background .15s, transform .15s;
+  border: none;
+  padding: 0;
+  pointer-events: all;
+}
+.carousel-dot.active {
+  background: #fff;
+  transform: scale(1.4);
+}
+@media (max-width: 600px) {
+  .carousel-wrap  { height: 230px; }
+  .carousel-btn   { width: 34px; height: 34px; font-size: 22px; }
+}
+
 /* Lightbox for photo zoom */
 .lightbox-overlay {
   position: fixed;
@@ -1187,7 +1251,6 @@ select:focus, input[type="text"]:focus {
 }
 
 @media (max-width: 600px) {
-  .detail-photos img { height: 180px; min-width: 240px; }
-  .detail-match-row  { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .detail-match-row   { flex-direction: column; align-items: flex-start; gap: 8px; }
   .detail-match-score { font-size: 26px; }
 }
