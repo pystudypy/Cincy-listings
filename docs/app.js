@@ -550,7 +550,7 @@ function render_off_market() {
 
 function card_html(listing, idx, is_off_market = false) {
   const img_html = listing.images?.length
-    ? `<img src="${listing.images[0]}" alt="Property photo" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-photo>🏠</div>'">`
+    ? `<img src="${(listing.images[0] || '').replace(/&amp;/g,'&')}" alt="Property photo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.innerHTML='<div class=no-photo>🏠</div>'">`
     : `<div class="no-photo">🏠</div>`;
 
   const is_saved = state.saved.has(listing.id);
@@ -705,7 +705,7 @@ function source_color(src) {
 
 function popup_html(l) {
   const img = l.images?.[0]
-    ? `<img src="${l.images[0]}" style="width:100%;height:100px;object-fit:cover;border-radius:6px;margin-bottom:8px" loading="lazy">`
+    ? `<img src="${(l.images[0]||'').replace(/&amp;/g,'&')}" style="width:100%;height:100px;object-fit:cover;border-radius:6px;margin-bottom:8px" loading="lazy" referrerpolicy="no-referrer">`
     : "";
   return `
     <div style="min-width:200px">
@@ -779,9 +779,16 @@ function carousel_html(photos, idx) {
     <button class="carousel-btn carousel-next" onclick="event.stopPropagation();next_photo()" aria-label="Next photo">&#8250;</button>` : "";
   const counter = total > 1
     ? `<div class="carousel-counter">${idx + 1} / ${total}</div>` : "";
+  // Decode any HTML entities in URL (e.g. &amp; → &)
+  const clean_src = src.replace(/&amp;/g, "&");
   return `
     <div class="carousel-wrap" id="modal-carousel" onclick="next_photo()">
-      <img class="carousel-img" id="carousel-img" src="${src}" alt="Photo ${idx + 1} of ${total}">
+      <img class="carousel-img" id="carousel-img"
+           src="${clean_src}"
+           alt="Photo ${idx + 1} of ${total}"
+           referrerpolicy="no-referrer"
+           onerror="this.style.display='none';document.getElementById('carousel-fallback')?.style.removeProperty('display')">
+      <div id="carousel-fallback" class="no-photo" style="display:none;height:100%;font-size:64px;background:#1e293b">🏠</div>
       ${arrows}
       ${counter}
       ${dots}
