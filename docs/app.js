@@ -28,6 +28,7 @@ const state = {
     source: "",
     area: "",
     status: "",
+    dom: "",
     search: "",
     features: [],   // multi-select array
     sort: "price_asc",
@@ -326,6 +327,19 @@ function apply_filters() {
 
   if (f.type) {
     list = list.filter((l) => normalize_type(l.property_type) === f.type);
+  }
+
+  // Days on market filter (only applies to listings that have DOM data)
+  if (f.dom) {
+    list = list.filter((l) => {
+      const d = l.days_on_market;
+      if (d == null) return true; // no DOM data — always show
+      if (f.dom === "7")   return d <= 7;
+      if (f.dom === "14")  return d <= 14;
+      if (f.dom === "30")  return d <= 30;
+      if (f.dom === "90")  return d <= 90;
+      return true;
+    });
   }
 
   // Luxury-only filter
@@ -750,6 +764,7 @@ function wire_events() {
   wire_chips("filter-source",   "source");
   wire_chips("filter-area",   "area");
   wire_chips("filter-status", "status");
+  wire_chips("filter-dom",    "dom");
 
   // Search
   $("filter-search").addEventListener("input", (e) => {
@@ -804,8 +819,10 @@ function wire_events() {
     state.filters = {
       priceMin: "", priceMax: "", beds: "", baths: "",
       type: "", zip: "", source: "", area: "", status: "",
-      search: "", features: [], sort: "price_asc",
+      dom: "", search: "", features: [], sort: "price_asc",
+      luxuryOnly: true,
     };
+    $("luxury-toggle").checked = true;
     // Reset UI
     $("filter-price-min").value = "";
     $("filter-price-max").value = "";
