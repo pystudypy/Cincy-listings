@@ -407,7 +407,7 @@ function render_list() {
     return;
   }
 
-  grid.innerHTML = page_listings.map(card_html).join("");
+  grid.innerHTML = page_listings.map((l, i) => card_html(l, i)).join("");
 
   // Attach click handlers
   grid.querySelectorAll(".listing-card").forEach((el) => {
