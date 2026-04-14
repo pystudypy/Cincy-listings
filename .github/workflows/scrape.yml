@@ -17,7 +17,7 @@ on:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 90
 
     permissions:
       contents: write   # needed to commit listings.json back to repo
@@ -42,14 +42,11 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           SOURCE="${{ github.event.inputs.source || 'all' }}"
-          ANALYZE_FLAG=""
-          if [ -n "$ANTHROPIC_API_KEY" ]; then
-            ANALYZE_FLAG="--analyze"
-          fi
           if [ "$SOURCE" = "all" ]; then
-            python run_scrapers.py --merge $ANALYZE_FLAG
+            # Full daily run: scrape → carry enrichment → describe new → tag new
+            python run_scrapers.py --merge --describe --tag
           else
-            python run_scrapers.py --source "$SOURCE" --merge $ANALYZE_FLAG
+            python run_scrapers.py --source "$SOURCE" --merge --describe --tag
           fi
 
       - name: Check for changes

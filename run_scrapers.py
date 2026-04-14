@@ -20,7 +20,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from scrapers import zillow, redfin, local_sites
-from utils.deduplicator import deduplicate, filter_cincinnati, filter_for_sale
+from utils.deduplicator import deduplicate, filter_cincinnati, filter_for_sale, _normalize_address
 
 logging.basicConfig(
     level=logging.INFO,
@@ -286,21 +286,44 @@ def main():
     raw_listings = run_all_scrapers(sources)
     logger.info(f"Total raw listings collected: {len(raw_listings)}")
 
-    # If merging, load existing listings first (preserves image_analysis from prior runs)
-    if args.merge and DATA_FILE.exists():
-        try:
-            existing = json.loads(DATA_FILE.read_text())
-            existing_listings = existing.get("listings", [])
-            logger.info(f"Loaded {len(existing_listings)} existing listings for merge")
-            raw_listings = existing_listings + raw_listings
-        except Exception as e:
-            logger.warning(f"Could not load existing listings: {e}")
-
     # Filter to Cincinnati metro area, for-sale only
     filtered = filter_for_sale(filter_cincinnati(raw_listings))
 
-    # Deduplicate
+    # Deduplicate — fresh scrape is the source of truth
     unique = deduplicate(filtered)
+
+    # Carry over enrichment from previous run (descriptions, features, DOM, etc.)
+    # Listings no longer appearing in any scraper are silently dropped.
+    if args.merge and DATA_FILE.exists():
+        try:
+            old_data = json.loads(DATA_FILE.read_text())
+            old_listings = old_data.get("listings", [])
+
+            # Build lookup: normalized address → old listing
+            old_by_addr: dict[str, dict] = {}
+            for l in old_listings:
+                key = _normalize_address(l.get("address", ""), l.get("zip", ""))
+                if key:
+                    old_by_addr[key] = l
+
+            CARRY_FIELDS = ["description", "features", "keywords", "days_on_market", "image_analysis"]
+            carried = dropped = 0
+            for listing in unique:
+                key = _normalize_address(listing.get("address", ""), listing.get("zip", ""))
+                old = old_by_addr.get(key)
+                if old:
+                    carried += 1
+                    for field in CARRY_FIELDS:
+                        if listing.get(field) is None and old.get(field) is not None:
+                            listing[field] = old[field]
+
+            dropped = len(old_listings) - carried
+            logger.info(
+                f"Merge: {carried} listings carried enrichment forward, "
+                f"{dropped} stale listings dropped (went off-market)"
+            )
+        except Exception as e:
+            logger.warning(f"Could not carry over enrichment: {e}")
 
     logger.info("=" * 50)
     logger.info(f"Final: {len(unique)} unique Cincinnati listings")
