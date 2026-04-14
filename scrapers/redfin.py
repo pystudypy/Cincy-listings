@@ -122,7 +122,10 @@ def _parse_listing(item: dict) -> Optional[dict]:
         prop_type_code = item.get("propertyType")
         property_type = property_type_map.get(prop_type_code, str(prop_type_code) if prop_type_code else "")
 
-        return {
+        status = item.get("mlsStatus") or "FOR_SALE"
+        description = (item.get("listingRemarks") or "").strip() or None
+
+        listing = {
             "id": _make_listing_id(full_address),
             "address": street,
             "city": str(city),
@@ -134,7 +137,7 @@ def _parse_listing(item: dict) -> Optional[dict]:
             "sqft": sqft,
             "lot_size": None,
             "property_type": property_type,
-            "status": "FOR_SALE",
+            "status": status,
             "days_on_market": days_on_market,
             "images": images,
             "url": url,
@@ -143,6 +146,9 @@ def _parse_listing(item: dict) -> Optional[dict]:
             "lng": lng,
             "last_updated": datetime.utcnow().isoformat(),
         }
+        if description:
+            listing["description"] = description
+        return listing
     except Exception as e:
         logger.debug(f"Redfin parse error: {e}")
         return None
