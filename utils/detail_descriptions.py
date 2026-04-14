@@ -225,6 +225,97 @@ def _clean(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+def _extract_cincinky_dom(soup: BeautifulSoup) -> int | None:
+    """
+    CincinKY detail pages show: <span class="text-gray-700">On Site</span>
+                                 <strong class="font-medium">12 Days</strong>
+    Extract the number of days.
+    """
+    for span in soup.find_all("span", class_="text-gray-700"):
+        if span.get_text(strip=True) == "On Site":
+            strong = span.find_next_sibling("strong")
+            if strong:
+                m = re.search(r"(\d+)", strong.get_text())
+                if m:
+                    return int(m.group(1))
+    return None
+
+
+def enrich_cincinky_dom(
+    listings: list[dict],
+    force: bool = False,
+    checkpoint_every: int = 50,
+    checkpoint_fn=None,
+) -> list[dict]:
+    """
+    Visit each CincinKY listing's detail page and populate days_on_market.
+
+    Args:
+        listings:         Full listing list (modified in place).
+        force:            Re-fetch listings that already have DOM set.
+        checkpoint_every: Call checkpoint_fn every N successful fetches.
+        checkpoint_fn:    Optional callback(listings) for incremental saves.
+    """
+    to_enrich = [
+        l for l in listings
+        if l.get("source") == "cincinky"
+        and l.get("url")
+        and (force or l.get("days_on_market") is None)
+    ]
+
+    if not to_enrich:
+        logger.info("CincinKY DOM enrichment: all listings already have DOM data")
+        return listings
+
+    total = len(to_enrich)
+    logger.info(f"CincinKY DOM enrichment: fetching {total} detail pages…")
+
+    def fetch_one(listing: dict) -> tuple[dict, int | None]:
+        soup = _fetch_html(listing["url"])
+        if not soup:
+            return listing, None
+        return listing, _extract_cincinky_dom(soup)
+
+    done = errors = 0
+    lock = threading.Lock()
+    last_checkpoint = 0
+
+    with ThreadPoolExecutor(max_workers=WORKERS) as pool:
+        futures = {pool.submit(fetch_one, l): l for l in to_enrich}
+        for future in as_completed(futures):
+            try:
+                listing, dom = future.result()
+                if dom is not None:
+                    listing["days_on_market"] = dom
+                    with lock:
+                        done += 1
+                        milestone = (done // checkpoint_every) * checkpoint_every
+                else:
+                    with lock:
+                        errors += 1
+                    milestone = 0
+            except Exception as e:
+                with lock:
+                    errors += 1
+                logger.debug(f"DOM fetch error: {e}")
+                milestone = 0
+
+            if milestone > 0:
+                with lock:
+                    if milestone > last_checkpoint:
+                        last_checkpoint = milestone
+                        do_checkpoint = True
+                    else:
+                        do_checkpoint = False
+                if do_checkpoint:
+                    logger.info(f"CincinKY DOM enrichment: {milestone}/{total} done…")
+                    if checkpoint_fn:
+                        checkpoint_fn(listings)
+
+    logger.info(f"CincinKY DOM enrichment complete: {done} fetched, {errors} failed")
+    return listings
+
+
 def enrich_descriptions(
     listings: list[dict],
     force: bool = False,

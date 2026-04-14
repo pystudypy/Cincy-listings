@@ -162,7 +162,7 @@ def main():
                 )
                 logger.info(f"Pushed to GitHub — {with_desc} listings with descriptions")
 
-        from utils.detail_descriptions import enrich_descriptions
+        from utils.detail_descriptions import enrich_descriptions, enrich_cincinky_dom
         unique = enrich_descriptions(
             unique,
             checkpoint_every=50,
@@ -170,6 +170,15 @@ def main():
         )
         with_desc = sum(1 for l in unique if l.get("description"))
         logger.info(f"Listings with description: {with_desc}/{len(unique)}")
+
+        # Also enrich CincinKY days_on_market from detail pages
+        unique = enrich_cincinky_dom(
+            unique,
+            checkpoint_every=50,
+            checkpoint_fn=save_desc_checkpoint,
+        )
+        with_dom = sum(1 for l in unique if l.get("days_on_market") is not None)
+        logger.info(f"Listings with days_on_market: {with_dom}/{len(unique)}")
 
         if not args.dry_run:
             existing["listings"] = unique
@@ -347,7 +356,7 @@ def main():
     if args.describe:
         logger.info("=" * 50)
         logger.info("Fetching listing descriptions from detail pages…")
-        from utils.detail_descriptions import enrich_descriptions
+        from utils.detail_descriptions import enrich_descriptions, enrich_cincinky_dom
 
         def save_desc_checkpoint_main(listings):
             if args.dry_run:
@@ -369,6 +378,15 @@ def main():
         )
         with_desc = sum(1 for l in unique if l.get("description"))
         logger.info(f"Listings with description: {with_desc}/{len(unique)}")
+
+        # Also enrich CincinKY days_on_market from detail pages
+        unique = enrich_cincinky_dom(
+            unique,
+            checkpoint_every=50,
+            checkpoint_fn=save_desc_checkpoint_main,
+        )
+        with_dom = sum(1 for l in unique if l.get("days_on_market") is not None)
+        logger.info(f"Listings with days_on_market: {with_dom}/{len(unique)}")
 
     # Feature tagging (optional — --tag flag, requires descriptions)
     if args.tag:
