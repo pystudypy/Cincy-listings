@@ -173,7 +173,7 @@ def _parse_comey_listing(item: dict) -> Optional[dict]:
             "sqft": _safe_int(item.get("sqft")),
             "lot_size": None,
             "property_type": item.get("subproptype") or item.get("proptype", ""),
-            "status": "FOR_SALE",
+            "status": item.get("status") or item.get("propstatus") or "FOR_SALE",
             "days_on_market": None,
             "images": [item["photo_url"]] if item.get("photo_url") else [],
             "url": item.get("listing_url", ""),
@@ -310,19 +310,20 @@ def _parse_sibcy_listing(item: dict) -> Optional[dict]:
         return None
 
 
-def _scrape_sibcy_cline(
+def _scrape_sibcy_status(
     session: requests.Session,
+    status: str,
+    seen_ids: set,
     max_pages: int = 40,
-    target_listings: int = 200,
 ) -> list[dict]:
+    """Scrape one status category (Active / Pending / Contingent) from Sibcy Cline."""
     listings = []
-    seen_ids = set()
     headers = {"User-Agent": BROWSER_UA, "Accept": "text/html"}
 
     for page in range(1, max_pages + 1):
         try:
             resp = session.get(
-                f"https://www.sibcycline.com/results?status=Active&page={page}",
+                f"https://www.sibcycline.com/results?status={status}&page={page}",
                 headers=headers,
                 timeout=20,
             )
@@ -354,20 +355,33 @@ def _scrape_sibcy_cline(
                     page_cincy += 1
 
             logger.info(
-                f"Sibcy Cline page {page}: {len(raw)} items, "
-                f"{page_cincy} Cincinnati, running total {len(listings)}"
+                f"Sibcy Cline [{status}] page {page}: {len(raw)} items, "
+                f"{page_cincy} Cincinnati"
             )
 
-            if len(listings) >= target_listings:
-                break
-
         except Exception as e:
-            logger.warning(f"Sibcy Cline page {page} failed: {e}")
+            logger.warning(f"Sibcy Cline [{status}] page {page} failed: {e}")
             break
 
         time.sleep(1.2)
 
-    logger.info(f"Sibcy Cline: {len(listings)} Cincinnati listings total")
+    return listings
+
+
+def _scrape_sibcy_cline(
+    session: requests.Session,
+    max_pages: int = 40,
+) -> list[dict]:
+    seen_ids: set = set()
+    listings = []
+
+    for status in ("Active", "Pending", "Contingent"):
+        batch = _scrape_sibcy_status(session, status, seen_ids, max_pages=max_pages)
+        listings.extend(batch)
+        logger.info(f"Sibcy Cline [{status}]: {len(batch)} Cincinnati listings")
+        time.sleep(2)
+
+    logger.info(f"Sibcy Cline total: {len(listings)} Cincinnati listings")
     return listings
 
 
