@@ -106,18 +106,47 @@ def _extract_sibcy(soup: BeautifulSoup) -> str:
 
 
 def _extract_redfin(soup: BeautifulSoup) -> str:
-    """Redfin — description is embedded in a JS bundle as 'remarks' or 'description'."""
-    for script in soup.find_all("script"):
-        text = script.string or ""
-        # Look for publicRemarks / description fields in JSON blobs
-        m = re.search(r'"publicRemarks"\s*:\s*"([^"]{80,})"', text)
-        if m:
-            return m.group(1).encode().decode("unicode_escape", errors="replace")
-        m = re.search(r'"remarks"\s*:\s*"([^"]{80,})"', text)
-        if m:
-            return m.group(1).encode().decode("unicode_escape", errors="replace")
-    # Fall back to meta description
+    """Redfin — description lives in JSON-LD structured data or JS bundles."""
+    import html as html_module
+
+    # 1. JSON-LD structured data (most reliable — type RealEstateListing)
+    for script in soup.find_all("script", type="application/ld+json"):
+        try:
+            data = json.loads(script.string or "")
+            items = data if isinstance(data, list) else [data]
+            for item in items:
+                types = item.get("@type", [])
+                if isinstance(types, str):
+                    types = [types]
+                if "RealEstateListing" in types or "Product" in types:
+                    desc = item.get("description", "")
+                    if len(desc) > 80 and _RE_ESTATE_WORDS.search(desc):
+                        return html_module.unescape(desc)
+        except Exception:
+            pass
+
+    # 2. JS bundle — escape-aware regex for several field names
+    _js_str = r'"((?:[^"\\]|\\.){80,})"'
+    for field in ("publicRemarks", "remarks", "agentDescription", "marketingRemarks"):
+        pat = rf'"{field}"\s*:\s*' + _js_str
+        for script in soup.find_all("script"):
+            text = script.string or ""
+            m = re.search(pat, text)
+            if m:
+                try:
+                    decoded = json.loads(f'"{m.group(1)}"')
+                except Exception:
+                    decoded = m.group(1)
+                decoded = html_module.unescape(decoded)
+                if _RE_ESTATE_WORDS.search(decoded):
+                    return decoded
+
+    # 3. Meta description — strip Redfin's "(Cincy MLS) For Sale: X beds..." prefix
     desc = _extract_meta_description(soup)
+    # Strip syndication header up to the first ∙ that precedes real prose
+    stripped = re.sub(r'^.*?∙\s*(?:MLS#\s*\S+\s*∙\s*)?', "", desc).strip()
+    if len(stripped) > 80 and _RE_ESTATE_WORDS.search(stripped):
+        return stripped
     if len(desc) > 80:
         return desc
     return ""

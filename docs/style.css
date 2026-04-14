@@ -264,12 +264,32 @@ select:focus, input[type="text"]:focus {
 .source-cabr       { background: var(--c-cabr); }
 
 .card-body { padding: 12px 14px; }
+.card-price-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
 .card-price {
   font-size: 20px;
   font-weight: 700;
   color: var(--text);
-  margin-bottom: 4px;
 }
+/* ── Status badge ─────────────────────────────────────── */
+.status-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 20px;
+  letter-spacing: .3px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.status-forsale    { background: #dcfce7; color: #15803d; }
+.status-pending    { background: #fef3c7; color: #b45309; }
+.status-contingent { background: #ffedd5; color: #c2410c; }
+.status-sold       { background: #f1f5f9; color: #64748b; }
+
 .card-address {
   font-size: 13px;
   color: var(--text-muted);

@@ -53,6 +53,16 @@ function fmt_price(n) {
   return "$" + Number(n).toLocaleString();
 }
 
+function status_label(raw) {
+  const s = (raw || "").toUpperCase().replace(/[\s-]/g, "_");
+  if (s.includes("PENDING"))    return { text: "Pending",    cls: "status-pending" };
+  if (s.includes("CONTINGENT")) return { text: "Contingent", cls: "status-contingent" };
+  if (s.includes("ACTIVE") || s.includes("FOR_SALE") || s.includes("SALE"))
+                                 return { text: "For Sale",   cls: "status-forsale" };
+  if (s.includes("SOLD"))        return { text: "Sold",       cls: "status-sold" };
+  return null;
+}
+
 function fmt_num(n, unit = "") {
   if (n == null || n === "" || n === 0) return null;
   return Number(n).toLocaleString() + (unit ? " " + unit : "");
@@ -433,7 +443,10 @@ function card_html(listing, idx) {
         ${match_badge_html}
       </div>
       <div class="card-body">
-        <div class="card-price">${fmt_price(listing.price)}</div>
+        <div class="card-price-row">
+          <div class="card-price">${fmt_price(listing.price)}</div>
+          ${(() => { const s = status_label(listing.status); return s ? `<span class="status-badge ${s.cls}">${s.text}</span>` : ""; })()}
+        </div>
         <div class="card-address">${listing.address}${listing.city ? ", " + listing.city : ""}${listing.zip ? " " + listing.zip : ""}</div>
         <div class="card-stats">${stats || '<span style="color:#9ca3af">Details unavailable</span>'}</div>
       </div>
