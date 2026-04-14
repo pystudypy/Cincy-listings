@@ -43,10 +43,10 @@ jobs:
         run: |
           SOURCE="${{ github.event.inputs.source || 'all' }}"
           if [ "$SOURCE" = "all" ]; then
-            # Full daily run: scrape → carry enrichment → describe new → tag new
-            python run_scrapers.py --merge --describe --tag
+            # Full daily run: scrape → carry enrichment → describe new → tag new → enrich photos
+            python run_scrapers.py --merge --describe --tag --photos
           else
-            python run_scrapers.py --source "$SOURCE" --merge --describe --tag
+            python run_scrapers.py --source "$SOURCE" --merge --describe --tag --photos
           fi
 
       - name: Check for changes
