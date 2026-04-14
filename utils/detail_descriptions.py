@@ -229,7 +229,6 @@ def _extract_cincinky_dom(soup: BeautifulSoup) -> int | None:
     """
     CincinKY detail pages show: <span class="text-gray-700">On Site</span>
                                  <strong class="font-medium">12 Days</strong>
-    Extract the number of days.
     """
     for span in soup.find_all("span", class_="text-gray-700"):
         if span.get_text(strip=True) == "On Site":
@@ -241,40 +240,96 @@ def _extract_cincinky_dom(soup: BeautifulSoup) -> int | None:
     return None
 
 
-def enrich_cincinky_dom(
+def _parse_relative_days(text: str) -> int | None:
+    """
+    Parse Coldwell Banker's relative date strings into integer days.
+      "Today"        → 0
+      "Yesterday"    → 1
+      "28 day(s) ago"  → 28
+      "2 week(s) ago"  → 14
+    """
+    t = text.strip().lower()
+    if t == "today":
+        return 0
+    if t == "yesterday":
+        return 1
+    m = re.search(r"(\d+)\s+day", t)
+    if m:
+        return int(m.group(1))
+    m = re.search(r"(\d+)\s+week", t)
+    if m:
+        return int(m.group(1)) * 7
+    m = re.search(r"(\d+)\s+month", t)
+    if m:
+        return int(m.group(1)) * 30
+    return None
+
+
+def _extract_coldwell_dom(soup: BeautifulSoup) -> int | None:
+    """
+    Coldwell Banker detail pages show:
+      <li><strong>Added to Site:</strong> 28 day(s) ago</li>
+    """
+    for strong in soup.find_all("strong"):
+        if "Added to Site" in strong.get_text():
+            # The date text is a sibling text node after the <strong>
+            parent = strong.parent
+            if parent:
+                full = parent.get_text(" ", strip=True)
+                # Strip the label and parse what remains
+                after = re.sub(r"Added to Site\s*:?\s*", "", full, flags=re.IGNORECASE)
+                return _parse_relative_days(after)
+    return None
+
+
+# Map source → DOM extractor function
+_DOM_EXTRACTORS: dict[str, callable] = {
+    "cincinky":       _extract_cincinky_dom,
+    "coldwell_banker": _extract_coldwell_dom,
+}
+
+
+def enrich_dom(
     listings: list[dict],
+    sources: list[str] | None = None,
     force: bool = False,
     checkpoint_every: int = 50,
     checkpoint_fn=None,
 ) -> list[dict]:
     """
-    Visit each CincinKY listing's detail page and populate days_on_market.
+    Visit detail pages to populate days_on_market for sources that don't
+    include it in their search results (currently: cincinky, coldwell_banker).
 
     Args:
         listings:         Full listing list (modified in place).
+        sources:          Which sources to enrich (default: all supported).
         force:            Re-fetch listings that already have DOM set.
         checkpoint_every: Call checkpoint_fn every N successful fetches.
         checkpoint_fn:    Optional callback(listings) for incremental saves.
     """
+    if sources is None:
+        sources = list(_DOM_EXTRACTORS.keys())
+
     to_enrich = [
         l for l in listings
-        if l.get("source") == "cincinky"
+        if l.get("source") in sources
         and l.get("url")
         and (force or l.get("days_on_market") is None)
     ]
 
     if not to_enrich:
-        logger.info("CincinKY DOM enrichment: all listings already have DOM data")
+        logger.info("DOM enrichment: all listings already have DOM data")
         return listings
 
     total = len(to_enrich)
-    logger.info(f"CincinKY DOM enrichment: fetching {total} detail pages…")
+    logger.info(f"DOM enrichment: fetching {total} detail pages ({', '.join(sources)})…")
 
     def fetch_one(listing: dict) -> tuple[dict, int | None]:
         soup = _fetch_html(listing["url"])
         if not soup:
             return listing, None
-        return listing, _extract_cincinky_dom(soup)
+        extractor = _DOM_EXTRACTORS.get(listing.get("source", ""))
+        return listing, extractor(soup) if extractor else None
 
     done = errors = 0
     lock = threading.Lock()
@@ -308,12 +363,18 @@ def enrich_cincinky_dom(
                     else:
                         do_checkpoint = False
                 if do_checkpoint:
-                    logger.info(f"CincinKY DOM enrichment: {milestone}/{total} done…")
+                    logger.info(f"DOM enrichment: {milestone}/{total} done…")
                     if checkpoint_fn:
                         checkpoint_fn(listings)
 
-    logger.info(f"CincinKY DOM enrichment complete: {done} fetched, {errors} failed")
+    logger.info(f"DOM enrichment complete: {done} fetched, {errors} failed")
     return listings
+
+
+# Keep old name as alias for backwards compatibility
+def enrich_cincinky_dom(listings, force=False, checkpoint_every=50, checkpoint_fn=None):
+    return enrich_dom(listings, sources=["cincinky"], force=force,
+                      checkpoint_every=checkpoint_every, checkpoint_fn=checkpoint_fn)
 
 
 def enrich_descriptions(

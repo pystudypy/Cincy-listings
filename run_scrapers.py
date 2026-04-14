@@ -162,7 +162,7 @@ def main():
                 )
                 logger.info(f"Pushed to GitHub — {with_desc} listings with descriptions")
 
-        from utils.detail_descriptions import enrich_descriptions, enrich_cincinky_dom
+        from utils.detail_descriptions import enrich_descriptions, enrich_dom
         unique = enrich_descriptions(
             unique,
             checkpoint_every=50,
@@ -172,7 +172,7 @@ def main():
         logger.info(f"Listings with description: {with_desc}/{len(unique)}")
 
         # Also enrich CincinKY days_on_market from detail pages
-        unique = enrich_cincinky_dom(
+        unique = enrich_dom(
             unique,
             checkpoint_every=50,
             checkpoint_fn=save_desc_checkpoint,
@@ -356,7 +356,7 @@ def main():
     if args.describe:
         logger.info("=" * 50)
         logger.info("Fetching listing descriptions from detail pages…")
-        from utils.detail_descriptions import enrich_descriptions, enrich_cincinky_dom
+        from utils.detail_descriptions import enrich_descriptions, enrich_dom
 
         def save_desc_checkpoint_main(listings):
             if args.dry_run:
@@ -380,7 +380,7 @@ def main():
         logger.info(f"Listings with description: {with_desc}/{len(unique)}")
 
         # Also enrich CincinKY days_on_market from detail pages
-        unique = enrich_cincinky_dom(
+        unique = enrich_dom(
             unique,
             checkpoint_every=50,
             checkpoint_fn=save_desc_checkpoint_main,

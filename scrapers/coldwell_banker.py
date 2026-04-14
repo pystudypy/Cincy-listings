@@ -126,6 +126,15 @@ def _parse_card(card) -> Optional[dict]:
         lat = _safe_float(card.get("data-lat"))
         lng = _safe_float(card.get("data-lng"))
 
+        # Status — appears as a plain <li> e.g. "Active", "Pending", "Contingent"
+        _STATUS_VALS = {"active", "pending", "contingent", "under contract", "sold", "backup"}
+        status = "FOR_SALE"
+        for li in card.find_all("li"):
+            txt = li.get_text(strip=True).lower()
+            if txt in _STATUS_VALS:
+                status = li.get_text(strip=True)
+                break
+
         return {
             "id": _listing_id(full_address),
             "address": street,
@@ -138,7 +147,7 @@ def _parse_card(card) -> Optional[dict]:
             "sqft": sqft,
             "lot_size": None,
             "property_type": "",
-            "status": "FOR_SALE",
+            "status": status,
             "days_on_market": None,
             "images": images,
             "url": url,
