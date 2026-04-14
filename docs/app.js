@@ -39,8 +39,10 @@ const state = {
     budgetMax: "",
     lifestyle: "",    // "entertainer" | "retreat" | "estate" | ""
     features: [],     // must-have feature tags
+    neighborhood: "", // "OH" | "KY" | ""
     completed: false,
   },
+  saved: new Set(),   // listing IDs saved to localStorage
 };
 
 // ── Leaflet map instance
@@ -53,6 +55,11 @@ Object.assign(state, { off_market: [] });
 
 // ── Helpers ───────────────────────────────────────────
 const $ = (id) => document.getElementById(id);
+
+function debounce(fn, delay) {
+  let timer;
+  return (...args) => { clearTimeout(timer); timer = setTimeout(() => fn(...args), delay); };
+}
 
 function fmt_price(n) {
   if (n == null) return "Price N/A";
@@ -173,23 +180,34 @@ function compute_match_score(listing, quiz) {
   if (!quiz.completed) return null;
   let score = 0;
 
-  // ── Budget (35 pts) ──────────────────────────────────
+  // ── Budget (25 pts) ──────────────────────────────────
   const price = listing.price;
   const pMin  = quiz.budgetMin ? +quiz.budgetMin : null;
   const pMax  = quiz.budgetMax ? +quiz.budgetMax : null;
   if (price == null) {
-    score += 17; // neutral
+    score += 12; // neutral
   } else if (pMin != null && pMax != null) {
-    if (price >= pMin && price <= pMax) score += 35;
-    else if (price > pMax && price <= pMax * 1.2) score += 15;
-    else if (price < pMin && price >= pMin * 0.8) score += 15;
+    if (price >= pMin && price <= pMax) score += 25;
+    else if (price > pMax && price <= pMax * 1.2) score += 10;
+    else if (price < pMin && price >= pMin * 0.8) score += 10;
   } else if (pMax != null) {
-    if (price <= pMax) score += 35;
-    else if (price <= pMax * 1.2) score += 15;
+    if (price <= pMax) score += 25;
+    else if (price <= pMax * 1.2) score += 10;
   } else if (pMin != null) {
-    if (price >= pMin) score += 35;
+    if (price >= pMin) score += 25;
   } else {
-    score += 35; // no budget set
+    score += 25; // no budget set
+  }
+
+  // ── Neighborhood (10 pts) ────────────────────────────
+  const nbhd = quiz.neighborhood || "";
+  if (!nbhd) {
+    score += 10;
+  } else {
+    const listingState = (listing.state || "").toUpperCase();
+    if (nbhd === "OH" && listingState === "OH") score += 10;
+    else if (nbhd === "KY" && listingState === "KY") score += 10;
+    else score += 2; // wrong area, small partial
   }
 
   // ── Lifestyle (30 pts) ───────────────────────────────
@@ -387,8 +405,88 @@ function apply_filters() {
   state.filtered = list;
   state.page = 1;
   $("result-count").textContent = `${list.length.toLocaleString()} listing${list.length !== 1 ? "s" : ""}`;
+  update_filter_badge();
   render_list();
   if (map) render_map_markers();
+}
+
+function count_active_filters() {
+  const f = state.filters;
+  let n = 0;
+  if (f.priceMin)       n++;
+  if (f.priceMax)       n++;
+  if (f.beds)           n++;
+  if (f.baths)          n++;
+  if (f.type)           n++;
+  if (f.zip)            n++;
+  if (f.source)         n++;
+  if (f.area)           n++;
+  if (f.status)         n++;
+  if (f.dom)            n++;
+  if (f.search)         n++;
+  if (f.features.length) n++;
+  if (!f.luxuryOnly)    n++; // luxury toggle OFF is non-default
+  return n;
+}
+
+function update_filter_badge() {
+  const badge = $("filter-badge");
+  if (!badge) return;
+  const cnt = count_active_filters();
+  if (cnt > 0) {
+    badge.textContent = cnt;
+    badge.style.display = "inline-block";
+  } else {
+    badge.textContent = "";
+    badge.style.display = "none";
+  }
+}
+
+// ── Favorites ─────────────────────────────────────────
+function toggle_save(id) {
+  if (state.saved.has(id)) {
+    state.saved.delete(id);
+  } else {
+    state.saved.add(id);
+  }
+  try {
+    localStorage.setItem("saved-listings", JSON.stringify([...state.saved]));
+  } catch (_) {}
+  // Update all heart buttons for this listing (card may appear in multiple views)
+  document.querySelectorAll(`.save-btn[data-id="${id}"]`).forEach(btn => {
+    const isSaved = state.saved.has(id);
+    btn.classList.toggle("saved", isSaved);
+    btn.textContent = isSaved ? "♥" : "♡";
+    btn.title = isSaved ? "Remove from saved" : "Save listing";
+  });
+  const badge = $("saved-count");
+  if (badge) badge.textContent = state.saved.size || "";
+}
+
+function render_saved() {
+  const grid = $("saved-grid");
+  if (!grid) return;
+
+  const allListings = [...state.all, ...state.off_market];
+  const savedListings = allListings.filter(l => state.saved.has(l.id));
+
+  if (!savedListings.length) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <h3>No saved listings yet</h3>
+        <p>Click the ♡ on any listing card to save it here.</p>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = savedListings.map((l, i) => card_html(l, i)).join("");
+
+  grid.querySelectorAll(".listing-card").forEach((el) => {
+    el.addEventListener("click", () => {
+      const idx = +el.dataset.idx;
+      open_modal(savedListings[idx]);
+    });
+  });
 }
 
 // ── Rendering: List ───────────────────────────────────
@@ -455,6 +553,9 @@ function card_html(listing, idx, is_off_market = false) {
     ? `<img src="${listing.images[0]}" alt="Property photo" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-photo>🏠</div>'">`
     : `<div class="no-photo">🏠</div>`;
 
+  const is_saved = state.saved.has(listing.id);
+  const save_btn = `<button class="save-btn${is_saved ? " saved" : ""}" data-id="${listing.id}" onclick="event.stopPropagation();toggle_save('${listing.id}')" title="${is_saved ? "Remove from saved" : "Save listing"}">${is_saved ? "♥" : "♡"}</button>`;
+
   const match_score = compute_match_score(listing, state.quiz);
   const breakdown   = compute_match_breakdown(listing, state.quiz);
   let breakdown_html = "";
@@ -507,6 +608,10 @@ function card_html(listing, idx, is_off_market = false) {
     ? `<span class="off-market-since">Off market ${listing.off_market_since}</span>`
     : "";
 
+  const match_inline = (match_score != null && match_score >= 40 && !is_off_market)
+    ? `<span class="card-match-inline${match_score >= 70 ? "" : match_score >= 40 ? " amber" : " gray"}">✨ ${match_score}%</span>`
+    : "";
+
   return `
     <div class="listing-card${is_off_market ? " card-off-market" : ""}" data-idx="${idx}">
       <div class="card-image">
@@ -515,10 +620,11 @@ function card_html(listing, idx, is_off_market = false) {
         <span class="source-badge source-${listing.source}">${source_label(listing.source)}</span>
         ${lux_badge}
         ${match_badge_html}
+        ${save_btn}
       </div>
       <div class="card-body">
         <div class="card-price-row">
-          <div class="card-price">${fmt_price(listing.price)}</div>
+          <div class="card-price">${fmt_price(listing.price)}${match_inline}</div>
           ${since_label || (() => { const s = status_label(listing.status); return s ? `<span class="status-badge ${s.cls}">${s.text}</span>` : ""; })()}
         </div>
         <div class="card-address">${listing.address}${listing.city ? ", " + listing.city : ""}${listing.zip ? " " + listing.zip : ""}</div>
@@ -656,57 +762,137 @@ function feature_label(tag) {
 function open_modal(listing) {
   const content = $("modal-content");
 
-  const img_section = listing.images?.length
-    ? `<img class="modal-img" src="${listing.images[0]}" alt="Property" onerror="this.outerHTML='<div class=modal-no-img>🏠</div>'">`
+  // ── Photo gallery strip ──
+  const photos = listing.images?.length ? listing.images : [];
+  const photo_strip = photos.length
+    ? `<div class="detail-photos">${photos.map(src =>
+        `<img src="${src}" alt="Property photo" loading="lazy" onclick="open_lightbox('${src.replace(/'/g,"\\'")}')">`)
+        .join("")}</div>`
     : `<div class="modal-no-img">🏠</div>`;
 
-  const stats = [
-    { val: fmt_num(listing.beds) ?? "—",  lbl: "Beds" },
-    { val: fmt_num(listing.baths) ?? "—", lbl: "Baths" },
-    { val: fmt_num(listing.sqft) ?? "—",  lbl: "Sq Ft" },
-  ];
+  // ── Stats ──
+  const stat_items = [
+    listing.beds  != null && `<span class="detail-stat-item">🛏 <strong>${fmt_num(listing.beds)}</strong> bd</span>`,
+    listing.baths != null && `<span class="detail-stat-item">🛁 <strong>${fmt_num(listing.baths)}</strong> ba</span>`,
+    listing.sqft  != null && `<span class="detail-stat-item">📐 <strong>${fmt_num(listing.sqft)}</strong> sqft</span>`,
+    listing.lot_size != null && `<span class="detail-stat-item">🌿 <strong>${fmt_num(listing.lot_size)}</strong> sqft lot</span>`,
+    listing.days_on_market != null && `<span class="detail-stat-item">📅 <strong>${listing.days_on_market}d</strong> on market</span>`,
+  ].filter(Boolean).join("");
 
-  const extra = [
+  // ── Match section ──
+  const match_score = compute_match_score(listing, state.quiz);
+  const breakdown   = compute_match_breakdown(listing, state.quiz);
+  let match_section = "";
+  if (match_score != null && breakdown) {
+    const score_cls = match_score >= 70 ? "green" : match_score >= 40 ? "amber" : "gray";
+    const bd_rows = [];
+    if (breakdown.budget) {
+      const icon = breakdown.budget.status === "match" ? "✓" : breakdown.budget.status === "miss" ? "✗" : "~";
+      bd_rows.push(`<div class="bd-row bd-${breakdown.budget.status}"><span class="bd-icon">${icon}</span><span class="bd-cat">Budget</span><span class="bd-note">${breakdown.budget.label}</span></div>`);
+    }
+    if (breakdown.style) {
+      const icon = breakdown.style.status === "match" ? "✓" : breakdown.style.status === "miss" ? "✗" : "~";
+      bd_rows.push(`<div class="bd-row bd-${breakdown.style.status}"><span class="bd-icon">${icon}</span><span class="bd-cat">Style</span><span class="bd-note">${breakdown.style.label}</span></div>`);
+    }
+    breakdown.features.forEach(f => {
+      bd_rows.push(`<div class="bd-row bd-${f.matched ? "match" : "miss"}"><span class="bd-icon">${f.matched ? "✓" : "✗"}</span><span class="bd-note">${f.label}</span></div>`);
+    });
+    match_section = `
+      <div class="detail-section">
+        <div class="detail-section-label">Match Score</div>
+        <div class="detail-match-row">
+          <div class="detail-match-score ${score_cls}">${match_score}%</div>
+          <div class="detail-match-bd" style="background:rgba(15,23,42,.88);border-radius:10px;padding:8px 12px">
+            ${bd_rows.join("")}
+          </div>
+        </div>
+      </div>`;
+  }
+
+  // ── Features ──
+  const all_features = listing.features || [];
+  const all_keywords = listing.keywords || [];
+  const features_section = (all_features.length || all_keywords.length)
+    ? `<div class="detail-section">
+         <div class="detail-section-label">Features</div>
+         <div class="detail-features-grid">
+           ${all_features.map(f => `<span class="detail-feature-tag">${feature_label(f)}</span>`).join("")}
+           ${all_keywords.map(k => `<span class="modal-keyword-tag">${k}</span>`).join("")}
+         </div>
+       </div>`
+    : "";
+
+  // ── Description ──
+  const desc_section = listing.description
+    ? `<div class="detail-section">
+         <div class="detail-section-label">About this home</div>
+         <p class="detail-desc">${listing.description}</p>
+       </div>`
+    : "";
+
+  // ── AI Room Analysis ──
+  const rooms = listing.image_analysis?.rooms;
+  let ai_section = "";
+  if (rooms?.length) {
+    const room_cards = rooms.map(r => {
+      const luxury = r.luxury_score != null ? `<div class="detail-ai-score">Luxury: ${r.luxury_score}/10  ·  Condition: ${r.condition_score ?? "—"}/10</div>` : "";
+      const note = r.insight ? `<div class="detail-ai-note">${r.insight}</div>` : "";
+      return `<div class="detail-ai-card"><div class="detail-ai-room">${r.room_type || "Room"}</div>${luxury}${note}</div>`;
+    }).join("");
+    ai_section = `<div class="detail-section">
+      <div class="detail-section-label">✦ AI Room Analysis</div>
+      <div class="detail-ai-grid">${room_cards}</div>
+    </div>`;
+  }
+
+  // ── Meta info row ──
+  const meta_parts = [
     listing.property_type && `<strong>Type:</strong> ${listing.property_type}`,
-    listing.days_on_market != null && `<strong>Days on market:</strong> ${listing.days_on_market}`,
     listing.zip && `<strong>ZIP:</strong> ${listing.zip}`,
     `<strong>Source:</strong> <span class="source-badge source-${listing.source}" style="position:static;display:inline">${source_label(listing.source)}</span>`,
   ].filter(Boolean).join("  ·  ");
 
+  // ── Action buttons ──
+  const save_active = state.saved.has(listing.id);
+  const actions = `
+    <div class="detail-actions">
+      ${listing.url ? `<a class="btn-primary" href="${listing.url}" target="_blank" rel="noopener">View on ${source_label(listing.source)} ↗</a>` : ""}
+      <button class="btn-secondary save-btn-modal${save_active ? " saved" : ""}" onclick="toggle_save('${listing.id}');this.textContent=state.saved.has('${listing.id}') ? '♥ Saved' : '♡ Save';this.classList.toggle('saved',state.saved.has('${listing.id}'))">${save_active ? "♥ Saved" : "♡ Save"}</button>
+      <button class="btn-secondary" onclick="if(navigator.clipboard)navigator.clipboard.writeText(window.location.href).then(()=>{this.textContent='✓ Copied';setTimeout(()=>this.textContent='⎘ Share',2000)})">⎘ Share</button>
+    </div>`;
+
   content.innerHTML = `
-    ${img_section}
+    ${photo_strip}
     <div class="modal-body">
-      <div class="modal-price">${fmt_price(listing.price)}</div>
-      <div class="modal-address">
-        ${listing.address || ""}${listing.city ? ", " + listing.city : ""}${listing.state ? ", " + listing.state : ""}${listing.zip ? " " + listing.zip : ""}
+      <div class="detail-section">
+        <div class="detail-header-row">
+          <div class="detail-price">${fmt_price(listing.price)}</div>
+          ${(() => { const s = status_label(listing.status); return s ? `<span class="status-badge ${s.cls}">${s.text}</span>` : ""; })()}
+        </div>
+        <div class="detail-address">${listing.address || ""}${listing.city ? ", " + listing.city : ""}${listing.state ? ", " + listing.state : ""}${listing.zip ? " " + listing.zip : ""}</div>
+        <div class="detail-stats-row">${stat_items || '<span style="color:#9ca3af">Details unavailable</span>'}</div>
+        ${meta_parts ? `<div class="modal-desc" style="margin-top:10px;font-size:13px">${meta_parts}</div>` : ""}
       </div>
-      <div class="modal-stats">
-        ${stats.map((s) => `
-          <div class="modal-stat">
-            <div class="modal-stat-val">${s.val}</div>
-            <div class="modal-stat-lbl">${s.lbl}</div>
-          </div>`).join("")}
-      </div>
-      ${extra ? `<div class="modal-desc" style="font-size:13px">${extra}</div>` : ""}
-      ${listing.features?.length || listing.keywords?.length ? `
-        <div class="modal-features">
-          ${(listing.features || []).map(f => `<span class="modal-feature-tag">${feature_label(f)}</span>`).join("")}
-          ${(listing.keywords || []).map(k => `<span class="modal-keyword-tag">${k}</span>`).join("")}
-        </div>` : ""}
-      ${listing.description ? `
-        <div class="modal-description">
-          <div class="modal-description-label">About this home</div>
-          <p>${listing.description}</p>
-        </div>` : ""}
-      <div class="modal-actions">
-        ${listing.url
-          ? `<a class="btn-primary" href="${listing.url}" target="_blank" rel="noopener">View on ${source_label(listing.source)} ↗</a>`
-          : ""}
-      </div>
+      ${match_section}
+      ${features_section}
+      ${desc_section}
+      ${ai_section}
+      <div class="detail-section">${actions}</div>
     </div>`;
 
   $("modal-overlay").style.display = "flex";
   document.body.style.overflow = "hidden";
+}
+
+function open_lightbox(src) {
+  const el = document.createElement("div");
+  el.className = "lightbox-overlay";
+  el.innerHTML = `<img src="${src}" alt="Photo">`;
+  el.addEventListener("click", () => el.remove());
+  document.addEventListener("keydown", function esc(e) {
+    if (e.key === "Escape") { el.remove(); document.removeEventListener("keydown", esc); }
+  });
+  document.body.appendChild(el);
 }
 
 function close_modal() {
@@ -727,6 +913,10 @@ function open_quiz() {
   $("quiz-features-group").querySelectorAll(".chip").forEach(c => {
     c.classList.toggle("active", q.features.includes(c.dataset.val));
   });
+  const neighborhood = q.neighborhood || "";
+  $("quiz-neighborhood").querySelectorAll(".chip").forEach(c => {
+    c.classList.toggle("active", c.dataset.val === neighborhood);
+  });
   $("quiz-modal-overlay").style.display = "flex";
   document.body.style.overflow = "hidden";
 }
@@ -740,12 +930,14 @@ function save_quiz() {
   const lifestyle = $("quiz-modal-overlay").querySelector(".quiz-style-chip.active")?.dataset.val || "";
   const features = [...$("quiz-features-group").querySelectorAll(".chip.active")]
     .map(c => c.dataset.val).filter(Boolean);
+  const neighborhood = $("quiz-neighborhood")?.querySelector(".chip.active")?.dataset.val || "";
 
   state.quiz = {
     budgetMin: $("quiz-budget-min").value,
     budgetMax: $("quiz-budget-max").value,
     lifestyle,
     features,
+    neighborhood,
     completed: true,
   };
 
@@ -773,7 +965,7 @@ function load_quiz_from_storage() {
 }
 
 function clear_quiz() {
-  state.quiz = { budgetMin: "", budgetMax: "", lifestyle: "", features: [], completed: false };
+  state.quiz = { budgetMin: "", budgetMax: "", lifestyle: "", features: [], neighborhood: "", completed: false };
   try { localStorage.removeItem("buyer-quiz"); } catch (_) {}
   $("btn-clear-quiz").style.display = "none";
   apply_filters();
@@ -816,11 +1008,11 @@ function wire_events() {
   wire_chips("filter-status", "status");
   wire_chips("filter-dom",    "dom");
 
-  // Search
-  $("filter-search").addEventListener("input", (e) => {
+  // Search (debounced 250ms)
+  $("filter-search").addEventListener("input", debounce((e) => {
     state.filters.search = e.target.value.trim();
     apply_filters();
-  });
+  }, 250));
 
   // Feature chips — multi-select
   $("filter-features").addEventListener("click", (e) => {
@@ -893,16 +1085,18 @@ function wire_events() {
 
   // Tabs
   function set_tab(tab) {
-    ["tab-list","tab-map","tab-off-market"].forEach(id => $(id).classList.remove("active"));
-    ["view-list","view-map","view-off-market"].forEach(id => { if ($(id)) $(id).style.display = "none"; });
-    $("tab-" + tab).classList.add("active");
-    $("view-" + tab).style.display = "block";
+    ["tab-list","tab-map","tab-off-market","tab-saved"].forEach(id => $(id)?.classList.remove("active"));
+    ["view-list","view-map","view-off-market","view-saved"].forEach(id => { if ($(id)) $(id).style.display = "none"; });
+    $("tab-" + tab)?.classList.add("active");
+    if ($("view-" + tab)) $("view-" + tab).style.display = "block";
     if (tab === "map")        { init_map(); setTimeout(() => map && map.invalidateSize(), 100); }
     if (tab === "off-market") { render_off_market(); }
+    if (tab === "saved")      { render_saved(); }
   }
   $("tab-list"      ).addEventListener("click", () => set_tab("list"));
   $("tab-map"       ).addEventListener("click", () => set_tab("map"));
   $("tab-off-market").addEventListener("click", () => set_tab("off-market"));
+  $("tab-saved"     ).addEventListener("click", () => set_tab("saved"));
 
   // Modal close
   $("modal-close").addEventListener("click", close_modal);
@@ -913,9 +1107,16 @@ function wire_events() {
     if (e.key === "Escape") close_modal();
   });
 
-  // Mobile sidebar
+  // Mobile sidebar + backdrop
   $("mobile-filter-btn").addEventListener("click", () => {
-    $("sidebar").classList.toggle("open");
+    const sidebar = $("sidebar");
+    const backdrop = $("sidebar-backdrop");
+    sidebar.classList.toggle("open");
+    backdrop.style.display = sidebar.classList.contains("open") ? "block" : "none";
+  });
+  $("sidebar-backdrop").addEventListener("click", () => {
+    $("sidebar").classList.remove("open");
+    $("sidebar-backdrop").style.display = "none";
   });
 
   // Luxury toggle
@@ -947,8 +1148,24 @@ function wire_events() {
     if (!chip) return;
     chip.classList.toggle("active");
   });
+
+  // Quiz neighborhood chips (single-select)
+  $("quiz-neighborhood").addEventListener("click", (e) => {
+    const chip = e.target.closest(".chip");
+    if (!chip) return;
+    $("quiz-neighborhood").querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+    chip.classList.add("active");
+  });
 }
 
 // ── Bootstrap ─────────────────────────────────────────
+// Restore saved listings from localStorage
+try {
+  const ids = JSON.parse(localStorage.getItem("saved-listings") || "[]");
+  ids.forEach(id => state.saved.add(id));
+  const badge = $("saved-count");
+  if (badge && state.saved.size) badge.textContent = state.saved.size;
+} catch (_) {}
+
 wire_events();
 load_data();

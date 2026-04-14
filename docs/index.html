@@ -242,9 +242,10 @@
       <button class="tab active" id="tab-list">List view</button>
       <button class="tab" id="tab-map">Map view</button>
       <button class="tab tab-off-market" id="tab-off-market">Off Market <span class="off-market-tab-count" id="tab-off-market-count"></span></button>
+      <button class="tab tab-saved" id="tab-saved">♡ Saved <span class="tab-badge" id="saved-count"></span></button>
       <div class="mobile-filter-toggle" id="mobile-filter-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg>
-        Filters
+        Filters <span id="filter-badge" class="filter-badge"></span>
       </div>
     </div>
 
@@ -259,6 +260,15 @@
     <!-- Map view -->
     <div id="view-map" style="display:none">
       <div id="map"></div>
+    </div>
+
+    <!-- Saved view -->
+    <div id="view-saved" style="display:none">
+      <div class="saved-header">
+        <div class="saved-title">♡ Saved Listings</div>
+        <div class="saved-subtitle">Your favorited properties, saved locally in your browser.</div>
+      </div>
+      <div id="saved-grid" class="listings-grid"></div>
     </div>
 
     <!-- Off Market view -->
@@ -289,7 +299,7 @@
 
     <div class="quiz-header">
       <div class="quiz-title">✨ Find My Match</div>
-      <div class="quiz-subtitle">Answer 3 quick questions and we'll score every listing for you.</div>
+      <div class="quiz-subtitle">Answer 4 quick questions and we'll score every listing for you.</div>
     </div>
 
     <!-- Step 1: Budget -->
@@ -360,9 +370,21 @@
       </div>
     </div>
 
+    <!-- Step 4: Neighborhood -->
+    <div class="quiz-step">
+      <div class="quiz-step-label"><span class="quiz-step-num">4</span> Where are you looking?</div>
+      <div class="chip-group chip-group-wrap" id="quiz-neighborhood">
+        <button class="chip active" data-val="">No Preference</button>
+        <button class="chip" data-val="OH">Cincinnati (OH)</button>
+        <button class="chip" data-val="KY">Northern Kentucky</button>
+      </div>
+    </div>
+
     <button class="btn-quiz-save" id="quiz-save">See My Matches →</button>
   </div>
 </div>
+
+<div id="sidebar-backdrop" class="sidebar-backdrop"></div>
 
 <script src="app.js"></script>
 </body>
