@@ -49,9 +49,6 @@ const state = {
 let map = null;
 let markers = [];
 
-// Off-market listings (from data.off_market)
-// Populated on load_data(); never filtered (show all)
-Object.assign(state, { off_market: [] });
 
 // ── Helpers ───────────────────────────────────────────
 const $ = (id) => document.getElementById(id);
@@ -118,7 +115,6 @@ async function load_data() {
     load_quiz_from_storage();
     if (state.quiz.completed) $("btn-clear-quiz").style.display = "inline-block";
     state.all = data.listings || [];
-    state.off_market = data.off_market || [];
 
     const meta = $("header-meta");
     const updated = data.last_updated
@@ -127,12 +123,6 @@ async function load_data() {
         })
       : "unknown";
     meta.textContent = `${state.all.length.toLocaleString()} listings · updated ${updated}`;
-
-    // Show off-market tab badge if there are any
-    if (state.off_market.length) {
-      const badge = $("tab-off-market-count");
-      if (badge) badge.textContent = state.off_market.length;
-    }
 
     apply_filters();
   } catch (err) {
@@ -467,8 +457,7 @@ function render_saved() {
   const grid = $("saved-grid");
   if (!grid) return;
 
-  const allListings = [...state.all, ...state.off_market];
-  const savedListings = allListings.filter(l => state.saved.has(l.id));
+  const savedListings = state.all.filter(l => state.saved.has(l.id));
 
   if (!savedListings.length) {
     grid.innerHTML = `
@@ -518,37 +507,8 @@ function render_list() {
   wrap.style.display = page_listings.length < state.filtered.length ? "block" : "none";
 }
 
-function render_off_market() {
-  const grid = $("off-market-grid");
-  if (!grid) return;
 
-  if (!state.off_market.length) {
-    grid.innerHTML = `
-      <div class="empty-state">
-        <h3>No recently off-market listings</h3>
-        <p>Properties that leave the market appear here for 30 days.</p>
-      </div>`;
-    return;
-  }
-
-  // Sort newest off-market first
-  const sorted = [...state.off_market].sort((a, b) => {
-    const da = a.off_market_since || "";
-    const db = b.off_market_since || "";
-    return db.localeCompare(da);
-  });
-
-  grid.innerHTML = sorted.map((l, i) => card_html(l, i, true)).join("");
-
-  grid.querySelectorAll(".listing-card").forEach((el) => {
-    el.addEventListener("click", () => {
-      const idx = +el.dataset.idx;
-      open_modal(sorted[idx]);
-    });
-  });
-}
-
-function card_html(listing, idx, is_off_market = false) {
+function card_html(listing, idx) {
   const img_html = listing.images?.length
     ? `<img src="${(listing.images[0] || '').replace(/&amp;/g,'&')}" alt="Property photo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.innerHTML='<div class=no-photo>🏠</div>'">`
     : `<div class="no-photo">🏠</div>`;
@@ -600,23 +560,14 @@ function card_html(listing, idx, is_off_market = false) {
     ? `<span class="luxury-badge luxury-${lux_tier}">✦ ${lux_tier.charAt(0).toUpperCase() + lux_tier.slice(1)}</span>`
     : "";
 
-  const off_market_stamp = is_off_market
-    ? `<div class="off-market-stamp">Off Market</div>`
-    : "";
-
-  const since_label = is_off_market && listing.off_market_since
-    ? `<span class="off-market-since">Off market ${listing.off_market_since}</span>`
-    : "";
-
-  const match_inline = (match_score != null && match_score >= 40 && !is_off_market)
+  const match_inline = (match_score != null && match_score >= 40)
     ? `<span class="card-match-inline${match_score >= 70 ? "" : match_score >= 40 ? " amber" : " gray"}">✨ ${match_score}%</span>`
     : "";
 
   return `
-    <div class="listing-card${is_off_market ? " card-off-market" : ""}" data-idx="${idx}">
+    <div class="listing-card" data-idx="${idx}">
       <div class="card-image">
         ${img_html}
-        ${off_market_stamp}
         <span class="source-badge source-${listing.source}">${source_label(listing.source)}</span>
         ${lux_badge}
         ${match_badge_html}
@@ -625,7 +576,7 @@ function card_html(listing, idx, is_off_market = false) {
       <div class="card-body">
         <div class="card-price-row">
           <div class="card-price">${fmt_price(listing.price)}${match_inline}</div>
-          ${since_label || (() => { const s = status_label(listing.status); return s ? `<span class="status-badge ${s.cls}">${s.text}</span>` : ""; })()}
+          ${(() => { const s = status_label(listing.status); return s ? `<span class="status-badge ${s.cls}">${s.text}</span>` : ""; })()}
         </div>
         <div class="card-address">${listing.address}${listing.city ? ", " + listing.city : ""}${listing.zip ? " " + listing.zip : ""}</div>
         <div class="card-stats">${stats || '<span style="color:#9ca3af">Details unavailable</span>'}</div>
@@ -1161,18 +1112,16 @@ function wire_events() {
 
   // Tabs
   function set_tab(tab) {
-    ["tab-list","tab-map","tab-off-market","tab-saved"].forEach(id => $(id)?.classList.remove("active"));
-    ["view-list","view-map","view-off-market","view-saved"].forEach(id => { if ($(id)) $(id).style.display = "none"; });
+    ["tab-list","tab-map","tab-saved"].forEach(id => $(id)?.classList.remove("active"));
+    ["view-list","view-map","view-saved"].forEach(id => { if ($(id)) $(id).style.display = "none"; });
     $("tab-" + tab)?.classList.add("active");
     if ($("view-" + tab)) $("view-" + tab).style.display = "block";
-    if (tab === "map")        { init_map(); setTimeout(() => map && map.invalidateSize(), 100); }
-    if (tab === "off-market") { render_off_market(); }
-    if (tab === "saved")      { render_saved(); }
+    if (tab === "map")   { init_map(); setTimeout(() => map && map.invalidateSize(), 100); }
+    if (tab === "saved") { render_saved(); }
   }
-  $("tab-list"      ).addEventListener("click", () => set_tab("list"));
-  $("tab-map"       ).addEventListener("click", () => set_tab("map"));
-  $("tab-off-market").addEventListener("click", () => set_tab("off-market"));
-  $("tab-saved"     ).addEventListener("click", () => set_tab("saved"));
+  $("tab-list" ).addEventListener("click", () => set_tab("list"));
+  $("tab-map"  ).addEventListener("click", () => set_tab("map"));
+  $("tab-saved").addEventListener("click", () => set_tab("saved"));
 
   // Modal close
   $("modal-close").addEventListener("click", close_modal);
