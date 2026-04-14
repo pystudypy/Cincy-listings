@@ -14,6 +14,7 @@ import json
 import logging
 import re
 import threading
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import requests
@@ -70,8 +71,36 @@ def _extract_coldwell_banker(soup: BeautifulSoup) -> str:
 
 
 def _extract_comey(soup: BeautifulSoup) -> str:
-    """Comey & Shepherd."""
-    # Try itemprop or class hints
+    """
+    Comey & Shepherd — description lives in .cs-prop-details-main after the
+    Print/Share buttons, or in .cs-property-flyer after 'Agent Remarks:'.
+    """
+    # 1. Main detail div — text after the Print/Share gallery buttons
+    main = soup.select_one(".cs-prop-details-main")
+    if main:
+        txt = main.get_text(" ", strip=True)
+        m = re.search(
+            r"(?:Print|Share)\s+(.{80,}?)(?:\s+Property Details|\s+Virtual|\s+Floor Plan|\s+Map|\Z)",
+            txt, re.DOTALL | re.IGNORECASE,
+        )
+        if m:
+            candidate = re.sub(r"\s+", " ", m.group(1)).strip()
+            # Strip any residual nav words at the start
+            candidate = re.sub(r"^(Print|Save|Saved|Share|Email|Gallery|Showing)\s+", "", candidate, flags=re.IGNORECASE).strip()
+            if len(candidate) > 80 and _RE_ESTATE_WORDS.search(candidate):
+                return candidate
+
+    # 2. Property flyer section — "Agent Remarks: ..."
+    flyer = soup.select_one(".cs-property-flyer")
+    if flyer:
+        ftxt = flyer.get_text(" ", strip=True)
+        m2 = re.search(r"Agent Remarks[:\s]+(.{80,})", ftxt, re.DOTALL | re.IGNORECASE)
+        if m2:
+            candidate = re.sub(r"\s+", " ", m2.group(1)).strip()
+            if len(candidate) > 80:
+                return candidate
+
+    # 3. Legacy selectors
     for sel in ["[itemprop='description']", ".property-remarks", ".listing-remarks",
                 ".remarks", ".property-description", "#remarks"]:
         el = soup.select_one(sel)
@@ -79,6 +108,7 @@ def _extract_comey(soup: BeautifulSoup) -> str:
             txt = el.get_text(" ", strip=True)
             if len(txt) > 80:
                 return txt
+
     return _extract_generic(soup)
 
 
@@ -392,6 +422,10 @@ def enrich_descriptions(
         checkpoint_every: Call checkpoint_fn every N successful fetches.
         checkpoint_fn:    Optional callback(listings) for incremental saves.
     """
+    # Sources that need sequential (rate-limited) fetching to avoid Cloudflare blocks
+    SLOW_SOURCES = {"comey"}
+    SLOW_DELAY   = 1.0   # seconds between requests for slow sources
+
     to_enrich = [
         l for l in listings
         if l.get("url") and (force or not l.get("description"))
@@ -401,11 +435,17 @@ def enrich_descriptions(
         logger.info("Description enrichment: all listings already have descriptions")
         return listings
 
+    # Split into fast (parallel) and slow (sequential) batches
+    fast_batch = [l for l in to_enrich if l.get("source") not in SLOW_SOURCES]
+    slow_batch = [l for l in to_enrich if l.get("source") in SLOW_SOURCES]
+
     total = len(to_enrich)
-    logger.info(f"Description enrichment: fetching {total} listing descriptions…")
+    logger.info(
+        f"Description enrichment: {total} listings "
+        f"({len(fast_batch)} parallel, {len(slow_batch)} sequential for {', '.join(SLOW_SOURCES)})"
+    )
 
     def fetch_one(listing: dict) -> tuple[dict, str]:
-        """Fetch description for a single listing. Returns (listing, desc_or_empty)."""
         url    = listing["url"]
         source = listing.get("source", "")
         if source == "zillow" and url.startswith("https://www.zillow.comhttps://"):
@@ -420,38 +460,55 @@ def enrich_descriptions(
     lock = threading.Lock()
     last_checkpoint = 0
 
-    with ThreadPoolExecutor(max_workers=WORKERS) as pool:
-        futures = {pool.submit(fetch_one, l): l for l in to_enrich}
-        for future in as_completed(futures):
-            try:
-                listing, desc = future.result()
-                if desc:
-                    listing["description"] = desc
-                    with lock:
-                        done += 1
-                        milestone = (done // checkpoint_every) * checkpoint_every
+    def _handle_result(listing, desc):
+        nonlocal done, errors, last_checkpoint
+        if desc:
+            listing["description"] = desc
+            with lock:
+                done += 1
+                milestone = (done // checkpoint_every) * checkpoint_every
+        else:
+            with lock:
+                errors += 1
+            milestone = 0
+
+        if milestone > 0:
+            with lock:
+                if milestone > last_checkpoint:
+                    last_checkpoint = milestone
+                    do_ckpt = True
                 else:
+                    do_ckpt = False
+            if do_ckpt:
+                logger.info(f"Description enrichment: {milestone}/{total} done…")
+                if checkpoint_fn:
+                    checkpoint_fn(listings)
+
+    # Fast parallel pass
+    if fast_batch:
+        with ThreadPoolExecutor(max_workers=WORKERS) as pool:
+            futures = {pool.submit(fetch_one, l): l for l in fast_batch}
+            for future in as_completed(futures):
+                try:
+                    listing, desc = future.result()
+                    _handle_result(listing, desc)
+                except Exception as e:
                     with lock:
                         errors += 1
-                    milestone = 0
+                    logger.debug(f"Fetch error: {e}")
+
+    # Slow sequential pass (Comey etc. — Cloudflare blocks parallel requests)
+    if slow_batch:
+        logger.info(f"Description enrichment: starting sequential pass for {len(slow_batch)} listings…")
+        for listing in slow_batch:
+            try:
+                _, desc = fetch_one(listing)
+                _handle_result(listing, desc)
             except Exception as e:
                 with lock:
                     errors += 1
                 logger.debug(f"Fetch error: {e}")
-                milestone = 0
-
-            # Only checkpoint once per milestone (lock prevents duplicates)
-            if milestone > 0:
-                with lock:
-                    if milestone > last_checkpoint:
-                        last_checkpoint = milestone
-                        do_checkpoint = True
-                    else:
-                        do_checkpoint = False
-                if do_checkpoint:
-                    logger.info(f"Description enrichment: {milestone}/{total} done…")
-                    if checkpoint_fn:
-                        checkpoint_fn(listings)
+            time.sleep(SLOW_DELAY)
 
     logger.info(f"Description enrichment complete: {done} fetched, {errors} failed")
     return listings
