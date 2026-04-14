@@ -122,6 +122,16 @@ def main():
         action="store_true",
         help="Skip scraping — only run feature tagging on existing listings",
     )
+    parser.add_argument(
+        "--photos",
+        action="store_true",
+        help="Enrich listing photo galleries by scraping detail pages (CB, CincinKY, Sibcy)",
+    )
+    parser.add_argument(
+        "--photos-only",
+        action="store_true",
+        help="Skip scraping — only enrich photos for existing listings",
+    )
     args = parser.parse_args()
 
     # --describe-only: fetch descriptions without re-scraping
@@ -235,6 +245,41 @@ def main():
             logger.info(f"Wrote updated listings → {DATA_FILE}")
         return
 
+    # --photos-only: enrich photos without re-scraping
+    if args.photos_only:
+        if not DATA_FILE.exists():
+            logger.error("No listings.json found — run without --photos-only first")
+            return
+        existing = json.loads(DATA_FILE.read_text())
+        unique = existing.get("listings", [])
+        logger.info(f"Loaded {len(unique)} existing listings for photo enrichment")
+
+        def save_photos_checkpoint(listings):
+            if args.dry_run:
+                return
+            existing["listings"] = listings
+            existing["last_updated"] = datetime.now(timezone.utc).isoformat()
+            DATA_FILE.write_text(json.dumps(existing, indent=2, ensure_ascii=False))
+            enriched = sum(1 for l in listings if l.get("photos_enriched"))
+            logger.info(f"Checkpoint saved — {enriched} listings photo-enriched")
+
+        from utils.detail_descriptions import enrich_photos
+        unique = enrich_photos(
+            unique,
+            checkpoint_every=100,
+            checkpoint_fn=save_photos_checkpoint,
+        )
+        enriched = sum(1 for l in unique if l.get("photos_enriched"))
+        with_multi = sum(1 for l in unique if len(l.get("images", [])) > 2)
+        logger.info(f"Photo enrichment complete: {enriched} processed, {with_multi} with 3+ images")
+
+        if not args.dry_run:
+            existing["listings"] = unique
+            existing["last_updated"] = datetime.now(timezone.utc).isoformat()
+            DATA_FILE.write_text(json.dumps(existing, indent=2, ensure_ascii=False))
+            logger.info(f"Wrote updated listings → {DATA_FILE}")
+        return
+
     # --analyze-only: skip scraping, load existing listings directly
     if args.analyze_only:
         if not DATA_FILE.exists():
@@ -316,7 +361,7 @@ def main():
 
             # Build lookup for newly active listings
             new_keys: set[str] = set()
-            CARRY_FIELDS = ["description", "features", "keywords", "days_on_market", "image_analysis"]
+            CARRY_FIELDS = ["description", "features", "keywords", "days_on_market", "image_analysis", "images", "photos_enriched"]
             carried = 0
             for listing in unique:
                 key = _normalize_address(listing.get("address", ""), listing.get("zip", ""))
@@ -470,6 +515,32 @@ def main():
         )
         tagged = sum(1 for l in unique if l.get("features") is not None)
         logger.info(f"Listings with features: {tagged}/{len(unique)}")
+
+    # Photo gallery enrichment (--photos flag)
+    if args.photos:
+        logger.info("=" * 50)
+        logger.info("Enriching photo galleries from detail pages…")
+        from utils.detail_descriptions import enrich_photos
+
+        def save_photos_checkpoint_main(listings):
+            if args.dry_run:
+                return
+            out = {
+                "last_updated": datetime.now(timezone.utc).isoformat(),
+                "total_count": len(listings),
+                "source_counts": source_counts,
+                "listings": listings,
+                "off_market": off_market,
+            }
+            DATA_FILE.write_text(json.dumps(out, indent=2, ensure_ascii=False))
+
+        unique = enrich_photos(
+            unique,
+            checkpoint_every=100,
+            checkpoint_fn=save_photos_checkpoint_main,
+        )
+        with_multi = sum(1 for l in unique if len(l.get("images", [])) > 2)
+        logger.info(f"Listings with 3+ photos: {with_multi}/{len(unique)}")
 
     if args.dry_run:
         logger.info("Dry run — not writing to disk.")

@@ -512,3 +512,170 @@ def enrich_descriptions(
 
     logger.info(f"Description enrichment complete: {done} fetched, {errors} failed")
     return listings
+
+
+# ── Photo extraction ─────────────────────────────────────────────────────────
+
+def _extract_photos_coldwell(html: str) -> list[str]:
+    """
+    Coldwell Banker — all photo URLs embedded in page HTML as:
+    https://m[N].cbhomes.com/p/{num}/{num}/{HASH}/{format}.webp
+    Deduplicate by hash, prefer m23cc then pdl23tp then full variants.
+    """
+    all_urls = re.findall(
+        r'https://m\d*\.cbhomes\.com/p/\d+/\d+/[A-Za-z0-9]+/[a-z0-9]+\.[a-z]+',
+        html,
+    )
+    # Build hash → best_url map
+    PREF = {"m23cc": 3, "pdl23tp": 2, "full": 1}
+    best: dict[str, tuple[int, str]] = {}
+    for url in all_urls:
+        parts = url.split("/")
+        if len(parts) < 8:
+            continue
+        photo_hash = parts[6]          # unique per photo
+        fmt_file   = parts[7]          # e.g. "m23cc.webp"
+        score = next((v for k, v in PREF.items() if k in fmt_file), 0)
+        if photo_hash not in best or score > best[photo_hash][0]:
+            best[photo_hash] = (score, url)
+    return [v for _, v in best.values()][:25]
+
+
+def _extract_photos_cincinky(soup: BeautifulSoup) -> list[str]:
+    """
+    CincinKY (Sierra Interactive) — photos in img[src] with sierrastatic.com.
+    Multiple DPI variants: pics1x, pics2x, pics3x, large.  Prefer large/.
+    Deduplicate by photo identifier (e.g. 27_1835895_01).
+    """
+    best: dict[str, tuple[int, str]] = {}
+    for img in soup.find_all("img"):
+        src = img.get("src", "") or ""
+        if "sierrastatic.com" not in src:
+            continue
+        m = re.search(r"(\d+_\d+_\d+)\.", src)
+        if not m:
+            continue
+        photo_id = m.group(1)
+        score = 3 if "/large/" in src else (2 if "pics3x" in src else (1 if "pics2x" in src else 0))
+        if photo_id not in best or score > best[photo_id][0]:
+            best[photo_id] = (score, src)
+    return [v for _, v in best.values()][:25]
+
+
+def _extract_photos_sibcy(soup: BeautifulSoup) -> list[str]:
+    """
+    Sibcy Cline — photos at online.sibcycline.com/retsphotos/ in img[src].
+    Deduplicate by URL (ignore query string).
+    """
+    seen: set[str] = set()
+    photos = []
+    for img in soup.find_all("img"):
+        src = img.get("src", "") or ""
+        if "sibcycline.com/retsphotos/" not in src:
+            continue
+        key = src.split("?")[0]
+        if key not in seen:
+            seen.add(key)
+            photos.append(key)   # drop ts= query param
+    return photos[:25]
+
+
+# Sources that benefit from photo enrichment and what strategy to use
+_PHOTO_SOURCES = {"coldwell_banker", "cincinky", "sibcy_cline"}
+SLOW_PHOTO_SOURCES: set[str] = set()   # none need rate-limiting for photos
+
+
+def enrich_photos(
+    listings: list[dict],
+    sources: list[str] | None = None,
+    force: bool = False,
+    checkpoint_every: int = 100,
+    checkpoint_fn=None,
+) -> list[dict]:
+    """
+    Visit each listing's detail page and extract all gallery photos.
+
+    Supported sources: coldwell_banker (23+ photos), cincinky (15+ photos),
+    sibcy_cline (all retsphotos). Comey/Huff/Redfin galleries are JS-rendered
+    and can only yield 1 photo from static HTML — skip them.
+
+    Sets listing["images"] to the full gallery list and listing["photos_enriched"] = True.
+    """
+    if sources is None:
+        sources = list(_PHOTO_SOURCES)
+
+    to_enrich = [
+        l for l in listings
+        if l.get("source") in sources
+        and l.get("url")
+        and (force or not l.get("photos_enriched"))
+    ]
+
+    if not to_enrich:
+        logger.info("Photo enrichment: all listings already enriched")
+        return listings
+
+    total = len(to_enrich)
+    logger.info(f"Photo enrichment: fetching {total} detail pages ({', '.join(sources)})…")
+
+    def fetch_one(listing: dict) -> tuple[dict, list[str]]:
+        url    = listing["url"]
+        source = listing.get("source", "")
+        try:
+            resp = requests.get(url, headers=HEADERS, timeout=REQUEST_TIMEOUT)
+            resp.raise_for_status()
+        except Exception as e:
+            logger.debug(f"Photo fetch failed ({url[:80]}): {e}")
+            return listing, []
+
+        if source == "coldwell_banker":
+            photos = _extract_photos_coldwell(resp.text)
+        else:
+            soup = BeautifulSoup(resp.text, "html.parser")
+            if source == "cincinky":
+                photos = _extract_photos_cincinky(soup)
+            elif source == "sibcy_cline":
+                photos = _extract_photos_sibcy(soup)
+            else:
+                photos = []
+        return listing, photos
+
+    done = errors = 0
+    lock = threading.Lock()
+    last_checkpoint = 0
+
+    with ThreadPoolExecutor(max_workers=WORKERS) as pool:
+        futures = {pool.submit(fetch_one, l): l for l in to_enrich}
+        for future in as_completed(futures):
+            try:
+                listing, photos = future.result()
+                listing["photos_enriched"] = True
+                if photos:
+                    listing["images"] = photos
+                    with lock:
+                        done += 1
+                        milestone = (done // checkpoint_every) * checkpoint_every
+                else:
+                    with lock:
+                        errors += 1
+                    milestone = 0
+            except Exception as e:
+                with lock:
+                    errors += 1
+                logger.debug(f"Photo enrich error: {e}")
+                milestone = 0
+
+            if milestone > 0:
+                with lock:
+                    if milestone > last_checkpoint:
+                        last_checkpoint = milestone
+                        do_ckpt = True
+                    else:
+                        do_ckpt = False
+                if do_ckpt:
+                    logger.info(f"Photo enrichment: {milestone}/{total} done…")
+                    if checkpoint_fn:
+                        checkpoint_fn(listings)
+
+    logger.info(f"Photo enrichment complete: {done} enriched, {errors} failed/no-photos")
+    return listings
