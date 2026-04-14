@@ -292,24 +292,35 @@ def main():
     # Deduplicate — fresh scrape is the source of truth
     unique = deduplicate(filtered)
 
-    # Carry over enrichment from previous run (descriptions, features, DOM, etc.)
-    # Listings no longer appearing in any scraper are silently dropped.
+    # Carry over enrichment from previous run and handle off-market listings.
+    # Listings no longer in the fresh scrape are marked off_market (not dropped).
+    # Off-market listings are retained for 30 days then expired.
+    off_market: list[dict] = []
     if args.merge and DATA_FILE.exists():
         try:
             old_data = json.loads(DATA_FILE.read_text())
             old_listings = old_data.get("listings", [])
+            today = datetime.now(timezone.utc).date().isoformat()
+            OFF_MARKET_TTL_DAYS = 30
 
-            # Build lookup: normalized address → old listing
+            # Separate old active vs already-off-market listings
+            old_active = [l for l in old_listings if l.get("status") != "off_market"]
+            old_off = [l for l in old_listings if l.get("status") == "off_market"]
+
+            # Build lookup: normalized address → old active listing
             old_by_addr: dict[str, dict] = {}
-            for l in old_listings:
+            for l in old_active:
                 key = _normalize_address(l.get("address", ""), l.get("zip", ""))
                 if key:
                     old_by_addr[key] = l
 
+            # Build lookup for newly active listings
+            new_keys: set[str] = set()
             CARRY_FIELDS = ["description", "features", "keywords", "days_on_market", "image_analysis"]
-            carried = dropped = 0
+            carried = 0
             for listing in unique:
                 key = _normalize_address(listing.get("address", ""), listing.get("zip", ""))
+                new_keys.add(key)
                 old = old_by_addr.get(key)
                 if old:
                     carried += 1
@@ -317,10 +328,33 @@ def main():
                         if listing.get(field) is None and old.get(field) is not None:
                             listing[field] = old[field]
 
-            dropped = len(old_listings) - carried
+            # Listings in old_active but not in new scrape → went off-market
+            newly_off = 0
+            for l in old_active:
+                key = _normalize_address(l.get("address", ""), l.get("zip", ""))
+                if key not in new_keys:
+                    l["status"] = "off_market"
+                    l["off_market_since"] = l.get("off_market_since") or today
+                    off_market.append(l)
+                    newly_off += 1
+
+            # Keep previously off-market listings that haven't expired yet
+            from datetime import date
+            for l in old_off:
+                since = l.get("off_market_since", today)
+                try:
+                    days_off = (date.fromisoformat(today) - date.fromisoformat(since)).days
+                except Exception:
+                    days_off = 0
+                if days_off <= OFF_MARKET_TTL_DAYS:
+                    off_market.append(l)
+
+            expired = len(old_off) - (len(off_market) - newly_off)
             logger.info(
-                f"Merge: {carried} listings carried enrichment forward, "
-                f"{dropped} stale listings dropped (went off-market)"
+                f"Merge: {carried} enrichments carried forward, "
+                f"{newly_off} newly off-market, "
+                f"{len(off_market)} total off-market retained, "
+                f"{max(0, expired)} expired (>30 days)"
             )
         except Exception as e:
             logger.warning(f"Could not carry over enrichment: {e}")
@@ -446,6 +480,7 @@ def main():
         "total_count": len(unique),
         "source_counts": source_counts,
         "listings": unique,
+        "off_market": off_market,
     }
 
     DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
