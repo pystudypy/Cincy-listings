@@ -735,19 +735,19 @@ def enrich_photos(
                         errors += 1
                     logger.debug(f"Photo enrich error: {e}")
 
-    # Slow pass (Comey etc.) — use a small pool with delay to avoid rate-limiting
+    # Slow pass (Comey etc.) — truly sequential with a polite delay to avoid blocks.
+    # Comey blocks even 3 concurrent workers; 1 worker + 300ms delay is reliable.
     if slow_batch:
-        logger.info(f"Photo enrichment: starting slow pass for {len(slow_batch)} Comey listings (5 workers)…")
-        with ThreadPoolExecutor(max_workers=5) as pool:
-            futures = {pool.submit(fetch_one, l): l for l in slow_batch}
-            for future in as_completed(futures):
-                try:
-                    listing, photos = future.result()
-                    _handle_photo_result(listing, photos)
-                except Exception as e:
-                    with lock:
-                        errors += 1
-                    logger.debug(f"Photo enrich error: {e}")
+        logger.info(f"Photo enrichment: starting slow pass for {len(slow_batch)} listings (1 worker, 300ms delay)…")
+        for listing in slow_batch:
+            try:
+                listing, photos = fetch_one(listing)
+                _handle_photo_result(listing, photos)
+            except Exception as e:
+                with lock:
+                    errors += 1
+                logger.debug(f"Photo enrich error: {e}")
+            time.sleep(0.3)
 
     logger.info(f"Photo enrichment complete: {done} enriched, {errors} failed/no-photos")
     return listings

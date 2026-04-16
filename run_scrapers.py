@@ -125,7 +125,7 @@ def main():
     parser.add_argument(
         "--photos",
         action="store_true",
-        help="Enrich listing photo galleries by scraping detail pages (CB, CincinKY, Sibcy)",
+        help="Enrich listing photo galleries (Coldwell Banker, Sibcy Cline, Comey, CincinKY). Redfin photos are built inline by the scraper.",
     )
     parser.add_argument(
         "--photos-only",
@@ -361,7 +361,7 @@ def main():
 
             # Build lookup for newly active listings
             new_keys: set[str] = set()
-            CARRY_FIELDS = ["description", "features", "keywords", "days_on_market", "image_analysis", "images", "photos_enriched"]
+            CARRY_FIELDS = ["description", "features", "keywords", "days_on_market", "image_analysis"]
             carried = 0
             for listing in unique:
                 key = _normalize_address(listing.get("address", ""), listing.get("zip", ""))
@@ -369,9 +369,21 @@ def main():
                 old = old_by_addr.get(key)
                 if old:
                     carried += 1
+                    # Simple fields: carry over if new listing doesn't have them
                     for field in CARRY_FIELDS:
                         if listing.get(field) is None and old.get(field) is not None:
                             listing[field] = old[field]
+                    # Images: carry over enriched gallery if old had more photos than new scrape.
+                    # This preserves full galleries (20+ photos) even when fresh scrape only
+                    # returns 1 thumbnail (e.g. Comey, CincinKY initial scrape data).
+                    old_imgs = old.get("images") or []
+                    new_imgs = listing.get("images") or []
+                    if len(old_imgs) > len(new_imgs):
+                        listing["images"] = old_imgs
+                        if old.get("photos_enriched"):
+                            listing["photos_enriched"] = True
+                    elif old.get("photos_enriched") and not listing.get("photos_enriched"):
+                        listing["photos_enriched"] = True
 
             # Listings in old_active but not in new scrape → went off-market
             newly_off = 0

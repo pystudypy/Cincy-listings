@@ -33,7 +33,7 @@ jobs:
         run: playwright install chromium --with-deps
 
       - name: Run scrapers
-        run: python run_scrapers.py --photos
+        run: python run_scrapers.py --photos --merge
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
