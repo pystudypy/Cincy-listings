@@ -2,8 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cincinnati Real Estate — All Listings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>CincyListings — Cincinnati Real Estate</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#1d4ed8" />
+  <meta name="mobile-web-app-capable" content="yes" />
+
+  <!-- iOS PWA -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="CincyListings" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+
+  <!-- SEO -->
+  <meta name="description" content="Cincinnati luxury real estate with AI-powered insights. Browse listings from Zillow, Redfin, Sibcy Cline and more." />
 
   <!-- Leaflet map (free, open-source) -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -16,11 +30,11 @@
 <!-- ── HEADER ─────────────────────────────────────────── -->
 <header>
   <div class="header-inner">
-    <div class="logo">
+    <a class="logo" href="/" aria-label="CincyListings home">
       <span class="logo-icon">🏠</span>
       <span class="logo-text">CincyListings</span>
       <span class="logo-sub">Zillow · Redfin · Sibcy Cline · Comey · Huff · CincyMLS · CincinKY · Coldwell Banker</span>
-    </div>
+    </a>
     <div class="header-meta" id="header-meta">Loading…</div>
   </div>
 </header>
@@ -35,25 +49,80 @@
       <button class="btn-ghost" id="clear-filters">Clear all</button>
     </div>
 
-    <!-- Luxury toggle -->
-    <div class="luxury-toggle-row">
-      <label class="luxury-toggle-label" for="luxury-toggle">✦ Luxury Only</label>
-      <label class="toggle-switch">
-        <input type="checkbox" id="luxury-toggle" checked>
-        <span class="toggle-slider"></span>
-      </label>
-    </div>
-
-    <!-- Match quiz -->
-    <div class="quiz-cta" id="quiz-cta-area">
-      <button class="btn-find-match" id="btn-find-match">✨ Find My Match</button>
-      <button class="btn-ghost btn-clear-quiz" id="btn-clear-quiz" style="display:none">Clear match</button>
+    <!-- Luxury toggle + Match quiz -->
+    <div class="sidebar-top-actions">
+      <div class="luxury-toggle-row">
+        <label class="luxury-toggle-label" for="luxury-toggle">✦ Luxury Only</label>
+        <label class="toggle-switch">
+          <input type="checkbox" id="luxury-toggle" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="quiz-cta" id="quiz-cta-area">
+        <button class="btn-find-match" id="btn-find-match">✨ Find My Match</button>
+        <button class="btn-ghost btn-clear-quiz" id="btn-clear-quiz" style="display:none">Clear match</button>
+      </div>
     </div>
 
     <!-- Search -->
     <div class="filter-group">
-      <label class="filter-label">Search</label>
-      <input type="text" id="filter-search" placeholder="e.g. updated kitchen, new roof, pool…" />
+      <input type="text" id="filter-search" class="filter-search-input" placeholder="🔍  Search: pool, new roof, updated kitchen…" />
+    </div>
+
+    <!-- Price -->
+    <div class="filter-group">
+      <label class="filter-label">Price</label>
+      <div class="range-row">
+        <select id="filter-price-min">
+          <option value="">Min</option>
+          <option value="50000">$50k</option>
+          <option value="100000">$100k</option>
+          <option value="150000">$150k</option>
+          <option value="200000">$200k</option>
+          <option value="250000">$250k</option>
+          <option value="300000">$300k</option>
+          <option value="400000">$400k</option>
+          <option value="500000">$500k</option>
+          <option value="750000">$750k</option>
+          <option value="1000000">$1M+</option>
+        </select>
+        <span class="range-dash">–</span>
+        <select id="filter-price-max">
+          <option value="">Max</option>
+          <option value="100000">$100k</option>
+          <option value="150000">$150k</option>
+          <option value="200000">$200k</option>
+          <option value="250000">$250k</option>
+          <option value="300000">$300k</option>
+          <option value="400000">$400k</option>
+          <option value="500000">$500k</option>
+          <option value="750000">$750k</option>
+          <option value="1000000">$1M+</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Beds + Baths combined row -->
+    <div class="filter-group filter-group-2col">
+      <div>
+        <label class="filter-label">Beds</label>
+        <div class="chip-group" id="filter-beds">
+          <button class="chip active" data-val="">Any</button>
+          <button class="chip" data-val="2">2+</button>
+          <button class="chip" data-val="3">3+</button>
+          <button class="chip" data-val="4">4+</button>
+          <button class="chip" data-val="5">5+</button>
+        </div>
+      </div>
+      <div>
+        <label class="filter-label">Baths</label>
+        <div class="chip-group" id="filter-baths">
+          <button class="chip active" data-val="">Any</button>
+          <button class="chip" data-val="1">1+</button>
+          <button class="chip" data-val="2">2+</button>
+          <button class="chip" data-val="3">3+</button>
+        </div>
+      </div>
     </div>
 
     <!-- Status -->
@@ -64,156 +133,6 @@
         <button class="chip" data-val="for_sale">For Sale</button>
         <button class="chip" data-val="pending">Pending</button>
         <button class="chip" data-val="contingent">Contingent</button>
-      </div>
-    </div>
-
-    <!-- Days on Market -->
-    <div class="filter-group">
-      <label class="filter-label">Days on Market</label>
-      <div class="chip-group" id="filter-dom">
-        <button class="chip active" data-val="">Any</button>
-        <button class="chip" data-val="7">≤ 7 days</button>
-        <button class="chip" data-val="14">≤ 2 weeks</button>
-        <button class="chip" data-val="30">≤ 30 days</button>
-        <button class="chip" data-val="90">≤ 90 days</button>
-      </div>
-    </div>
-
-    <!-- Features -->
-    <div class="filter-group">
-      <label class="filter-label">Features</label>
-      <div class="chip-group chip-group-wrap" id="filter-features">
-        <button class="chip active" data-val="">Any</button>
-        <button class="chip" data-val="updated_kitchen">Updated Kitchen</button>
-        <button class="chip" data-val="open_floor_plan">Open Floor Plan</button>
-        <button class="chip" data-val="hardwood_floors">Hardwood Floors</button>
-        <button class="chip" data-val="quartz_counters">Quartz</button>
-        <button class="chip" data-val="granite_counters">Granite</button>
-        <button class="chip" data-val="new_appliances">New Appliances</button>
-        <button class="chip" data-val="pool">Pool</button>
-        <button class="chip" data-val="finished_basement">Finished Basement</button>
-        <button class="chip" data-val="new_roof">New Roof</button>
-        <button class="chip" data-val="new_hvac">New HVAC</button>
-        <button class="chip" data-val="fireplace">Fireplace</button>
-        <button class="chip" data-val="master_suite">Master Suite</button>
-        <button class="chip" data-val="walk_in_closet">Walk-in Closet</button>
-        <button class="chip" data-val="fenced_yard">Fenced Yard</button>
-        <button class="chip" data-val="deck_patio">Deck / Patio</button>
-        <button class="chip" data-val="two_car_garage">2-Car Garage</button>
-        <button class="chip" data-val="in_law_suite">In-Law Suite</button>
-        <button class="chip" data-val="move_in_ready">Move-in Ready</button>
-        <button class="chip" data-val="needs_work">Needs Work</button>
-        <button class="chip" data-val="new_construction">New Construction</button>
-        <button class="chip" data-val="smart_home">Smart Home</button>
-      </div>
-    </div>
-
-    <!-- Price -->
-    <div class="filter-group">
-      <label class="filter-label">Price</label>
-      <div class="range-row">
-        <div class="range-col">
-          <span class="range-hint">Min</span>
-          <select id="filter-price-min">
-            <option value="">Any</option>
-            <option value="50000">$50k</option>
-            <option value="100000">$100k</option>
-            <option value="150000">$150k</option>
-            <option value="200000">$200k</option>
-            <option value="250000">$250k</option>
-            <option value="300000">$300k</option>
-            <option value="400000">$400k</option>
-            <option value="500000">$500k</option>
-            <option value="750000">$750k</option>
-            <option value="900000">$900k</option>
-            <option value="1000000">$1M+</option>
-          </select>
-        </div>
-        <span class="range-dash">–</span>
-        <div class="range-col">
-          <span class="range-hint">Max</span>
-          <select id="filter-price-max">
-            <option value="">Any</option>
-            <option value="100000">$100k</option>
-            <option value="150000">$150k</option>
-            <option value="200000">$200k</option>
-            <option value="250000">$250k</option>
-            <option value="300000">$300k</option>
-            <option value="400000">$400k</option>
-            <option value="500000">$500k</option>
-            <option value="750000">$750k</option>
-            <option value="900000">$900k</option>
-            <option value="1000000">$1M+</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <!-- Beds -->
-    <div class="filter-group">
-      <label class="filter-label">Bedrooms</label>
-      <div class="chip-group" id="filter-beds">
-        <button class="chip active" data-val="">Any</button>
-        <button class="chip" data-val="1">1+</button>
-        <button class="chip" data-val="2">2+</button>
-        <button class="chip" data-val="3">3+</button>
-        <button class="chip" data-val="4">4+</button>
-        <button class="chip" data-val="5">5+</button>
-      </div>
-    </div>
-
-    <!-- Baths -->
-    <div class="filter-group">
-      <label class="filter-label">Bathrooms</label>
-      <div class="chip-group" id="filter-baths">
-        <button class="chip active" data-val="">Any</button>
-        <button class="chip" data-val="1">1+</button>
-        <button class="chip" data-val="2">2+</button>
-        <button class="chip" data-val="3">3+</button>
-      </div>
-    </div>
-
-    <!-- Property Type -->
-    <div class="filter-group">
-      <label class="filter-label">Property Type</label>
-      <div class="chip-group" id="filter-type">
-        <button class="chip active" data-val="">Any</button>
-        <button class="chip" data-val="SINGLE_FAMILY">House</button>
-        <button class="chip" data-val="CONDO">Condo</button>
-        <button class="chip" data-val="TOWNHOUSE">Townhouse</button>
-        <button class="chip" data-val="MULTI_FAMILY">Multi-family</button>
-      </div>
-    </div>
-
-    <!-- Zip Code -->
-    <div class="filter-group">
-      <label class="filter-label">ZIP Code</label>
-      <input type="text" id="filter-zip" placeholder="e.g. 45202" maxlength="5" />
-    </div>
-
-    <!-- Area -->
-    <div class="filter-group">
-      <label class="filter-label">Area</label>
-      <div class="chip-group" id="filter-area">
-        <button class="chip active" data-val="">All</button>
-        <button class="chip" data-val="OH">Cincinnati (OH)</button>
-        <button class="chip" data-val="KY">KY Neighbors</button>
-      </div>
-    </div>
-
-    <!-- Source -->
-    <div class="filter-group">
-      <label class="filter-label">Source</label>
-      <div class="chip-group" id="filter-source">
-        <button class="chip active" data-val="">All</button>
-        <button class="chip" data-val="zillow">Zillow</button>
-        <button class="chip" data-val="redfin">Redfin</button>
-        <button class="chip" data-val="sibcy_cline">Sibcy Cline</button>
-        <button class="chip" data-val="comey">Comey</button>
-        <button class="chip" data-val="huff">Huff</button>
-        <button class="chip" data-val="listings_cincinnati">CincyMLS</button>
-        <button class="chip" data-val="cincinky">CincinKY</button>
-        <button class="chip" data-val="coldwell_banker">Coldwell Banker</button>
       </div>
     </div>
 
@@ -231,7 +150,114 @@
       </select>
     </div>
 
+    <!-- ZIP Code -->
+    <div class="filter-group">
+      <label class="filter-label">ZIP Code</label>
+      <input type="text" id="filter-zip" placeholder="e.g. 45202" maxlength="5" />
+    </div>
+
+    <!-- More filters toggle -->
+    <button class="more-filters-toggle" id="more-filters-toggle" onclick="toggle_more_filters()">
+      <span>More filters</span>
+      <span class="more-filters-badge" id="more-filters-badge"></span>
+      <span class="more-filters-chevron" id="more-filters-chevron">›</span>
+    </button>
+
+    <!-- More filters (collapsed by default) -->
+    <div class="more-filters-section" id="more-filters-section">
+      <div class="more-filters-inner">
+
+        <!-- Days on Market -->
+        <div class="filter-group">
+          <label class="filter-label">Days on Market</label>
+          <div class="chip-group" id="filter-dom">
+            <button class="chip active" data-val="">Any</button>
+            <button class="chip" data-val="7">≤ 7d</button>
+            <button class="chip" data-val="14">≤ 14d</button>
+            <button class="chip" data-val="30">≤ 30d</button>
+            <button class="chip" data-val="90">≤ 90d</button>
+          </div>
+        </div>
+
+        <!-- Property Type -->
+        <div class="filter-group">
+          <label class="filter-label">Property Type</label>
+          <div class="chip-group chip-group-wrap" id="filter-type">
+            <button class="chip active" data-val="">Any</button>
+            <button class="chip" data-val="SINGLE_FAMILY">House</button>
+            <button class="chip" data-val="CONDO">Condo</button>
+            <button class="chip" data-val="TOWNHOUSE">Townhouse</button>
+            <button class="chip" data-val="MULTI_FAMILY">Multi-family</button>
+          </div>
+        </div>
+
+        <!-- Area -->
+        <div class="filter-group">
+          <label class="filter-label">Area</label>
+          <div class="chip-group" id="filter-area">
+            <button class="chip active" data-val="">All</button>
+            <button class="chip" data-val="OH">Cincinnati OH</button>
+            <button class="chip" data-val="KY">Kentucky</button>
+          </div>
+        </div>
+
+        <!-- Features -->
+        <div class="filter-group">
+          <label class="filter-label">Features</label>
+          <div class="chip-group chip-group-wrap" id="filter-features">
+            <button class="chip active" data-val="">Any</button>
+            <button class="chip" data-val="updated_kitchen">Updated Kitchen</button>
+            <button class="chip" data-val="open_floor_plan">Open Floor Plan</button>
+            <button class="chip" data-val="hardwood_floors">Hardwood Floors</button>
+            <button class="chip" data-val="pool">Pool</button>
+            <button class="chip" data-val="finished_basement">Finished Basement</button>
+            <button class="chip" data-val="fireplace">Fireplace</button>
+            <button class="chip" data-val="master_suite">Master Suite</button>
+            <button class="chip" data-val="deck_patio">Deck / Patio</button>
+            <button class="chip" data-val="two_car_garage">2-Car Garage</button>
+            <button class="chip" data-val="new_roof">New Roof</button>
+            <button class="chip" data-val="new_hvac">New HVAC</button>
+            <button class="chip" data-val="quartz_counters">Quartz</button>
+            <button class="chip" data-val="new_appliances">New Appliances</button>
+            <button class="chip" data-val="walk_in_closet">Walk-in Closet</button>
+            <button class="chip" data-val="fenced_yard">Fenced Yard</button>
+            <button class="chip" data-val="in_law_suite">In-Law Suite</button>
+            <button class="chip" data-val="move_in_ready">Move-in Ready</button>
+            <button class="chip" data-val="needs_work">Needs Work</button>
+            <button class="chip" data-val="smart_home">Smart Home</button>
+          </div>
+        </div>
+
+        <!-- Source -->
+        <div class="filter-group">
+          <label class="filter-label">Source</label>
+          <select id="filter-source-select">
+            <option value="">All sources</option>
+            <option value="zillow">Zillow</option>
+            <option value="redfin">Redfin</option>
+            <option value="sibcy_cline">Sibcy Cline</option>
+            <option value="comey">Comey</option>
+            <option value="huff">Huff</option>
+            <option value="listings_cincinnati">CincyMLS</option>
+            <option value="cincinky">CincinKY</option>
+            <option value="coldwell_banker">Coldwell Banker</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- hidden chip group kept for JS compatibility (source) -->
+    <div id="filter-source" style="display:none"></div>
+
     <div class="result-count" id="result-count">— listings</div>
+
+    <!-- Mobile confirm button — only visible on mobile -->
+    <div class="sidebar-apply-wrap">
+      <button class="btn-sidebar-apply" id="btn-sidebar-apply" onclick="close_sidebar()">
+        Show results <span id="sidebar-apply-count"></span>
+      </button>
+    </div>
   </aside>
 
   <!-- CENTER: Results + Map -->
@@ -242,6 +268,7 @@
       <button class="tab active" id="tab-list">List view</button>
       <button class="tab" id="tab-map">Map view</button>
       <button class="tab tab-saved" id="tab-saved">♡ Saved <span class="tab-badge" id="saved-count"></span></button>
+      <button class="tab tab-compare" id="tab-compare">⇄ Compare <span class="tab-badge" id="compare-count"></span></button>
       <div class="mobile-filter-toggle" id="mobile-filter-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg>
         Filters <span id="filter-badge" class="filter-badge"></span>
@@ -259,6 +286,11 @@
     <!-- Map view -->
     <div id="view-map" style="display:none">
       <div id="map"></div>
+    </div>
+
+    <!-- Compare view -->
+    <div id="view-compare" style="display:none">
+      <div id="compare-content"></div>
     </div>
 
     <!-- Saved view -->
@@ -376,6 +408,13 @@
 </div>
 
 <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+<!-- ── COMPARE TRAY ──────────────────────────────────── -->
+<div class="compare-tray" id="compare-tray" style="display:none">
+  <div class="compare-tray-homes" id="compare-tray-homes"></div>
+  <button class="btn-compare-go" onclick="set_tab('compare')">Compare ↗</button>
+  <button class="btn-compare-clear" onclick="state.compare=[];_update_compare_ui()">✕</button>
+</div>
 
 <script src="app.js"></script>
 </body>

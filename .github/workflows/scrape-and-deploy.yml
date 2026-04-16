@@ -1,0 +1,70 @@
+name: Scrape listings & deploy
+
+on:
+  schedule:
+    - cron: "0 8 * * *"   # every day at 8am UTC (4am ET)
+  workflow_dispatch:        # also allow manual trigger from GitHub UI
+
+jobs:
+  scrape-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    permissions:
+      contents: write       # needed to git commit + push
+
+    steps:
+      # ── 1. Checkout ──────────────────────────────────────
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ── 2. Python + dependencies ─────────────────────────
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Playwright browsers
+        run: playwright install chromium --with-deps
+
+      # ── 3. Run scrapers ───────────────────────────────────
+      - name: Run scrapers
+        run: python run_scrapers.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      # ── 4. Commit updated listings data ──────────────────
+      - name: Commit updated listings
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/listings.json
+          # Only commit if the file actually changed
+          git diff --cached --quiet && echo "No changes to commit" || \
+            git commit -m "chore: update listings $(date -u '+%Y-%m-%d')"
+          git push
+
+      # ── 5. Authenticate to GCP ────────────────────────────
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up gcloud CLI
+        uses: google-github-actions/setup-gcloud@v2
+
+      # ── 6. Deploy to Cloud Run ────────────────────────────
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy agentic-realtor \
+            --source . \
+            --region us-central1 \
+            --set-secrets ANTHROPIC_API_KEY=anthropic-api-key:latest \
+            --project ${{ secrets.GCP_PROJECT_ID }} \
+            --quiet
