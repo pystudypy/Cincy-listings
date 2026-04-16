@@ -9,7 +9,7 @@ jobs:
   # ── Job 1: Scrape + photos + deploy ───────────────────
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 120    # photos need extra time
+    timeout-minutes: 300    # full photo enrichment can take 2-3 hours
 
     permissions:
       contents: write
