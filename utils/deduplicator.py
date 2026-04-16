@@ -53,8 +53,9 @@ def _normalize_address(address: str, zipcode: str = "") -> str:
     # Strip ordinal suffixes from numbers: "14th" → "14", "3rd" → "3"
     addr = re.sub(r"\b(\d+)(st|nd|rd|th)\b", r"\1", addr)
 
-    # Remove unit / apt / suite designators with keyword — e.g. "Apt C", "Unit 2"
-    addr = re.sub(r"\b(apt|unit|suite|ste|#)\s*[\w-]+", "", addr)
+    # Remove unit / apt / suite designators with keyword — e.g. "Apt C", "Unit 2", "#2"
+    addr = re.sub(r"\b(?:apt|unit|suite|ste)\s*[\w-]+", "", addr)
+    addr = re.sub(r"#\s*[\w-]+", "", addr)
 
     # Remove city/state/zip suffix if present (some sources include it)
     addr = re.sub(r",?\s*(cincinnati|ohio|oh|ky|kentucky)\b.*$", "", addr)

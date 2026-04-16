@@ -1,6 +1,6 @@
 {
   "last_updated": "2026-04-16T12:26:33.494894+00:00",
-  "total_count": 4370,
+  "total_count": 4339,
   "source_counts": {
     "coldwell_banker": 1511,
     "comey": 2032,
@@ -3962,29 +3962,6 @@
       "last_updated": "2026-04-16T12:13:54.051433"
     },
     {
-      "id": "086ed28796183853",
-      "address": "2500 Warsaw Ave",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45204",
-      "price": 109900,
-      "beds": null,
-      "baths": 1.0,
-      "sqft": 616,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/220/1870639/a70D38d6689A4cb/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/oh/cincinnati/2500-warsaw-ave-33/pid_69948287/",
-      "source": "coldwell_banker",
-      "lat": null,
-      "lng": null,
-      "last_updated": "2026-04-16T12:20:30.251842+00:00"
-    },
-    {
       "id": "dd4a95b05b99930c",
       "address": "4340 W 8th St",
       "city": "Cincinnati",
@@ -4277,37 +4254,16 @@
       "property_type": "13",
       "status": "Active",
       "days_on_market": 8,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18745/1874509q.jpg?1775677403",
+        "https://photos.brivity.com/images/68/photo/1/8/7/4/5/0/9/0.jpg?v=12"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/7231-Creekview-Dr-45247/unit-9/home/194934150",
       "source": "redfin",
       "lat": 39.2159845,
       "lng": -84.6818182,
       "last_updated": "2026-04-16T12:13:43.375993",
       "description": "Welcome to top-floor living at Taylor Creek Condominiums. This 2 bed / 1.5 bath condo features a wood-burning fireplace, an in-unit washer and dryer, and new HVAC (2023). Enjoy added privacy and natural light from the 3rd floor. HOA covers water, sewer, trash, landscaping, and snow removal. Community amenities include a clubhouse and pool."
-    },
-    {
-      "id": "1c07a10780b966de",
-      "address": "7231 Creekview Drive",
-      "city": "Colerain Twp",
-      "state": "OH",
-      "zip": "45247",
-      "price": 115000,
-      "beds": 2,
-      "baths": 1.5,
-      "sqft": 880,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18745/1874509q.jpg?1775677403",
-        "https://photos.brivity.com/images/68/photo/1/8/7/4/5/0/9/0.jpg?v=12"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1874509/7231-Creekview-Drive-Colerain-Twp-OH-45247/",
-      "source": "comey",
-      "lat": 39.215984,
-      "lng": -84.681816,
-      "last_updated": "2026-04-16T12:13:54.051351"
     },
     {
       "id": "421f005899fc0c76",
@@ -6462,7 +6418,9 @@
       "property_type": "Townhouse",
       "status": "Active",
       "days_on_market": 1,
-      "images": [],
+      "images": [
+        "https://m1.cbhomes.com/p/220/1870639/a70D38d6689A4cb/m23cc.webp"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/2500-Warsaw-Ave-45204/unit-10/home/100969985",
       "source": "redfin",
       "lat": 39.110052,
@@ -6484,7 +6442,10 @@
       "property_type": "Townhouse",
       "status": "Active",
       "days_on_market": 1,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18752/1875253q.jpg?1776266171",
+        "https://m1.cbhomes.com/p/220/1875253/62b70320ae4942B/m23cc.webp"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/1345-Main-St-45202/unit-11/home/201391167",
       "source": "redfin",
       "lat": 39.111096,
@@ -6517,30 +6478,6 @@
       "lng": -84.5511983,
       "last_updated": "2026-04-16T12:13:43.374524",
       "description": "Discover this inviting 2-bedroom, 1-bathroom home located in the desirable North College Hill school district. Perfect for first-time homebuyers or investors, this residence offers a classic floor plan with original character and plenty of potential for personalization. The interior features spacious living areas and three well-proportioned bedrooms. The full basement provides ample storage or the opportunity for future finishing to increase your living space. Situated on a manageable, level lot, the exterior offers a private backyard space ideal for outdoor relaxation. Location is key! You are just minutes away from local parks, shopping at Northgate Mall, and a variety of dining options."
-    },
-    {
-      "id": "599595dcadf4c2dd",
-      "address": "1345 Main Street",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45202",
-      "price": 139900,
-      "beds": null,
-      "baths": 1.0,
-      "sqft": 620,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18752/1875253q.jpg?1776266171",
-        "https://m1.cbhomes.com/p/220/1875253/62b70320ae4942B/m23cc.webp"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1875253/1345-Main-Street-Cincinnati-OH-45202/",
-      "source": "comey",
-      "lat": 39.111095,
-      "lng": -84.512421,
-      "last_updated": "2026-04-16T12:13:54.048804"
     },
     {
       "id": "feb116ea8c2522ea",
@@ -7371,38 +7308,17 @@
       "property_type": "Townhouse",
       "status": "Active",
       "days_on_market": 2,
-      "images": [],
+      "images": [
+        "https://m1.cbhomes.com/p/220/1875301/14E63C543DB449a/m23cc.webp",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18753/1875301q.jpg?1776185839",
+        "https://photos.brivity.com/images/68/photo/1/8/7/5/3/0/1/0.jpg?v=9"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/5663-Old-Blue-Rock-Rd-45247/unit-47/home/101001556",
       "source": "redfin",
       "lat": 39.2297372,
       "lng": -84.628139,
       "last_updated": "2026-04-16T12:13:43.374247",
       "description": "Adorable one level condo with sunny vibes and great location! Cathedral ceilings and open kitchen/dining/living room are great for hosting friends and family. Covered patio to relax and watch the sunset. Large bedrooms, great closets, and your own laundry room too!!! Beautiful luxury vinyl plank flooring and fresh paint throughout. New HWH in 2024 and new HVAC in 2020. Complex is pet friendly."
-    },
-    {
-      "id": "004badd67fabf38f",
-      "address": "5663 Old Blue Rock Road",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45247",
-      "price": 145000,
-      "beds": 2,
-      "baths": 1.5,
-      "sqft": 897,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/220/1875301/14E63C543DB449a/m23cc.webp",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18753/1875301q.jpg?1776185839",
-        "https://photos.brivity.com/images/68/photo/1/8/7/5/3/0/1/0.jpg?v=9"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1875301/5663-Old-Blue-Rock-Road-Cincinnati-OH-45247/",
-      "source": "comey",
-      "lat": 39.229736,
-      "lng": -84.628136,
-      "last_updated": "2026-04-16T12:13:54.049118"
     },
     {
       "id": "17a147510bd47555",
@@ -9475,7 +9391,9 @@
       "property_type": "Townhouse",
       "status": "Active",
       "days_on_market": 2,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18751/1875111q.jpg?1776166009"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/4557-Foley-Rd-45238/unit-2/home/172418204",
       "source": "redfin",
       "lat": 39.103683,
@@ -9506,29 +9424,6 @@
       "lng": -84.5886227,
       "last_updated": "2026-04-16T12:13:43.374877",
       "description": "This classic 1960s brick ranch at 4136 Delhi Rd offers a functional 1,080-square-foot layout balancing mid-century charm with modern potential. The main level welcomes you with a sun-drenched living room and a traditional eat-in kitchen featuring wood cabinetry, a built-in wall oven, and a sliding glass door for seamless access to the rear patio. Three comfortable bedrooms with original hardwood floors and a well-maintained full bathroom complete the primary living space. A standout feature is the massive walk-out basement, providing an expansive area ideal for a family room, home gym, or workshop, with direct access to the built-in garage. Outside, the property sits on a 0.15-acre lot with"
-    },
-    {
-      "id": "17011f04488fa670",
-      "address": "4557 Foley Road",
-      "city": "Delhi Twp",
-      "state": "OH",
-      "zip": "45238",
-      "price": 159900,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1136,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18751/1875111q.jpg?1776166009"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1875111/4557-Foley-Road-Delhi-Twp-OH-45238/",
-      "source": "comey",
-      "lat": 39.103004,
-      "lng": -84.59977,
-      "last_updated": "2026-04-16T12:13:54.049131"
     },
     {
       "id": "2e5a801aa9b75b3e",
@@ -10195,36 +10090,14 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6413/641314q.jpg?1775643939"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6413/641314q.jpg?1775643939",
+        "https://m.cbhomes.com/p/192/641314/9b670206f12F483/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/641314/413-Poinsetta-Court-3-Florence-KY-41042/",
       "source": "comey",
       "lat": 38.954338,
       "lng": -84.630081,
       "last_updated": "2026-04-16T12:14:44.885433"
-    },
-    {
-      "id": "7ff5cdb423a8063b",
-      "address": "413 Poinsetta Ct",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 163500,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1010,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/641314/9b670206f12F483/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/413-poinsetta-ct-3/pid_70540236/",
-      "source": "coldwell_banker",
-      "lat": 38.9543,
-      "lng": -84.6301,
-      "last_updated": "2026-04-16T12:22:21.843366+00:00"
     },
     {
       "id": "7b0049c1995e8e2c",
@@ -10449,7 +10322,10 @@
       "property_type": "Townhouse",
       "status": "Active",
       "days_on_market": 3,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18749/1874932q.jpg?1776101840",
+        "https://photos.brivity.com/images/68/photo/1/8/7/4/9/3/2/0.jpg?v=1"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/4281-Defender-Dr-45252/unit-104/home/166633456",
       "source": "redfin",
       "lat": 39.2533876,
@@ -10480,30 +10356,6 @@
       "lat": 39.169762,
       "lng": -84.493073,
       "last_updated": "2026-04-16T12:13:54.048953"
-    },
-    {
-      "id": "12de9d551e1ce854",
-      "address": "4281 Defender Drive",
-      "city": "Colerain Twp",
-      "state": "OH",
-      "zip": "45252",
-      "price": 165000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1109,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18749/1874932q.jpg?1776101840",
-        "https://photos.brivity.com/images/68/photo/1/8/7/4/9/3/2/0.jpg?v=1"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1874932/4281-Defender-Drive-Colerain-Twp-OH-45252/",
-      "source": "comey",
-      "lat": 39.253269,
-      "lng": -84.609535,
-      "last_updated": "2026-04-16T12:13:54.050443"
     },
     {
       "id": "0d57fea89c8ef97e",
@@ -10893,38 +10745,17 @@
       "property_type": "Townhouse",
       "status": "Active",
       "days_on_market": 1,
-      "images": [],
+      "images": [
+        "https://m.cbhomes.com/p/220/1871392/82961f051ED9470/m23cc.webp",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18713/1871392q.jpg?1776321298",
+        "https://photos.brivity.com/images/68/photo/1/8/7/1/3/9/2/0.jpg?v=0"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/3675-W-Galbraith-Rd-45247/unit-16/home/100997962",
       "source": "redfin",
       "lat": 39.2197738,
       "lng": -84.6030736,
       "last_updated": "2026-04-16T12:13:43.373570",
       "description": "Experience comfortable living in this spacious two-bedroom, two-bath condo featuring an attached garage with direct entry into the building. The inviting family room boasts a striking stone fireplace and opens onto a covered deck with stunning lake view, perfect for relaxing or entertaining. Enjoy a modern eat-in kitchen with upgraded cabinets and counters, seamlessly connecting to the dining area. A generous master suite with adjoining full bath. Both bathrooms are beautifully updated, and the open-floor plan creates an ideal setting for gatherings and everyday living. New Carpet 2026, freshly painted 2026, A/C and Heat Pump 2015, New windows and Patio door 2023, All kitchen appliances new"
-    },
-    {
-      "id": "dbbab3ac3f1bb8e7",
-      "address": "3675 W Galbraith Road",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45247",
-      "price": 167500,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1180,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/220/1871392/82961f051ED9470/m23cc.webp",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18713/1871392q.jpg?1776321298",
-        "https://photos.brivity.com/images/68/photo/1/8/7/1/3/9/2/0.jpg?v=0"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1871392/3675-W-Galbraith-Road-Cincinnati-OH-45247/",
-      "source": "comey",
-      "lat": 39.219772,
-      "lng": -84.603073,
-      "last_updated": "2026-04-16T12:13:54.048314"
     },
     {
       "id": "fe5924d833cedb0b",
@@ -12023,37 +11854,16 @@
       "property_type": "13",
       "status": "Active",
       "days_on_market": 1,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18752/1875221q.jpg?1776250162",
+        "https://photos.brivity.com/images/68/photo/1/8/7/5/2/2/1/0.jpg?v=0"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/5638-Springdale-Rd-45251/unit-6/home/101001508",
       "source": "redfin",
       "lat": 39.234129,
       "lng": -84.627863,
       "last_updated": "2026-04-16T12:13:43.374018",
       "description": "Modern 2 bedroom 1.5 bath END UNIT townhome w/ Attached Garage in the desirable Peach Grove community. Features ALL NEW: Kitchen w/ marble countertops, stainless steel appliances, white cabinetry, LVT flooring thru-out 1st floor, designer inspired bathrooms, carpet thru-out 2nd floor and all new ceiling fans, lights and fixtures. Loads of abundant natural light, walk out living room to relax on private balcony with scenic views. Private entry, walk-out unfinished basement w/ laundry room. Basement provides excellent potential for a future workout room, workshop, or additional living space. Prime location with convenient access to shopping, dining, highways and more. Agent/Owner"
-    },
-    {
-      "id": "4b3b9f41428d9ccb",
-      "address": "5638 Springdale Road",
-      "city": "Colerain Twp",
-      "state": "OH",
-      "zip": "45251",
-      "price": 174900,
-      "beds": 2,
-      "baths": 1.5,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18752/1875221q.jpg?1776250162",
-        "https://photos.brivity.com/images/68/photo/1/8/7/5/2/2/1/0.jpg?v=0"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1875221/5638-Springdale-Road-Colerain-Twp-OH-45251/",
-      "source": "comey",
-      "lat": 39.234207,
-      "lng": -84.627884,
-      "last_updated": "2026-04-16T12:13:54.048786"
     },
     {
       "id": "f7f126ab913731e8",
@@ -12307,7 +12117,10 @@
       "property_type": "Townhouse",
       "status": "Active",
       "days_on_market": 7,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18740/1874086q.jpg?1775465237",
+        "https://photos.brivity.com/images/68/photo/1/8/7/4/0/8/6/0.jpg?v=5"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/8851-Carrousel-Park-Cir-45251/unit-6/home/100998661",
       "source": "redfin",
       "lat": 39.2320157,
@@ -12329,7 +12142,10 @@
       "property_type": "Townhouse",
       "status": "Active",
       "days_on_market": 6,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18748/1874850q.jpg?1775836810",
+        "https://m1.cbhomes.com/p/220/1874850/a94E107bE769470/m23cc.webp"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/12060-Regency-Run-Ct-45240/unit-1/home/201261614",
       "source": "redfin",
       "lat": 39.3050194,
@@ -12361,54 +12177,6 @@
       "lng": -84.5273592,
       "last_updated": "2026-04-16T12:13:43.375236",
       "description": "Great opportunity to add to your portfolio just blocks from UC. Both units occupied."
-    },
-    {
-      "id": "81fd83d01ea5984a",
-      "address": "12060 Regency Run Court",
-      "city": "Springfield Twp.",
-      "state": "OH",
-      "zip": "45240",
-      "price": 175000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 998,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18748/1874850q.jpg?1775836810",
-        "https://m1.cbhomes.com/p/220/1874850/a94E107bE769470/m23cc.webp"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1874850/12060-Regency-Run-Court-Springfield-Twp.-OH-45240/",
-      "source": "comey",
-      "lat": 39.305019,
-      "lng": -84.561821,
-      "last_updated": "2026-04-16T12:13:54.049870"
-    },
-    {
-      "id": "e52da77a472465d1",
-      "address": "8851 Carrousel Park Circle",
-      "city": "Colerain Twp",
-      "state": "OH",
-      "zip": "45251",
-      "price": 175000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1208,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18740/1874086q.jpg?1775465237",
-        "https://photos.brivity.com/images/68/photo/1/8/7/4/0/8/6/0.jpg?v=5"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1874086/8851-Carrousel-Park-Circle-Colerain-Twp-OH-45251/",
-      "source": "comey",
-      "lat": 39.232018,
-      "lng": -84.598213,
-      "last_updated": "2026-04-16T12:13:54.050075"
     },
     {
       "id": "6665580417003e5f",
@@ -12940,28 +12708,6 @@
       "lat": 39.2887,
       "lng": -84.3507,
       "last_updated": "2026-04-16T12:20:14.734350+00:00"
-    },
-    {
-      "id": "f0777aaa59c7ad81",
-      "address": "2500 Warsaw Ave #34",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45204",
-      "price": 179900,
-      "beds": 3,
-      "baths": 2.5,
-      "sqft": 1398,
-      "lot_size": null,
-      "property_type": "Townhouse",
-      "status": "Active",
-      "days_on_market": 1,
-      "images": [],
-      "url": "https://www.redfin.com/OH/Cincinnati/2500-Warsaw-Ave-45204/unit-34/home/94558063",
-      "source": "redfin",
-      "lat": 39.110052,
-      "lng": -84.555345,
-      "last_updated": "2026-04-16T12:13:43.373613",
-      "description": "Welcome to West View Condos! Featuring sun-filled rooms, an open flowing layout, &  breathtaking river views, this updated 3-bedroom condo offers the perfect blend of lifestyle, space, &  low-maintenance living! The kitchen anchors the home w. a large island, stainless steel appliances, &  seamless flow into the main living space: ideal for entertaining or everyday living! Step outside to your private balcony emjoy your morning cofee or unwind in the evening while taking in the peaceful river views! Upstairs, you'll find three spacious bedrooms  &  two full updated bathrooms, creating a flexible and functional layout for owners, guests, or flex into home office needs! In-uni"
     },
     {
       "id": "3f3c2e33569da6a5",
@@ -14896,7 +14642,9 @@
       "property_type": "Townhouse",
       "status": "Active",
       "days_on_market": 10,
-      "images": [],
+      "images": [
+        "https://m1.cbhomes.com/p/767/955683/7500D05d78b24fA/m23cc.webp"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/833-Neeb-Rd-45233/unit-4/home/101737057",
       "source": "redfin",
       "lat": 39.1099492,
@@ -14918,7 +14666,10 @@
       "property_type": "Townhouse",
       "status": "Active",
       "days_on_market": 8,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18748/1874870q.jpg?1775828152",
+        "https://m.cbhomes.com/p/220/1874870/8f90156e031C4D3/m23cc.webp"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/2324-Madison-Rd-45208/unit-408/home/78822947",
       "source": "redfin",
       "lat": 39.1376043,
@@ -15067,29 +14818,6 @@
       "lat": 39.024345,
       "lng": -84.458832,
       "last_updated": "2026-04-16T12:14:38.414097"
-    },
-    {
-      "id": "dc83ec1a17d6a019",
-      "address": "833 Neeb",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45233",
-      "price": 189900,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1259,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/767/955683/7500D05d78b24fA/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/oh/cincinnati/833-neeb-4/pid_70500377/",
-      "source": "coldwell_banker",
-      "lat": 39.11,
-      "lng": -84.6368,
-      "last_updated": "2026-04-16T12:19:31.268058+00:00"
     },
     {
       "id": "21dbef89d1986ce7",
@@ -17470,7 +17198,11 @@
       "property_type": "Townhouse",
       "status": "Active",
       "days_on_market": 1,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18752/1875277q.jpg?1776278564",
+        "https://m.cbhomes.com/p/220/1875277/42750B23379F4e4/m23cc.webp",
+        "https://photos.brivity.com/images/68/photo/1/8/7/5/2/7/7/0.jpg?v=3"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/720-Castlegate-Ln-45231/unit-203/home/145805732",
       "source": "redfin",
       "lat": 39.210569,
@@ -17551,31 +17283,6 @@
       "lng": -84.5851253,
       "last_updated": "2026-04-16T12:13:43.376085",
       "description": "Even the Easter Bunny would be hopping for this! 3 bedroom brick ranch with open layout and fenced in rear and front yard! Offered at an affordable price!"
-    },
-    {
-      "id": "4ab1f9b9137b17b2",
-      "address": "720 Castlegate Lane",
-      "city": "Springfield Twp.",
-      "state": "OH",
-      "zip": "45231",
-      "price": 200000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1140,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18752/1875277q.jpg?1776278564",
-        "https://m.cbhomes.com/p/220/1875277/42750B23379F4e4/m23cc.webp",
-        "https://photos.brivity.com/images/68/photo/1/8/7/5/2/7/7/0.jpg?v=3"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1875277/720-Castlegate-Lane-Springfield-Twp.-OH-45231/",
-      "source": "comey",
-      "lat": 39.210648,
-      "lng": -84.510315,
-      "last_updated": "2026-04-16T12:13:54.048658"
     },
     {
       "id": "8d3dfd357aca9891",
@@ -22395,7 +22102,10 @@
       "property_type": "Townhouse",
       "status": "Active",
       "days_on_market": 3,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18748/1874876q.jpg?1776070757",
+        "https://photos.brivity.com/images/68/photo/1/8/7/4/8/7/6/0.jpg?v=8"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/817-Neeb-Rd-45233/unit-5/home/201279465",
       "source": "redfin",
       "lat": 39.1100624,
@@ -22499,30 +22209,6 @@
       "lat": 39.289864,
       "lng": -84.517044,
       "last_updated": "2026-04-16T12:13:54.049250"
-    },
-    {
-      "id": "5718e56f20e883ea",
-      "address": "817 Neeb Road",
-      "city": "Delhi Twp",
-      "state": "OH",
-      "zip": "45233",
-      "price": 225000,
-      "beds": 3,
-      "baths": 2.0,
-      "sqft": 1460,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18748/1874876q.jpg?1776070757",
-        "https://photos.brivity.com/images/68/photo/1/8/7/4/8/7/6/0.jpg?v=8"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1874876/817-Neeb-Road-Delhi-Twp-OH-45233/",
-      "source": "comey",
-      "lat": 39.110062,
-      "lng": -84.636696,
-      "last_updated": "2026-04-16T12:13:54.049288"
     },
     {
       "id": "a40c92350d903d27",
@@ -25071,7 +24757,10 @@
       "property_type": "Townhouse",
       "status": "Active",
       "days_on_market": 9,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18751/1875194q.jpg?1776247564",
+        "https://m1.cbhomes.com/p/220/1875194/2C9FeB7Be2e1488/m23cc.webp"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/2444-Madison-Rd-45208/unit-1811/home/78831157",
       "source": "redfin",
       "lat": 39.1405352,
@@ -25989,7 +25678,9 @@
       "property_type": "Other",
       "status": "Active",
       "days_on_market": 3,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18751/1875114q.jpg?1776091954"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/2484-Houston-Rd-45231/unit-8/home/201354861",
       "source": "redfin",
       "lat": 39.2861197,
@@ -26011,7 +25702,9 @@
       "property_type": "Other",
       "status": "Active",
       "days_on_market": 3,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18751/1875105q.jpg?1776090550"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/2486-Houston-Rd-45231/unit-7/home/201346081",
       "source": "redfin",
       "lat": 39.2860273,
@@ -26113,52 +25806,6 @@
       "lng": -84.5161539,
       "last_updated": "2026-04-16T12:13:43.376119",
       "description": "Charming studio condo in the heart of Over-the-Rhine just steps from Washington Park and a short walk to Vine Street's restaurants, shops, and entertainment. Features high ceilings, bamboo wood floors, exposed brick accents, and custom cabinetry that blend historic character with modern convenience. The thoughtfully designed layout includes a built-in Murphy bed for flexible living space, plus a private rear patio and private entrance. Assigned gated off-street parking adds rare convenience for downtown living. Enjoy easy, low-maintenance living in one of Cincinnati's most vibrant neighborhoods."
-    },
-    {
-      "id": "c5fc753714fc8e86",
-      "address": "2484 Houston Road",
-      "city": "Colerain Twp",
-      "state": "OH",
-      "zip": "45231",
-      "price": 239900,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1093,
-      "lot_size": null,
-      "property_type": "Single Family Residence",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18751/1875114q.jpg?1776091954"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1875114/2484-Houston-Road-Colerain-Twp-OH-45231/",
-      "source": "comey",
-      "lat": 39.286121,
-      "lng": -84.566872,
-      "last_updated": "2026-04-16T12:13:54.049181"
-    },
-    {
-      "id": "59ff9808929c5283",
-      "address": "2486 Houston Road",
-      "city": "Colerain Twp",
-      "state": "OH",
-      "zip": "45231",
-      "price": 239900,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1093,
-      "lot_size": null,
-      "property_type": "Single Family Residence",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18751/1875105q.jpg?1776090550"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1875105/2486-Houston-Road-Colerain-Twp-OH-45231/",
-      "source": "comey",
-      "lat": 39.286026,
-      "lng": -84.566925,
-      "last_updated": "2026-04-16T12:13:54.049282"
     },
     {
       "id": "b5d3e669b35435f9",
@@ -26708,7 +26355,10 @@
       "property_type": "13",
       "status": "Active",
       "days_on_market": 1,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18753/1875343q.jpg?1776248138",
+        "https://m.cbhomes.com/p/220/1875343/30fD531D7B25425/m23cc.webp"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/1143-Telluride-Dr-45244/unit-408/home/71322315",
       "source": "redfin",
       "lat": 39.1157497,
@@ -26809,30 +26459,6 @@
       "lat": 39.550949,
       "lng": -84.426064,
       "last_updated": "2026-04-16T12:14:07.276394"
-    },
-    {
-      "id": "8de39ebb8fd1af4b",
-      "address": "1143 Telluride Drive",
-      "city": "Union Twp",
-      "state": "OH",
-      "zip": "45244",
-      "price": 240000,
-      "beds": 3,
-      "baths": 2.5,
-      "sqft": 1512,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18753/1875343q.jpg?1776248138",
-        "https://m.cbhomes.com/p/220/1875343/30fD531D7B25425/m23cc.webp"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1875343/1143-Telluride-Drive-Union-Twp-OH-45244/",
-      "source": "comey",
-      "lat": 39.115749,
-      "lng": -84.297852,
-      "last_updated": "2026-04-16T12:14:25.694269"
     },
     {
       "id": "73abe329e1e2f684",
@@ -39950,31 +39576,6 @@
       "description": "This charming home in the heart of Madisonville offers a great blend of character and functionality, including a recently added carport and a fully privacy-fenced backyard, perfect for relaxing, entertaining, or pets. Enjoy a walkable neighborhood close to parks, dining, shopping, and convenient highway access. Full of potential and move-in ready, this property is an excellent opportunity for a primary residence or investment in a highly desirable area. Don't miss your chance to make it yours!"
     },
     {
-      "id": "33e4de4119344931",
-      "address": "2444 Madison Rd Unit 202A",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45208",
-      "price": 295000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1388,
-      "lot_size": null,
-      "property_type": "Townhouse",
-      "status": "Active",
-      "days_on_market": 1,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18751/1875194q.jpg?1776247564",
-        "https://m1.cbhomes.com/p/220/1875194/2C9FeB7Be2e1488/m23cc.webp"
-      ],
-      "url": "https://www.redfin.com/OH/Cincinnati/2444-Madison-Rd-45208/unit-202A/home/63721336",
-      "source": "redfin",
-      "lat": 39.1405352,
-      "lng": -84.4540479,
-      "last_updated": "2026-04-16T12:13:43.374065",
-      "description": "1388 sq ft per HCA * No steps * Big windows allow loads of light to fill this unit! Updated bathrooms * White kitchen with additional private entry * Large balcony * Hardwood parquet in entry, living  &  dining rooms * Amply sized rooms  &  great closets * In-unit laundry * Monthly Newsletter keeps you informed of all the Happenings at The Regency * Relax at the pool  &  work out at the fitness center * On-site maintenance staff, hair  &  nail salon  &  restaurant * Subscribe to Preferred Parking, a valet service for a nominal monthly charge * Be part of The Regency Lifestyle today!"
-    },
-    {
       "id": "4bc45a74c27ba245",
       "address": "3900 Rose Hill Ave Unit 301A",
       "city": "Cincinnati",
@@ -40663,7 +40264,9 @@
       "property_type": "Townhouse",
       "status": "Active",
       "days_on_market": 11,
-      "images": [],
+      "images": [
+        "https://m1.cbhomes.com/p/220/1873983/9dc42e66Dc0A479/m23cc.webp"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/1222-Republic-St-45202/unit-2/home/78925807",
       "source": "redfin",
       "lat": 39.1091161,
@@ -40882,29 +40485,6 @@
       "lat": 39.093887,
       "lng": -84.484138,
       "last_updated": "2026-04-16T12:14:38.413942"
-    },
-    {
-      "id": "06089697c8557989",
-      "address": "1222 Republic St",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45202",
-      "price": 299000,
-      "beds": null,
-      "baths": 2.0,
-      "sqft": 1188,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/220/1873983/9dc42e66Dc0A479/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/oh/cincinnati/1222-republic-st-2/pid_70493455/",
-      "source": "coldwell_banker",
-      "lat": 39.1091,
-      "lng": -84.5157,
-      "last_updated": "2026-04-16T12:19:31.238797+00:00"
     },
     {
       "id": "964bbb0db2cfd8df",
@@ -45727,7 +45307,9 @@
       "property_type": "Other",
       "status": "Active",
       "days_on_market": 7,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18746/1874687q.jpg?1775735579"
+      ],
       "url": "https://www.redfin.com/OH/Forest-Park/10829-Blackburn-Ct-45240/unit-37/home/201247576",
       "source": "redfin",
       "lat": 39.106879,
@@ -45749,59 +45331,15 @@
       "property_type": "Other",
       "status": "Active",
       "days_on_market": 7,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18746/1874682q.jpg?1775735192"
+      ],
       "url": "https://www.redfin.com/OH/Forest-Park/10831-Blackburn-Ct-45240/unit-36/home/201247513",
       "source": "redfin",
       "lat": 39.106879,
       "lng": -84.357602,
       "last_updated": "2026-04-16T12:13:43.375443",
       "description": "Discover The Sycamore by Cristo Homes in Morningside, a beautifully designed new two-story townhome in Forest Park with approximately 1,664 sq. ft. , 3 bedrooms, 2.5 baths, and a two-car attached garage. The open main level features 9-foot ceilings, expansive windows, and a thoughtfully designed kitchen with an island, pantry, broom closet, and access to a rear patio. Located in the Winton Woods School District with quick access to I-75 and I-275, this low-maintenance community includes a walking trail, mini park, lawn care, a professionally managed HOA, and a 15-year, 100% tax abatement."
-    },
-    {
-      "id": "41907737f77c3ced",
-      "address": "10831 Blackburn Court",
-      "city": "Forest Park",
-      "state": "OH",
-      "zip": "45240",
-      "price": 324000,
-      "beds": 3,
-      "baths": 2.5,
-      "sqft": 1677,
-      "lot_size": null,
-      "property_type": "Single Family Residence",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18746/1874682q.jpg?1775735192"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1874682/10831-Blackburn-Court-Forest-Park-OH-45240/",
-      "source": "comey",
-      "lat": 39.273144,
-      "lng": -84.498619,
-      "last_updated": "2026-04-16T12:13:54.050622"
-    },
-    {
-      "id": "dfe35334c11ffbaa",
-      "address": "10829 Blackburn Court",
-      "city": "Forest Park",
-      "state": "OH",
-      "zip": "45240",
-      "price": 324000,
-      "beds": 3,
-      "baths": 2.5,
-      "sqft": 1677,
-      "lot_size": null,
-      "property_type": "Single Family Residence",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18746/1874687q.jpg?1775735579"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1874687/10829-Blackburn-Court-Forest-Park-OH-45240/",
-      "source": "comey",
-      "lat": 39.273144,
-      "lng": -84.498619,
-      "last_updated": "2026-04-16T12:13:54.050945"
     },
     {
       "id": "4e6fb35e8b0ac46f",
@@ -47947,52 +47485,6 @@
       "description": "Beautifully updated and move in ready, this 3 bedroom 3 and a half bath home offers a bright, open feel and a thoughtfully designed layout built for both everyday living and entertaining. A welcoming entryway and abundant natural light create an inviting atmosphere throughout, while the fully finished basement provides additional living space perfect for recreation, work or guests. Upstairs, the spacious primary suite features a walk-in closet, adjoining bath with a dual vanity and a jetted soaking tub, along with the convenience of a second floor laundry room nearby. Fresh paint, brand new carpet, and a new furnace enhance the home's modern comfort and appeal. Outdoors, enjoy a large deck"
     },
     {
-      "id": "8b4d5ed897104dcc",
-      "address": "2324 Madison Rd #1208",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45208",
-      "price": 330000,
-      "beds": 3,
-      "baths": 2.0,
-      "sqft": 1624,
-      "lot_size": null,
-      "property_type": "Townhouse",
-      "status": "Active",
-      "days_on_market": 6,
-      "images": [],
-      "url": "https://www.redfin.com/OH/Cincinnati/2324-Madison-Rd-45208/unit-1208/home/78922096",
-      "source": "redfin",
-      "lat": 39.1376043,
-      "lng": -84.4570964,
-      "last_updated": "2026-04-16T12:13:43.375019",
-      "description": "Relax there is nothing left to do but enjoy! This stunning harder to find spacious 3 bedroom condo offers sun-filled rooms, crown molding, refinished wood flooring, custom window treatment including remote controlled blinds in bedrooms  &  enclosed balcony, plantation shutters in living room, a cook's kitchen  &  a 21x8 enclosed balcony that creates additional living space. Utilities are included in the condo fee as is a 24 hour doorperson, pool, fitness room, onsite management  &  party room. Garage/valet parking is $80. monthly based on availability thru the office. No pet building."
-    },
-    {
-      "id": "2c25f67100af7627",
-      "address": "2324 Madison Road",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45208",
-      "price": 330000,
-      "beds": 3,
-      "baths": 2.0,
-      "sqft": 1624,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18748/1874870q.jpg?1775828152",
-        "https://m.cbhomes.com/p/220/1874870/8f90156e031C4D3/m23cc.webp"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1874870/2324-Madison-Road-Cincinnati-OH-45208/",
-      "source": "comey",
-      "lat": 39.137604,
-      "lng": -84.457092,
-      "last_updated": "2026-04-16T12:13:54.049836"
-    },
-    {
       "id": "46e15823a3c2bee8",
       "address": "2510 El Camino Drive",
       "city": "Middletown",
@@ -49812,7 +49304,9 @@
       "property_type": "Other",
       "status": "Active",
       "days_on_market": 7,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18746/1874669q.jpg?1775733963"
+      ],
       "url": "https://www.redfin.com/OH/Forest-Park/10833-Blackburn-Ct-45240/unit-35/home/201247371",
       "source": "redfin",
       "lat": 39.106879,
@@ -49834,7 +49328,10 @@
       "property_type": "Other",
       "status": "Active",
       "days_on_market": 8,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18745/1874518q.jpg?1775651728",
+        "https://photos.brivity.com/images/68/photo/1/8/7/4/5/1/8/0.jpg?v=4"
+      ],
       "url": "https://www.redfin.com/OH/Forest-Park/10827-Blackburn-Ct-45240/unit-38/home/201237430",
       "source": "redfin",
       "lat": 39.106879,
@@ -49888,53 +49385,6 @@
       "lat": 39.156368,
       "lng": -84.679565,
       "last_updated": "2026-04-16T12:13:54.049548"
-    },
-    {
-      "id": "5da829825fcada86",
-      "address": "10833 Blackburn Court",
-      "city": "Forest Park",
-      "state": "OH",
-      "zip": "45240",
-      "price": 340000,
-      "beds": 3,
-      "baths": 2.5,
-      "sqft": 1677,
-      "lot_size": null,
-      "property_type": "Single Family Residence",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18746/1874669q.jpg?1775733963"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1874669/10833-Blackburn-Court-Forest-Park-OH-45240/",
-      "source": "comey",
-      "lat": 39.273144,
-      "lng": -84.498619,
-      "last_updated": "2026-04-16T12:13:54.050938"
-    },
-    {
-      "id": "7df8887b69a362eb",
-      "address": "10827 Blackburn Court",
-      "city": "Forest Park",
-      "state": "OH",
-      "zip": "45240",
-      "price": 340000,
-      "beds": 3,
-      "baths": 2.5,
-      "sqft": 1677,
-      "lot_size": null,
-      "property_type": "Single Family Residence",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18745/1874518q.jpg?1775651728",
-        "https://photos.brivity.com/images/68/photo/1/8/7/4/5/1/8/0.jpg?v=4"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1874518/10827-Blackburn-Court-Forest-Park-OH-45240/",
-      "source": "comey",
-      "lat": 39.273144,
-      "lng": -84.498619,
-      "last_updated": "2026-04-16T12:13:54.051184"
     },
     {
       "id": "574f132e2afc71ad",
@@ -51274,37 +50724,16 @@
       "property_type": "Townhouse",
       "status": "Active",
       "days_on_market": 7,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18743/1874323q.jpg?1775689855",
+        "https://m1.cbhomes.com/p/220/1874323/14571DeE46c3434/m23cc.webp"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/1417-Main-St-45202/unit-5/home/78886856",
       "source": "redfin",
       "lat": 39.1118189,
       "lng": -84.5126129,
       "last_updated": "2026-04-16T12:13:43.375355",
       "description": "Spacious loft style apartment in the heart of OTR! Short term rentals are allowed. Wonderful open floor plan featuring hardwood floors, soaring ceilings, ample natural light and luxury finishes throughout. Large gourmet kitchen with granite counters, eat-in island, 42 inch cabinets, gas cooktop and wine fridge. The cozy living room offers three large windows, a gas fireplace and a dry bar with extra storage. Multi level unit with the second level offering a convenient flex space perfect for an office, workout room or second bedroom. This flex space offers a full bathroom and a direct walkout to a private rooftop balcony. 1 gated secure parking spot comes with the unit providing peace of min"
-    },
-    {
-      "id": "b55b4e9f3007002c",
-      "address": "1417 Main Street",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45202",
-      "price": 349900,
-      "beds": 1,
-      "baths": 2.0,
-      "sqft": 1209,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18743/1874323q.jpg?1775689855",
-        "https://m1.cbhomes.com/p/220/1874323/14571DeE46c3434/m23cc.webp"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1874323/1417-Main-Street-Cincinnati-OH-45202/",
-      "source": "comey",
-      "lat": 39.11182,
-      "lng": -84.512611,
-      "last_updated": "2026-04-16T12:13:54.050278"
     },
     {
       "id": "d3147f674da07c74",
@@ -52095,7 +51524,10 @@
       "property_type": "Townhouse",
       "status": "Active",
       "days_on_market": 7,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18747/1874706q.jpg?1775741861",
+        "https://m1.cbhomes.com/p/220/1874706/5f036774bD4E45d/m23cc.webp"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/2260-Riverside-Dr-45202/unit-402/home/76119146",
       "source": "redfin",
       "lat": 39.1236444,
@@ -52152,30 +51584,6 @@
       "lng": -84.5223623,
       "last_updated": "2026-04-16T12:13:43.376246",
       "description": "Rare opportunity in prime Clifton! First time on the market in over 40 years, this quadruplex offers incredible panoramic views of Downtown Cincinnati and strong value-add potential. Property features four efficiency units with the opportunity to create a fifth unit in the attic. Ideal for investors or saavy owner-occupants, this property needs renovation but is positioned for upside with nearby developments including North of Liberty Revitalization and future Findlay Community Center (2027). Only minutes from OTR, University of Cincinnati and medical campuses. This opportunity won't last long!"
-    },
-    {
-      "id": "9228312edae75f4a",
-      "address": "2260 Riverside Drive",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45202",
-      "price": 350000,
-      "beds": 1,
-      "baths": 1.5,
-      "sqft": 1276,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18747/1874706q.jpg?1775741861",
-        "https://m1.cbhomes.com/p/220/1874706/5f036774bD4E45d/m23cc.webp"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1874706/2260-Riverside-Drive-Cincinnati-OH-45202/",
-      "source": "comey",
-      "lat": 39.123646,
-      "lng": -84.46981,
-      "last_updated": "2026-04-16T12:13:54.050767"
     },
     {
       "id": "e946427948ddb78f",
@@ -65609,37 +65017,16 @@
       "property_type": "Townhouse",
       "status": "Active",
       "days_on_market": 7,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18721/1872113q.jpg?1775731427",
+        "https://m1.cbhomes.com/p/220/1872113/0F9C40b7aeA44F2/m23cc.webp"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/2200-Victory-Pkwy-45206/unit-1806/home/100940397",
       "source": "redfin",
       "lat": 39.119725,
       "lng": -84.485339,
       "last_updated": "2026-04-16T12:13:43.375220",
       "description": "Welcome to Unit 1806 at The Edgecliff Private Residences located in Eden Park! Corner unit condo on 18th floor with river views! Spacious 3 bedroom, 2 bath. Kitchen ft granite countertops and SS appliances. Minutes from University of Cincinnati, downtown, Art Museum, Krohn Conservatory, and much more. In unit washer/dryer. Enjoy the amenities at The Edgecliff such as 24-hour doorman, fitness center, rooftop heated pool and hot tub, party room, and a French restaurant. Come check it out today!"
-    },
-    {
-      "id": "10e7ffb22b00b9de",
-      "address": "2200 Victory Parkway",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45206",
-      "price": 449999,
-      "beds": 3,
-      "baths": 2.0,
-      "sqft": 1545,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18721/1872113q.jpg?1775731427",
-        "https://m1.cbhomes.com/p/220/1872113/0F9C40b7aeA44F2/m23cc.webp"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1872113/2200-Victory-Parkway-Cincinnati-OH-45206/",
-      "source": "comey",
-      "lat": 39.119881,
-      "lng": -84.485344,
-      "last_updated": "2026-04-16T12:13:54.051002"
     },
     {
       "id": "810898122bfcda6b",
@@ -72009,37 +71396,16 @@
       "property_type": "13",
       "status": "Active",
       "days_on_market": 2,
-      "images": [],
+      "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18750/1875009q.jpg?1776027627",
+        "https://m1.cbhomes.com/p/220/1875009/6bf473b58824496/m23cc.webp"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/3248-Columbia-Pkwy-45226/unit-5/home/78894499",
       "source": "redfin",
       "lat": 39.1195824,
       "lng": -84.4422589,
       "last_updated": "2026-04-16T12:13:43.374464",
       "description": "Welcome to a truly exceptional opportunity to own a fully updated condominium perched above the Ohio River, offering breathtaking, unobstructed views and a lifestyle that feels like a retreat every single day. Tucked away on a private drive, this 2-bedroom, 2-bath residence combines privacy, modern updates, and unforgettable scenery. From the moment you arrive, you're greeted with expansive multi-level deckingperfect for morning coffee, evening wine, or simply soaking in the sweeping river views and skyline beyond. Inside, the home has been thoughtfully renovated with a fresh, elevated design. The spacious layout flows effortlessly, featuring a stunning primary suite complete with a beautif"
-    },
-    {
-      "id": "edfd47ee4a9b72ae",
-      "address": "3248 Columbia Parkway",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45226",
-      "price": 510000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 2012,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18750/1875009q.jpg?1776027627",
-        "https://m1.cbhomes.com/p/220/1875009/6bf473b58824496/m23cc.webp"
-      ],
-      "url": "https://www.comey.com/real-estate/cincy/1875009/3248-Columbia-Parkway-Cincinnati-OH-45226/",
-      "source": "comey",
-      "lat": 39.119583,
-      "lng": -84.442261,
-      "last_updated": "2026-04-16T12:13:54.048535"
     },
     {
       "id": "cdd08a1bba0b7378",
@@ -99616,38 +98982,17 @@
       "property_type": "Townhouse",
       "status": "Active",
       "days_on_market": 8,
-      "images": [],
+      "images": [
+        "https://online.sibcycline.com/retsphotos/CIN/1873345_1.jpg?ts=639112901593400000",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18733/1873345q.jpg?1775574117",
+        "https://m1.cbhomes.com/p/220/1873345/98F6a0BA067B4CB/m23cc.webp"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/1201-Edgecliff-Pl-45206/unit-1230/home/100949059",
       "source": "redfin",
       "lat": 39.1201692,
       "lng": -84.4834041,
       "last_updated": "2026-04-16T12:13:43.376170",
       "description": "A rare opportunity to complete a top-floor Penthouse at Edgecliff Point. A unique canvas for an exceptional residence. Walls of glass and soaring 14' ceilings open to seven balconies with sweeping up and down Ohio River and city skyline views. From morning light over the river to evenings defined by glowing city lights, the home moves with the day. The kitchen offers a quiet eastern outlook with river views, ideal for morning coffee, while the western exposure of the primary suite perfectly frames the sunset. Designed for effortless entertaining, the scale and setting create a natural backdrop for gatherings. Significant infrastructure updates include all new windows and patio doors, with c"
-    },
-    {
-      "id": "7c07df1f1191b51f",
-      "address": "1201 Edgecliff Place 1230",
-      "city": "Walnut Hills",
-      "state": "OH",
-      "zip": "45206",
-      "price": 1640000,
-      "beds": 4,
-      "baths": 4.0,
-      "sqft": 5941,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": 7,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1873345_1.jpg?ts=639112901593400000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18733/1873345q.jpg?1775574117",
-        "https://m1.cbhomes.com/p/220/1873345/98F6a0BA067B4CB/m23cc.webp"
-      ],
-      "url": "https://www.sibcycline.com/listing/2804357/1201-Edgecliff-Place-1230-Walnut-Hills-OH-45206",
-      "source": "sibcy_cline",
-      "lat": 39.120171,
-      "lng": -84.483406,
-      "last_updated": "2026-04-16T12:15:25.090179"
     },
     {
       "id": "81b2437c7ac2d780",
