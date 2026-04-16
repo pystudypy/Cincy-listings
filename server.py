@@ -27,7 +27,8 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 logger = logging.getLogger(__name__)
 
 PORT = int(os.environ.get("PORT", 8080))
-MAX_IMAGES = 50
+MAX_IMAGES   = 20    # Claude Haiku handles up to 20 images reliably
+IMAGE_MAX_PX = 1024  # resize images to this max dimension — keeps quality, slashes transfer size
 DOCS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "docs")
 CLAUDE_MODEL = "claude-haiku-4-5-20251001"
 ANTHROPIC_API_URL = "https://api.anthropic.com/v1/messages"
@@ -172,7 +173,24 @@ def fetch_image_b64(url: str) -> tuple[str, str] | None:
             ct = "image/jpeg"
         elif ct not in ("image/jpeg", "image/png", "image/gif", "image/webp"):
             ct = "image/jpeg"
-        return base64.standard_b64encode(resp.content).decode(), ct
+        img_bytes = resp.content
+        # Resize large images to keep request size manageable
+        if IMAGE_MAX_PX > 0:
+            try:
+                from PIL import Image as PILImage
+                import io
+                img = PILImage.open(io.BytesIO(img_bytes))
+                w, h = img.size
+                if max(w, h) > IMAGE_MAX_PX:
+                    scale = IMAGE_MAX_PX / max(w, h)
+                    img = img.resize((int(w * scale), int(h * scale)), PILImage.LANCZOS)
+                buf = io.BytesIO()
+                img.convert("RGB").save(buf, format="JPEG", quality=85)
+                img_bytes = buf.getvalue()
+                ct = "image/jpeg"
+            except Exception:
+                pass
+        return base64.standard_b64encode(img_bytes).decode(), ct
     except Exception as e:
         logger.debug(f"Image fetch failed {url[:60]}: {e}")
         return None
