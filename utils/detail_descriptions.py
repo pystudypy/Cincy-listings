@@ -33,7 +33,7 @@ HEADERS = {
 }
 
 REQUEST_TIMEOUT = 12   # fail fast — slow sites aren't worth waiting for
-WORKERS = 8            # parallel fetches (8 threads, one per source roughly)
+WORKERS = 30           # parallel fetches — more threads = faster photo enrichment
 
 # Words that signal we're looking at actual listing description text
 _RE_ESTATE_WORDS = re.compile(
@@ -733,18 +733,19 @@ def enrich_photos(
                         errors += 1
                     logger.debug(f"Photo enrich error: {e}")
 
-    # Slow sequential pass (Comey etc. — blocks parallel requests)
+    # Slow pass (Comey etc.) — use a small pool with delay to avoid rate-limiting
     if slow_batch:
-        logger.info(f"Photo enrichment: starting sequential pass for {len(slow_batch)} Comey listings…")
-        for listing in slow_batch:
-            try:
-                _, photos = fetch_one(listing)
-                _handle_photo_result(listing, photos)
-            except Exception as e:
-                with lock:
-                    errors += 1
-                logger.debug(f"Photo enrich error: {e}")
-            time.sleep(0.5)   # 0.5s between Comey requests to avoid rate-limiting
+        logger.info(f"Photo enrichment: starting slow pass for {len(slow_batch)} Comey listings (5 workers)…")
+        with ThreadPoolExecutor(max_workers=5) as pool:
+            futures = {pool.submit(fetch_one, l): l for l in slow_batch}
+            for future in as_completed(futures):
+                try:
+                    listing, photos = future.result()
+                    _handle_photo_result(listing, photos)
+                except Exception as e:
+                    with lock:
+                        errors += 1
+                    logger.debug(f"Photo enrich error: {e}")
 
     logger.info(f"Photo enrichment complete: {done} enriched, {errors} failed/no-photos")
     return listings
