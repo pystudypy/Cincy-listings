@@ -622,6 +622,31 @@ def _extract_photos_sibcy(html: str) -> list[str]:
     return photos2[:60]
 
 
+def _extract_photos_redfin(html: str, mls_number: str, data_source_id: str) -> list[str]:
+    """
+    Redfin — find max photo index from mbphotov3 thumbnail URLs embedded in the listing page,
+    then build full-size bigphoto URLs.
+
+    Page embeds URLs like:
+      ssl.cdn-redfin.com/photo/158/mbphotov3/371/genMid.1874371_39_1.jpg
+    We extract all {mls}_{index} pairs, find the highest index, and build:
+      ssl.cdn-redfin.com/photo/{ds_id}/bigphoto/{last3}/{mls}_0.jpg          (first)
+      ssl.cdn-redfin.com/photo/{ds_id}/bigphoto/{last3}/{mls}_{i}_0.jpg      (rest)
+    """
+    if not mls_number or not data_source_id:
+        return []
+    # Find all photo indices mentioned for this MLS number
+    pattern = re.compile(rf'{re.escape(mls_number)}_(\d+)')
+    indices = {int(m.group(1)) for m in pattern.finditer(html)}
+    if not indices:
+        return []
+    max_index = max(indices)
+    last3 = mls_number[-3:]
+    base = f"https://ssl.cdn-redfin.com/photo/{data_source_id}/bigphoto/{last3}/{mls_number}"
+    photos = [f"{base}_0.jpg"] + [f"{base}_{i}_0.jpg" for i in range(1, max_index + 1)]
+    return photos
+
+
 def _extract_photos_comey(soup: BeautifulSoup) -> list[str]:
     """
     Comey & Shepherd — photos in Splide carousel as data-splide-lazy attributes.
@@ -642,9 +667,11 @@ def _extract_photos_comey(soup: BeautifulSoup) -> list[str]:
 
 
 # Sources that benefit from photo enrichment and what strategy to use
-# Note: redfin photos are built directly in scrapers/redfin.py from GIS metadata — no enrichment pass needed
-_PHOTO_SOURCES = {"coldwell_banker", "cincinky", "sibcy_cline", "comey"}
+# redfin: GIS API provides photo count inline, but new listings may have stale counts;
+#         only enrich listings with < 15 photos to catch under-photographed new listings.
+_PHOTO_SOURCES = {"coldwell_banker", "cincinky", "sibcy_cline", "comey", "redfin"}
 SLOW_PHOTO_SOURCES: set[str] = {"comey"}   # Comey blocks parallel requests
+REDFIN_ENRICH_THRESHOLD = 15  # only enrich Redfin listings with fewer than this many photos
 
 
 def enrich_photos(
@@ -671,6 +698,12 @@ def enrich_photos(
         if l.get("source") in sources
         and l.get("url")
         and (force or not l.get("photos_enriched"))
+        # For Redfin: only enrich listings with too few photos (new listings with stale GIS counts)
+        and not (
+            l.get("source") == "redfin"
+            and len(l.get("images") or []) >= REDFIN_ENRICH_THRESHOLD
+            and not force
+        )
     ]
 
     if not to_enrich:
@@ -704,10 +737,19 @@ def enrich_photos(
             soup = BeautifulSoup(resp.text, "html.parser")
             photos = _extract_photos_cincinky(soup)
         elif source == "sibcy_cline":
-            photos = _extract_photos_sibcy(resp.text)   # uses raw HTML regex
+            photos = _extract_photos_sibcy(resp.text)
         elif source == "comey":
             soup = BeautifulSoup(resp.text, "html.parser")
             photos = _extract_photos_comey(soup)
+        elif source == "redfin":
+            # Extract MLS number and dataSourceId from existing image URLs
+            existing = (listing.get("images") or [])
+            mls_num = ds_id = ""
+            if existing:
+                m = re.search(r'/photo/(\d+)/bigphoto/\d+/(\d+)_', existing[0])
+                if m:
+                    ds_id, mls_num = m.group(1), m.group(2)
+            photos = _extract_photos_redfin(resp.text, mls_num, ds_id)
         else:
             photos = []
         return listing, photos
