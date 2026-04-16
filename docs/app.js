@@ -122,7 +122,7 @@ async function load_data() {
 
     load_quiz_from_storage();
     if (state.quiz.completed) $("btn-clear-quiz").style.display = "inline-block";
-    state.all = data.listings || [];
+    state.all = data.listings || (Array.isArray(data) ? data : []);
 
     const meta = $("header-meta");
     const updated = data.last_updated
