@@ -269,18 +269,22 @@ def _parse_sibcy_listing(item: dict) -> Optional[dict]:
 
         price = _safe_int(item.get("priceFormatted", ""))
 
+        # Grab all gallery photos from search results (up to 15 provided by the API)
+        seen_urls: set = set()
         images = []
-        main_photo = item.get("mainPhoto") or {}
-        if isinstance(main_photo, dict):
-            img_url = main_photo.get("midSizeImageUrl") or main_photo.get("fullSizeImageUrl")
-            if img_url:
-                images = [img_url]
+        for p in item.get("photos", []):
+            if isinstance(p, dict):
+                img_url = (p.get("extraLargeImageUrl") or p.get("midSizeImageUrl") or "").split("?")[0]
+                if img_url and img_url not in seen_urls:
+                    seen_urls.add(img_url)
+                    images.append(img_url)
+        # Fallback: mainPhoto only if photos list was empty
         if not images:
-            for p in item.get("photos", [])[:1]:
-                if isinstance(p, dict):
-                    img_url = p.get("midSizeImageUrl") or p.get("fullSizeImageUrl")
-                    if img_url:
-                        images = [img_url]
+            main_photo = item.get("mainPhoto") or {}
+            if isinstance(main_photo, dict):
+                img_url = (main_photo.get("extraLargeImageUrl") or main_photo.get("midSizeImageUrl") or "").split("?")[0]
+                if img_url:
+                    images = [img_url]
 
         listing_url = item.get("listingUrl", "")
         canonical   = item.get("canonicalUrl", "")

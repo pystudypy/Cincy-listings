@@ -564,23 +564,43 @@ def _extract_photos_cincinky(soup: BeautifulSoup) -> list[str]:
 
 def _extract_photos_sibcy(html: str) -> list[str]:
     """
-    Sibcy Cline — photos at online.sibcycline.com/retsphotos/ embedded in raw HTML.
-    The page also shows related listings at the bottom; use og:image to identify
-    the primary MLS photo ID and only return photos for that listing.
-    Deduplicate by URL (ignore ?ts= query string).
+    Sibcy Cline — parse __NEXT_DATA__ JSON embedded in the listing detail page.
+    Each photo has extraLargeImageUrl (1500px) or midSizeImageUrl.
+    Falls back to regex scan if JSON parsing fails.
     """
+    import json as _json
+    # Primary: parse __NEXT_DATA__ (server-rendered, always present)
+    nd_m = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', html, re.DOTALL)
+    if nd_m:
+        try:
+            data = _json.loads(nd_m.group(1))
+            photos_raw = (
+                data.get("props", {})
+                    .get("pageProps", {})
+                    .get("photos", [])
+            )
+            seen: set[str] = set()
+            photos = []
+            for p in photos_raw:
+                url = (p.get("extraLargeImageUrl") or p.get("midSizeImageUrl") or "").split("?")[0]
+                if url and url not in seen:
+                    seen.add(url)
+                    photos.append(url)
+            if photos:
+                return photos[:60]
+        except Exception:
+            pass
+
+    # Fallback: regex scan for retsphotos URLs, filter to primary listing's MLS ID
     all_urls = re.findall(
         r'https://online\.sibcycline\.com/retsphotos/[^\s"\'<>]+',
         html,
     )
-
-    # Determine primary listing photo ID from og:image
     primary_id: str | None = None
     og_m = re.search(r'og:image.*?content=["\']https://online\.sibcycline\.com/retsphotos/[^/]+/(\d+)_', html)
     if og_m:
         primary_id = og_m.group(1)
     else:
-        # Fallback: use the most common photo ID
         from collections import Counter
         id_counts: Counter = Counter()
         for u in all_urls:
@@ -590,17 +610,16 @@ def _extract_photos_sibcy(html: str) -> list[str]:
         if id_counts:
             primary_id = id_counts.most_common(1)[0][0]
 
-    seen: set[str] = set()
-    photos = []
+    seen2: set[str] = set()
+    photos2 = []
     for url in all_urls:
-        # Filter to primary listing photos only
         if primary_id and f"/{primary_id}_" not in url:
             continue
-        key = url.split("?")[0]   # strip ?ts=...
-        if key not in seen:
-            seen.add(key)
-            photos.append(key)
-    return photos[:30]
+        key = url.split("?")[0]
+        if key not in seen2:
+            seen2.add(key)
+            photos2.append(key)
+    return photos2[:60]
 
 
 def _extract_photos_comey(soup: BeautifulSoup) -> list[str]:
