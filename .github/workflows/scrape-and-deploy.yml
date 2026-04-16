@@ -6,21 +6,20 @@ on:
   workflow_dispatch:        # also allow manual trigger from GitHub UI
 
 jobs:
-  scrape-and-deploy:
+  # ── Job 1: Scrape ──────────────────────────────────────
+  scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 90     # scrapers need more time on cloud VMs
 
     permissions:
-      contents: write       # needed to git commit + push
+      contents: write
 
     steps:
-      # ── 1. Checkout ──────────────────────────────────────
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # ── 2. Python + dependencies ─────────────────────────
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -33,24 +32,32 @@ jobs:
       - name: Install Playwright browsers
         run: playwright install chromium --with-deps
 
-      # ── 3. Run scrapers ───────────────────────────────────
       - name: Run scrapers
         run: python run_scrapers.py
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
-      # ── 4. Commit updated listings data ──────────────────
       - name: Commit updated listings
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs/data/listings.json
-          # Only commit if the file actually changed
           git diff --cached --quiet && echo "No changes to commit" || \
             git commit -m "chore: update listings $(date -u '+%Y-%m-%d')"
           git push
 
-      # ── 5. Authenticate to GCP ────────────────────────────
+  # ── Job 2: Deploy (only runs if scrape succeeded) ──────
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: scrape           # waits for scrape job to finish
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          ref: main         # get the freshly committed listings data
+
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
@@ -59,7 +66,6 @@ jobs:
       - name: Set up gcloud CLI
         uses: google-github-actions/setup-gcloud@v2
 
-      # ── 6. Deploy to Cloud Run ────────────────────────────
       - name: Deploy to Cloud Run
         run: |
           gcloud run deploy agentic-realtor \
