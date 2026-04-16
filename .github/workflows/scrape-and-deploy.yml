@@ -6,10 +6,10 @@ on:
   workflow_dispatch:        # also allow manual trigger from GitHub UI
 
 jobs:
-  # ── Job 1: Scrape ──────────────────────────────────────
+  # ── Job 1: Scrape + photos + deploy ───────────────────
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 90     # scrapers need more time on cloud VMs
+    timeout-minutes: 120    # photos need extra time
 
     permissions:
       contents: write
@@ -50,13 +50,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs: scrape           # waits for scrape job to finish
+    needs: scrape
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          ref: main         # get the freshly committed listings data
+          ref: main
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
