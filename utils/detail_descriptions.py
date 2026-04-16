@@ -623,6 +623,7 @@ def _extract_photos_comey(soup: BeautifulSoup) -> list[str]:
 
 
 # Sources that benefit from photo enrichment and what strategy to use
+# Note: redfin photos are built directly in scrapers/redfin.py from GIS metadata — no enrichment pass needed
 _PHOTO_SOURCES = {"coldwell_banker", "cincinky", "sibcy_cline", "comey"}
 SLOW_PHOTO_SOURCES: set[str] = {"comey"}   # Comey blocks parallel requests
 
@@ -638,8 +639,8 @@ def enrich_photos(
     Visit each listing's detail page and extract all gallery photos.
 
     Supported sources: coldwell_banker (23+ photos), cincinky (15+ photos),
-    sibcy_cline (all retsphotos). Comey/Huff/Redfin galleries are JS-rendered
-    and can only yield 1 photo from static HTML — skip them.
+    sibcy_cline (all retsphotos), comey (Splide carousel).
+    Redfin photos are built directly in the scraper from GIS metadata — no enrichment pass needed.
 
     Sets listing["images"] to the full gallery list and listing["photos_enriched"] = True.
     """
@@ -670,6 +671,7 @@ def enrich_photos(
     def fetch_one(listing: dict) -> tuple[dict, list[str]]:
         url    = listing["url"]
         source = listing.get("source", "")
+
         try:
             resp = requests.get(url, headers=HEADERS, timeout=REQUEST_TIMEOUT)
             resp.raise_for_status()

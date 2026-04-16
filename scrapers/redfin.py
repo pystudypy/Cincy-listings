@@ -8,6 +8,7 @@ No authentication required — same calls the browser makes.
 import hashlib
 import json
 import logging
+import re
 import time
 from datetime import datetime
 from typing import Optional
@@ -97,20 +98,26 @@ def _parse_listing(item: dict) -> Optional[dict]:
         url_path = item.get("url", "")
         url = f"https://www.redfin.com{url_path}" if url_path else ""
 
-        # Photos
-        photos = item.get("photos") or []
+        # Photos — reconstruct full gallery from GIS metadata
+        # photos.value is a range string like "0-52:0" → 53 photos at index 0..52
+        # URL pattern: ssl.cdn-redfin.com/photo/{dataSourceId}/bigphoto/{last3}/{mls}_{i}.jpg
+        #   index 0  → {mls}_0.jpg
+        #   index 1+ → {mls}_{i}_0.jpg
         images = []
-        if photos and isinstance(photos, list):
-            first = photos[0]
-            if isinstance(first, dict):
-                photo_url = (
-                    first.get("photoUrls", {}).get("fullScreenPhotoUrl")
-                    or first.get("href", "")
-                )
-                if photo_url:
-                    images = [photo_url]
-            elif isinstance(first, str):
-                images = [first]
+        mls_raw  = item.get("mlsId") or {}
+        mls_num  = str(mls_raw.get("value", "") if isinstance(mls_raw, dict) else mls_raw)
+        ds_id    = item.get("dataSourceId", "")
+        photos_raw = item.get("photos") or {}
+        photos_val = (photos_raw.get("value", "") if isinstance(photos_raw, dict) else str(photos_raw)) or ""
+        _m = re.match(r"(\d+)-(\d+)", photos_val)
+        if _m and mls_num and ds_id:
+            count  = int(_m.group(2)) - int(_m.group(1)) + 1
+            last3  = mls_num[-3:]
+            base   = f"https://ssl.cdn-redfin.com/photo/{ds_id}/bigphoto/{last3}/{mls_num}"
+            images = (
+                [f"{base}_0.jpg"] +
+                [f"{base}_{i}_0.jpg" for i in range(1, count)]
+            )
 
         dom_raw = item.get("dom")
         days_on_market = _safe_int(_unwrap(dom_raw))
