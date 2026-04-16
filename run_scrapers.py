@@ -125,7 +125,7 @@ def main():
     parser.add_argument(
         "--photos",
         action="store_true",
-        help="Enrich listing photo galleries (Coldwell Banker, Sibcy Cline, Comey, CincinKY). Redfin photos are built inline by the scraper.",
+        help="Enrich listing photo galleries (Coldwell Banker, Sibcy Cline, Comey, CincinKY, Redfin <15 photos).",
     )
     parser.add_argument(
         "--photos-only",
