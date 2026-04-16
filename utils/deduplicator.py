@@ -41,7 +41,7 @@ def _normalize_address(address: str, zipcode: str = "") -> str:
     # Remove unit / apt / suite designators — they cause false non-matches
     addr = re.sub(r"\b(apt|unit|suite|ste|#)\s*[\w-]+", "", addr)
 
-    # Normalize common street suffixes
+    # Normalize common street suffixes (both long→short and short→short)
     suffix_map = {
         r"\bstreet\b": "st",
         r"\bavenue\b": "ave",
@@ -55,6 +55,29 @@ def _normalize_address(address: str, zipcode: str = "") -> str:
         r"\bway\b": "way",
         r"\bterrace\b": "ter",
         r"\bparkway\b": "pkwy",
+        r"\bhill\b": "hl",
+        r"\bhills\b": "hls",
+        r"\btrail\b": "trl",
+        r"\bsquare\b": "sq",
+        r"\bexpress(?:way)?\b": "expy",
+        r"\bfreeway\b": "fwy",
+        r"\bnorth\b": "n",
+        r"\bsouth\b": "s",
+        r"\beast\b": "e",
+        r"\bwest\b": "w",
+        r"\bjunction\b": "jct",
+        r"\bheights\b": "hts",
+        r"\bpoint\b": "pt",
+        r"\bknoll\b": "knl",
+        r"\bmeadow\b": "mdw",
+        r"\bmeadows\b": "mdws",
+        r"\bvalley\b": "vly",
+        r"\bhollow\b": "holw",
+        r"\bbrook\b": "brk",
+        r"\bcreek\b": "crk",
+        r"\bcrossing\b": "xing",
+        r"\bpike\b": "pike",
+        r"\brun\b": "run",
     }
     for pattern, replacement in suffix_map.items():
         addr = re.sub(pattern, replacement, addr)
