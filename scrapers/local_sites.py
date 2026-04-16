@@ -173,7 +173,9 @@ def _parse_comey_listing(item: dict) -> Optional[dict]:
             "sqft": _safe_int(item.get("sqft")),
             "lot_size": None,
             "property_type": item.get("subproptype") or item.get("proptype", ""),
-            "status": item.get("status") or item.get("propstatus") or "FOR_SALE",
+            "status": {"A": "Active", "P": "Pending", "C": "Contingent", "S": "Sold"}.get(
+                item.get("status", ""), item.get("status") or "FOR_SALE"
+            ),
             "days_on_market": None,
             "images": [item["photo_url"]] if item.get("photo_url") else [],
             "url": item.get("listing_url", ""),

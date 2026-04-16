@@ -32,7 +32,7 @@ import requests
 logger = logging.getLogger(__name__)
 
 OLLAMA_HOST                 = "http://localhost:11434"
-OLLAMA_MODEL                = "qwen2.5vl:72b"
+OLLAMA_MODEL                = "qwen2.5vl:7b"
 CLAUDE_MODEL                = "claude-haiku-4-5-20251001"
 MAX_IMAGES_PER_LISTING      = 20   # stored / sent to Claude
 MAX_IMAGES_OLLAMA           = 8    # Ollama: 72B struggles with more than 8-10 images
@@ -197,7 +197,6 @@ def _analyze_with_ollama(images: list[str]) -> Optional[dict]:
                 "model": OLLAMA_MODEL,
                 "stream": False,
                 "options": {
-                    "num_ctx": 12288,   # fits comfortably in 128GB: ~8GB KV cache
                     "temperature": 0.1,
                     "num_predict": 4096,
                 },

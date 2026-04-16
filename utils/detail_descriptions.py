@@ -562,27 +562,69 @@ def _extract_photos_cincinky(soup: BeautifulSoup) -> list[str]:
     return [v for _, v in best.values()][:25]
 
 
-def _extract_photos_sibcy(soup: BeautifulSoup) -> list[str]:
+def _extract_photos_sibcy(html: str) -> list[str]:
     """
-    Sibcy Cline — photos at online.sibcycline.com/retsphotos/ in img[src].
-    Deduplicate by URL (ignore query string).
+    Sibcy Cline — photos at online.sibcycline.com/retsphotos/ embedded in raw HTML.
+    The page also shows related listings at the bottom; use og:image to identify
+    the primary MLS photo ID and only return photos for that listing.
+    Deduplicate by URL (ignore ?ts= query string).
+    """
+    all_urls = re.findall(
+        r'https://online\.sibcycline\.com/retsphotos/[^\s"\'<>]+',
+        html,
+    )
+
+    # Determine primary listing photo ID from og:image
+    primary_id: str | None = None
+    og_m = re.search(r'og:image.*?content=["\']https://online\.sibcycline\.com/retsphotos/[^/]+/(\d+)_', html)
+    if og_m:
+        primary_id = og_m.group(1)
+    else:
+        # Fallback: use the most common photo ID
+        from collections import Counter
+        id_counts: Counter = Counter()
+        for u in all_urls:
+            m = re.search(r'/(\d+)_\d+\.', u)
+            if m:
+                id_counts[m.group(1)] += 1
+        if id_counts:
+            primary_id = id_counts.most_common(1)[0][0]
+
+    seen: set[str] = set()
+    photos = []
+    for url in all_urls:
+        # Filter to primary listing photos only
+        if primary_id and f"/{primary_id}_" not in url:
+            continue
+        key = url.split("?")[0]   # strip ?ts=...
+        if key not in seen:
+            seen.add(key)
+            photos.append(key)
+    return photos[:30]
+
+
+def _extract_photos_comey(soup: BeautifulSoup) -> list[str]:
+    """
+    Comey & Shepherd — photos in Splide carousel as data-splide-lazy attributes.
+    URL pattern: https://cdn-idxphotos.mfm.com/propimgs/mls_*/full/{4}/{listingid}l[N].jpg?timestamp
+    Deduplicate by stripping query string.
     """
     seen: set[str] = set()
     photos = []
-    for img in soup.find_all("img"):
-        src = img.get("src", "") or ""
-        if "sibcycline.com/retsphotos/" not in src:
+    for el in soup.find_all(attrs={"data-splide-lazy": True}):
+        src = el["data-splide-lazy"]
+        if "cdn-idxphotos.mfm.com" not in src:
             continue
         key = src.split("?")[0]
         if key not in seen:
             seen.add(key)
-            photos.append(key)   # drop ts= query param
-    return photos[:25]
+            photos.append(key)
+    return photos[:50]
 
 
 # Sources that benefit from photo enrichment and what strategy to use
-_PHOTO_SOURCES = {"coldwell_banker", "cincinky", "sibcy_cline"}
-SLOW_PHOTO_SOURCES: set[str] = set()   # none need rate-limiting for photos
+_PHOTO_SOURCES = {"coldwell_banker", "cincinky", "sibcy_cline", "comey"}
+SLOW_PHOTO_SOURCES: set[str] = {"comey"}   # Comey blocks parallel requests
 
 
 def enrich_photos(
@@ -615,8 +657,15 @@ def enrich_photos(
         logger.info("Photo enrichment: all listings already enriched")
         return listings
 
+    # Split into fast (parallel) and slow (sequential) batches
+    fast_batch = [l for l in to_enrich if l.get("source") not in SLOW_PHOTO_SOURCES]
+    slow_batch = [l for l in to_enrich if l.get("source") in SLOW_PHOTO_SOURCES]
+
     total = len(to_enrich)
-    logger.info(f"Photo enrichment: fetching {total} detail pages ({', '.join(sources)})…")
+    logger.info(
+        f"Photo enrichment: {total} listings "
+        f"({len(fast_batch)} parallel, {len(slow_batch)} sequential for {', '.join(SLOW_PHOTO_SOURCES or ['none'])})…"
+    )
 
     def fetch_one(listing: dict) -> tuple[dict, list[str]]:
         url    = listing["url"]
@@ -630,52 +679,72 @@ def enrich_photos(
 
         if source == "coldwell_banker":
             photos = _extract_photos_coldwell(resp.text)
-        else:
+        elif source == "cincinky":
             soup = BeautifulSoup(resp.text, "html.parser")
-            if source == "cincinky":
-                photos = _extract_photos_cincinky(soup)
-            elif source == "sibcy_cline":
-                photos = _extract_photos_sibcy(soup)
-            else:
-                photos = []
+            photos = _extract_photos_cincinky(soup)
+        elif source == "sibcy_cline":
+            photos = _extract_photos_sibcy(resp.text)   # uses raw HTML regex
+        elif source == "comey":
+            soup = BeautifulSoup(resp.text, "html.parser")
+            photos = _extract_photos_comey(soup)
+        else:
+            photos = []
         return listing, photos
 
     done = errors = 0
     lock = threading.Lock()
     last_checkpoint = 0
 
-    with ThreadPoolExecutor(max_workers=WORKERS) as pool:
-        futures = {pool.submit(fetch_one, l): l for l in to_enrich}
-        for future in as_completed(futures):
-            try:
-                listing, photos = future.result()
-                listing["photos_enriched"] = True
-                if photos:
-                    listing["images"] = photos
-                    with lock:
-                        done += 1
-                        milestone = (done // checkpoint_every) * checkpoint_every
+    def _handle_photo_result(listing, photos):
+        nonlocal done, errors, last_checkpoint
+        listing["photos_enriched"] = True
+        if photos:
+            listing["images"] = photos
+            with lock:
+                done += 1
+                milestone = (done // checkpoint_every) * checkpoint_every
+        else:
+            with lock:
+                errors += 1
+            milestone = 0
+
+        if milestone > 0:
+            with lock:
+                if milestone > last_checkpoint:
+                    last_checkpoint = milestone
+                    do_ckpt = True
                 else:
+                    do_ckpt = False
+            if do_ckpt:
+                logger.info(f"Photo enrichment: {done}/{total} done…")
+                if checkpoint_fn:
+                    checkpoint_fn(listings)
+
+    # Fast parallel pass
+    if fast_batch:
+        with ThreadPoolExecutor(max_workers=WORKERS) as pool:
+            futures = {pool.submit(fetch_one, l): l for l in fast_batch}
+            for future in as_completed(futures):
+                try:
+                    listing, photos = future.result()
+                    _handle_photo_result(listing, photos)
+                except Exception as e:
                     with lock:
                         errors += 1
-                    milestone = 0
+                    logger.debug(f"Photo enrich error: {e}")
+
+    # Slow sequential pass (Comey etc. — blocks parallel requests)
+    if slow_batch:
+        logger.info(f"Photo enrichment: starting sequential pass for {len(slow_batch)} Comey listings…")
+        for listing in slow_batch:
+            try:
+                _, photos = fetch_one(listing)
+                _handle_photo_result(listing, photos)
             except Exception as e:
                 with lock:
                     errors += 1
                 logger.debug(f"Photo enrich error: {e}")
-                milestone = 0
-
-            if milestone > 0:
-                with lock:
-                    if milestone > last_checkpoint:
-                        last_checkpoint = milestone
-                        do_ckpt = True
-                    else:
-                        do_ckpt = False
-                if do_ckpt:
-                    logger.info(f"Photo enrichment: {milestone}/{total} done…")
-                    if checkpoint_fn:
-                        checkpoint_fn(listings)
+            time.sleep(0.5)   # 0.5s between Comey requests to avoid rate-limiting
 
     logger.info(f"Photo enrichment complete: {done} enriched, {errors} failed/no-photos")
     return listings
