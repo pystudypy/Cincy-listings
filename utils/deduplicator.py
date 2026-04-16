@@ -38,8 +38,26 @@ def _normalize_address(address: str, zipcode: str = "") -> str:
 
     addr = address.lower().strip()
 
-    # Remove unit / apt / suite designators — they cause false non-matches
+    # Convert ordinal words to numbers: "fourteenth" → "14", "third" → "3"
+    ordinal_words = {
+        "first": "1", "second": "2", "third": "3", "fourth": "4",
+        "fifth": "5", "sixth": "6", "seventh": "7", "eighth": "8",
+        "ninth": "9", "tenth": "10", "eleventh": "11", "twelfth": "12",
+        "thirteenth": "13", "fourteenth": "14", "fifteenth": "15",
+        "sixteenth": "16", "seventeenth": "17", "eighteenth": "18",
+        "nineteenth": "19", "twentieth": "20", "twenty": "20",
+    }
+    for word, num in ordinal_words.items():
+        addr = re.sub(rf"\b{word}\b", num, addr)
+
+    # Strip ordinal suffixes from numbers: "14th" → "14", "3rd" → "3"
+    addr = re.sub(r"\b(\d+)(st|nd|rd|th)\b", r"\1", addr)
+
+    # Remove unit / apt / suite designators with keyword — e.g. "Apt C", "Unit 2"
     addr = re.sub(r"\b(apt|unit|suite|ste|#)\s*[\w-]+", "", addr)
+
+    # Remove city/state/zip suffix if present (some sources include it)
+    addr = re.sub(r",?\s*(cincinnati|ohio|oh|ky|kentucky)\b.*$", "", addr)
 
     # Normalize common street suffixes (both long→short and short→short)
     suffix_map = {
@@ -81,6 +99,12 @@ def _normalize_address(address: str, zipcode: str = "") -> str:
     }
     for pattern, replacement in suffix_map.items():
         addr = re.sub(pattern, replacement, addr)
+
+    # Strip trailing unit designator after street suffix — no keyword prefix
+    # e.g. "1325 republic st c" → "1325 republic st"
+    # e.g. "456 elm ave 2b" → "456 elm ave"
+    known_sfx = r"(?:st|ave|blvd|dr|ln|rd|ct|cir|pl|way|ter|pkwy|hl|hls|trl|sq|vly|holw|brk|crk|xing|run|pike)"
+    addr = re.sub(rf"\b({known_sfx})\s+[a-z0-9]{{1,4}}\b\s*$", r"\1", addr)
 
     # Collapse whitespace
     addr = re.sub(r"\s+", " ", addr).strip()

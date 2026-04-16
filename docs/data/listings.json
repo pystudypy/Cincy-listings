@@ -1,6 +1,6 @@
 {
   "last_updated": "2026-04-16T12:26:33.494894+00:00",
-  "total_count": 4504,
+  "total_count": 4370,
   "source_counts": {
     "coldwell_banker": 1511,
     "comey": 2032,
@@ -531,7 +531,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6398/639878q.jpg?1771007481"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6398/639878q.jpg?1771007481",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6398/639880q.jpg?1771009437"
       ],
       "url": "https://www.comey.com/real-estate/nky/639878/725-Alexandria-Pike-210-Fort-Thomas-KY-41075/",
       "source": "comey",
@@ -554,7 +555,10 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6364/636466q.jpg?1758304450"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6364/636466q.jpg?1758304450",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6364/636465q.jpg?1758304384",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6364/636464q.jpg?1758304324",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6364/636463q.jpg?1758304228"
       ],
       "url": "https://www.comey.com/real-estate/nky/636466/284-Manhattan-Boulevard-4-Dayton-KY-41074/",
       "source": "comey",
@@ -584,29 +588,6 @@
       "lat": 39.326672,
       "lng": -84.363976,
       "last_updated": "2026-04-16T12:14:07.274886"
-    },
-    {
-      "id": "44d51c786256b34e",
-      "address": "725 Alexandria Pike 230",
-      "city": "Fort Thomas",
-      "state": "KY",
-      "zip": "41075",
-      "price": 1600,
-      "beds": null,
-      "baths": null,
-      "sqft": 11240,
-      "lot_size": null,
-      "property_type": "Mixed Use",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6398/639880q.jpg?1771009437"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/639880/725-Alexandria-Pike-230-Fort-Thomas-KY-41075/",
-      "source": "comey",
-      "lat": 39.063335,
-      "lng": -84.454475,
-      "last_updated": "2026-04-16T12:14:38.414373"
     },
     {
       "id": "9a021adf4bf29835",
@@ -793,29 +774,6 @@
       "last_updated": "2026-04-16T12:14:32.022034"
     },
     {
-      "id": "56e1a6b5127026f6",
-      "address": "284 Manhattan Boulevard 3",
-      "city": "Dayton",
-      "state": "KY",
-      "zip": "41074",
-      "price": 1795,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 952,
-      "lot_size": null,
-      "property_type": "Multi Family",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6364/636465q.jpg?1758304384"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/636465/284-Manhattan-Boulevard-3-Dayton-KY-41074/",
-      "source": "comey",
-      "lat": 39.111336,
-      "lng": -84.480789,
-      "last_updated": "2026-04-16T12:14:38.415290"
-    },
-    {
       "id": "e03e2295f683ca8e",
       "address": "511 Park Avenue 2",
       "city": "Newport",
@@ -931,29 +889,6 @@
       "last_updated": "2026-04-16T12:14:44.886561"
     },
     {
-      "id": "cb104e58cce220b1",
-      "address": "284 Manhattan Boulevard 2",
-      "city": "Dayton",
-      "state": "KY",
-      "zip": "41074",
-      "price": 1895,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1080,
-      "lot_size": null,
-      "property_type": "Multi Family",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6364/636464q.jpg?1758304324"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/636464/284-Manhattan-Boulevard-2-Dayton-KY-41074/",
-      "source": "comey",
-      "lat": 39.111336,
-      "lng": -84.480789,
-      "last_updated": "2026-04-16T12:14:38.415283"
-    },
-    {
       "id": "db1fdf5102ddd763",
       "address": "212 W 6th Street 2",
       "city": "Covington",
@@ -1067,29 +1002,6 @@
       "lat": 39.050728,
       "lng": -84.586784,
       "last_updated": "2026-04-16T12:14:32.020271"
-    },
-    {
-      "id": "14dce404ba7286b4",
-      "address": "284 Manhattan Boulevard 1",
-      "city": "Dayton",
-      "state": "KY",
-      "zip": "41074",
-      "price": 2095,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1142,
-      "lot_size": null,
-      "property_type": "Multi Family",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6364/636463q.jpg?1758304228"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/636463/284-Manhattan-Boulevard-1-Dayton-KY-41074/",
-      "source": "comey",
-      "lat": 39.111336,
-      "lng": -84.480789,
-      "last_updated": "2026-04-16T12:14:38.415277"
     },
     {
       "id": "b072dd4af1157b7c",
@@ -1237,15 +1149,18 @@
       "state": "KY",
       "zip": "41071",
       "price": 2300,
-      "beds": null,
-      "baths": null,
+      "beds": 3,
+      "baths": 3.0,
       "sqft": 1625,
       "lot_size": null,
       "property_type": "Mixed Use",
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6399/639962q.jpg?1771417999"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6399/639961q.jpg?1771417946",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6399/639962q.jpg?1771417999",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6399/639965q.jpg?1771426812",
+        "https://m.cbhomes.com/p/192/639965/db8aD8213D9e42a/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/639962/1019-Monmouth-Street-B-Newport-KY-41071/",
       "source": "comey",
@@ -1485,29 +1400,6 @@
       "last_updated": "2026-04-16T12:14:32.022976"
     },
     {
-      "id": "b282cedd47abe791",
-      "address": "1019 Monmouth Street A",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 3000,
-      "beds": null,
-      "baths": null,
-      "sqft": 1625,
-      "lot_size": null,
-      "property_type": "Mixed Use",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6399/639961q.jpg?1771417946"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/639961/1019-Monmouth-Street-A-Newport-KY-41071/",
-      "source": "comey",
-      "lat": 39.086887,
-      "lng": -84.488037,
-      "last_updated": "2026-04-16T12:14:38.414321"
-    },
-    {
       "id": "bd9ab8a9b84e608d",
       "address": "2116 Penny Lane",
       "city": "Hebron",
@@ -1568,7 +1460,9 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6357/635705q.jpg?1756208861"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6357/635705q.jpg?1756208861",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6378/637876q.jpg?1762762389",
+        "https://m.cbhomes.com/p/192/637876/B432E0AaB110439/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/635705/617-Manhattan-Boulevard-204-Dayton-KY-41074/",
       "source": "comey",
@@ -1782,29 +1676,6 @@
       "lat": 39.0894,
       "lng": -84.569,
       "last_updated": "2026-04-16T12:20:44.673534+00:00"
-    },
-    {
-      "id": "77d5c0998e8a5368",
-      "address": "1 Roebling Way 904",
-      "city": "Covington",
-      "state": "KY",
-      "zip": "41011",
-      "price": 5300,
-      "beds": 2,
-      "baths": 2.5,
-      "sqft": 2204,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6415/641545q.jpg?1776187050"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/641545/1-Roebling-Way-904-Covington-KY-41011/",
-      "source": "comey",
-      "lat": 39.089344,
-      "lng": -84.509506,
-      "last_updated": "2026-04-16T12:14:32.019415"
     },
     {
       "id": "3955912ac7dd6e60",
@@ -4034,7 +3905,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6399/639938q.jpg?1771359083"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6399/639938q.jpg?1771359083",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6397/639748q.jpg?1773429444"
       ],
       "url": "https://www.comey.com/real-estate/nky/639938/70-Creekwood-Drive-4-Wilder-KY-41071/",
       "source": "comey",
@@ -4571,36 +4443,14 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6403/640303q.jpg?1775036330"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6403/640303q.jpg?1775036330",
+        "https://m1.cbhomes.com/p/192/640303/22A07ecdd6594dF/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640303/25-Rio-Grande-Circle-12-Florence-KY-41042/",
       "source": "comey",
       "lat": 38.972229,
       "lng": -84.674583,
       "last_updated": "2026-04-16T12:14:44.887144"
-    },
-    {
-      "id": "c8f0e83745d8313a",
-      "address": "25 Rio Grande Cir",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 115000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 956,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/640303/22A07ecdd6594dF/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/25-rio-grande-circle-12/pid_69916282/",
-      "source": "coldwell_banker",
-      "lat": 38.9723,
-      "lng": -84.6745,
-      "last_updated": "2026-04-16T12:22:26.992994+00:00"
     },
     {
       "id": "f30b33ec983b7218",
@@ -6404,36 +6254,14 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6385/638530q.jpg?1765281246"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6385/638530q.jpg?1765281246",
+        "https://m1.cbhomes.com/p/192/638530/9140265978E749d/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/638530/10593-Lynn-Lane-1-Alexandria-KY-41001/",
       "source": "comey",
       "lat": 38.909073,
       "lng": -84.38549,
       "last_updated": "2026-04-16T12:14:38.414920"
-    },
-    {
-      "id": "69606842293d210a",
-      "address": "10593 Lynn Ln",
-      "city": "Alexandria",
-      "state": "KY",
-      "zip": "41001",
-      "price": 137750,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 970,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/638530/9140265978E749d/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/alexandria/10593-lynn-ln-1/pid_68751866/",
-      "source": "coldwell_banker",
-      "lat": 38.9092,
-      "lng": -84.3855,
-      "last_updated": "2026-04-16T12:24:08.810150+00:00"
     },
     {
       "id": "b879c5d14e44a827",
@@ -6776,7 +6604,8 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6406/640679q.jpg?1773826905"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6406/640679q.jpg?1773826905",
+        "https://m.cbhomes.com/p/192/640679/cC66bb1473e8439/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640679/1067-Oakgrove-Court-1-Independence-KY-41051/",
       "source": "comey",
@@ -6892,7 +6721,9 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6387/638799q.jpg?1770110690"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6387/638799q.jpg?1770110690",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6407/640795q.jpg?1774097683",
+        "https://m.cbhomes.com/p/192/640795/f1CBc4fB7dE0424/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/638799/2207-Teal-Briar-Lane-309-Burlington-KY-41005/",
       "source": "comey",
@@ -6991,29 +6822,6 @@
       "lat": 39.1318,
       "lng": -84.6198,
       "last_updated": "2026-04-16T12:21:05.269220+00:00"
-    },
-    {
-      "id": "289e77e7b4e63375",
-      "address": "1067 Oakgrove Ct",
-      "city": "Independence",
-      "state": "KY",
-      "zip": "41051",
-      "price": 139900,
-      "beds": 2,
-      "baths": 1.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/640679/cC66bb1473e8439/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/independence/1067-oakgrove-ct-1/pid_70166039/",
-      "source": "coldwell_banker",
-      "lat": 38.966,
-      "lng": -84.5996,
-      "last_updated": "2026-04-16T12:23:03.514299+00:00"
     },
     {
       "id": "adb2685cb6dd41cd",
@@ -7935,36 +7743,14 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6397/639791q.jpg?1770823850"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6397/639791q.jpg?1770823850",
+        "https://m.cbhomes.com/p/192/639791/390f697091D040f/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/639791/10565-Michael-Drive-10-Alexandria-KY-41001/",
       "source": "comey",
       "lat": 38.909607,
       "lng": -84.387726,
       "last_updated": "2026-04-16T12:14:38.414422"
-    },
-    {
-      "id": "219652ad02960352",
-      "address": "10565 Michael Dr",
-      "city": "Alexandria",
-      "state": "KY",
-      "zip": "41001",
-      "price": 149000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 970,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/639791/390f697091D040f/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/alexandria/10565-michael-dr-10/pid_69590194/",
-      "source": "coldwell_banker",
-      "lat": 38.9096,
-      "lng": -84.3874,
-      "last_updated": "2026-04-16T12:24:07.393380+00:00"
     },
     {
       "id": "dfd618fa28b57f35",
@@ -7981,36 +7767,14 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6408/640822q.jpg?1774278565"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6408/640822q.jpg?1774278565",
+        "https://m.cbhomes.com/p/192/640822/51C4B502615142b/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640822/2316-Sawmill-Court-309-Burlington-KY-41005/",
       "source": "comey",
       "lat": 39.027103,
       "lng": -84.711281,
       "last_updated": "2026-04-16T12:14:44.886315"
-    },
-    {
-      "id": "e51a1e73e5c8d815",
-      "address": "2316 Sawmill Ct",
-      "city": "Burlington",
-      "state": "KY",
-      "zip": "41005",
-      "price": 149500,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1066,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/640822/51C4B502615142b/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/burlington/2316-sawmill-ct-309/pid_70258451/",
-      "source": "coldwell_banker",
-      "lat": 39.0286,
-      "lng": -84.712,
-      "last_updated": "2026-04-16T12:24:17.229609+00:00"
     },
     {
       "id": "ea5a92f419e74f36",
@@ -8168,7 +7932,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6407/640769q.jpg?1774013560"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6407/640769q.jpg?1774013560",
+        "https://m1.cbhomes.com/p/192/640769/364FF635Be5b4Bf/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640769/122-W-32nd-Street-Covington-KY-41015/",
       "source": "comey",
@@ -8214,7 +7979,8 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6387/638722q.jpg?1766150913"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6387/638722q.jpg?1766150913",
+        "https://m1.cbhomes.com/p/192/638722/1254B8C2648a46C/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/638722/2292-Medlock-Lane-207-Burlington-KY-41005/",
       "source": "comey",
@@ -8290,52 +8056,6 @@
       "lat": 39.2911,
       "lng": -84.3505,
       "last_updated": "2026-04-16T12:21:30.661667+00:00"
-    },
-    {
-      "id": "ec7afcf15972dc23",
-      "address": "122 W 32nd Street W",
-      "city": "Covington",
-      "state": "KY",
-      "zip": "41015",
-      "price": 149900,
-      "beds": null,
-      "baths": 3.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/640769/364FF635Be5b4Bf/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/covington/122-w-32nd-street-w/pid_70222078/",
-      "source": "coldwell_banker",
-      "lat": 39.0511,
-      "lng": -84.5064,
-      "last_updated": "2026-04-16T12:21:50.113839+00:00"
-    },
-    {
-      "id": "c5b2c806db890954",
-      "address": "2292 Medlock Ln",
-      "city": "Burlington",
-      "state": "KY",
-      "zip": "41005",
-      "price": 149900,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1066,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/638722/1254B8C2648a46C/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/burlington/2292-medlock-ln-207/pid_68878209/",
-      "source": "coldwell_banker",
-      "lat": 39.027,
-      "lng": -84.7118,
-      "last_updated": "2026-04-16T12:24:18.999657+00:00"
     },
     {
       "id": "558fa56243f02d11",
@@ -9078,7 +8798,8 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6405/640596q.jpg?1773484673"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6405/640596q.jpg?1773484673",
+        "https://m.cbhomes.com/p/192/640596/b4c2ea1aEe4f4b3/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640596/4231-Briarwood-Drive-1-Independence-KY-41051/",
       "source": "comey",
@@ -9224,29 +8945,6 @@
       "lat": 39.0728,
       "lng": -84.5156,
       "last_updated": "2026-04-16T12:21:58.452524+00:00"
-    },
-    {
-      "id": "dc1e68de2b36905b",
-      "address": "4231 Briarwood Dr",
-      "city": "Independence",
-      "state": "KY",
-      "zip": "41051",
-      "price": 154900,
-      "beds": 3,
-      "baths": 1.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/640596/b4c2ea1aEe4f4b3/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/independence/4231-briarwood-dr-1/pid_70114200/",
-      "source": "coldwell_banker",
-      "lat": 38.9684,
-      "lng": -84.6057,
-      "last_updated": "2026-04-16T12:23:05.073025+00:00"
     },
     {
       "id": "7dbf3316054be44c",
@@ -9517,36 +9215,14 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6409/640988q.jpg?1774650362"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6409/640988q.jpg?1774650362",
+        "https://m.cbhomes.com/p/192/640988/3cf631311C06430/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640988/436-Marian-Lane-9-Florence-KY-41042/",
       "source": "comey",
       "lat": 38.952312,
       "lng": -84.628952,
       "last_updated": "2026-04-16T12:14:44.886110"
-    },
-    {
-      "id": "9ae41b436fea3330",
-      "address": "436 Marian Ln",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 157500,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 952,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/640988/3cf631311C06430/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/436-marian-ln-9/pid_70357093/",
-      "source": "coldwell_banker",
-      "lat": 38.9524,
-      "lng": -84.6288,
-      "last_updated": "2026-04-16T12:22:25.201391+00:00"
     },
     {
       "id": "70e5011605b3b2f9",
@@ -9635,7 +9311,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6382/638258q.jpg?1774965606"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6382/638258q.jpg?1774965606",
+        "https://m.cbhomes.com/p/192/638258/95ef92447F8E4E9/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/638258/330-W-9th-Street-Newport-KY-41071/",
       "source": "comey",
@@ -9713,29 +9390,6 @@
       "last_updated": "2026-04-16T12:21:05.289654+00:00"
     },
     {
-      "id": "5e570c66975697fb",
-      "address": "330 W 9th Street W",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 159000,
-      "beds": 3,
-      "baths": 1.0,
-      "sqft": 1234,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/638258/95ef92447F8E4E9/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/newport/330-w-9th-street-w/pid_68600522/",
-      "source": "coldwell_banker",
-      "lat": 39.0845,
-      "lng": -84.4967,
-      "last_updated": "2026-04-16T12:22:09.481040+00:00"
-    },
-    {
       "id": "5828295d1358dbfc",
       "address": "9576 Cornell Lane",
       "city": "West Chester",
@@ -9773,36 +9427,14 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6399/639977q.jpg?1771837379"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6399/639977q.jpg?1771837379",
+        "https://m.cbhomes.com/p/192/639977/c7E820113D2C4d1/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/639977/612-Friars-Lane-8-Florence-KY-41042/",
       "source": "comey",
       "lat": 38.950851,
       "lng": -84.627701,
       "last_updated": "2026-04-16T12:14:44.887390"
-    },
-    {
-      "id": "541f39bd96cfcadd",
-      "address": "612 Friars Ln",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 159500,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1010,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/639977/c7E820113D2C4d1/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/612-friars-ln-8/pid_69708977/",
-      "source": "coldwell_banker",
-      "lat": 38.9509,
-      "lng": -84.6277,
-      "last_updated": "2026-04-16T12:22:28.614436+00:00"
     },
     {
       "id": "995ece8b3f346f94",
@@ -10030,7 +9662,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6400/640094q.jpg?1771952005"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6400/640094q.jpg?1771952005",
+        "https://m1.cbhomes.com/p/192/640094/802bc9A74E6142E/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640094/129-Barren-River-Drive-9-Erlanger-KY-41018/",
       "source": "comey",
@@ -10293,29 +9926,6 @@
       "last_updated": "2026-04-16T12:21:27.099464+00:00"
     },
     {
-      "id": "adb76bad6484ba2b",
-      "address": "129 Barren River Dr",
-      "city": "Erlanger",
-      "state": "KY",
-      "zip": "41018",
-      "price": 159900,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1165,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/640094/802bc9A74E6142E/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/erlanger/129-barren-river-dr-9/pid_69787696/",
-      "source": "coldwell_banker",
-      "lat": 39.0112,
-      "lng": -84.6138,
-      "last_updated": "2026-04-16T12:23:21.816382+00:00"
-    },
-    {
       "id": "8cfa342cde4cf64d",
       "address": "3364 Amberway Ct #45",
       "city": "Cincinnati",
@@ -10352,36 +9962,14 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6415/641576q.jpg?1776264964"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6415/641576q.jpg?1776264964",
+        "https://m1.cbhomes.com/p/192/641576/028Cb485dC3f45E/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/641576/1060-Oakwood-Court-3-Independence-KY-41051/",
       "source": "comey",
       "lat": 38.965767,
       "lng": -84.599335,
       "last_updated": "2026-04-16T12:14:32.019239"
-    },
-    {
-      "id": "e9cdb04bdc96572c",
-      "address": "70 Creekwood Drive 9",
-      "city": "Wilder",
-      "state": "KY",
-      "zip": "41071",
-      "price": 160000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 980,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6397/639748q.jpg?1773429444"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/639748/70-Creekwood-Drive-9-Wilder-KY-41071/",
-      "source": "comey",
-      "lat": 39.05365,
-      "lng": -84.485077,
-      "last_updated": "2026-04-16T12:14:38.414453"
     },
     {
       "id": "6dcd55a003fd1055",
@@ -10398,7 +9986,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6404/640415q.jpg?1772896739"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6404/640415q.jpg?1772896739",
+        "https://m.cbhomes.com/p/192/640415/27456156e6784bF/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640415/10272-Crossbow-Court-2-Florence-KY-41042/",
       "source": "comey",
@@ -10498,52 +10087,6 @@
       "lat": 39.1371,
       "lng": -84.4704,
       "last_updated": "2026-04-16T12:20:12.972486+00:00"
-    },
-    {
-      "id": "bbd1c152b41d931a",
-      "address": "10272 Crossbow Ct",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 160000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 952,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/640415/27456156e6784bF/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/10272-crossbow-ct-2/pid_69993223/",
-      "source": "coldwell_banker",
-      "lat": 38.9515,
-      "lng": -84.6272,
-      "last_updated": "2026-04-16T12:22:26.937485+00:00"
-    },
-    {
-      "id": "0e7dc527f75c1127",
-      "address": "1060 Oakwood Ct",
-      "city": "Independence",
-      "state": "KY",
-      "zip": "41051",
-      "price": 160000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 936,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/641576/028Cb485dC3f45E/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/independence/1060-oakwood-ct-3/pid_70689938/",
-      "source": "coldwell_banker",
-      "lat": 38.9657,
-      "lng": -84.5993,
-      "last_updated": "2026-04-16T12:23:01.578595+00:00"
     },
     {
       "id": "444ff30ae3c30b20",
@@ -11094,7 +10637,8 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6400/640051q.jpg?1771777146"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6400/640051q.jpg?1771777146",
+        "https://m1.cbhomes.com/p/192/640051/7f6F183d7e1646e/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640051/1070-Oakgrove-Court-2-Independence-KY-41051/",
       "source": "comey",
@@ -11163,36 +10707,14 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6413/641303q.jpg?1775634033"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6413/641303q.jpg?1775634033",
+        "https://m1.cbhomes.com/p/192/641303/47bE0eCF3473452/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/641303/388-Marian-Lane-8-Florence-KY-41042/",
       "source": "comey",
       "lat": 38.952812,
       "lng": -84.626915,
       "last_updated": "2026-04-16T12:14:44.885427"
-    },
-    {
-      "id": "e2b2a424c212dd47",
-      "address": "2207 Teal Briar Lane 103",
-      "city": "Burlington",
-      "state": "KY",
-      "zip": "41005",
-      "price": 165000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1013,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6407/640795q.jpg?1774097683"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/640795/2207-Teal-Briar-Lane-103-Burlington-KY-41005/",
-      "source": "comey",
-      "lat": 39.028984,
-      "lng": -84.710251,
-      "last_updated": "2026-04-16T12:14:44.886393"
     },
     {
       "id": "657553315c872580",
@@ -11287,75 +10809,6 @@
       "last_updated": "2026-04-16T12:21:27.159641+00:00"
     },
     {
-      "id": "35c5f26140c12ba9",
-      "address": "388 Marian Ln",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 165000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1010,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/641303/47bE0eCF3473452/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/388-marian-ln-8/pid_70537306/",
-      "source": "coldwell_banker",
-      "lat": 38.9528,
-      "lng": -84.627,
-      "last_updated": "2026-04-16T12:22:21.838642+00:00"
-    },
-    {
-      "id": "3ba90715ff162ad7",
-      "address": "1070 Oakgrove Ct",
-      "city": "Independence",
-      "state": "KY",
-      "zip": "41051",
-      "price": 165000,
-      "beds": 2,
-      "baths": 1.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/640051/7f6F183d7e1646e/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/independence/1070-oakgrove-ct-2/pid_69759350/",
-      "source": "coldwell_banker",
-      "lat": 38.9664,
-      "lng": -84.5996,
-      "last_updated": "2026-04-16T12:23:05.184019+00:00"
-    },
-    {
-      "id": "3a03040feb8cbf98",
-      "address": "2207 Teal Briar Ln",
-      "city": "Burlington",
-      "state": "KY",
-      "zip": "41005",
-      "price": 165000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1013,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/640795/f1CBc4fB7dE0424/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/burlington/2207-teal-briar-ln-103/pid_70239056/",
-      "source": "coldwell_banker",
-      "lat": 39.0291,
-      "lng": -84.7101,
-      "last_updated": "2026-04-16T12:24:17.234055+00:00"
-    },
-    {
       "id": "88c15c2f62f04956",
       "address": "701 Napa Valley Lane 3",
       "city": "Crestview Hills",
@@ -11370,7 +10823,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6408/640834q.jpg?1774342914"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6408/640834q.jpg?1774342914",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6399/639922q.jpg?1771594845"
       ],
       "url": "https://www.comey.com/real-estate/nky/640834/701-Napa-Valley-Lane-3-Crestview-Hills-KY-41017/",
       "source": "comey",
@@ -11393,36 +10847,14 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6410/641065q.jpg?1775026697"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6410/641065q.jpg?1775026697",
+        "https://m.cbhomes.com/p/192/641065/Bc41027BA1Cb400/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/641065/10148-Carnation-Court-8-Florence-KY-41042/",
       "source": "comey",
       "lat": 38.952908,
       "lng": -84.630096,
       "last_updated": "2026-04-16T12:14:44.885798"
-    },
-    {
-      "id": "e3f9e915a032a3d0",
-      "address": "10148 Carnation Ct",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 167000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/641065/Bc41027BA1Cb400/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/10148-carnation-ct-8/pid_70409632/",
-      "source": "coldwell_banker",
-      "lat": 38.9529,
-      "lng": -84.6301,
-      "last_updated": "2026-04-16T12:22:23.426618+00:00"
     },
     {
       "id": "da890aa9233092c4",
@@ -11533,7 +10965,8 @@
       "status": "Active",
       "days_on_market": 1,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18754/1875461q.jpg?1776276048"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18754/1875461q.jpg?1776276048",
+        "https://m.cbhomes.com/p/220/1875461/6003821415A04a6/m23cc.webp"
       ],
       "url": "https://www.redfin.com/OH/Cincinnati/1236-1st-Ave-45205/home/76139120",
       "source": "redfin",
@@ -11541,29 +10974,6 @@
       "lng": -84.5788273,
       "last_updated": "2026-04-16T12:13:43.373883",
       "description": "Beautifully renovated single-faily home 3/4 bedrooms with 1 1/2 baths at 1236 First Ave. in Cincinnati. This property has been fully updated throughout, offering a true turnkey opportunity for investors with great situation for high rents/cash flow or affordable living for owner occupants. Enjoy fully updated renovation with a new bathroom, fresh finishes, and modern improvements from top to bottom. Move-in ready, this home delivers exceptional value in a convenient location. Five minutes from downtown Cincinnati and all major highways."
-    },
-    {
-      "id": "58efeaf8adb28cb1",
-      "address": "1236 1st Ave",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45205",
-      "price": 168500,
-      "beds": 3,
-      "baths": 2.0,
-      "sqft": 1771,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/220/1875461/6003821415A04a6/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/oh/cincinnati/1236-first-ave/pid_70692982/",
-      "source": "coldwell_banker",
-      "lat": 39.1155,
-      "lng": -84.5788,
-      "last_updated": "2026-04-16T12:19:11.158701+00:00"
     },
     {
       "id": "8198cd014893b136",
@@ -12261,7 +11671,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6412/641251q.jpg?1775475634"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6412/641251q.jpg?1775475634",
+        "https://m1.cbhomes.com/p/192/641251/70A6754272184C0/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/641251/150-Rough-River-Drive-6-Erlanger-KY-41018/",
       "source": "comey",
@@ -12284,7 +11695,8 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6409/640956q.jpg?1774612040"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6409/640956q.jpg?1774612040",
+        "https://m1.cbhomes.com/p/192/640956/6d23a91ED4bc401/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640956/145-Barren-River-Drive-4-Erlanger-KY-41018/",
       "source": "comey",
@@ -12455,52 +11867,6 @@
       "last_updated": "2026-04-16T12:21:13.101662+00:00"
     },
     {
-      "id": "456d79cbc595ec48",
-      "address": "150 Rough River Dr",
-      "city": "Erlanger",
-      "state": "KY",
-      "zip": "41018",
-      "price": 170000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 962,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/641251/70A6754272184C0/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/erlanger/150-rough-river-dr-6/pid_70499035/",
-      "source": "coldwell_banker",
-      "lat": 39.0126,
-      "lng": -84.6144,
-      "last_updated": "2026-04-16T12:23:20.125660+00:00"
-    },
-    {
-      "id": "5e8fd50edb204787",
-      "address": "145 Barren River Dr",
-      "city": "Erlanger",
-      "state": "KY",
-      "zip": "41018",
-      "price": 170000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1113,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/640956/6d23a91ED4bc401/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/erlanger/145-barren-river-dr-4/pid_70340997/",
-      "source": "coldwell_banker",
-      "lat": 39.0109,
-      "lng": -84.6134,
-      "last_updated": "2026-04-16T12:23:20.161509+00:00"
-    },
-    {
       "id": "3274feccb2284851",
       "address": "4245 Briarwood Drive 4",
       "city": "Independence",
@@ -12515,36 +11881,14 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6404/640475q.jpg?1773229948"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6404/640475q.jpg?1773229948",
+        "https://m.cbhomes.com/p/192/640475/cf0B8C1a3eEF4d9/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640475/4245-Briarwood-Drive-4-Independence-KY-41051/",
       "source": "comey",
       "lat": 38.967648,
       "lng": -84.606659,
       "last_updated": "2026-04-16T12:14:32.021674"
-    },
-    {
-      "id": "78e469c7cf53f9cb",
-      "address": "4245 Briarwood Dr",
-      "city": "Independence",
-      "state": "KY",
-      "zip": "41051",
-      "price": 172000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 990,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/640475/cf0B8C1a3eEF4d9/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/independence/4245-briarwood-dr-4/pid_70044487/",
-      "source": "coldwell_banker",
-      "lat": 38.9676,
-      "lng": -84.6067,
-      "last_updated": "2026-04-16T12:23:05.102162+00:00"
     },
     {
       "id": "29db7b9d37ce8743",
@@ -12585,36 +11929,14 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6408/640832q.jpg?1774373667"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6408/640832q.jpg?1774373667",
+        "https://m1.cbhomes.com/p/192/640832/710807AFe1bD462/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640832/42-Rio-Grande-Circle-7-Florence-KY-41042/",
       "source": "comey",
       "lat": 38.970291,
       "lng": -84.672226,
       "last_updated": "2026-04-16T12:14:44.886262"
-    },
-    {
-      "id": "0151045fbfd23b7d",
-      "address": "42 Rio Grande Cir",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 173000,
-      "beds": 3,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/640832/710807AFe1bD462/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/42-rio-grande-circle-7/pid_70267731/",
-      "source": "coldwell_banker",
-      "lat": 38.9702,
-      "lng": -84.6721,
-      "last_updated": "2026-04-16T12:22:25.248842+00:00"
     },
     {
       "id": "650e30b77299ff35",
@@ -12678,36 +12000,14 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6409/640928q.jpg?1774540457"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6409/640928q.jpg?1774540457",
+        "https://m1.cbhomes.com/p/192/640928/0241D6cC2db8477/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640928/4187-Elder-Court-2-Independence-KY-41051/",
       "source": "comey",
       "lat": 38.966084,
       "lng": -84.60022,
       "last_updated": "2026-04-16T12:14:32.020920"
-    },
-    {
-      "id": "52d299f7f81236fa",
-      "address": "4187 Elder Ct",
-      "city": "Independence",
-      "state": "KY",
-      "zip": "41051",
-      "price": 174800,
-      "beds": 3,
-      "baths": 2.0,
-      "sqft": 1160,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/640928/0241D6cC2db8477/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/independence/4187-elder-ct-2/pid_70324221/",
-      "source": "coldwell_banker",
-      "lat": 38.9656,
-      "lng": -84.6005,
-      "last_updated": "2026-04-16T12:23:03.488319+00:00"
     },
     {
       "id": "5327bd3f9cf72ad0",
@@ -13171,7 +12471,8 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6403/640372q.jpg?1773157937"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6403/640372q.jpg?1773157937",
+        "https://m.cbhomes.com/p/192/640372/F1994c2698b6499/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640372/130-Buckhorn-Court-8-Erlanger-KY-41018/",
       "source": "comey",
@@ -13431,52 +12732,6 @@
       "lat": 39.222,
       "lng": -84.5483,
       "last_updated": "2026-04-16T12:21:14.792791+00:00"
-    },
-    {
-      "id": "21d14437c7ace38c",
-      "address": "130 Buckhorn Ct",
-      "city": "Erlanger",
-      "state": "KY",
-      "zip": "41018",
-      "price": 175000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1008,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/640372/F1994c2698b6499/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/erlanger/130-buckhorn-ct-8/pid_69965238/",
-      "source": "coldwell_banker",
-      "lat": 39.0103,
-      "lng": -84.6135,
-      "last_updated": "2026-04-16T12:23:21.791274+00:00"
-    },
-    {
-      "id": "5fb88289503cadba",
-      "address": "701 Napa Valley Lane 2",
-      "city": "Crestview Hills",
-      "state": "KY",
-      "zip": "41017",
-      "price": 175900,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 949,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6399/639922q.jpg?1771594845"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/639922/701-Napa-Valley-Lane-2-Crestview-Hills-KY-41017/",
-      "source": "comey",
-      "lat": 39.02129,
-      "lng": -84.551079,
-      "last_updated": "2026-04-16T12:14:32.022350"
     },
     {
       "id": "19d01615554b79a5",
@@ -14429,7 +13684,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6414/641402q.jpg?1775813351"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6414/641402q.jpg?1775813351",
+        "https://m1.cbhomes.com/p/192/641402/3849Fc402c1B45D/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/641402/158-Saddlebrook-Lane-319-Florence-KY-41042/",
       "source": "comey",
@@ -14597,29 +13853,6 @@
       "lat": 39.1092,
       "lng": -84.5566,
       "last_updated": "2026-04-16T12:21:23.808674+00:00"
-    },
-    {
-      "id": "026c2501bb8ccd04",
-      "address": "158 Saddlebrook Ln",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 180000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1196,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/641402/3849Fc402c1B45D/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/158-saddlebrook-ln-319/pid_70593828/",
-      "source": "coldwell_banker",
-      "lat": 38.9755,
-      "lng": -84.6391,
-      "last_updated": "2026-04-16T12:22:21.810801+00:00"
     },
     {
       "id": "62f39b4491a48576",
@@ -14869,7 +14102,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6412/641263q.jpg?1775493820"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6412/641263q.jpg?1775493820",
+        "https://m.cbhomes.com/p/192/641263/d467D75212E44DA/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/641263/210-Ashley-Drive-210-Alexandria-KY-41001/",
       "source": "comey",
@@ -14992,29 +14226,6 @@
       "lat": 39.1932,
       "lng": -84.4637,
       "last_updated": "2026-04-16T12:21:07.832383+00:00"
-    },
-    {
-      "id": "950f5938304aac11",
-      "address": "210 Ashley Dr",
-      "city": "Alexandria",
-      "state": "KY",
-      "zip": "41001",
-      "price": 184900,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1040,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/641263/d467D75212E44DA/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/alexandria/210-ashley-dr-210/pid_70507666/",
-      "source": "coldwell_banker",
-      "lat": 38.9734,
-      "lng": -84.3886,
-      "last_updated": "2026-04-16T12:24:05.695904+00:00"
     },
     {
       "id": "d37764dd04ff7616",
@@ -16978,7 +16189,8 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6409/640993q.jpg?1774693893"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6409/640993q.jpg?1774693893",
+        "https://m.cbhomes.com/p/192/640993/6AF67F538b5740D/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640993/154-Saddlebrook-Lane-401-Florence-KY-41042/",
       "source": "comey",
@@ -17001,7 +16213,8 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6406/640690q.jpg?1773841267"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6406/640690q.jpg?1773841267",
+        "https://m1.cbhomes.com/p/192/640690/4f099Bfc3C90400/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640690/149-Saddlebrook-Lane-557-Florence-KY-41042/",
       "source": "comey",
@@ -17217,52 +16430,6 @@
       "last_updated": "2026-04-16T12:21:16.807015+00:00"
     },
     {
-      "id": "15d2db1dc5541796",
-      "address": "154 Saddlebrook Ln",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 195000,
-      "beds": 3,
-      "baths": 2.0,
-      "sqft": 1304,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/640993/6AF67F538b5740D/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/154-saddlebrook-ln-401/pid_70359893/",
-      "source": "coldwell_banker",
-      "lat": 38.9749,
-      "lng": -84.64,
-      "last_updated": "2026-04-16T12:22:23.465722+00:00"
-    },
-    {
-      "id": "ffee6ddc252d8c70",
-      "address": "149 Saddlebrook Ln",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 195000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1304,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/640690/4f099Bfc3C90400/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/149-saddlebrook-ln-557/pid_70172379/",
-      "source": "coldwell_banker",
-      "lat": 38.9735,
-      "lng": -84.6389,
-      "last_updated": "2026-04-16T12:22:25.307654+00:00"
-    },
-    {
       "id": "4177d657f7bdfb16",
       "address": "314 McAlpin Ave",
       "city": "Erlanger",
@@ -17440,7 +16607,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6409/640980q.jpg?1774633141"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6409/640980q.jpg?1774633141",
+        "https://m1.cbhomes.com/p/192/640980/bcE2350457114De/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640980/110-Winding-Way-A-Covington-KY-41011/",
       "source": "comey",
@@ -17582,7 +16750,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6390/639091q.jpg?1767957945"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6390/639091q.jpg?1767957945",
+        "https://m1.cbhomes.com/p/192/639091/dC534441cb02463/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/639091/6965-Parkview-Drive-3-Florence-KY-41042/",
       "source": "comey",
@@ -17681,52 +16850,6 @@
       "lat": 39.136,
       "lng": -84.4769,
       "last_updated": "2026-04-16T12:20:49.104494+00:00"
-    },
-    {
-      "id": "f41c9bae953f95dc",
-      "address": "110 Winding Way",
-      "city": "Covington",
-      "state": "KY",
-      "zip": "41011",
-      "price": 199000,
-      "beds": null,
-      "baths": 1.0,
-      "sqft": 776,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/640980/bcE2350457114De/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/covington/110-winding-way-a/pid_70352532/",
-      "source": "coldwell_banker",
-      "lat": 39.0837,
-      "lng": -84.5268,
-      "last_updated": "2026-04-16T12:21:50.007235+00:00"
-    },
-    {
-      "id": "1d7507900a81f977",
-      "address": "6965 Parkview Dr",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 199000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1168,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/639091/dC534441cb02463/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/6965-parkview-dr-3/pid_69074813/",
-      "source": "coldwell_banker",
-      "lat": 39.0001,
-      "lng": -84.6202,
-      "last_updated": "2026-04-16T12:22:28.666232+00:00"
     },
     {
       "id": "9e0a5ad76a8f2434",
@@ -18774,7 +17897,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6405/640534q.jpg?1773689192"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6405/640534q.jpg?1773689192",
+        "https://m.cbhomes.com/p/192/640534/f15a87e4eAef4bf/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640534/7455-Ridge-Edge-Court-H-Florence-KY-41042/",
       "source": "comey",
@@ -18797,7 +17921,8 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6398/639806q.jpg?1770890327"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6398/639806q.jpg?1770890327",
+        "https://m.cbhomes.com/p/192/639806/73b1398Ef6E64c5/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/639806/198-Langshire-Court-13-Florence-KY-41042/",
       "source": "comey",
@@ -18850,52 +17975,6 @@
       "lat": 39.1065,
       "lng": -84.5684,
       "last_updated": "2026-04-16T12:21:28.829614+00:00"
-    },
-    {
-      "id": "382c883c248d9294",
-      "address": "7455 Ridge Edge Ct",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 200000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1006,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/640534/f15a87e4eAef4bf/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/7455-ridge-edge-ct-h/pid_70072831/",
-      "source": "coldwell_banker",
-      "lat": 38.9922,
-      "lng": -84.6955,
-      "last_updated": "2026-04-16T12:22:26.913704+00:00"
-    },
-    {
-      "id": "8845ccc057bd5d84",
-      "address": "198 Langshire Ct",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 200000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1194,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/639806/73b1398Ef6E64c5/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/198-langshire-ct-13/pid_69602002/",
-      "source": "coldwell_banker",
-      "lat": 39.0005,
-      "lng": -84.6189,
-      "last_updated": "2026-04-16T12:22:28.636855+00:00"
     },
     {
       "id": "e7b009b130bef600",
@@ -20619,36 +19698,14 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6410/641009q.jpg?1774818529"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6410/641009q.jpg?1774818529",
+        "https://m.cbhomes.com/p/192/641009/4549251302474Dc/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/641009/7450-Ridge-Edge-Court-B-Florence-KY-41042/",
       "source": "comey",
       "lat": 38.992458,
       "lng": -84.695175,
       "last_updated": "2026-04-16T12:14:44.885936"
-    },
-    {
-      "id": "6e7a569ae33ad938",
-      "address": "7450 Ridge Edge Ct",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 213900,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1006,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/641009/4549251302474Dc/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/7450-ridge-edge-ct-b/pid_70370390/",
-      "source": "coldwell_banker",
-      "lat": 38.9924,
-      "lng": -84.6951,
-      "last_updated": "2026-04-16T12:22:23.461995+00:00"
     },
     {
       "id": "d3169af0545ce5ab",
@@ -20903,7 +19960,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6415/641534q.jpg?1776174655"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6415/641534q.jpg?1776174655",
+        "https://m.cbhomes.com/p/192/641534/8a21256912d941B/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/641534/6945-Parkview-Drive-8-Florence-KY-41042/",
       "source": "comey",
@@ -21025,29 +20083,6 @@
       "lat": 39.1767,
       "lng": -84.4755,
       "last_updated": "2026-04-16T12:21:22.068004+00:00"
-    },
-    {
-      "id": "04cceb3918ec879e",
-      "address": "6945 Parkview Dr",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 214900,
-      "beds": 3,
-      "baths": 2.0,
-      "sqft": 1532,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/641534/8a21256912d941B/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/6945-parkview-dr-8/pid_70664034/",
-      "source": "coldwell_banker",
-      "lat": 39.0007,
-      "lng": -84.6206,
-      "last_updated": "2026-04-16T12:22:21.774641+00:00"
     },
     {
       "id": "b2a9e8909372dbdd",
@@ -26790,7 +25825,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6409/640981q.jpg?1775073593"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6409/640981q.jpg?1775073593",
+        "https://m.cbhomes.com/p/192/640981/e531fde138C7454/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640981/1888-Mimosa-Trail-304-Florence-KY-41042/",
       "source": "comey",
@@ -26890,29 +25926,6 @@
       "lat": 39.2052,
       "lng": -84.4552,
       "last_updated": "2026-04-16T12:21:20.393741+00:00"
-    },
-    {
-      "id": "f8440597bd9726fe",
-      "address": "1888 Mimosa Trail",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 239000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1457,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/640981/e531fde138C7454/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/1888-mimosa-trail-304/pid_70352533/",
-      "source": "coldwell_banker",
-      "lat": 38.9614,
-      "lng": -84.6623,
-      "last_updated": "2026-04-16T12:22:23.489869+00:00"
     },
     {
       "id": "c594ca177abf1501",
@@ -29273,7 +28286,7 @@
       "lat": 39.1465802,
       "lng": -84.5138829,
       "last_updated": "2026-04-16T12:13:43.375524",
-      "description": "Completely renovated home in the heart of Clifton - minutes to the UC, downtown Cincinnati, and major hospitals. This home features new LVL flooring, new int/exterior paint, updated kitchen w/ quartz countertops and new SS appliances. Major mechanical upgrades include a new roof, new HVAC system, and new water heater. Offering 3 bedrooms and 2 full bathrooms, plus a potential bonus bedroom or flex space in the lower level, ideal for a home office or guest area. The fully usable basement adds valuable living or storage space. Situated on a larger lot with off‑street parking, this property offers convenience, walkability, and easy access to UC, medical centers, dining, and public transportati"
+      "description": "Completely renovated home in the heart of Clifton - minutes to the UC, downtown Cincinnati, and major hospitals. This home features new LVL flooring, new int/exterior paint, updated kitchen w/ quartz countertops and new SS appliances. Major mechanical upgrades include a new roof, new HVAC system, and new water heater. Offering 3 bedrooms and 2 full bathrooms, plus a potential bonus bedroom or flex space in the lower level, ideal for a home office or guest area. The fully usable basement adds valuable living or storage space. Situated on a larger lot with off\u2011street parking, this property offers convenience, walkability, and easy access to UC, medical centers, dining, and public transportati"
     },
     {
       "id": "6798497946ae6b3c",
@@ -29944,7 +28957,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6413/641394q.jpg?1775778624"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6413/641394q.jpg?1775778624",
+        "https://m.cbhomes.com/p/192/641394/c2AC9C9651bb462/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/641394/116-Creekstone-Court-16C-Cold-Spring-KY-41076/",
       "source": "comey",
@@ -30299,29 +29313,6 @@
       "lat": 39.0986,
       "lng": -84.3062,
       "last_updated": "2026-04-16T12:21:09.672814+00:00"
-    },
-    {
-      "id": "472f595b1a66f48a",
-      "address": "116 Creekstone Ct",
-      "city": "Cold Spring",
-      "state": "KY",
-      "zip": "41076",
-      "price": 249900,
-      "beds": 2,
-      "baths": 4.0,
-      "sqft": 2637,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/641394/c2AC9C9651bb462/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/cold-spring/116-creekstone-ct-16c/pid_70591232/",
-      "source": "coldwell_banker",
-      "lat": 39.0204,
-      "lng": -84.4399,
-      "last_updated": "2026-04-16T12:23:55.942095+00:00"
     },
     {
       "id": "c1d30ef1e06b7e1d",
@@ -31926,36 +30917,14 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6403/640341q.jpg?1772711180"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6403/640341q.jpg?1772711180",
+        "https://m.cbhomes.com/p/192/640341/aE148FF72230416/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640341/825-Foinavon-Lane-30A-Walton-KY-41094/",
       "source": "comey",
       "lat": 38.90601,
       "lng": -84.631386,
       "last_updated": "2026-04-16T12:14:44.886998"
-    },
-    {
-      "id": "82ec528c77b0aa98",
-      "address": "825 Foinavon Ln",
-      "city": "Walton",
-      "state": "KY",
-      "zip": "41094",
-      "price": 256000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1614,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/640341/aE148FF72230416/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/walton/825-foinavon-ln-30a/pid_69940786/",
-      "source": "coldwell_banker",
-      "lat": 38.906,
-      "lng": -84.6314,
-      "last_updated": "2026-04-16T12:24:57.489301+00:00"
     },
     {
       "id": "15c4dfd976eccd99",
@@ -32322,7 +31291,9 @@
       "property_type": "Other",
       "status": "Active",
       "days_on_market": 10,
-      "images": [],
+      "images": [
+        "https://m.cbhomes.com/p/220/1874106/a97a4258Bb9b4Dc/m23cc.webp"
+      ],
       "url": "https://www.redfin.com/OH/Cincinnati/4458-W-8th-St-45238/home/100973207",
       "source": "redfin",
       "lat": 39.1091451,
@@ -32563,29 +31534,6 @@
       "lat": 39.088818,
       "lng": -84.527321,
       "last_updated": "2026-04-16T12:14:32.022069"
-    },
-    {
-      "id": "8bcf90f7645fc6d0",
-      "address": "4458 W 8th St",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45238",
-      "price": 259900,
-      "beds": 4,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/220/1874106/a97a4258Bb9b4Dc/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/oh/cincinnati/4458-w-8th-st/pid_70503161/",
-      "source": "coldwell_banker",
-      "lat": 39.1091,
-      "lng": -84.5974,
-      "last_updated": "2026-04-16T12:19:29.570686+00:00"
     },
     {
       "id": "241a4df222445b62",
@@ -35523,7 +34471,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6404/640495q.jpg?1773246150"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6404/640495q.jpg?1773246150",
+        "https://m1.cbhomes.com/p/192/640495/4A6a034ED80045f/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640495/2619-Paragon-Mill-Drive-204-Burlington-KY-41005/",
       "source": "comey",
@@ -35546,7 +34495,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6389/638947q.jpg?1767609982"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6389/638947q.jpg?1767609982",
+        "https://m1.cbhomes.com/p/192/638947/41AFf109Bf024a8/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/638947/1518-Taramore-Drive-303-Florence-KY-41042/",
       "source": "comey",
@@ -35645,52 +34595,6 @@
       "lat": 39.1609,
       "lng": -84.395,
       "last_updated": "2026-04-16T12:21:32.287318+00:00"
-    },
-    {
-      "id": "fd5835fd93544744",
-      "address": "1518 Taramore Dr",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 270000,
-      "beds": 2,
-      "baths": 3.0,
-      "sqft": 1580,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/638947/41AFf109Bf024a8/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/1518-taramore-dr-303/pid_68994096/",
-      "source": "coldwell_banker",
-      "lat": 38.964,
-      "lng": -84.6625,
-      "last_updated": "2026-04-16T12:22:28.671887+00:00"
-    },
-    {
-      "id": "956a43f92c622150",
-      "address": "2619 Paragon Mill Dr",
-      "city": "Burlington",
-      "state": "KY",
-      "zip": "41005",
-      "price": 270000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1543,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/640495/4A6a034ED80045f/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/burlington/2619-paragon-mill-dr-204/pid_70052626/",
-      "source": "coldwell_banker",
-      "lat": 39.0101,
-      "lng": -84.6929,
-      "last_updated": "2026-04-16T12:24:18.918993+00:00"
     },
     {
       "id": "34783af7f6d9316a",
@@ -37594,7 +36498,7 @@
       "lat": 39.2241568,
       "lng": -84.4426102,
       "last_updated": "2026-04-16T12:13:43.375276",
-      "description": "On a quiet Reading street it stands, A duplex shaped by steady hands. Not loud, not showy, just honest and true, A place that waits for someone new. Inside, the rooms feel open and kind, A gentle rhythm for heart and mind. The lower home offers a quiet one‑and‑one, A simple rhythm when the day is done. The upper rises with two beds, two baths in view, A spacious layout made for something new. Places to gather, places to rest, Spaces that hold what matters best. Patios tucked for slow mornings ease, 3 Garage wide for tools or keys. A lot with breathing room to spare, A simple comfort, settled there. And all around, the neighborhood's beat  Friendly waves, familiar feet. A place where life fe"
+      "description": "On a quiet Reading street it stands, A duplex shaped by steady hands. Not loud, not showy, just honest and true, A place that waits for someone new. Inside, the rooms feel open and kind, A gentle rhythm for heart and mind. The lower home offers a quiet one\u2011and\u2011one, A simple rhythm when the day is done. The upper rises with two beds, two baths in view, A spacious layout made for something new. Places to gather, places to rest, Spaces that hold what matters best. Patios tucked for slow mornings ease, 3 Garage wide for tools or keys. A lot with breathing room to spare, A simple comfort, settled there. And all around, the neighborhood's beat  Friendly waves, familiar feet. A place where life fe"
     },
     {
       "id": "eb68adda7f56f1f9",
@@ -37777,7 +36681,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6404/640472q.jpg?1773228691"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6404/640472q.jpg?1773228691",
+        "https://m1.cbhomes.com/p/192/640472/e7B39B7440D2460/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640472/713-Somerset-Boulevard-9D-Florence-KY-41042/",
       "source": "comey",
@@ -37853,29 +36758,6 @@
       "lat": 39.12,
       "lng": -84.6991,
       "last_updated": "2026-04-16T12:21:05.355674+00:00"
-    },
-    {
-      "id": "bcc205708e529304",
-      "address": "713 Somerset Blvd",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 279000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1339,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/640472/e7B39B7440D2460/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/713-somerset-blvd-9d/pid_70043640/",
-      "source": "coldwell_banker",
-      "lat": 38.9683,
-      "lng": -84.6456,
-      "last_updated": "2026-04-16T12:22:26.924254+00:00"
     },
     {
       "id": "1866804518dcdaec",
@@ -39180,7 +38062,9 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6404/640477q.jpg?1773231688"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6404/640477q.jpg?1773231688",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6407/640722q.jpg?1773926446",
+        "https://m.cbhomes.com/p/192/640722/e4a0564412eC47f/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640477/120-Main-Street-307-Newport-KY-41071/",
       "source": "comey",
@@ -39762,7 +38646,8 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6386/638675q.jpg?1766408611"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6386/638675q.jpg?1766408611",
+        "https://m.cbhomes.com/p/192/638675/610dD9df08434E1/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/638675/1859-Riverpointe-Court-5-Dayton-KY-41074/",
       "source": "comey",
@@ -39816,29 +38701,6 @@
       "lat": 39.171,
       "lng": -84.5413,
       "last_updated": "2026-04-16T12:21:01.285340+00:00"
-    },
-    {
-      "id": "4659991d16390051",
-      "address": "1859 Riverpointe Ct",
-      "city": "Dayton",
-      "state": "KY",
-      "zip": "41074",
-      "price": 289000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1215,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/638675/610dD9df08434E1/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/dayton/1859-riverpointe-ct-5/pid_68845543/",
-      "source": "coldwell_banker",
-      "lat": 39.1099,
-      "lng": -84.4628,
-      "last_updated": "2026-04-16T12:25:34.930658+00:00"
     },
     {
       "id": "86c2feaadc8250db",
@@ -40225,29 +39087,6 @@
       "last_updated": "2026-04-16T12:14:38.412907"
     },
     {
-      "id": "a8159973a0090d49",
-      "address": "120 Main Street 205",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 289900,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 960,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6407/640722q.jpg?1773926446"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/640722/120-Main-Street-205-Newport-KY-41071/",
-      "source": "comey",
-      "lat": 39.081135,
-      "lng": -84.487946,
-      "last_updated": "2026-04-16T12:14:38.413811"
-    },
-    {
       "id": "c525ce4bb6ebf01a",
       "address": "17 Shenandoah Drive",
       "city": "Florence",
@@ -40385,29 +39224,6 @@
       "lat": 39.0017,
       "lng": -84.5272,
       "last_updated": "2026-04-16T12:21:53.386897+00:00"
-    },
-    {
-      "id": "5df37fdf10464794",
-      "address": "120 Main St",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 289900,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 960,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/640722/e4a0564412eC47f/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/newport/120-main-st-205/pid_70195937/",
-      "source": "coldwell_banker",
-      "lat": 39.081,
-      "lng": -84.4881,
-      "last_updated": "2026-04-16T12:22:04.283044+00:00"
     },
     {
       "id": "d2fe644848757868",
@@ -45257,36 +44073,14 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6374/637475q.jpg?1773653920"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6374/637475q.jpg?1773653920",
+        "https://m1.cbhomes.com/p/192/637475/7d8442a90F4c477/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/637475/564-Tristan-Lane-E-Florence-KY-41042/",
       "source": "comey",
       "lat": 38.968204,
       "lng": -84.645805,
       "last_updated": "2026-04-16T12:14:44.888391"
-    },
-    {
-      "id": "3fa8fbbeb3328f1c",
-      "address": "564 Tristan Ln",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 314400,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/637475/7d8442a90F4c477/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/564-tristan-ln-e/pid_68155904/",
-      "source": "coldwell_banker",
-      "lat": 38.9679,
-      "lng": -84.6458,
-      "last_updated": "2026-04-16T12:22:30.272979+00:00"
     },
     {
       "id": "7b429f1af132c553",
@@ -45961,36 +44755,14 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6404/640468q.jpg?1773223755"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6404/640468q.jpg?1773223755",
+        "https://m1.cbhomes.com/p/192/640468/DfD88fbdE94d405/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640468/3961-Volterra-Lane-317A-Covington-KY-41017/",
       "source": "comey",
       "lat": 38.999065,
       "lng": -84.525909,
       "last_updated": "2026-04-16T12:14:32.021700"
-    },
-    {
-      "id": "0aa47dee66d22532",
-      "address": "3961 Volterra Ln",
-      "city": "Covington",
-      "state": "KY",
-      "zip": "41017",
-      "price": 315319,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1243,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/640468/DfD88fbdE94d405/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/covington/3961-volterra-ln-317a/pid_70041705/",
-      "source": "coldwell_banker",
-      "lat": 38.9991,
-      "lng": -84.5259,
-      "last_updated": "2026-04-16T12:21:53.370134+00:00"
     },
     {
       "id": "afb999933ead2aa5",
@@ -46932,36 +45704,14 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6404/640469q.jpg?1773224103"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6404/640469q.jpg?1773224103",
+        "https://m1.cbhomes.com/p/192/640469/505B195E7c4049c/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640469/3959-Volterra-Lane-317B-Covington-KY-41017/",
       "source": "comey",
       "lat": 38.999065,
       "lng": -84.525909,
       "last_updated": "2026-04-16T12:14:32.021681"
-    },
-    {
-      "id": "1c843261badfb92e",
-      "address": "3959 Volterra Ln",
-      "city": "Covington",
-      "state": "KY",
-      "zip": "41017",
-      "price": 322265,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1243,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/640469/505B195E7c4049c/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/covington/3959-volterra-ln-317b/pid_70041706/",
-      "source": "coldwell_banker",
-      "lat": 38.9991,
-      "lng": -84.5259,
-      "last_updated": "2026-04-16T12:21:53.366818+00:00"
     },
     {
       "id": "6167e271d7a47fcb",
@@ -47921,7 +46671,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6391/639179q.jpg?1771848130"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6391/639179q.jpg?1771848130",
+        "https://m.cbhomes.com/p/192/639179/50e691F6a28E40f/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/639179/9104-Timberbrook-Lane-D-Florence-KY-41042/",
       "source": "comey",
@@ -48252,29 +47003,6 @@
       "last_updated": "2026-04-16T12:21:58.472282+00:00"
     },
     {
-      "id": "cc32d3a093dc58cc",
-      "address": "9104 Timberbrook Ln",
-      "city": "Florence",
-      "state": "KY",
-      "zip": "41042",
-      "price": 325000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1530,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/639179/50e691F6a28E40f/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/florence/9104-timberbrook-ln-d/pid_69136771/",
-      "source": "coldwell_banker",
-      "lat": 38.9759,
-      "lng": -84.6809,
-      "last_updated": "2026-04-16T12:22:28.662811+00:00"
-    },
-    {
       "id": "64eea6a6fba163ee",
       "address": "549 Tradition Rdg",
       "city": "Union Township",
@@ -48312,7 +47040,10 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6367/636706q.jpg?1774453150"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6367/636706q.jpg?1774453150",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6367/636710q.jpg?1774453365",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6367/636708q.jpg?1774453341",
+        "https://m.cbhomes.com/p/192/636708/C237B5761421422/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/636706/8303-Bluff-Drive-A-Alexandria-KY-41001/",
       "source": "comey",
@@ -49661,31 +48392,6 @@
       "last_updated": "2026-04-16T12:14:07.278110"
     },
     {
-      "id": "aac185318ee1b7cc",
-      "address": "8303 Bluff Drive Unit C",
-      "city": "Alexandria",
-      "state": "KY",
-      "zip": "41001",
-      "price": 332500,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "Townhouse",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6367/636710q.jpg?1774453365",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6367/636708q.jpg?1774453341",
-        "https://m.cbhomes.com/p/192/636708/C237B5761421422/m23cc.webp"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/636710/8303-Bluff-Drive-Unit-C-Alexandria-KY-41001/",
-      "source": "comey",
-      "lat": 38.96064,
-      "lng": -84.397507,
-      "last_updated": "2026-04-16T12:14:38.415223"
-    },
-    {
       "id": "bcb9b4e4e53dd0a4",
       "address": " Depot Road",
       "city": "Milford Twp",
@@ -49817,7 +48523,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6413/641388q.jpg?1775762126"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6413/641388q.jpg?1775762126",
+        "https://m.cbhomes.com/p/192/641388/eE2b486a2F784d9/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/641388/644-Morven-Park-Drive-5F-Walton-KY-41094/",
       "source": "comey",
@@ -49871,29 +48578,6 @@
       "lat": 39.2061,
       "lng": -84.6164,
       "last_updated": "2026-04-16T12:20:27.736391+00:00"
-    },
-    {
-      "id": "5ef325bdab41896a",
-      "address": "644 Morven Park Dr",
-      "city": "Walton",
-      "state": "KY",
-      "zip": "41094",
-      "price": 334900,
-      "beds": 2,
-      "baths": 3.0,
-      "sqft": 1883,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/641388/eE2b486a2F784d9/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/walton/644-morven-park-dr-5f/pid_70583234/",
-      "source": "coldwell_banker",
-      "lat": 38.9078,
-      "lng": -84.6298,
-      "last_updated": "2026-04-16T12:24:55.736465+00:00"
     },
     {
       "id": "39a9a539bd1761ad",
@@ -51549,36 +50233,14 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6395/639530q.jpg?1769608884"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6395/639530q.jpg?1769608884",
+        "https://m.cbhomes.com/p/192/639530/Cf0895f1056F4dE/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/639530/1339-Parkside-Drive-166A-Alexandria-KY-41001/",
       "source": "comey",
       "lat": 38.896027,
       "lng": -84.371994,
       "last_updated": "2026-04-16T12:14:38.414558"
-    },
-    {
-      "id": "f486e35107207405",
-      "address": "1339 Parkside Dr",
-      "city": "Alexandria",
-      "state": "KY",
-      "zip": "41001",
-      "price": 341374,
-      "beds": 4,
-      "baths": 3.0,
-      "sqft": 2166,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/639530/Cf0895f1056F4dE/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/alexandria/1339-parkside-dr-166a/pid_69374231/",
-      "source": "coldwell_banker",
-      "lat": 38.896,
-      "lng": -84.3719,
-      "last_updated": "2026-04-16T12:24:07.418044+00:00"
     },
     {
       "id": "9f865af9db945622",
@@ -51595,36 +50257,14 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6395/639547q.jpg?1773848856"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6395/639547q.jpg?1773848856",
+        "https://m.cbhomes.com/p/192/639547/D822E87C48574E5/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/639547/1331-Parkside-Drive-166B-Alexandria-KY-41001/",
       "source": "comey",
       "lat": 38.896126,
       "lng": -84.371948,
       "last_updated": "2026-04-16T12:14:38.414535"
-    },
-    {
-      "id": "c1ad345666a16643",
-      "address": "1331 Parkside Dr",
-      "city": "Alexandria",
-      "state": "KY",
-      "zip": "41001",
-      "price": 341577,
-      "beds": 3,
-      "baths": 3.0,
-      "sqft": 2162,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/639547/D822E87C48574E5/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/alexandria/1331-parkside-dr-166b/pid_69395041/",
-      "source": "coldwell_banker",
-      "lat": 38.8961,
-      "lng": -84.3719,
-      "last_updated": "2026-04-16T12:24:07.410060+00:00"
     },
     {
       "id": "54f9ff1ed4910964",
@@ -51690,36 +50330,14 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6368/636839q.jpg?1775134216"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6368/636839q.jpg?1775134216",
+        "https://m.cbhomes.com/p/192/636839/1077FECE710B400/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/636839/1321-Parkside-Drive-167B-Alexandria-KY-41001/",
       "source": "comey",
       "lat": 38.896336,
       "lng": -84.371941,
       "last_updated": "2026-04-16T12:14:38.415198"
-    },
-    {
-      "id": "ad473ed18778569b",
-      "address": "1321 Parkside Dr",
-      "city": "Alexandria",
-      "state": "KY",
-      "zip": "41001",
-      "price": 343106,
-      "beds": 3,
-      "baths": 3.0,
-      "sqft": 2162,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/636839/1077FECE710B400/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/alexandria/1321-parkside-dr-167b/pid_67755968/",
-      "source": "coldwell_banker",
-      "lat": 38.8964,
-      "lng": -84.3719,
-      "last_updated": "2026-04-16T12:24:08.834815+00:00"
     },
     {
       "id": "57b9977424e9159b",
@@ -51736,36 +50354,14 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6410/641098q.jpg?1775045607"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6410/641098q.jpg?1775045607",
+        "https://m1.cbhomes.com/p/192/641098/5e6a34C1F1F3420/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/641098/1361-Parkside-Drive-164A-Alexandria-KY-41001/",
       "source": "comey",
       "lat": 38.899021,
       "lng": -84.371666,
       "last_updated": "2026-04-16T12:14:38.413528"
-    },
-    {
-      "id": "1485d4f0b0cfffb6",
-      "address": "1361 Parkside Dr",
-      "city": "Alexandria",
-      "state": "KY",
-      "zip": "41001",
-      "price": 343571,
-      "beds": 2,
-      "baths": 3.0,
-      "sqft": 1243,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/641098/5e6a34C1F1F3420/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/alexandria/1361-parkside-dr-164a/pid_70417088/",
-      "source": "coldwell_banker",
-      "lat": 38.8957,
-      "lng": -84.3723,
-      "last_updated": "2026-04-16T12:24:05.723998+00:00"
     },
     {
       "id": "a5e2cc5e191f704a",
@@ -52176,36 +50772,14 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6368/636840q.jpg?1775133647"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6368/636840q.jpg?1775133647",
+        "https://m.cbhomes.com/p/192/636840/b244C75d32d6442/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/636840/1325-Parkside-Drive-167A-Alexandria-KY-41001/",
       "source": "comey",
       "lat": 38.896229,
       "lng": -84.371933,
       "last_updated": "2026-04-16T12:14:38.415217"
-    },
-    {
-      "id": "1803ba1728f89efc",
-      "address": "1325 Parkside Dr",
-      "city": "Alexandria",
-      "state": "KY",
-      "zip": "41001",
-      "price": 347171,
-      "beds": 2,
-      "baths": 3.0,
-      "sqft": 2162,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/636840/b244C75d32d6442/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/alexandria/1325-parkside-dr-167a/pid_67756942/",
-      "source": "coldwell_banker",
-      "lat": 38.8962,
-      "lng": -84.3719,
-      "last_updated": "2026-04-16T12:24:08.829776+00:00"
     },
     {
       "id": "8bfe5e49db2fb394",
@@ -52437,7 +51011,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6359/635972q.jpg?1775221952"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6359/635972q.jpg?1775221952",
+        "https://m.cbhomes.com/p/192/635972/0782579760A64F8/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/635972/1338-Parkside-Drive-154B-Alexandria-KY-41001/",
       "source": "comey",
@@ -52564,29 +51139,6 @@
       "last_updated": "2026-04-16T12:21:25.443898+00:00"
     },
     {
-      "id": "61926ecffd3de9f8",
-      "address": "1338 Parkside Dr",
-      "city": "Alexandria",
-      "state": "KY",
-      "zip": "41001",
-      "price": 349000,
-      "beds": 2,
-      "baths": 3.0,
-      "sqft": 2162,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/635972/0782579760A64F8/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/alexandria/1338-parkside-dr-154b/pid_67268668/",
-      "source": "coldwell_banker",
-      "lat": 38.8959,
-      "lng": -84.3715,
-      "last_updated": "2026-04-16T12:24:08.857401+00:00"
-    },
-    {
       "id": "1104fcfc0dd171f2",
       "address": "1350 Parkside Drive 156A",
       "city": "Alexandria",
@@ -52601,36 +51153,14 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6410/641094q.jpg?1775044287"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6410/641094q.jpg?1775044287",
+        "https://m1.cbhomes.com/p/192/641094/16EE68401d9E4c8/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/641094/1350-Parkside-Drive-156A-Alexandria-KY-41001/",
       "source": "comey",
       "lat": 38.899021,
       "lng": -84.371666,
       "last_updated": "2026-04-16T12:14:38.413516"
-    },
-    {
-      "id": "af573d54fcdf7114",
-      "address": "1350 Parkside Dr",
-      "city": "Alexandria",
-      "state": "KY",
-      "zip": "41001",
-      "price": 349541,
-      "beds": 2,
-      "baths": 3.0,
-      "sqft": 1243,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/641094/16EE68401d9E4c8/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/alexandria/1350-parkside-dr-156a/pid_70416181/",
-      "source": "coldwell_banker",
-      "lat": 38.8957,
-      "lng": -84.3716,
-      "last_updated": "2026-04-16T12:24:05.720692+00:00"
     },
     {
       "id": "31084162ae3cb96a",
@@ -52647,36 +51177,14 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6395/639552q.jpg?1769703995"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6395/639552q.jpg?1769703995",
+        "https://m1.cbhomes.com/p/192/639552/cbf11E899126439/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/639552/1346-Parkside-Drive-155B-Alexandria-KY-41001/",
       "source": "comey",
       "lat": 38.895622,
       "lng": -84.371368,
       "last_updated": "2026-04-16T12:14:38.414552"
-    },
-    {
-      "id": "80b9b16df439c87c",
-      "address": "1346 Parkside Dr",
-      "city": "Alexandria",
-      "state": "KY",
-      "zip": "41001",
-      "price": 349728,
-      "beds": 2,
-      "baths": 3.0,
-      "sqft": 2162,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/639552/cbf11E899126439/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/alexandria/1346-parkside-dr-155b/pid_69397449/",
-      "source": "coldwell_banker",
-      "lat": 38.8957,
-      "lng": -84.3716,
-      "last_updated": "2026-04-16T12:24:07.406837+00:00"
     },
     {
       "id": "85fa56d9f3a1b561",
@@ -60281,36 +58789,15 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6385/638565q.jpg?1765456484"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6385/638512q.jpg?1765201601",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6385/638565q.jpg?1765456484",
+        "https://m1.cbhomes.com/p/192/638565/53d57dC5B203455/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/638565/100-W-14th-Street-C-Newport-KY-41071/",
       "source": "comey",
       "lat": 39.080921,
       "lng": -84.489304,
       "last_updated": "2026-04-16T12:14:38.414908"
-    },
-    {
-      "id": "e15ad17e1dbfe963",
-      "address": "100 W 14th Street B",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 399000,
-      "beds": 2,
-      "baths": 2.5,
-      "sqft": 1550,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6385/638512q.jpg?1765201601"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/638512/100-W-14th-Street-B-Newport-KY-41071/",
-      "source": "comey",
-      "lat": 39.080967,
-      "lng": -84.489265,
-      "last_updated": "2026-04-16T12:14:38.414926"
     },
     {
       "id": "4eb812972dea19f1",
@@ -60709,29 +59196,6 @@
       "last_updated": "2026-04-16T12:21:51.751980+00:00"
     },
     {
-      "id": "32c216f019968114",
-      "address": "100 W 14th St",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 399000,
-      "beds": 2,
-      "baths": 3.0,
-      "sqft": 1550,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/638565/53d57dC5B203455/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/newport/100-w-14th-st-c/pid_68780784/",
-      "source": "coldwell_banker",
-      "lat": 39.0815,
-      "lng": -84.489,
-      "last_updated": "2026-04-16T12:22:07.821129+00:00"
-    },
-    {
       "id": "588b95452cd23244",
       "address": "3509 Tarpis Ave",
       "city": "Cincinnati",
@@ -60771,8 +59235,9 @@
       "status": "Active",
       "days_on_market": 1,
       "images": [
+        "https://m.cbhomes.com/p/220/1875337/73d814d4037A442/m23cc.webp",
         "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18753/1875337q.jpg?1776246664",
-        "https://m.cbhomes.com/p/220/1875337/73d814d4037A442/m23cc.webp"
+        "https://photos.brivity.com/images/68/photo/1/8/7/5/3/3/7/0.jpg?v=2"
       ],
       "url": "https://www.redfin.com/OH/Cincinnati/7001-Aspen-Point-Ct-45247/unit-27A/home/110109412",
       "source": "redfin",
@@ -61341,29 +59806,6 @@
       "lat": 38.9394,
       "lng": -84.5933,
       "last_updated": "2026-04-16T12:23:06.768045+00:00"
-    },
-    {
-      "id": "b81cab5172b6d60f",
-      "address": "7001 Aspen Point Court 27a",
-      "city": "Green Twp",
-      "state": "OH",
-      "zip": "45247",
-      "price": 399900,
-      "beds": 3,
-      "baths": 3.0,
-      "sqft": 2301,
-      "lot_size": null,
-      "property_type": "Condo/Townhome",
-      "status": "FOR_SALE",
-      "days_on_market": null,
-      "images": [
-        "https://photos.brivity.com/images/68/photo/1/8/7/5/3/3/7/0.jpg?v=2"
-      ],
-      "url": "https://www.listingscincinnati.com/house-for-sale/",
-      "source": "listings_cincinnati",
-      "lat": 39.209547,
-      "lng": -84.672406,
-      "last_updated": "2026-04-16T12:26:11.148658"
     },
     {
       "id": "4c086d59d0af214a",
@@ -64321,7 +62763,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6406/640649q.jpg?1773745393"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6406/640649q.jpg?1773745393",
+        "https://m1.cbhomes.com/p/192/640649/4d9a3af647B9493/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640649/208-W-4th-Street-302-Covington-KY-41011/",
       "source": "comey",
@@ -64633,29 +63076,6 @@
       "lat": 39.1025,
       "lng": -84.5598,
       "last_updated": "2026-04-16T12:20:18.406499+00:00"
-    },
-    {
-      "id": "881158f6a1aa732f",
-      "address": "208 W 4th St",
-      "city": "Covington",
-      "state": "KY",
-      "zip": "41011",
-      "price": 425000,
-      "beds": null,
-      "baths": 1.0,
-      "sqft": 1065,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/640649/4d9a3af647B9493/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/covington/208-w-4th-st-302/pid_70148629/",
-      "source": "coldwell_banker",
-      "lat": 39.0867,
-      "lng": -84.5136,
-      "last_updated": "2026-04-16T12:21:51.783412+00:00"
     },
     {
       "id": "eea63c033b278477",
@@ -65845,36 +64265,14 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6405/640577q.jpg?1773403534"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6405/640577q.jpg?1773403534",
+        "https://m1.cbhomes.com/p/192/640577/12F0E1BFCfa4414/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640577/562-E-4th-Street-Newport-KY-41071/",
       "source": "comey",
       "lat": 39.09692,
       "lng": -84.488167,
       "last_updated": "2026-04-16T12:14:38.413921"
-    },
-    {
-      "id": "746b02deb982bb24",
-      "address": "562 E 4th Street E",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 439000,
-      "beds": 3,
-      "baths": 2.0,
-      "sqft": 1680,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/640577/12F0E1BFCfa4414/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/newport/562-e-4th-street-e/pid_70095493/",
-      "source": "coldwell_banker",
-      "lat": 39.097,
-      "lng": -84.4882,
-      "last_updated": "2026-04-16T12:22:04.294714+00:00"
     },
     {
       "id": "3dad0c3adf03e929",
@@ -66455,7 +64853,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6408/640839q.jpg?1774454193"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6408/640839q.jpg?1774454193",
+        "https://m1.cbhomes.com/p/192/640839/6c445353166A4Ff/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640839/2220-Esplanade-Street-23D-Union-KY-41091/",
       "source": "comey",
@@ -66486,29 +64885,6 @@
       "lat": 39.014732,
       "lng": -84.751999,
       "last_updated": "2026-04-16T12:14:44.888096"
-    },
-    {
-      "id": "8f6c7af1d1f8344e",
-      "address": "2220 Esplanade St",
-      "city": "Union",
-      "state": "KY",
-      "zip": "41091",
-      "price": 444900,
-      "beds": 3,
-      "baths": 3.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/640839/6c445353166A4Ff/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/union/2220-esplanade-st-23d/pid_70268854/",
-      "source": "coldwell_banker",
-      "lat": 38.9559,
-      "lng": -84.6794,
-      "last_updated": "2026-04-16T12:24:35.035796+00:00"
     },
     {
       "id": "2b991fcfb3a93106",
@@ -69549,7 +67925,8 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6364/636451q.jpg?1774453409"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6364/636451q.jpg?1774453409",
+        "https://m1.cbhomes.com/p/192/636451/2caeC3728BcF439/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/636451/8304-Bluff-Drive-B-Alexandria-KY-41001/",
       "source": "comey",
@@ -69627,29 +68004,6 @@
       "lat": 39.1216,
       "lng": -84.488,
       "last_updated": "2026-04-16T12:20:07.146292+00:00"
-    },
-    {
-      "id": "dec4a10a2a8cf0f0",
-      "address": "8304 Bluff Dr",
-      "city": "Alexandria",
-      "state": "KY",
-      "zip": "41001",
-      "price": 469900,
-      "beds": 3,
-      "baths": 3.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/636451/2caeC3728BcF439/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/alexandria/8304-bluff-dr-b/pid_67537887/",
-      "source": "coldwell_banker",
-      "lat": 38.961,
-      "lng": -84.3977,
-      "last_updated": "2026-04-16T12:24:08.852404+00:00"
     },
     {
       "id": "19a35bdd2a67d2f5",
@@ -74790,7 +73144,7 @@
       "lat": 39.1548644,
       "lng": -84.4300013,
       "last_updated": "2026-04-16T12:13:43.374173",
-      "description": "This beautiful 3-bedroom, 2.5-bath home offers timeless appeal in the heart of Oakley. Wood floors and original details create an inviting atmosphere, highlighted by five original stained-glass windows. The spacious primary suite features an en‑suite bath for added privacy and convenience. The updated walk-out kitchen includes granite counters and stainless steel appliances. A large detached garage adds valuable storage and parking flexibility. Enjoy convenient access to Oakley Square's shops, dining, and entertainment only a block away while coming home to a space full of charm and personality."
+      "description": "This beautiful 3-bedroom, 2.5-bath home offers timeless appeal in the heart of Oakley. Wood floors and original details create an inviting atmosphere, highlighted by five original stained-glass windows. The spacious primary suite features an en\u2011suite bath for added privacy and convenience. The updated walk-out kitchen includes granite counters and stainless steel appliances. A large detached garage adds valuable storage and parking flexibility. Enjoy convenient access to Oakley Square's shops, dining, and entertainment only a block away while coming home to a space full of charm and personality."
     },
     {
       "id": "3e58c2fd559acca2",
@@ -76118,7 +74472,9 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6404/640479q.jpg?1773233280"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6404/640488q.jpg?1773240507",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6404/640479q.jpg?1773233280",
+        "https://m1.cbhomes.com/p/192/640488/5a4e9074480D462/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/640479/745-Manhattan-Boulevard-203-Dayton-KY-41074/",
       "source": "comey",
@@ -76188,36 +74544,15 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6376/637650q.jpg?1761905861"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6376/637650q.jpg?1761905861",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6375/637562q.jpg?1761720674",
+        "https://m1.cbhomes.com/p/192/637650/a708947eB9eC409/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/637650/100-Grandview-Avenue-8-Newport-KY-41071/",
       "source": "comey",
       "lat": 39.076622,
       "lng": -84.490906,
       "last_updated": "2026-04-16T12:14:38.415115"
-    },
-    {
-      "id": "a5a3b885f90b2e7e",
-      "address": "100 Grandview Ave",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 549429,
-      "beds": 3,
-      "baths": 3.0,
-      "sqft": 2278,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/637650/a708947eB9eC409/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/newport/100-grandview-ave-8/pid_68249801/",
-      "source": "coldwell_banker",
-      "lat": 39.0766,
-      "lng": -84.4909,
-      "last_updated": "2026-04-16T12:22:09.520055+00:00"
     },
     {
       "id": "b2d20d805b0c21ff",
@@ -77409,7 +75744,8 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6138/613836q.jpg?1684931166"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6138/613836q.jpg?1684931166",
+        "https://m1.cbhomes.com/p/192/613836/BD341bce7198429/m23cc.jpg"
       ],
       "url": "https://www.comey.com/real-estate/nky/613836/353-Manhattan-Boulevard-22-Dayton-KY-41074/",
       "source": "comey",
@@ -77463,29 +75799,6 @@
       "lat": 39.1182,
       "lng": -84.6892,
       "last_updated": "2026-04-16T12:21:22.090546+00:00"
-    },
-    {
-      "id": "54171e2ad1202a76",
-      "address": "353 Manhattan Blvd",
-      "city": "Dayton",
-      "state": "KY",
-      "zip": "41074",
-      "price": 565000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1620,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/613836/BD341bce7198429/m23cc.jpg"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/dayton/353-manhattan-blvd-22/pid_53856565/",
-      "source": "coldwell_banker",
-      "lat": 39.1149,
-      "lng": -84.4692,
-      "last_updated": "2026-04-16T12:25:36.135927+00:00"
     },
     {
       "id": "1269098b722f9e67",
@@ -77815,30 +76128,6 @@
       "lat": 39.167648,
       "lng": -84.293671,
       "last_updated": "2026-04-16T12:14:25.694204"
-    },
-    {
-      "id": "a5d479ffd35ea389",
-      "address": "1019 Monmouth Street",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 570000,
-      "beds": 3,
-      "baths": 3.0,
-      "sqft": 1625,
-      "lot_size": null,
-      "property_type": "Single Family Residence",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6399/639965q.jpg?1771426812",
-        "https://m.cbhomes.com/p/192/639965/db8aD8213D9e42a/m23cc.webp"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/639965/1019-Monmouth-Street-Newport-KY-41071/",
-      "source": "comey",
-      "lat": 39.086899,
-      "lng": -84.488045,
-      "last_updated": "2026-04-16T12:14:38.414302"
     },
     {
       "id": "89cea191dd5038b0",
@@ -80065,29 +78354,6 @@
       "last_updated": "2026-04-16T12:14:32.021241"
     },
     {
-      "id": "78c0eeb61b4c1d8c",
-      "address": "1 Roebling Way 301",
-      "city": "Covington",
-      "state": "KY",
-      "zip": "41011",
-      "price": 599900,
-      "beds": 2,
-      "baths": 2.5,
-      "sqft": 1964,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6397/639737q.jpg?1770648106"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/639737/1-Roebling-Way-301-Covington-KY-41011/",
-      "source": "comey",
-      "lat": 39.089348,
-      "lng": -84.509529,
-      "last_updated": "2026-04-16T12:14:32.022622"
-    },
-    {
       "id": "ea2299708da1f337",
       "address": "9980 Meadow Glen Drive",
       "city": "Independence",
@@ -81888,29 +80154,6 @@
       "last_updated": "2026-04-16T12:14:07.274868"
     },
     {
-      "id": "3970ea7eceebd2e6",
-      "address": "1 Roebling Way 401",
-      "city": "Covington",
-      "state": "KY",
-      "zip": "41011",
-      "price": 639900,
-      "beds": 2,
-      "baths": 2.5,
-      "sqft": 1957,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6408/640816q.jpg?1774273765"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/640816/1-Roebling-Way-401-Covington-KY-41011/",
-      "source": "comey",
-      "lat": 39.089344,
-      "lng": -84.509506,
-      "last_updated": "2026-04-16T12:14:32.021052"
-    },
-    {
       "id": "a37e56704746f2e1",
       "address": "300 View Place",
       "city": "Covington",
@@ -82111,36 +80354,14 @@
       "status": "Pending",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6377/637736q.jpg?1773739113"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6377/637736q.jpg?1773739113",
+        "https://m1.cbhomes.com/p/192/637736/92e68F07f52C48b/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/637736/10492-Brookhurst-Lane-Union-KY-41091/",
       "source": "comey",
       "lat": 38.938995,
       "lng": -84.670799,
       "last_updated": "2026-04-16T12:14:44.888308"
-    },
-    {
-      "id": "86ceef02e724fcd3",
-      "address": "10492 Brookhurst Ln N",
-      "city": "Union",
-      "state": "KY",
-      "zip": "41091",
-      "price": 644900,
-      "beds": 5,
-      "baths": 5.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/637736/92e68F07f52C48b/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/union/10492-brookhurst-ln-n/pid_68317168/",
-      "source": "coldwell_banker",
-      "lat": 38.939,
-      "lng": -84.6708,
-      "last_updated": "2026-04-16T12:24:41.673769+00:00"
     },
     {
       "id": "9ea3daaaa3e5de03",
@@ -82203,7 +80424,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6413/641324q.jpg?1775658379"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6413/641324q.jpg?1775658379",
+        "https://m1.cbhomes.com/p/192/641324/05339088370F427/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/641324/105-W-13th-Street-10-Newport-KY-41071/",
       "source": "comey",
@@ -82279,29 +80501,6 @@
       "lat": 39.122,
       "lng": -84.4893,
       "last_updated": "2026-04-16T12:20:54.354097+00:00"
-    },
-    {
-      "id": "e6f961f78b9f349c",
-      "address": "105 W 13th St",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 645000,
-      "beds": 3,
-      "baths": 4.0,
-      "sqft": 2384,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/641324/05339088370F427/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/newport/105-w-13th-st-10/pid_70548025/",
-      "source": "coldwell_banker",
-      "lat": 39.0822,
-      "lng": -84.4893,
-      "last_updated": "2026-04-16T12:22:02.630735+00:00"
     },
     {
       "id": "092aa046168af0d8",
@@ -83026,29 +81225,6 @@
       "last_updated": "2026-04-16T12:14:38.412557"
     },
     {
-      "id": "7f86c3178a1a773c",
-      "address": "745 Manhattan Boulevard 403",
-      "city": "Dayton",
-      "state": "KY",
-      "zip": "41074",
-      "price": 650000,
-      "beds": 2,
-      "baths": 2.5,
-      "sqft": 1600,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6404/640488q.jpg?1773240507"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/640488/745-Manhattan-Boulevard-403-Dayton-KY-41074/",
-      "source": "comey",
-      "lat": 39.117203,
-      "lng": -84.473305,
-      "last_updated": "2026-04-16T12:14:38.414031"
-    },
-    {
       "id": "d70b9d145886fc72",
       "address": "37 Holly Woods Drive",
       "city": "Fort Thomas",
@@ -83213,29 +81389,6 @@
       "last_updated": "2026-04-16T12:21:27.131440+00:00"
     },
     {
-      "id": "42ca56aa1f6174ec",
-      "address": "745 Manhattan Blvd",
-      "city": "Dayton",
-      "state": "KY",
-      "zip": "41074",
-      "price": 650000,
-      "beds": 2,
-      "baths": 3.0,
-      "sqft": 1600,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/640488/5a4e9074480D462/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/dayton/745-manhattan-blvd-403/pid_70049884/",
-      "source": "coldwell_banker",
-      "lat": 39.1172,
-      "lng": -84.4732,
-      "last_updated": "2026-04-16T12:25:34.891850+00:00"
-    },
-    {
       "id": "e97f6cd86de676d4",
       "address": "3986 Trailside Dr",
       "city": "Green Township",
@@ -83319,7 +81472,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6396/639665q.jpg?1770289496"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6396/639665q.jpg?1770289496",
+        "https://m1.cbhomes.com/p/192/639665/dB67e34a68fB4a0/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/639665/95-W-13th-Street-11-Newport-KY-41071/",
       "source": "comey",
@@ -83350,29 +81504,6 @@
       "lat": 39.004189,
       "lng": -84.672089,
       "last_updated": "2026-04-16T12:14:44.885377"
-    },
-    {
-      "id": "d28a18cd68435047",
-      "address": "95 W 13th St",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 655000,
-      "beds": 2,
-      "baths": 4.0,
-      "sqft": 2384,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/639665/dB67e34a68fB4a0/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/newport/95-w-13th-st-11/pid_69495452/",
-      "source": "coldwell_banker",
-      "lat": 39.0822,
-      "lng": -84.4893,
-      "last_updated": "2026-04-16T12:22:06.050646+00:00"
     },
     {
       "id": "373ed7e98d59d697",
@@ -83773,29 +81904,6 @@
       "lat": 38.9486,
       "lng": -84.7047,
       "last_updated": "2026-04-16T12:24:41.724376+00:00"
-    },
-    {
-      "id": "0f9ba2944954c572",
-      "address": "1 Roebling Way 406",
-      "city": "Covington",
-      "state": "KY",
-      "zip": "41011",
-      "price": 669000,
-      "beds": 2,
-      "baths": 2.5,
-      "sqft": 1775,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6396/639622q.jpg?1770130187"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/639622/1-Roebling-Way-406-Covington-KY-41011/",
-      "source": "comey",
-      "lat": 39.089344,
-      "lng": -84.509506,
-      "last_updated": "2026-04-16T12:14:32.022722"
     },
     {
       "id": "c1a170459c0f8ed0",
@@ -85073,29 +83181,6 @@
       "last_updated": "2026-04-16T12:18:51.412055"
     },
     {
-      "id": "0047d302bebb6c3c",
-      "address": "100 Grandview Avenue 3",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 694601,
-      "beds": 3,
-      "baths": 2.5,
-      "sqft": 2990,
-      "lot_size": null,
-      "property_type": "Townhouse",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6375/637562q.jpg?1761720674"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/637562/100-Grandview-Avenue-3-Newport-KY-41071/",
-      "source": "comey",
-      "lat": 39.076622,
-      "lng": -84.490906,
-      "last_updated": "2026-04-16T12:14:38.415128"
-    },
-    {
       "id": "a1daa11d1c3e7b6c",
       "address": "3006 Woodburn Ave",
       "city": "Cincinnati",
@@ -85158,7 +83243,16 @@
       "status": "Pending",
       "days_on_market": 273,
       "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1847827_1.jpg?ts=639110329845900000"
+        "https://online.sibcycline.com/retsphotos/CIN/1849553_1.jpg?ts=639107712646600000",
+        "https://online.sibcycline.com/retsphotos/CIN/1849549_1.jpg?ts=639107698243800000",
+        "https://online.sibcycline.com/retsphotos/CIN/1848754_1.jpg?ts=639107010679100000",
+        "https://online.sibcycline.com/retsphotos/CIN/1849519_1.jpg?ts=639107010660900000",
+        "https://online.sibcycline.com/retsphotos/CIN/1862140_1.jpg?ts=639107011860200000",
+        "https://online.sibcycline.com/retsphotos/CIN/1848727_1.jpg?ts=639107665979500000",
+        "https://online.sibcycline.com/retsphotos/CIN/1847827_1.jpg?ts=639110329845900000",
+        "https://online.sibcycline.com/retsphotos/CIN/1849555_1.jpg?ts=639107710247200000",
+        "https://online.sibcycline.com/retsphotos/CIN/1849552_1.jpg?ts=639107700694000000",
+        "https://online.sibcycline.com/retsphotos/CIN/1849547_1.jpg?ts=639107707850800000"
       ],
       "url": "https://www.sibcycline.com/listing/2754202/210-Vintage-Club-Drive-103-Montgomery-OH-45249",
       "source": "sibcy_cline",
@@ -85238,29 +83332,6 @@
       "last_updated": "2026-04-16T12:14:07.274916"
     },
     {
-      "id": "990555279bfb0c9c",
-      "address": "617 Manhattan Boulevard 302",
-      "city": "Dayton",
-      "state": "KY",
-      "zip": "41074",
-      "price": 695000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1920,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6378/637876q.jpg?1762762389"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/637876/617-Manhattan-Boulevard-302-Dayton-KY-41074/",
-      "source": "comey",
-      "lat": 39.116001,
-      "lng": -84.475945,
-      "last_updated": "2026-04-16T12:14:38.415073"
-    },
-    {
       "id": "7e20863b533044a8",
       "address": "3435 Golden Ave",
       "city": "Cincinnati",
@@ -85328,29 +83399,6 @@
       "lat": 39.109,
       "lng": -84.5261,
       "last_updated": "2026-04-16T12:19:51.228261+00:00"
-    },
-    {
-      "id": "729d124eb06d7df4",
-      "address": "617 Manhattan Blvd",
-      "city": "Dayton",
-      "state": "KY",
-      "zip": "41074",
-      "price": 695000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": 1920,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/637876/B432E0AaB110439/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/dayton/617-manhattan-blvd-302/pid_68390992/",
-      "source": "coldwell_banker",
-      "lat": 39.116,
-      "lng": -84.476,
-      "last_updated": "2026-04-16T12:25:34.941624+00:00"
     },
     {
       "id": "66bdd7113bf61c86",
@@ -86558,29 +84606,6 @@
       "last_updated": "2026-04-16T12:18:42.560829"
     },
     {
-      "id": "5680673bebf97679",
-      "address": "1 Roebling Way 504",
-      "city": "Covington",
-      "state": "KY",
-      "zip": "41011",
-      "price": 714900,
-      "beds": 2,
-      "baths": 2.5,
-      "sqft": 2191,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6393/639318q.jpg?1769081001"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/639318/1-Roebling-Way-504-Covington-KY-41011/",
-      "source": "comey",
-      "lat": 39.089348,
-      "lng": -84.509529,
-      "last_updated": "2026-04-16T12:14:32.022915"
-    },
-    {
       "id": "50e68e9fde340f47",
       "address": "3847 Drake Avenue",
       "city": "Oakley",
@@ -86637,42 +84662,20 @@
       "price": 715000,
       "beds": 4,
       "baths": 4.0,
-      "sqft": null,
+      "sqft": 3625,
       "lot_size": null,
       "property_type": "",
       "status": "Pending",
       "days_on_market": 239,
       "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1852168_1.jpg?ts=639111446085900000"
+        "https://online.sibcycline.com/retsphotos/CIN/1852168_1.jpg?ts=639111446085900000",
+        "https://m.cbhomes.com/p/220/1852168/13a7FA7643FF499/m23cc.webp"
       ],
       "url": "https://www.sibcycline.com/listing/2762057/4033-Trailside-Drive-91-Green-Twp.---Hamilton-Co.-OH-45248",
       "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
-      "last_updated": "2026-04-16T12:18:42.560819"
-    },
-    {
-      "id": "9b5efa11eb2edfb8",
-      "address": "4033 Trailside Dr",
-      "city": "Green Township",
-      "state": "OH",
-      "zip": "45248",
-      "price": 715000,
-      "beds": 4,
-      "baths": 4.0,
-      "sqft": 3625,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/220/1852168/13a7FA7643FF499/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/oh/green-township-hamilton-county/4033-trailside-dr-91/pid_67000982/",
-      "source": "coldwell_banker",
       "lat": 39.1675,
       "lng": -84.6421,
-      "last_updated": "2026-04-16T12:21:25.423621+00:00"
+      "last_updated": "2026-04-16T12:18:42.560819"
     },
     {
       "id": "d8c6472b84e7c04d",
@@ -87335,29 +85338,6 @@
       "lat": 39.0665,
       "lng": -84.3286,
       "last_updated": "2026-04-16T12:18:31.889292"
-    },
-    {
-      "id": "75500cde991b905e",
-      "address": "1 Roebling Way 804",
-      "city": "Covington",
-      "state": "KY",
-      "zip": "41011",
-      "price": 739000,
-      "beds": 2,
-      "baths": 2.5,
-      "sqft": 2206,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6400/640023q.jpg?1771842474"
-      ],
-      "url": "https://www.comey.com/real-estate/nky/640023/1-Roebling-Way-804-Covington-KY-41011/",
-      "source": "comey",
-      "lat": 39.089344,
-      "lng": -84.509506,
-      "last_updated": "2026-04-16T12:14:32.022309"
     },
     {
       "id": "583c845a38671cfd",
@@ -89566,18 +87546,24 @@
       "price": 799900,
       "beds": 2,
       "baths": 3.0,
-      "sqft": null,
+      "sqft": 2204,
       "lot_size": null,
       "property_type": "",
       "status": "Pending",
       "days_on_market": 92,
       "images": [
-        "https://online.sibcycline.com/retsphotos/NKY/639243_1.jpg?ts=639118381845400000"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6408/640816q.jpg?1774273765",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6396/639622q.jpg?1770130187",
+        "https://online.sibcycline.com/retsphotos/NKY/639243_1.jpg?ts=639118381845400000",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6393/639318q.jpg?1769081001",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6397/639737q.jpg?1770648106",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6415/641545q.jpg?1776187050",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6400/640023q.jpg?1771842474"
       ],
       "url": "https://www.sibcycline.com/listing/2789033/1-Roebling-Way-906-Covington-KY-41011",
       "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
+      "lat": 39.089344,
+      "lng": -84.509506,
       "last_updated": "2026-04-16T12:18:17.578389"
     },
     {
@@ -90688,7 +88674,7 @@
       "lat": 39.1365115,
       "lng": -84.4371795,
       "last_updated": "2026-04-16T12:13:43.373706",
-      "description": "This stunning Hyde Park home has everything you're looking for. The main level includes a spacious living room with kitchen that opens to the formal dining room, plus a first‑floor family room, powder room, and laundry. French doors open to a private, landscaped backyard with a patio and fire pit. The second floor offers three bedrooms, including a generous primary suite with an updated en-suite bath. The third floor adds a versatile fourth bedroom and full bath, perfect for guests, a home office, or additional living space. A detached garage provides off‑street parking and extra storage. Located right between Hyde Park Square and Mount Lookout Square, you get the best of both worlds."
+      "description": "This stunning Hyde Park home has everything you're looking for. The main level includes a spacious living room with kitchen that opens to the formal dining room, plus a first\u2011floor family room, powder room, and laundry. French doors open to a private, landscaped backyard with a patio and fire pit. The second floor offers three bedrooms, including a generous primary suite with an updated en-suite bath. The third floor adds a versatile fourth bedroom and full bath, perfect for guests, a home office, or additional living space. A detached garage provides off\u2011street parking and extra storage. Located right between Hyde Park Square and Mount Lookout Square, you get the best of both worlds."
     },
     {
       "id": "471e25a9f86f8138",
@@ -90729,7 +88715,8 @@
       "days_on_market": 41,
       "images": [
         "https://online.sibcycline.com/retsphotos/NKY/640352_1.jpg?ts=639109372470100000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6403/640352q.jpg?1772722841"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6403/640352q.jpg?1772722841",
+        "https://m.cbhomes.com/p/192/640352/eB37814524B64fe/m23cc.webp"
       ],
       "url": "https://www.sibcycline.com/listing/2796967/10453-Brookhurst-Lane-Union-KY-41091",
       "source": "sibcy_cline",
@@ -90807,29 +88794,6 @@
       "last_updated": "2026-04-16T12:21:18.647534+00:00"
     },
     {
-      "id": "d6f6220b3b00c36b",
-      "address": "10453 Brookhurst Ln N",
-      "city": "Union",
-      "state": "KY",
-      "zip": "41091",
-      "price": 849000,
-      "beds": 5,
-      "baths": 5.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/640352/eB37814524B64fe/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/union/10453-brookhurst-ln-n/pid_69948288/",
-      "source": "coldwell_banker",
-      "lat": 38.9405,
-      "lng": -84.6702,
-      "last_updated": "2026-04-16T12:24:36.779371+00:00"
-    },
-    {
       "id": "0fa9337a3d92cb4c",
       "address": "8590 Trillium Ridge Lane",
       "city": "Anderson Twp.",
@@ -90886,18 +88850,19 @@
       "price": 850000,
       "beds": 3,
       "baths": 4.0,
-      "sqft": null,
+      "sqft": 2436,
       "lot_size": null,
       "property_type": "",
       "status": "Pending",
       "days_on_market": 20,
       "images": [
-        "https://static1.sibcycline.com/photos/86/20/2/862028c7cf06ffced0f43eaf1d784572d4cfcc24_640.jpg?ts=639102009304300000"
+        "https://static1.sibcycline.com/photos/86/20/2/862028c7cf06ffced0f43eaf1d784572d4cfcc24_640.jpg?ts=639102009304300000",
+        "https://m1.cbhomes.com/p/220/1872699/fEF973c05D1749D/m23cc.webp"
       ],
       "url": "https://www.sibcycline.com/listing/2801502/1325-Republic-Street-C-Cincinnati-OH-45202",
       "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
+      "lat": 39.1101,
+      "lng": -84.5162,
       "last_updated": "2026-04-16T12:18:08.799347"
     },
     {
@@ -90994,29 +88959,6 @@
       "lat": 39.15,
       "lng": -84.4421,
       "last_updated": "2026-04-16T12:19:38.254416+00:00"
-    },
-    {
-      "id": "10b0b37a493845a3",
-      "address": "1325 Republic St",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45202",
-      "price": 850000,
-      "beds": 3,
-      "baths": 4.0,
-      "sqft": 2436,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/220/1872699/fEF973c05D1749D/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/oh/cincinnati/1325-republic-st-c/pid_70336719/",
-      "source": "coldwell_banker",
-      "lat": 39.1101,
-      "lng": -84.5162,
-      "last_updated": "2026-04-16T12:19:43.921448+00:00"
     },
     {
       "id": "14cd1a62ccfdb5e4",
@@ -91898,18 +89840,19 @@
       "price": 899000,
       "beds": 2,
       "baths": 3.0,
-      "sqft": null,
+      "sqft": 2090,
       "lot_size": null,
       "property_type": "",
       "status": "Pending",
       "days_on_market": 159,
       "images": [
-        "https://static1.sibcycline.com/photos/cb/bd/0/cbbd050c88cf946d47b52eee6adf7755de62409d_640.jpg?ts=638979332992500000"
+        "https://static1.sibcycline.com/photos/cb/bd/0/cbbd050c88cf946d47b52eee6adf7755de62409d_640.jpg?ts=638979332992500000",
+        "https://m.cbhomes.com/p/220/1860097/5EAF1eAe4d3D4C7/m23cc.webp"
       ],
       "url": "https://www.sibcycline.com/listing/2778836/3500-Michigan-Avenue-24-Hyde-Park-OH-45208",
       "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
+      "lat": 39.1398,
+      "lng": -84.4415,
       "last_updated": "2026-04-16T12:18:00.715193"
     },
     {
@@ -91982,29 +89925,6 @@
       "last_updated": "2026-04-16T12:20:23.354054+00:00"
     },
     {
-      "id": "1a51df24438a2f9d",
-      "address": "3500 Michigan Ave",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45208",
-      "price": 899000,
-      "beds": 2,
-      "baths": 3.0,
-      "sqft": 2090,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/220/1860097/5EAF1eAe4d3D4C7/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/oh/cincinnati/3500-michigan-ave-24/pid_68317507/",
-      "source": "coldwell_banker",
-      "lat": 39.1398,
-      "lng": -84.4415,
-      "last_updated": "2026-04-16T12:21:18.641054+00:00"
-    },
-    {
       "id": "338c21769d6d8eab",
       "address": "4117 Thirty Fourth Ave",
       "city": "Cincinnati",
@@ -92038,18 +89958,19 @@
       "price": 899900,
       "beds": 3,
       "baths": 5.0,
-      "sqft": null,
+      "sqft": 3260,
       "lot_size": null,
       "property_type": "",
       "status": "Pending",
       "days_on_market": 29,
       "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1870632_1.jpg?ts=639107577043600000"
+        "https://online.sibcycline.com/retsphotos/CIN/1870632_1.jpg?ts=639107577043600000",
+        "https://m1.cbhomes.com/p/220/1870632/Faa7A5c197d7459/m23cc.webp"
       ],
       "url": "https://www.sibcycline.com/listing/2797787/419-E-Thirteenth-Street-Cincinnati-OH-45202",
       "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
+      "lat": 39.1103,
+      "lng": -84.5076,
       "last_updated": "2026-04-16T12:17:57.688614"
     },
     {
@@ -92146,29 +90067,6 @@
       "lat": 39.1548,
       "lng": -84.4879,
       "last_updated": "2026-04-16T12:19:43.914139+00:00"
-    },
-    {
-      "id": "06206b8e1548e5d5",
-      "address": "419 E 13th St",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45202",
-      "price": 899900,
-      "beds": 3,
-      "baths": 5.0,
-      "sqft": 3260,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/220/1870632/Faa7A5c197d7459/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/oh/cincinnati/419-e-thirteenth-st/pid_70024191/",
-      "source": "coldwell_banker",
-      "lat": 39.1103,
-      "lng": -84.5076,
-      "last_updated": "2026-04-16T12:20:23.320182+00:00"
     },
     {
       "id": "cc6dc6d364a2933a",
@@ -92558,7 +90456,8 @@
       "status": "Active",
       "days_on_market": null,
       "images": [
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6351/635172q.jpg?1754918084"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6351/635172q.jpg?1754918084",
+        "https://m1.cbhomes.com/p/192/635172/3a1a6c6aBA97427/m23cc.webp"
       ],
       "url": "https://www.comey.com/real-estate/nky/635172/605-Manhattan-Boulevard-202-Dayton-KY-41074/",
       "source": "comey",
@@ -92588,29 +90487,6 @@
       "lat": 39.2669,
       "lng": -84.3364,
       "last_updated": "2026-04-16T12:20:54.271790+00:00"
-    },
-    {
-      "id": "19627969f1a6c06c",
-      "address": "605 Manhattan Blvd",
-      "city": "Dayton",
-      "state": "KY",
-      "zip": "41074",
-      "price": 925000,
-      "beds": 4,
-      "baths": 4.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/635172/3a1a6c6aBA97427/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/dayton/605-manhattan-blvd-202/pid_66837482/",
-      "source": "coldwell_banker",
-      "lat": 39.1158,
-      "lng": -84.4761,
-      "last_updated": "2026-04-16T12:25:36.130153+00:00"
     },
     {
       "id": "318edf1c0786ee68",
@@ -93628,29 +91504,6 @@
       "lat": 39.361698,
       "lng": -84.283897,
       "last_updated": "2026-04-16T12:14:16.018260"
-    },
-    {
-      "id": "0a34cb054c80cc49",
-      "address": "210 Vintage Club Drive 106",
-      "city": "Montgomery",
-      "state": "OH",
-      "zip": "45249",
-      "price": 955000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": 270,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1848754_1.jpg?ts=639107010679100000"
-      ],
-      "url": "https://www.sibcycline.com/listing/2755138/210-Vintage-Club-Drive-106-Montgomery-OH-45249",
-      "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
-      "last_updated": "2026-04-16T12:16:47.932862"
     },
     {
       "id": "ee2720c986357a2a",
@@ -94921,18 +92774,20 @@
       "price": 999000,
       "beds": 3,
       "baths": 4.0,
-      "sqft": null,
+      "sqft": 2483,
       "lot_size": null,
       "property_type": "",
       "status": "Active",
       "days_on_market": 136,
       "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1863079_1.jpg?ts=639116898707100000"
+        "https://online.sibcycline.com/retsphotos/CIN/1868060_1.jpg?ts=639105643714500000",
+        "https://online.sibcycline.com/retsphotos/CIN/1863079_1.jpg?ts=639116898707100000",
+        "https://m1.cbhomes.com/p/220/1868060/3BC5cA4Bb3fc440/m23cc.webp"
       ],
       "url": "https://www.sibcycline.com/listing/2783161/3725-Isabella-Avenue-3-Oakley-OH-45209",
       "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
+      "lat": 39.1452,
+      "lng": -84.433,
       "last_updated": "2026-04-16T12:16:32.020208"
     },
     {
@@ -95709,38 +93564,21 @@
       "status": "Pending",
       "days_on_market": 83,
       "images": [
+        "https://online.sibcycline.com/retsphotos/NKY/639435_1.jpg?ts=639112586193800000",
         "https://online.sibcycline.com/retsphotos/NKY/639434_1.jpg?ts=639112595520700000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639434q.jpg?1769086582"
+        "https://online.sibcycline.com/retsphotos/NKY/634790_1.jpg?ts=639111217860100000",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639436q.jpg?1769087461",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639434q.jpg?1769086582",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639435q.jpg?1769086926",
+        "https://online.sibcycline.com/retsphotos/NKY/639436_1.jpg?ts=639112574139100000",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6347/634790q.jpg?1753791446",
+        "https://m.cbhomes.com/p/192/639435/Bb0d18074DA14e7/m23cc.webp"
       ],
       "url": "https://www.sibcycline.com/listing/2790318/300-Ovation-Way-305-Newport-KY-41071",
       "source": "sibcy_cline",
       "lat": 39.091278,
       "lng": -84.501648,
       "last_updated": "2026-04-16T12:17:40.771230"
-    },
-    {
-      "id": "df1a22a818f0328a",
-      "address": "300 Ovation Way 306",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 1055000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": 83,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/NKY/639436_1.jpg?ts=639112574139100000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639436q.jpg?1769087461"
-      ],
-      "url": "https://www.sibcycline.com/listing/2790325/300-Ovation-Way-306-Newport-KY-41071",
-      "source": "sibcy_cline",
-      "lat": 39.091312,
-      "lng": -84.501678,
-      "last_updated": "2026-04-16T12:17:40.771240"
     },
     {
       "id": "a712ae2e39386381",
@@ -95787,52 +93625,6 @@
       "lat": null,
       "lng": null,
       "last_updated": "2026-04-16T12:16:20.235155"
-    },
-    {
-      "id": "94eac52f21ac8d02",
-      "address": "3725 Isabella Avenue 4",
-      "city": "Oakley",
-      "state": "OH",
-      "zip": "45209",
-      "price": 1069000,
-      "beds": 2,
-      "baths": 4.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": 61,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1868060_1.jpg?ts=639105643714500000"
-      ],
-      "url": "https://www.sibcycline.com/listing/2793417/3725-Isabella-Avenue-4-Oakley-OH-45209",
-      "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
-      "last_updated": "2026-04-16T12:16:20.235127"
-    },
-    {
-      "id": "2f9c3b32c30a98e0",
-      "address": "3725 Isabella Ave",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45209",
-      "price": 1069000,
-      "beds": 2,
-      "baths": 4.0,
-      "sqft": 2483,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/220/1868060/3BC5cA4Bb3fc440/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/oh/cincinnati/3725-isabella-ave-4/pid_69635701/",
-      "source": "coldwell_banker",
-      "lat": 39.1452,
-      "lng": -84.433,
-      "last_updated": "2026-04-16T12:20:47.319909+00:00"
     },
     {
       "id": "342c6404c419fa90",
@@ -96096,30 +93888,6 @@
       "last_updated": "2026-04-16T12:16:20.235045"
     },
     {
-      "id": "5780b627614dd22b",
-      "address": "300 Ovation Way 304",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 1095000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": 83,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/NKY/639435_1.jpg?ts=639112586193800000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639435q.jpg?1769086926"
-      ],
-      "url": "https://www.sibcycline.com/listing/2790323/300-Ovation-Way-304-Newport-KY-41071",
-      "source": "sibcy_cline",
-      "lat": 39.09124,
-      "lng": -84.500916,
-      "last_updated": "2026-04-16T12:17:40.771146"
-    },
-    {
       "id": "1931eaba50940c8a",
       "address": "305 Seitz Street",
       "city": "Mt. Auburn",
@@ -96158,61 +93926,23 @@
       "status": "Pending",
       "days_on_market": 83,
       "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639441q.jpg?1769088632",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639438q.jpg?1769088147",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639440q.jpg?1769088407",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639433q.jpg?1769086192",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639437q.jpg?1769087854",
+        "https://online.sibcycline.com/retsphotos/NKY/639433_1.jpg?ts=639112579871900000",
         "https://online.sibcycline.com/retsphotos/NKY/639437_1.jpg?ts=639112619502700000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639437q.jpg?1769087854"
+        "https://online.sibcycline.com/retsphotos/NKY/639440_1.jpg?ts=639112610081000000",
+        "https://online.sibcycline.com/retsphotos/NKY/639438_1.jpg?ts=639112588415400000",
+        "https://online.sibcycline.com/retsphotos/NKY/639441_1.jpg?ts=639112603360200000",
+        "https://m.cbhomes.com/p/192/634788/ebD96B58458C44C/m23cc.webp"
       ],
       "url": "https://www.sibcycline.com/listing/2790331/400-Ovation-Way-208-Newport-KY-41071",
       "source": "sibcy_cline",
       "lat": 39.091362,
       "lng": -84.501579,
       "last_updated": "2026-04-16T12:17:40.771179"
-    },
-    {
-      "id": "92950e4e151baa1a",
-      "address": "400 Ovation Way 307",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 1095000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": 83,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/NKY/639433_1.jpg?ts=639112579871900000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639433q.jpg?1769086192"
-      ],
-      "url": "https://www.sibcycline.com/listing/2790317/400-Ovation-Way-307-Newport-KY-41071",
-      "source": "sibcy_cline",
-      "lat": 39.091297,
-      "lng": -84.501678,
-      "last_updated": "2026-04-16T12:17:40.771189"
-    },
-    {
-      "id": "8c824af33445928a",
-      "address": "300 Ovation Way",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 1095000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/639435/Bb0d18074DA14e7/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/newport/300-ovation-way-304/pid_69274060/",
-      "source": "coldwell_banker",
-      "lat": 39.0912,
-      "lng": -84.5009,
-      "last_updated": "2026-04-16T12:22:07.750184+00:00"
     },
     {
       "id": "ab7122adfdabffb6",
@@ -96606,37 +94336,15 @@
       "status": "Active",
       "days_on_market": 3,
       "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6415/641509q.jpg?1776110555",
         "https://online.sibcycline.com/retsphotos/NKY/641509_1.jpg?ts=639117077444500000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6415/641509q.jpg?1776110555"
+        "https://m.cbhomes.com/p/192/641509/6C46a99080544f0/m23cc.webp"
       ],
       "url": "https://www.sibcycline.com/listing/2806455/600-Ovation-Way-312-Newport-KY-41071",
       "source": "sibcy_cline",
       "lat": 39.090012,
       "lng": -84.500336,
       "last_updated": "2026-04-16T12:16:14.581614"
-    },
-    {
-      "id": "966383fa6ac193f6",
-      "address": "600 Ovation Way",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 1120000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/641509/6C46a99080544f0/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/newport/600-ovation-way-312/pid_70652387/",
-      "source": "coldwell_banker",
-      "lat": null,
-      "lng": null,
-      "last_updated": "2026-04-16T12:22:02.588897+00:00"
     },
     {
       "id": "bf9c9b0236315196",
@@ -96725,8 +94433,10 @@
       "status": "Pending",
       "days_on_market": 83,
       "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639431q.jpg?1769085174",
         "https://online.sibcycline.com/retsphotos/NKY/639431_1.jpg?ts=639112628116500000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639431q.jpg?1769085174"
+        "https://online.sibcycline.com/retsphotos/NKY/639432_1.jpg?ts=639112568169000000",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639432q.jpg?1769085771"
       ],
       "url": "https://www.sibcycline.com/listing/2790311/200-Ovation-Way-303-Newport-KY-41071",
       "source": "sibcy_cline",
@@ -96878,29 +94588,6 @@
       "last_updated": "2026-04-16T12:16:11.777851"
     },
     {
-      "id": "7dd822ca1d436b8e",
-      "address": "400 Ovation Way Way",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 1145000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/634788/ebD96B58458C44C/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/newport/400-ovation-way-way-207/pid_66642777/",
-      "source": "coldwell_banker",
-      "lat": 39.0913,
-      "lng": -84.5014,
-      "last_updated": "2026-04-16T12:22:09.575014+00:00"
-    },
-    {
       "id": "245dea1ae9213136",
       "address": "718 Clinton Springs Ave",
       "city": "Cincinnati",
@@ -96959,18 +94646,19 @@
       "price": 1150000,
       "beds": 4,
       "baths": 4.0,
-      "sqft": null,
+      "sqft": 2943,
       "lot_size": null,
       "property_type": "",
       "status": "Active",
       "days_on_market": 41,
       "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1869932_1.jpg?ts=639108648704700000"
+        "https://online.sibcycline.com/retsphotos/CIN/1869932_1.jpg?ts=639108648704700000",
+        "https://m.cbhomes.com/p/220/1869932/e554aBfD92264d4/m23cc.webp"
       ],
       "url": "https://www.sibcycline.com/listing/2796374/120-W-Fourteenth-Street-Cincinnati-OH-45202",
       "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
+      "lat": 39.1104,
+      "lng": -84.518,
       "last_updated": "2026-04-16T12:16:08.938790"
     },
     {
@@ -97129,8 +94817,9 @@
       "status": "Pending",
       "days_on_market": 313,
       "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6332/633227q.jpg?1755107631",
         "https://online.sibcycline.com/retsphotos/NKY/633227_1.jpg?ts=639107720826700000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6332/633227q.jpg?1755107631"
+        "https://m1.cbhomes.com/p/192/633227/f0FCcFbabD83436/m23cc.webp"
       ],
       "url": "https://www.sibcycline.com/listing/2744894/101-Harbor-Greene-Drive-W705-Bellevue-KY-41073",
       "source": "sibcy_cline",
@@ -97209,52 +94898,6 @@
       "lat": 39.1444,
       "lng": -84.4458,
       "last_updated": "2026-04-16T12:19:54.978695+00:00"
-    },
-    {
-      "id": "03ae05400077576c",
-      "address": "120 W 14th St",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45202",
-      "price": 1150000,
-      "beds": 4,
-      "baths": 4.0,
-      "sqft": 2943,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/220/1869932/e554aBfD92264d4/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/oh/cincinnati/120-w-fourteenth-st/pid_69895898/",
-      "source": "coldwell_banker",
-      "lat": 39.1104,
-      "lng": -84.518,
-      "last_updated": "2026-04-16T12:20:33.780264+00:00"
-    },
-    {
-      "id": "c4ffe2bfe0d096b2",
-      "address": "101 Harbor Greene Dr",
-      "city": "Bellevue",
-      "state": "KY",
-      "zip": "41073",
-      "price": 1150000,
-      "beds": 4,
-      "baths": 4.0,
-      "sqft": 3644,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/192/633227/f0FCcFbabD83436/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/bellevue/101-harbor-greene-dr-w705/pid_65721187/",
-      "source": "coldwell_banker",
-      "lat": 39.1046,
-      "lng": -84.4874,
-      "last_updated": "2026-04-16T12:25:26.183383+00:00"
     },
     {
       "id": "bf4e029b9ba693ae",
@@ -97377,30 +95020,6 @@
       "last_updated": "2026-04-16T12:16:08.938710"
     },
     {
-      "id": "cfeeb6120ced4c45",
-      "address": "400 Ovation Way 308",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 1165000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": 83,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/NKY/639438_1.jpg?ts=639112588415400000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639438q.jpg?1769088147"
-      ],
-      "url": "https://www.sibcycline.com/listing/2790332/400-Ovation-Way-308-Newport-KY-41071",
-      "source": "sibcy_cline",
-      "lat": 39.091354,
-      "lng": -84.501656,
-      "last_updated": "2026-04-16T12:17:34.990407"
-    },
-    {
       "id": "7c395071ab219f10",
       "address": "11225 US Rt 50",
       "city": "Whitewater Twp.",
@@ -97484,8 +95103,11 @@
       "status": "Active",
       "days_on_market": 260,
       "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6347/634793q.jpg?1753792188",
+        "https://online.sibcycline.com/retsphotos/NKY/634794_1.jpg?ts=639109957843500000",
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6347/634794q.jpg?1753791766",
         "https://online.sibcycline.com/retsphotos/NKY/634793_1.jpg?ts=639111139963000000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6347/634793q.jpg?1753792188"
+        "https://m.cbhomes.com/p/192/634794/7f7085cCE98845b/m23cc.webp"
       ],
       "url": "https://www.sibcycline.com/listing/2757097/100-Ovation-Way-302-Newport-KY-41071",
       "source": "sibcy_cline",
@@ -97755,29 +95377,6 @@
       "last_updated": "2026-04-16T12:17:34.990313"
     },
     {
-      "id": "6ad7bb35168d4633",
-      "address": "210 Vintage Club Drive 201",
-      "city": "Montgomery",
-      "state": "OH",
-      "zip": "45249",
-      "price": 1195000,
-      "beds": 3,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": 151,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1862140_1.jpg?ts=639107011860200000"
-      ],
-      "url": "https://www.sibcycline.com/listing/2781036/210-Vintage-Club-Drive-201-Montgomery-OH-45249",
-      "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
-      "last_updated": "2026-04-16T12:16:06.079737"
-    },
-    {
       "id": "61f485515a698400",
       "address": "3504 Shaw Avenue B",
       "city": "Hyde Park",
@@ -97792,12 +95391,13 @@
       "status": "Active",
       "days_on_market": 20,
       "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1873039_1.jpg?ts=639114204916500000"
+        "https://online.sibcycline.com/retsphotos/CIN/1873039_1.jpg?ts=639114204916500000",
+        "https://m1.cbhomes.com/p/220/1873039/5C8aE0CD2bcc468/m23cc.webp"
       ],
       "url": "https://www.sibcycline.com/listing/2801326/3504-Shaw-Avenue-B-Hyde-Park-OH-45208",
       "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
+      "lat": 39.1395,
+      "lng": -84.4398,
       "last_updated": "2026-04-16T12:16:06.079747"
     },
     {
@@ -97822,52 +95422,6 @@
       "lat": null,
       "lng": null,
       "last_updated": "2026-04-16T12:16:06.079757"
-    },
-    {
-      "id": "f8c3a44d7ce6d862",
-      "address": "210 Vintage Club Drive 101",
-      "city": "Montgomery",
-      "state": "OH",
-      "zip": "45249",
-      "price": 1195000,
-      "beds": 3,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": 269,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1848727_1.jpg?ts=639107665979500000"
-      ],
-      "url": "https://www.sibcycline.com/listing/2755118/210-Vintage-Club-Drive-101-Montgomery-OH-45249",
-      "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
-      "last_updated": "2026-04-16T12:17:31.171675"
-    },
-    {
-      "id": "91f898a82c498d83",
-      "address": "210 Vintage Club Drive 304",
-      "city": "Montgomery",
-      "state": "OH",
-      "zip": "45249",
-      "price": 1195000,
-      "beds": 3,
-      "baths": 3.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": 262,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1849553_1.jpg?ts=639107712646600000"
-      ],
-      "url": "https://www.sibcycline.com/listing/2756773/210-Vintage-Club-Drive-304-Montgomery-OH-45249",
-      "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
-      "last_updated": "2026-04-16T12:17:31.171684"
     },
     {
       "id": "73afb92348faf5f9",
@@ -97914,29 +95468,6 @@
       "lat": null,
       "lng": null,
       "last_updated": "2026-04-16T12:17:31.171702"
-    },
-    {
-      "id": "15917dafee8212e4",
-      "address": "3504 Shaw Ave",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45208",
-      "price": 1195000,
-      "beds": 2,
-      "baths": 3.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/220/1873039/5C8aE0CD2bcc468/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/oh/cincinnati/3504-shaw-ave-b/pid_70320165/",
-      "source": "coldwell_banker",
-      "lat": 39.1395,
-      "lng": -84.4398,
-      "last_updated": "2026-04-16T12:19:47.641469+00:00"
     },
     {
       "id": "143d9905c3d27c1d",
@@ -98246,30 +95777,6 @@
       "last_updated": "2026-04-16T12:16:03.109507"
     },
     {
-      "id": "8a16f5e401bb571b",
-      "address": "400 Ovation Way 408",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 1200000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": 83,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/NKY/639440_1.jpg?ts=639112610081000000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639440q.jpg?1769088407"
-      ],
-      "url": "https://www.sibcycline.com/listing/2790334/400-Ovation-Way-408-Newport-KY-41071",
-      "source": "sibcy_cline",
-      "lat": 39.091381,
-      "lng": -84.501671,
-      "last_updated": "2026-04-16T12:17:31.171638"
-    },
-    {
       "id": "fd6ededeb14cced0",
       "address": "633 Rivershore Drive",
       "city": "Hebron",
@@ -98546,8 +96053,11 @@
       "status": "Active",
       "days_on_market": 78,
       "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6397/639788q.jpg?1770896969",
         "https://online.sibcycline.com/retsphotos/NKY/639497_1.jpg?ts=639117122015700000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639497q.jpg?1769521728"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639497q.jpg?1769521728",
+        "https://static1.sibcycline.com/photos/d5/cc/4/d5cc43ed4e365b3cd71ea060aa08b51767fcb075_640.jpg?ts=639065096299300000",
+        "https://m.cbhomes.com/p/192/639788/C967C5d9bF3c4bB/m23cc.webp"
       ],
       "url": "https://www.sibcycline.com/listing/2790865/1150-Shavano-Drive-35-Covington-KY-41011",
       "source": "sibcy_cline",
@@ -98961,30 +96471,6 @@
       "last_updated": "2026-04-16T12:17:27.163191"
     },
     {
-      "id": "88f4769f12e82743",
-      "address": "400 Ovation Way 508",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 1260000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": 83,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/NKY/639441_1.jpg?ts=639112603360200000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639441q.jpg?1769088632"
-      ],
-      "url": "https://www.sibcycline.com/listing/2790335/400-Ovation-Way-508-Newport-KY-41071",
-      "source": "sibcy_cline",
-      "lat": 39.091412,
-      "lng": -84.501633,
-      "last_updated": "2026-04-16T12:17:27.163201"
-    },
-    {
       "id": "f65d7b8a5fce6b78",
       "address": "8517 Wilton Avenue",
       "city": "Sycamore Twp (Hamilton)",
@@ -99070,38 +96556,15 @@
       "status": "Active",
       "days_on_market": 260,
       "images": [
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6347/634792q.jpg?1755704032",
         "https://online.sibcycline.com/retsphotos/NKY/634792_1.jpg?ts=639106163446900000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6347/634792q.jpg?1755704032"
+        "https://m.cbhomes.com/p/192/634792/0317E6F6D34e4AE/m23cc.webp"
       ],
       "url": "https://www.sibcycline.com/listing/2757096/1000-Ovation-Way-420-Newport-KY-41071",
       "source": "sibcy_cline",
       "lat": 39.089436,
       "lng": -84.502731,
       "last_updated": "2026-04-16T12:15:52.828470"
-    },
-    {
-      "id": "9aa05a97ad90a96a",
-      "address": "300 Ovation Way 405",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 1275000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": 260,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/NKY/634790_1.jpg?ts=639111217860100000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6347/634790q.jpg?1753791446"
-      ],
-      "url": "https://www.sibcycline.com/listing/2757094/300-Ovation-Way-405-Newport-KY-41071",
-      "source": "sibcy_cline",
-      "lat": 39.09082,
-      "lng": -84.501747,
-      "last_updated": "2026-04-16T12:15:52.828479"
     },
     {
       "id": "da3ec58b430df26d",
@@ -99175,29 +96638,6 @@
       "lat": null,
       "lng": null,
       "last_updated": "2026-04-16T12:17:27.163158"
-    },
-    {
-      "id": "f0cb9ec7e7dbd6b7",
-      "address": "1000 Ovation Way",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 1275000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/634792/0317E6F6D34e4AE/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/newport/1000-ovation-way-420/pid_66642781/",
-      "source": "coldwell_banker",
-      "lat": 39.0894,
-      "lng": -84.5027,
-      "last_updated": "2026-04-16T12:22:09.564863+00:00"
     },
     {
       "id": "a1af4de93213fa4a",
@@ -99368,30 +96808,6 @@
       "last_updated": "2026-04-16T12:15:52.828442"
     },
     {
-      "id": "7b6fe0c1ff4fd838",
-      "address": "200 Ovation Way 503",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 1290000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": 83,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/NKY/639432_1.jpg?ts=639112568169000000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6394/639432q.jpg?1769085771"
-      ],
-      "url": "https://www.sibcycline.com/listing/2790315/200-Ovation-Way-503-Newport-KY-41071",
-      "source": "sibcy_cline",
-      "lat": 39.09127,
-      "lng": -84.501701,
-      "last_updated": "2026-04-16T12:17:24.280640"
-    },
-    {
       "id": "a6c8be2c5f066dd7",
       "address": "7314 Preserve Place",
       "city": "West Chester - West",
@@ -99461,29 +96877,6 @@
       "lat": 39.1078,
       "lng": -84.7219,
       "last_updated": "2026-04-16T12:17:24.280616"
-    },
-    {
-      "id": "8f35e78bde682aed",
-      "address": "210 Vintage Club Drive 202",
-      "city": "Montgomery",
-      "state": "OH",
-      "zip": "45249",
-      "price": 1295000,
-      "beds": 3,
-      "baths": 3.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": 264,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1849519_1.jpg?ts=639107010660900000"
-      ],
-      "url": "https://www.sibcycline.com/listing/2756719/210-Vintage-Club-Drive-202-Montgomery-OH-45249",
-      "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
-      "last_updated": "2026-04-16T12:15:52.828401"
     },
     {
       "id": "e1707f5c99517ae1",
@@ -99556,52 +96949,6 @@
       "last_updated": "2026-04-16T12:15:52.828433"
     },
     {
-      "id": "5db64b8014b28c68",
-      "address": "210 Vintage Club Drive 102",
-      "city": "Montgomery",
-      "state": "OH",
-      "zip": "45249",
-      "price": 1295000,
-      "beds": 3,
-      "baths": 3.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": 262,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1849555_1.jpg?ts=639107710247200000"
-      ],
-      "url": "https://www.sibcycline.com/listing/2756775/210-Vintage-Club-Drive-102-Montgomery-OH-45249",
-      "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
-      "last_updated": "2026-04-16T12:17:24.280546"
-    },
-    {
-      "id": "3b9b1cc53cd56e7e",
-      "address": "210 Vintage Club Drive 303",
-      "city": "Montgomery",
-      "state": "OH",
-      "zip": "45249",
-      "price": 1295000,
-      "beds": 3,
-      "baths": 3.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": 262,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1849552_1.jpg?ts=639107700694000000"
-      ],
-      "url": "https://www.sibcycline.com/listing/2756772/210-Vintage-Club-Drive-303-Montgomery-OH-45249",
-      "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
-      "last_updated": "2026-04-16T12:17:24.280555"
-    },
-    {
       "id": "c78dc3ea87e4e7eb",
       "address": "2801 Erie Avenue 202",
       "city": "Hyde Park",
@@ -99610,18 +96957,19 @@
       "price": 1295000,
       "beds": 2,
       "baths": 3.0,
-      "sqft": null,
+      "sqft": 2332,
       "lot_size": null,
       "property_type": "",
       "status": "Pending",
       "days_on_market": 43,
       "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1870433_1.jpg?ts=639108735132000000"
+        "https://online.sibcycline.com/retsphotos/CIN/1870433_1.jpg?ts=639108735132000000",
+        "https://m.cbhomes.com/p/220/1870433/c3276c6b07BC424/m23cc.webp"
       ],
       "url": "https://www.sibcycline.com/listing/2796660/2801-Erie-Avenue-202-Hyde-Park-OH-45208",
       "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
+      "lat": 39.1391,
+      "lng": -84.4399,
       "last_updated": "2026-04-16T12:17:24.280565"
     },
     {
@@ -99647,29 +96995,6 @@
       "lat": 39.1278,
       "lng": -84.4365,
       "last_updated": "2026-04-16T12:17:24.280574"
-    },
-    {
-      "id": "bc4b44b7210d7df0",
-      "address": "2801 Erie Ave",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45208",
-      "price": 1295000,
-      "beds": 2,
-      "baths": 3.0,
-      "sqft": 2332,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/220/1870433/c3276c6b07BC424/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/oh/cincinnati/2801-erie-ave-202/pid_69919778/",
-      "source": "coldwell_banker",
-      "lat": 39.1391,
-      "lng": -84.4399,
-      "last_updated": "2026-04-16T12:20:31.959665+00:00"
     },
     {
       "id": "9d39743a7e89800d",
@@ -99830,7 +97155,8 @@
       "status": "Pending",
       "days_on_market": 670,
       "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1808367_1.jpg?ts=639113216005700000"
+        "https://online.sibcycline.com/retsphotos/CIN/1808367_1.jpg?ts=639113216005700000",
+        "https://online.sibcycline.com/retsphotos/CIN/1808670_1.jpg?ts=639118026646900000"
       ],
       "url": "https://www.sibcycline.com/listing/2648761/4270-Parkview-Drive-205-Blue-Ash-OH-45242",
       "source": "sibcy_cline",
@@ -100270,29 +97596,6 @@
       "last_updated": "2026-04-16T12:15:47.223654"
     },
     {
-      "id": "a44e0eb5d0247ba6",
-      "address": "4270 Parkview Drive 105",
-      "city": "Blue Ash",
-      "state": "OH",
-      "zip": "45242",
-      "price": 1349900,
-      "beds": 3,
-      "baths": 3.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": 668,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1808670_1.jpg?ts=639118026646900000"
-      ],
-      "url": "https://www.sibcycline.com/listing/2649251/4270-Parkview-Drive-105-Blue-Ash-OH-45242",
-      "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
-      "last_updated": "2026-04-16T12:17:21.048198"
-    },
-    {
       "id": "fb36faa87015c8a0",
       "address": "-Lot 3 Greentree Road",
       "city": "Monroe",
@@ -100337,30 +97640,6 @@
       "lat": null,
       "lng": null,
       "last_updated": "2026-04-16T12:15:47.223540"
-    },
-    {
-      "id": "7753cfc15a3c39e3",
-      "address": "1150 Shavano Drive 26",
-      "city": "Covington",
-      "state": "KY",
-      "zip": "41011",
-      "price": 1350000,
-      "beds": 3,
-      "baths": 3.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": 63,
-      "images": [
-        "https://static1.sibcycline.com/photos/d5/cc/4/d5cc43ed4e365b3cd71ea060aa08b51767fcb075_640.jpg?ts=639065096299300000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6397/639788q.jpg?1770896969"
-      ],
-      "url": "https://www.sibcycline.com/listing/2792908/1150-Shavano-Drive-26-Covington-KY-41011",
-      "source": "sibcy_cline",
-      "lat": 39.074886,
-      "lng": -84.525154,
-      "last_updated": "2026-04-16T12:15:47.223551"
     },
     {
       "id": "91a5fbfdec26462c",
@@ -100527,29 +97806,6 @@
       "lat": null,
       "lng": null,
       "last_updated": "2026-04-16T12:17:21.048188"
-    },
-    {
-      "id": "fbafc86e1000657a",
-      "address": "1150 Shavano Dr",
-      "city": "Covington",
-      "state": "KY",
-      "zip": "41011",
-      "price": 1350000,
-      "beds": 3,
-      "baths": 3.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/639788/C967C5d9bF3c4bB/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/covington/1150-shavano-dr-26/pid_69587712/",
-      "source": "coldwell_banker",
-      "lat": 39.0749,
-      "lng": -84.525,
-      "last_updated": "2026-04-16T12:21:55.000438+00:00"
     },
     {
       "id": "983a74bf89f81282",
@@ -100812,29 +98068,6 @@
       "lat": 39.1201,
       "lng": -84.4451,
       "last_updated": "2026-04-16T12:15:43.590765"
-    },
-    {
-      "id": "a9dc67e9e370688c",
-      "address": "210 Vintage Club Drive 302",
-      "city": "Montgomery",
-      "state": "OH",
-      "zip": "45249",
-      "price": 1395000,
-      "beds": 3,
-      "baths": 3.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": 262,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1849549_1.jpg?ts=639107698243800000"
-      ],
-      "url": "https://www.sibcycline.com/listing/2756771/210-Vintage-Club-Drive-302-Montgomery-OH-45249",
-      "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
-      "last_updated": "2026-04-16T12:17:17.358866"
     },
     {
       "id": "2aa75b7bc8897a3d",
@@ -101256,53 +98489,6 @@
       "last_updated": "2026-04-16T12:17:14.345897"
     },
     {
-      "id": "50ed5be5cd9a0e9f",
-      "address": "100 Ovation Way 501",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 1425000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": 261,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/NKY/634794_1.jpg?ts=639109957843500000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6347/634794q.jpg?1753791766"
-      ],
-      "url": "https://www.sibcycline.com/listing/2757103/100-Ovation-Way-501-Newport-KY-41071",
-      "source": "sibcy_cline",
-      "lat": 39.090637,
-      "lng": -84.501709,
-      "last_updated": "2026-04-16T12:17:14.345886"
-    },
-    {
-      "id": "e158f24250f8b861",
-      "address": "100 Ovation Way",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 1425000,
-      "beds": 2,
-      "baths": 2.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/634794/7f7085cCE98845b/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/newport/100-ovation-way-501/pid_66643023/",
-      "source": "coldwell_banker",
-      "lat": 39.0901,
-      "lng": -84.5017,
-      "last_updated": "2026-04-16T12:22:09.560158+00:00"
-    },
-    {
       "id": "fee3fbe0821e19c5",
       "address": "1045 Walburg Avenue",
       "city": "Villa Hills",
@@ -101414,36 +98600,14 @@
       "days_on_market": 202,
       "images": [
         "https://online.sibcycline.com/retsphotos/NKY/636653_1.jpg?ts=639116747519500000",
-        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6366/636653q.jpg?1773410425"
+        "https://cdn-idxphotos.mfm.com/propimgs/mls_nky/quick/6366/636653q.jpg?1773410425",
+        "https://m.cbhomes.com/p/192/636653/134742d63F204Cf/m23cc.webp"
       ],
       "url": "https://www.sibcycline.com/listing/2770682/765-E-11-Street-Newport-KY-41071",
       "source": "sibcy_cline",
       "lat": 39.091587,
       "lng": -84.480797,
       "last_updated": "2026-04-16T12:15:37.175262"
-    },
-    {
-      "id": "2faf1b1dbe0201d2",
-      "address": "765 E 11th St",
-      "city": "Newport",
-      "state": "KY",
-      "zip": "41071",
-      "price": 1490000,
-      "beds": 3,
-      "baths": 4.0,
-      "sqft": 3621,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/636653/134742d63F204Cf/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/newport/765-e-11-st/pid_67653337/",
-      "source": "coldwell_banker",
-      "lat": 39.0916,
-      "lng": -84.4808,
-      "last_updated": "2026-04-16T12:22:09.542701+00:00"
     },
     {
       "id": "17c86c57bafabf6c",
@@ -101508,36 +98672,14 @@
       "status": "Active",
       "days_on_market": 20,
       "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1873040_1.jpg?ts=639114205896400000"
+        "https://online.sibcycline.com/retsphotos/CIN/1873040_1.jpg?ts=639114205896400000",
+        "https://m.cbhomes.com/p/220/1873040/805Ad17626e541d/m23cc.webp"
       ],
       "url": "https://www.sibcycline.com/listing/2801334/3506-Shaw-Avenue-A-Hyde-Park-OH-45208",
       "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
-      "last_updated": "2026-04-16T12:15:37.175232"
-    },
-    {
-      "id": "463cc9d3621a09a4",
-      "address": "3506 Shaw Ave",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45208",
-      "price": 1495000,
-      "beds": 3,
-      "baths": 4.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/220/1873040/805Ad17626e541d/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/oh/cincinnati/3506-shaw-ave-a/pid_70320166/",
-      "source": "coldwell_banker",
       "lat": 39.1396,
       "lng": -84.4398,
-      "last_updated": "2026-04-16T12:19:47.635343+00:00"
+      "last_updated": "2026-04-16T12:15:37.175232"
     },
     {
       "id": "558cf807a852898a",
@@ -102052,12 +99194,13 @@
       "status": "Active",
       "days_on_market": 21,
       "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1873042_1.jpg?ts=639114761447800000"
+        "https://online.sibcycline.com/retsphotos/CIN/1873042_1.jpg?ts=639114761447800000",
+        "https://m1.cbhomes.com/p/220/1873042/41a655b45EdA4a8/m23cc.webp"
       ],
       "url": "https://www.sibcycline.com/listing/2801339/2800-Erie-Avenue-C-Hyde-Park-OH-45208",
       "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
+      "lat": 39.1397,
+      "lng": -84.4399,
       "last_updated": "2026-04-16T12:15:31.417513"
     },
     {
@@ -102105,29 +99248,6 @@
       "lat": null,
       "lng": null,
       "last_updated": "2026-04-16T12:17:10.690379"
-    },
-    {
-      "id": "970aa4384e446f95",
-      "address": "2800 Erie Ave",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45208",
-      "price": 1525000,
-      "beds": 2,
-      "baths": 3.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m1.cbhomes.com/p/220/1873042/41a655b45EdA4a8/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/oh/cincinnati/2800-erie-ave-c/pid_70321515/",
-      "source": "coldwell_banker",
-      "lat": 39.1397,
-      "lng": -84.4399,
-      "last_updated": "2026-04-16T12:19:47.629517+00:00"
     },
     {
       "id": "5ee409a8cdb60a4c",
@@ -102513,43 +99633,21 @@
       "price": 1640000,
       "beds": 4,
       "baths": 4.0,
-      "sqft": null,
+      "sqft": 5941,
       "lot_size": null,
       "property_type": "",
       "status": "Active",
       "days_on_market": 7,
       "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1873345_1.jpg?ts=639112901593400000"
-      ],
-      "url": "https://www.sibcycline.com/listing/2804357/1201-Edgecliff-Place-1230-Walnut-Hills-OH-45206",
-      "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
-      "last_updated": "2026-04-16T12:15:25.090179"
-    },
-    {
-      "id": "332a295922216aaf",
-      "address": "1201 Edgecliff Place",
-      "city": "Cincinnati",
-      "state": "OH",
-      "zip": "45206",
-      "price": 1640000,
-      "beds": 4,
-      "baths": 3.5,
-      "sqft": 5941,
-      "lot_size": null,
-      "property_type": "Condominium",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
+        "https://online.sibcycline.com/retsphotos/CIN/1873345_1.jpg?ts=639112901593400000",
         "https://cdn-idxphotos.mfm.com/propimgs/mls_cincy/quick/18733/1873345q.jpg?1775574117",
         "https://m1.cbhomes.com/p/220/1873345/98F6a0BA067B4CB/m23cc.webp"
       ],
-      "url": "https://www.comey.com/real-estate/cincy/1873345/1201-Edgecliff-Place-Cincinnati-OH-45206/",
-      "source": "comey",
+      "url": "https://www.sibcycline.com/listing/2804357/1201-Edgecliff-Place-1230-Walnut-Hills-OH-45206",
+      "source": "sibcy_cline",
       "lat": 39.120171,
       "lng": -84.483406,
-      "last_updated": "2026-04-16T12:13:54.050641"
+      "last_updated": "2026-04-16T12:15:25.090179"
     },
     {
       "id": "81b2437c7ac2d780",
@@ -103225,42 +100323,20 @@
       "price": 1885000,
       "beds": 2,
       "baths": 3.0,
-      "sqft": null,
+      "sqft": 4415,
       "lot_size": null,
       "property_type": "",
       "status": "Active",
       "days_on_market": 348,
       "images": [
-        "https://static1.sibcycline.com/photos/82/b8/a/82b8a6539c180d4163f5000ca5f84d7c1758d7fe_640.jpg?ts=638733095200000000"
+        "https://static1.sibcycline.com/photos/82/b8/a/82b8a6539c180d4163f5000ca5f84d7c1758d7fe_640.jpg?ts=638733095200000000",
+        "https://m.cbhomes.com/p/192/632132/BA8C9DBce96040a/m23cc.webp"
       ],
       "url": "https://www.sibcycline.com/listing/2737140/100-W-Rivercenter-Boulevard-PH3B-Covington-KY-41011",
       "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
-      "last_updated": "2026-04-16T12:15:15.098937"
-    },
-    {
-      "id": "a76a93b359e88374",
-      "address": "100 W Rivercenter Blvd",
-      "city": "Covington",
-      "state": "KY",
-      "zip": "41011",
-      "price": 1885000,
-      "beds": 2,
-      "baths": 3.0,
-      "sqft": 4415,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Active",
-      "days_on_market": null,
-      "images": [
-        "https://m.cbhomes.com/p/192/632132/BA8C9DBce96040a/m23cc.webp"
-      ],
-      "url": "https://www.coldwellbankerhomes.com/ky/covington/100-w-rivercenter-blvd-ph3b/pid_65066848/",
-      "source": "coldwell_banker",
       "lat": 39.0897,
       "lng": -84.5129,
-      "last_updated": "2026-04-16T12:21:59.879861+00:00"
+      "last_updated": "2026-04-16T12:15:15.098937"
     },
     {
       "id": "bce5098678074ce5",
@@ -103451,7 +100527,7 @@
       "lat": 39.1869316,
       "lng": -84.3665994,
       "last_updated": "2026-04-16T12:13:43.375855",
-      "description": "Discover refined living in the heart of Madeira with this newly constructed custom home by Andre Frazier. Offering over 5,000 sq ft of refined living space, this truly luxury residence blends timeless design with modern functionality. Soaring 10-ft ceilings, wide-plank hardwoods, and walls of windows create a bright, open feel throughout. The chef's kitchen features high end cabinetry, Thermador® appliances, and hidden walk-in pantry. The space flows seamlessly into the great room, dining area, and covered veranda; ideal for everyday living and entertaining. Four spacious bedroom suites offer spa-like baths and large walk-in closets. The finished lower level includes a fifth bedroom sui"
+      "description": "Discover refined living in the heart of Madeira with this newly constructed custom home by Andre Frazier. Offering over 5,000 sq ft of refined living space, this truly luxury residence blends timeless design with modern functionality. Soaring 10-ft ceilings, wide-plank hardwoods, and walls of windows create a bright, open feel throughout. The chef's kitchen features high end cabinetry, Thermador\u00ae appliances, and hidden walk-in pantry. The space flows seamlessly into the great room, dining area, and covered veranda; ideal for everyday living and entertaining. Four spacious bedroom suites offer spa-like baths and large walk-in closets. The finished lower level includes a fifth bedroom sui"
     },
     {
       "id": "50d99be044b45914",
@@ -103691,29 +100767,6 @@
       "lat": null,
       "lng": null,
       "last_updated": "2026-04-16T12:15:12.163334"
-    },
-    {
-      "id": "774617431018323f",
-      "address": "210 Vintage Club Drive 301",
-      "city": "Montgomery",
-      "state": "OH",
-      "zip": "45249",
-      "price": 1995000,
-      "beds": 3,
-      "baths": 3.0,
-      "sqft": null,
-      "lot_size": null,
-      "property_type": "",
-      "status": "Pending",
-      "days_on_market": 262,
-      "images": [
-        "https://online.sibcycline.com/retsphotos/CIN/1849547_1.jpg?ts=639107707850800000"
-      ],
-      "url": "https://www.sibcycline.com/listing/2756769/210-Vintage-Club-Drive-301-Montgomery-OH-45249",
-      "source": "sibcy_cline",
-      "lat": null,
-      "lng": null,
-      "last_updated": "2026-04-16T12:17:01.047776"
     },
     {
       "id": "d7256b8b72f78c93",
