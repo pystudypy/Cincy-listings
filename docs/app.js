@@ -2098,8 +2098,15 @@ function render_new() {
     return;
   }
   empty && (empty.style.display = "none");
-  fresh.forEach(l => grid.insertAdjacentHTML("beforeend", listing_card_html(l)));
-  attach_card_listeners(grid);
+  grid.innerHTML = fresh.map((l, i) => card_html(l, i)).join("");
+  grid.querySelectorAll(".listing-card").forEach((el) => {
+    el.addEventListener("click", () => {
+      const idx = +el.dataset.idx;
+      open_modal(fresh[idx]);
+    });
+    const card_img_wrap = el.querySelector(".card-image");
+    if (card_img_wrap) _wire_card_touch(card_img_wrap);
+  });
 }
 
 // ── Tab switching (global so inline onclicks in tray can call it) ─────────────
