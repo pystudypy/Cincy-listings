@@ -265,6 +265,7 @@
 
     <!-- Tab bar: List / Map / Saved -->
     <div class="view-tabs">
+      <button class="tab tab-new" id="tab-new">🔥 New <span class="tab-badge" id="new-count"></span></button>
       <button class="tab active" id="tab-list">List view</button>
       <button class="tab" id="tab-map">Map view</button>
       <button class="tab tab-saved" id="tab-saved">♡ Saved <span class="tab-badge" id="saved-count"></span></button>
@@ -273,6 +274,16 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg>
         Filters <span id="filter-badge" class="filter-badge"></span>
       </div>
+    </div>
+
+    <!-- New listings view -->
+    <div id="view-new" style="display:none">
+      <div class="new-listings-header">
+        <div class="new-listings-title">🔥 New Today</div>
+        <div class="new-listings-subtitle">Listings that hit the market within the last 24 hours</div>
+      </div>
+      <div id="new-listings-grid" class="listings-grid"></div>
+      <div id="new-listings-empty" style="display:none" class="new-listings-empty">No new listings in the last 24 hours — check back tomorrow.</div>
     </div>
 
     <!-- List view -->

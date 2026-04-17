@@ -124,6 +124,11 @@ async function load_data() {
     if (state.quiz.completed) $("btn-clear-quiz").style.display = "inline-block";
     state.all = data.listings || (Array.isArray(data) ? data : []);
 
+    // New listings badge
+    const newCount = state.all.filter(l => l.days_on_market != null && l.days_on_market <= 1).length;
+    const newBadge = $("new-count");
+    if (newBadge && newCount > 0) newBadge.textContent = newCount;
+
     const meta = $("header-meta");
     const updated = data.last_updated
       ? new Date(data.last_updated).toLocaleDateString("en-US", {
@@ -2000,6 +2005,7 @@ function wire_events() {
   });
 
   // Tabs — set_tab is defined globally below wire_events
+  $("tab-new"    ).addEventListener("click", () => set_tab("new"));
   $("tab-list"   ).addEventListener("click", () => set_tab("list"));
   $("tab-map"    ).addEventListener("click", () => set_tab("map"));
   $("tab-saved"  ).addEventListener("click", () => set_tab("saved"));
@@ -2068,15 +2074,36 @@ function wire_events() {
   });
 }
 
+// ── New listings tab ────────────────────────────────────────────────────────
+function render_new() {
+  const grid  = $("new-listings-grid");
+  const empty = $("new-listings-empty");
+  if (!grid) return;
+
+  const fresh = state.all
+    .filter(l => l.days_on_market != null && l.days_on_market <= 1)
+    .sort((a, b) => (a.days_on_market ?? 9) - (b.days_on_market ?? 9));
+
+  grid.innerHTML = "";
+  if (fresh.length === 0) {
+    empty && (empty.style.display = "block");
+    return;
+  }
+  empty && (empty.style.display = "none");
+  fresh.forEach(l => grid.insertAdjacentHTML("beforeend", listing_card_html(l)));
+  attach_card_listeners(grid);
+}
+
 // ── Tab switching (global so inline onclicks in tray can call it) ─────────────
 function set_tab(tab) {
-  ["tab-list","tab-map","tab-saved","tab-compare"].forEach(id => $(id)?.classList.remove("active"));
-  ["view-list","view-map","view-saved","view-compare"].forEach(id => { if ($(id)) $(id).style.display = "none"; });
+  ["tab-new","tab-list","tab-map","tab-saved","tab-compare"].forEach(id => $(id)?.classList.remove("active"));
+  ["view-new","view-list","view-map","view-saved","view-compare"].forEach(id => { if ($(id)) $(id).style.display = "none"; });
   $("tab-" + tab)?.classList.add("active");
   if ($("view-" + tab)) $("view-" + tab).style.display = "block";
   if (tab === "map")     { init_map(); setTimeout(() => map && map.invalidateSize(), 100); }
   if (tab === "saved")   { render_saved(); }
   if (tab === "compare") { render_compare(); }
+  if (tab === "new")     { render_new(); }
 }
 
 // ── Bootstrap ─────────────────────────────────────────

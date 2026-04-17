@@ -1126,8 +1126,25 @@ select:focus, input[type="text"]:focus {
 .card-match-inline.gray  { color: #6b7280; }
 
 /* ── Saved tab & view ─────────────────────────────────── */
+.tab-new { color: #dc2626; font-weight: 700; }
+.tab-new.active { color: #fff; background: #dc2626; }
 .tab-saved { color: var(--text-muted); }
 .tab-saved.active { color: var(--text); }
+
+/* New listings view */
+.new-listings-header {
+  padding: 18px 4px 10px;
+}
+.new-listings-title {
+  font-size: 20px; font-weight: 800; color: var(--text);
+}
+.new-listings-subtitle {
+  font-size: 13px; color: var(--text-muted); margin-top: 3px;
+}
+.new-listings-empty {
+  padding: 48px 16px; text-align: center;
+  font-size: 14px; color: var(--text-muted);
+}
 .tab-badge {
   display: inline-flex;
   align-items: center;
