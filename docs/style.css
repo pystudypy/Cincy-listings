@@ -1154,6 +1154,40 @@ select.mtg-input { width: 70px; }
   background: rgba(0,0,0,.4);
 }
 
+/* ── Mobile Filter FAB ───────────────────────────────── */
+.mobile-filter-fab {
+  display: none; /* shown only on mobile via media query */
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 130;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(29,78,216,.45);
+  white-space: nowrap;
+}
+.mobile-filter-fab:active { opacity: .88; }
+.mobile-fab-badge {
+  background: #fff;
+  color: var(--accent);
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 1px 6px;
+  min-width: 18px;
+  text-align: center;
+  display: none; /* shown via JS when filters active */
+}
+
 /* ── Filter count badge (mobile) ──────────────────────── */
 .filter-badge {
   background: #1d4ed8;
@@ -2118,6 +2152,9 @@ select.mtg-input { width: 70px; }
    MOBILE RESPONSIVE  (≤ 480px phones)
    ══════════════════════════════════════════════════════════ */
 @media (max-width: 480px) {
+
+  /* ── Filter FAB — show on mobile ────────────────────── */
+  .mobile-filter-fab { display: flex; }
 
   /* ── Header ─────────────────────────────────────────── */
   .header-inner { padding: 0 12px; gap: 8px; height: 52px; }

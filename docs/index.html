@@ -275,10 +275,9 @@
       <button class="tab" id="tab-map">Map view</button>
       <button class="tab tab-saved" id="tab-saved">♡ Saved <span class="tab-badge" id="saved-count"></span></button>
       <button class="tab tab-compare" id="tab-compare">⇄ Compare <span class="tab-badge" id="compare-count"></span></button>
-      <div class="mobile-filter-toggle" id="mobile-filter-btn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg>
-        Filters <span id="filter-badge" class="filter-badge"></span>
-      </div>
+      <!-- filter-badge kept hidden for JS compat; FAB is the visible trigger on mobile -->
+      <span id="filter-badge" class="filter-badge" style="display:none"></span>
+      <div class="mobile-filter-toggle" id="mobile-filter-btn" style="display:none"></div>
     </div>
 
     <!-- New listings view -->
@@ -429,6 +428,13 @@
 </div>
 
 <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+<!-- ── MOBILE FILTER FAB ─────────────────────────────── -->
+<button class="mobile-filter-fab" id="mobile-filter-fab" onclick="document.getElementById('mobile-filter-btn').click()">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg>
+  Filters
+  <span class="mobile-fab-badge" id="mobile-fab-badge"></span>
+</button>
 
 <!-- ── COMPARE TRAY ──────────────────────────────────── -->
 <div class="compare-tray" id="compare-tray" style="display:none">

@@ -423,6 +423,8 @@ function close_sidebar() {
   $("sidebar").classList.remove("open");
   const bd = $("sidebar-backdrop");
   if (bd) bd.style.display = "none";
+  const fab = $("mobile-filter-fab");
+  if (fab) fab.style.display = "";
 }
 
 // ── More filters accordion ────────────────────────────
@@ -472,15 +474,18 @@ function count_active_filters() {
 }
 
 function update_filter_badge() {
-  const badge = $("filter-badge");
-  if (!badge) return;
   const cnt = count_active_filters();
-  if (cnt > 0) {
-    badge.textContent = cnt;
-    badge.style.display = "inline-block";
-  } else {
-    badge.textContent = "";
-    badge.style.display = "none";
+  // Desktop badge (now hidden but kept for JS compat)
+  const badge = $("filter-badge");
+  if (badge) {
+    badge.textContent = cnt || "";
+    badge.style.display = cnt > 0 ? "inline-block" : "none";
+  }
+  // Mobile FAB badge
+  const fabBadge = $("mobile-fab-badge");
+  if (fabBadge) {
+    fabBadge.textContent = cnt || "";
+    fabBadge.style.display = cnt > 0 ? "inline-block" : "none";
   }
 }
 
@@ -2126,15 +2131,21 @@ function wire_events() {
   });
 
   // Mobile sidebar + backdrop
-  $("mobile-filter-btn").addEventListener("click", () => {
+  const _toggle_mobile_sidebar = () => {
     const sidebar = $("sidebar");
     const backdrop = $("sidebar-backdrop");
+    const fab = $("mobile-filter-fab");
     sidebar.classList.toggle("open");
-    backdrop.style.display = sidebar.classList.contains("open") ? "block" : "none";
-  });
+    const isOpen = sidebar.classList.contains("open");
+    backdrop.style.display = isOpen ? "block" : "none";
+    if (fab) fab.style.display = isOpen ? "none" : "";
+  };
+  $("mobile-filter-btn").addEventListener("click", _toggle_mobile_sidebar);
   $("sidebar-backdrop").addEventListener("click", () => {
     $("sidebar").classList.remove("open");
     $("sidebar-backdrop").style.display = "none";
+    const fab = $("mobile-filter-fab");
+    if (fab) fab.style.display = "";
   });
 
   // Luxury toggle
