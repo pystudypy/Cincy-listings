@@ -1,13 +1,18 @@
 // CincyListings Service Worker
-const CACHE = "cincy-v9";
+const CACHE = "cincy-v10";
+
+// Derive base path from service worker location so this works on any
+// deployment path (GitHub Pages /Cincy-listings/ or Cloud Run /)
+const BASE = self.location.pathname.replace(/sw\.js$/, "");
+
 const STATIC = [
-  "/",
-  "/index.html",
-  "/app.js",
-  "/style.css",
-  "/manifest.json",
-  "/icons/icon-192.png",
-  "/icons/icon-512.png",
+  BASE,
+  BASE + "index.html",
+  BASE + "app.js",
+  BASE + "style.css",
+  BASE + "manifest.json",
+  BASE + "icons/icon-192.png",
+  BASE + "icons/icon-512.png",
 ];
 
 // Install: cache all static assets
@@ -33,7 +38,7 @@ self.addEventListener("fetch", (e) => {
   const url = new URL(e.request.url);
 
   // Always go to network for API endpoints
-  if (["/analyze", "/compare", "/offer-strategy"].includes(url.pathname)) {
+  if (["/analyze", "/compare", "/offer-strategy"].some(p => url.pathname.endsWith(p))) {
     e.respondWith(fetch(e.request));
     return;
   }
@@ -51,7 +56,7 @@ self.addEventListener("fetch", (e) => {
         return res;
       }).catch(() => {
         // Offline fallback for navigation
-        if (e.request.mode === "navigate") return caches.match("/index.html");
+        if (e.request.mode === "navigate") return caches.match(BASE + "index.html");
       });
     })
   );
