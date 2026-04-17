@@ -385,9 +385,40 @@ def main():
                     elif old.get("photos_enriched") and not listing.get("photos_enriched"):
                         listing["photos_enriched"] = True
 
+            # Determine which sources returned 0 listings in this scrape (whole-source failure).
+            # For those sources, preserve old active listings rather than marking off-market.
+            new_source_counts: dict[str, int] = {}
+            for listing in unique:
+                src = listing.get("source", "unknown")
+                new_source_counts[src] = new_source_counts.get(src, 0) + 1
+
+            old_source_counts: dict[str, int] = {}
+            for l in old_active:
+                src = l.get("source", "unknown")
+                old_source_counts[src] = old_source_counts.get(src, 0) + 1
+
+            # Sources that had listings before but returned 0 now → whole-source failure
+            failed_sources: set[str] = {
+                src for src, cnt in old_source_counts.items()
+                if cnt > 0 and new_source_counts.get(src, 0) == 0
+            }
+            if failed_sources:
+                logger.warning(
+                    f"Whole-source scraper failure detected for: {failed_sources}. "
+                    "Preserving old listings instead of marking off-market."
+                )
+                for l in old_active:
+                    if l.get("source") in failed_sources:
+                        src_key = _normalize_address(l.get("address", ""), l.get("zip", ""))
+                        if src_key not in new_keys:
+                            unique.append(l)  # carry forward as active
+
             # Listings in old_active but not in new scrape → went off-market
+            # (skip listings from failed sources — already carried forward above)
             newly_off = 0
             for l in old_active:
+                if l.get("source") in failed_sources:
+                    continue  # protected above
                 key = _normalize_address(l.get("address", ""), l.get("zip", ""))
                 if key not in new_keys:
                     l["status"] = "off_market"
