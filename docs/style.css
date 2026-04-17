@@ -113,7 +113,28 @@ header {
   align-items: center;
   margin-bottom: 14px;
 }
-.sidebar-header h2 { font-size: 15px; font-weight: 700; }
+.sidebar-header h2 { font-size: 15px; font-weight: 700; flex: 1; }
+.sidebar-collapse-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 6px; border: none;
+  background: transparent; cursor: pointer; color: var(--text-muted);
+  margin-right: 6px; flex-shrink: 0;
+  transition: background .15s, color .15s;
+}
+.sidebar-collapse-btn:hover { background: var(--border); color: var(--text); }
+.sidebar-collapse-icon { transition: transform .25s ease; }
+.sidebar.collapsed .sidebar-collapse-icon { transform: rotate(180deg); }
+.sidebar-body {
+  overflow: hidden;
+  transition: max-height .3s ease, opacity .25s ease;
+  max-height: 2000px;
+  opacity: 1;
+}
+.sidebar.collapsed .sidebar-body {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
 
 /* Top actions: luxury toggle + match button stacked compactly */
 .sidebar-top-actions {

@@ -424,6 +424,12 @@ function close_sidebar() {
 }
 
 // ── More filters accordion ────────────────────────────
+function toggle_sidebar_collapse() {
+  const sidebar = $("sidebar");
+  const collapsed = sidebar.classList.toggle("collapsed");
+  try { localStorage.setItem("sidebar-collapsed", collapsed ? "1" : "0"); } catch (_) {}
+}
+
 function toggle_more_filters() {
   const section = $("more-filters-section");
   const btn     = $("more-filters-toggle");
@@ -2113,6 +2119,13 @@ try {
   ids.forEach(id => state.saved.add(id));
   const badge = $("saved-count");
   if (badge && state.saved.size) badge.textContent = state.saved.size;
+} catch (_) {}
+
+// Restore sidebar collapsed state
+try {
+  if (localStorage.getItem("sidebar-collapsed") === "1") {
+    $("sidebar")?.classList.add("collapsed");
+  }
 } catch (_) {}
 
 wire_events();

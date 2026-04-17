@@ -45,9 +45,13 @@
   <!-- LEFT: Filters -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
+      <button class="sidebar-collapse-btn" id="sidebar-collapse-btn" onclick="toggle_sidebar_collapse()" title="Collapse filters">
+        <svg class="sidebar-collapse-icon" id="sidebar-collapse-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
       <h2>Filters</h2>
       <button class="btn-ghost" id="clear-filters">Clear all</button>
     </div>
+    <div class="sidebar-body" id="sidebar-body">
 
     <!-- Luxury toggle + Match quiz -->
     <div class="sidebar-top-actions">
@@ -258,6 +262,7 @@
         Show results <span id="sidebar-apply-count"></span>
       </button>
     </div>
+  </div><!-- /.sidebar-body -->
   </aside>
 
   <!-- CENTER: Results + Map -->
