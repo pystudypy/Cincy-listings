@@ -51,6 +51,7 @@ const state = {
   },
   saved: new Set(),   // listing IDs saved to localStorage
   compare: [],        // ordered array of listing IDs, max 3
+  modal_nav: { list: [], idx: 0 }, // current modal navigation context
 };
 
 // ── Leaflet map instance
@@ -524,7 +525,7 @@ function render_saved() {
   grid.querySelectorAll(".listing-card").forEach((el) => {
     el.addEventListener("click", () => {
       const idx = +el.dataset.idx;
-      open_modal(savedListings[idx]);
+      open_modal(savedListings[idx], savedListings, idx);
     });
     const card_img_wrap = el.querySelector(".card-image");
     if (card_img_wrap) _wire_card_touch(card_img_wrap);
@@ -833,7 +834,7 @@ function render_list() {
   grid.querySelectorAll(".listing-card").forEach((el) => {
     el.addEventListener("click", () => {
       const idx = +el.dataset.idx;
-      open_modal(state.filtered[idx]);
+      open_modal(state.filtered[idx], state.filtered, idx);
     });
     // Touch swipe on card image
     const card_img_wrap = el.querySelector(".card-image");
@@ -1674,7 +1675,13 @@ function _time_ago(iso) {
 }
 
 // ── Modal ─────────────────────────────────────────────
-function open_modal(listing) {
+function open_modal(listing, navList, navIdx) {
+  // Store navigation context
+  state.modal_nav = {
+    list: navList || state.filtered,
+    idx:  navIdx  ?? (navList || state.filtered).findIndex(l => l.id === listing.id),
+  };
+
   const content = $("modal-content");
 
   // ── Photo carousel ──
@@ -1768,6 +1775,8 @@ function open_modal(listing) {
       <button class="btn-secondary" onclick="if(navigator.clipboard)navigator.clipboard.writeText(window.location.href).then(()=>{this.textContent='✓ Copied';setTimeout(()=>this.textContent='⎘ Share',2000)})">⎘ Share</button>
     </div>`;
 
+  const mortgage_section = _mortgage_calc_html(listing);
+
   content.innerHTML = `
     ${photo_strip}
     <div class="modal-body">
@@ -1780,6 +1789,7 @@ function open_modal(listing) {
         <div class="detail-stats-row">${stat_items || '<span style="color:#9ca3af">Details unavailable</span>'}</div>
         ${meta_parts ? `<div class="modal-desc" style="margin-top:10px;font-size:13px">${meta_parts}</div>` : ""}
       </div>
+      ${mortgage_section}
       ${match_section}
       ${features_section}
       ${desc_section}
@@ -1799,6 +1809,16 @@ function open_modal(listing) {
   // Restore collapsible states (description starts collapsed by default)
   _init_coll("coll-desc-" + listing.id, true);
   _init_coll("ai-section-" + listing.id, false);
+
+  // Update prev/next nav bar
+  const { idx: _nIdx, list: _nList } = state.modal_nav;
+  const _prevBtn = $("modal-prev"), _nextBtn = $("modal-next"), _counter = $("modal-nav-counter");
+  if (_counter) _counter.textContent = `${_nIdx + 1} / ${_nList.length}`;
+  if (_prevBtn) _prevBtn.disabled = _nIdx === 0;
+  if (_nextBtn) _nextBtn.disabled = _nIdx === _nList.length - 1;
+
+  // Initialize mortgage calculator
+  update_mortgage(listing.id, listing.price);
 
   $("modal-overlay").style.display = "flex";
   document.body.style.overflow = "hidden";
@@ -1820,6 +1840,77 @@ function open_lightbox(src) {
 function close_modal() {
   $("modal-overlay").style.display = "none";
   document.body.style.overflow = "";
+}
+
+// ── Modal listing navigation ──────────────────────────
+function modal_nav(dir) {
+  const { list, idx } = state.modal_nav;
+  const newIdx = idx + dir;
+  if (newIdx < 0 || newIdx >= list.length) return;
+  open_modal(list[newIdx], list, newIdx);
+}
+
+// ── Mortgage Calculator ───────────────────────────────
+function _mortgage_calc_html(listing) {
+  const price = listing.price || 0;
+  if (!price || price < 50000) return ""; // skip commercial/land
+  const down = +(localStorage.getItem("mtg-down") || 20);
+  const rate = +(localStorage.getItem("mtg-rate") || 7.0);
+  const term = +(localStorage.getItem("mtg-term") || 30);
+  return `<div class="detail-section">
+    <div class="detail-section-label">Mortgage Estimator</div>
+    <div class="mtg-calc">
+      <div class="mtg-result" id="mtg-result-${listing.id}"></div>
+      <div class="mtg-inputs">
+        <label class="mtg-input-group">
+          <span>Down</span>
+          <input class="mtg-input" type="number" min="0" max="100" step="1"
+            value="${down}" oninput="update_mortgage('${listing.id}',${price})"
+            id="mtg-down-${listing.id}">
+          <span>%</span>
+        </label>
+        <label class="mtg-input-group">
+          <span>Rate</span>
+          <input class="mtg-input" type="number" min="0.1" max="20" step="0.1"
+            value="${rate}" oninput="update_mortgage('${listing.id}',${price})"
+            id="mtg-rate-${listing.id}">
+          <span>%</span>
+        </label>
+        <label class="mtg-input-group">
+          <span>Term</span>
+          <select class="mtg-input" onchange="update_mortgage('${listing.id}',${price})"
+            id="mtg-term-${listing.id}">
+            <option value="30" ${term===30?"selected":""}>30 yr</option>
+            <option value="15" ${term===15?"selected":""}>15 yr</option>
+            <option value="20" ${term===20?"selected":""}>20 yr</option>
+          </select>
+        </label>
+      </div>
+    </div>
+  </div>`;
+}
+
+function update_mortgage(listingId, price) {
+  const down = +($(`mtg-down-${listingId}`)?.value ?? 20);
+  const rate = +($(`mtg-rate-${listingId}`)?.value ?? 7);
+  const term = +($(`mtg-term-${listingId}`)?.value ?? 30);
+  try { localStorage.setItem("mtg-down", down); localStorage.setItem("mtg-rate", rate); localStorage.setItem("mtg-term", term); } catch (_) {}
+
+  const principal = price * (1 - down / 100);
+  const r = rate / 100 / 12;
+  const n = term * 12;
+  const monthly = r === 0 ? principal / n : principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  const result = $(`mtg-result-${listingId}`);
+  if (!result) return;
+
+  if (!isFinite(monthly) || monthly <= 0) {
+    result.innerHTML = `<span class="mtg-na">—</span>`;
+    return;
+  }
+  result.innerHTML = `
+    <span class="mtg-monthly">${fmt_price(Math.round(monthly))}<span class="mtg-mo">/mo</span></span>
+    <span class="mtg-details">${fmt_price(Math.round(price * down / 100))} down · ${fmt_price(Math.round(principal))} loan</span>
+  `;
 }
 
 // ── Quiz ──────────────────────────────────────────────
@@ -2030,6 +2121,8 @@ function wire_events() {
     if (e.key === "Escape") { close_modal(); return; }
     if (modalOpen && e.key === "ArrowRight") next_photo();
     if (modalOpen && e.key === "ArrowLeft")  prev_photo();
+    if (modalOpen && e.key === "]") { modal_nav(1);  return; }
+    if (modalOpen && e.key === "[") { modal_nav(-1); return; }
   });
 
   // Mobile sidebar + backdrop
@@ -2107,7 +2200,7 @@ function render_new() {
   grid.querySelectorAll(".listing-card").forEach((el) => {
     el.addEventListener("click", () => {
       const idx = +el.dataset.idx;
-      open_modal(fresh[idx]);
+      open_modal(fresh[idx], fresh, idx);
     });
     const card_img_wrap = el.querySelector(".card-image");
     if (card_img_wrap) _wire_card_touch(card_img_wrap);
