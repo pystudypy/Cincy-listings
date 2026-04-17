@@ -413,6 +413,7 @@ function apply_filters() {
   update_filter_badge();
   _update_more_filters_badge();
   render_list();
+  if ($("tab-new")?.classList.contains("active")) render_new();
   if (map) render_map_markers();
 }
 
@@ -2088,9 +2089,13 @@ function render_new() {
   const empty = $("new-listings-empty");
   if (!grid) return;
 
-  const fresh = state.all
+  const fresh = (state.filtered || state.all)
     .filter(l => l.days_on_market != null && l.days_on_market <= 1)
     .sort((a, b) => (a.days_on_market ?? 9) - (b.days_on_market ?? 9));
+
+  // Keep badge in sync with filtered count
+  const badge = $("new-count");
+  if (badge) badge.textContent = fresh.length || "";
 
   grid.innerHTML = "";
   if (fresh.length === 0) {
