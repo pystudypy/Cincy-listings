@@ -5,6 +5,7 @@ __pycache__/
 .gitignore
 scrapers/
 run_scrapers.py
-data/
+/data/
+!docs/data/
 README.md
 requirements.txt
