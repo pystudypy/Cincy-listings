@@ -657,26 +657,29 @@ select:focus, input[type="text"]:focus {
 .modal-close:hover { background: rgba(0,0,0,.65); }
 
 /* ── Modal prev/next navigation ─────────────────────── */
-.modal-nav-bar {
-  position: absolute; top: 0; left: 0; right: 52px;
+/* Side arrows sit outside the modal card, on the overlay itself */
+.modal-side-btn {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,.15); backdrop-filter: blur(6px);
+  color: #fff; border: 1px solid rgba(255,255,255,.25);
+  width: 48px; height: 64px; border-radius: 10px;
+  font-size: 32px; cursor: pointer; z-index: 210;
   display: flex; align-items: center; justify-content: center;
-  gap: 10px; padding: 10px 16px 0;
+  line-height: 1; padding: 0; transition: background .15s;
+}
+.modal-side-btn:hover:not(:disabled) { background: rgba(255,255,255,.28); }
+.modal-side-btn:disabled { opacity: .2; cursor: default; }
+.modal-side-prev { left: 12px; }
+.modal-side-next { right: 12px; }
+/* Counter badge — top-center of modal card */
+.modal-nav-counter-wrap {
+  position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
   z-index: 10; pointer-events: none;
 }
-.modal-nav-btn {
-  pointer-events: all;
-  background: rgba(0,0,0,.45); color: #fff; border: none;
-  width: 30px; height: 30px; border-radius: 50%; font-size: 20px;
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  line-height: 1; padding: 0;
-}
-.modal-nav-btn:hover:not(:disabled) { background: rgba(0,0,0,.65); }
-.modal-nav-btn:disabled { opacity: .3; cursor: default; }
 .modal-nav-counter {
-  pointer-events: none;
-  font-size: 12px; font-weight: 600; color: rgba(255,255,255,.9);
+  font-size: 11px; font-weight: 600; color: rgba(255,255,255,.9);
   background: rgba(0,0,0,.42); border-radius: 20px;
-  padding: 3px 10px; white-space: nowrap; min-width: 48px; text-align: center;
+  padding: 3px 10px; white-space: nowrap;
 }
 
 /* ── Mortgage Calculator ─────────────────────────────── */
@@ -2149,6 +2152,8 @@ select.mtg-input { width: 70px; }
     padding: 0;
     align-items: flex-end;
   }
+  /* Hide side nav arrows on mobile — swipe photos or close & tap instead */
+  .modal-side-btn { display: none; }
   .modal {
     border-radius: 20px 20px 0 0;
     max-height: 92vh;

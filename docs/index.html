@@ -325,15 +325,13 @@
 
 <!-- ── LISTING DETAIL MODAL ──────────────────────────── -->
 <div class="modal-overlay" id="modal-overlay" style="display:none">
+  <button class="modal-side-btn modal-side-prev" id="modal-prev" onclick="modal_nav(-1)">&#8249;</button>
   <div class="modal" id="modal">
     <button class="modal-close" id="modal-close">✕</button>
-    <div class="modal-nav-bar" id="modal-nav-bar">
-      <button class="modal-nav-btn" id="modal-prev" onclick="modal_nav(-1)">&#8249;</button>
-      <span class="modal-nav-counter" id="modal-nav-counter"></span>
-      <button class="modal-nav-btn" id="modal-next" onclick="modal_nav(1)">&#8250;</button>
-    </div>
+    <div class="modal-nav-counter-wrap"><span class="modal-nav-counter" id="modal-nav-counter"></span></div>
     <div id="modal-content"></div>
   </div>
+  <button class="modal-side-btn modal-side-next" id="modal-next" onclick="modal_nav(1)">&#8250;</button>
 </div>
 
 <!-- ── QUIZ MODAL ─────────────────────────────────────── -->
