@@ -426,7 +426,9 @@ function close_sidebar() {
 // ── More filters accordion ────────────────────────────
 function toggle_sidebar_collapse() {
   const sidebar = $("sidebar");
+  const layout  = document.querySelector(".layout");
   const collapsed = sidebar.classList.toggle("collapsed");
+  layout?.classList.toggle("sidebar-collapsed", collapsed);
   try { localStorage.setItem("sidebar-collapsed", collapsed ? "1" : "0"); } catch (_) {}
 }
 
@@ -2125,6 +2127,7 @@ try {
 try {
   if (localStorage.getItem("sidebar-collapsed") === "1") {
     $("sidebar")?.classList.add("collapsed");
+    document.querySelector(".layout")?.classList.add("sidebar-collapsed");
   }
 } catch (_) {}
 
