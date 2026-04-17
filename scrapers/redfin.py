@@ -116,7 +116,7 @@ def _parse_listing(item: dict) -> Optional[dict]:
             base   = f"https://ssl.cdn-redfin.com/photo/{ds_id}/bigphoto/{last3}/{mls_num}"
             images = (
                 [f"{base}_0.jpg"] +
-                [f"{base}_{i}_0.jpg" for i in range(1, count)]
+                [f"{base}_{i}.jpg" for i in range(1, count)]
             )
 
         dom_raw = item.get("dom")

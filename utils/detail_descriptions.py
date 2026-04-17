@@ -630,8 +630,8 @@ def _extract_photos_redfin(html: str, mls_number: str, data_source_id: str) -> l
     Page embeds URLs like:
       ssl.cdn-redfin.com/photo/158/mbphotov3/371/genMid.1874371_39_1.jpg
     We extract all {mls}_{index} pairs, find the highest index, and build:
-      ssl.cdn-redfin.com/photo/{ds_id}/bigphoto/{last3}/{mls}_0.jpg          (first)
-      ssl.cdn-redfin.com/photo/{ds_id}/bigphoto/{last3}/{mls}_{i}_0.jpg      (rest)
+      ssl.cdn-redfin.com/photo/{ds_id}/bigphoto/{last3}/{mls}_0.jpg     (index 0)
+      ssl.cdn-redfin.com/photo/{ds_id}/bigphoto/{last3}/{mls}_{i}.jpg   (index 1+)
     """
     if not mls_number or not data_source_id:
         return []
@@ -643,7 +643,7 @@ def _extract_photos_redfin(html: str, mls_number: str, data_source_id: str) -> l
     max_index = max(indices)
     last3 = mls_number[-3:]
     base = f"https://ssl.cdn-redfin.com/photo/{data_source_id}/bigphoto/{last3}/{mls_number}"
-    photos = [f"{base}_0.jpg"] + [f"{base}_{i}_0.jpg" for i in range(1, max_index + 1)]
+    photos = [f"{base}_0.jpg"] + [f"{base}_{i}.jpg" for i in range(1, max_index + 1)]
     return photos
 
 
@@ -742,13 +742,22 @@ def enrich_photos(
             soup = BeautifulSoup(resp.text, "html.parser")
             photos = _extract_photos_comey(soup)
         elif source == "redfin":
-            # Extract MLS number and dataSourceId from existing image URLs
+            # Derive MLS number + dataSourceId: try existing image URLs first,
+            # fall back to mbphotov3 URLs embedded in the listing page HTML.
             existing = (listing.get("images") or [])
             mls_num = ds_id = ""
             if existing:
                 m = re.search(r'/photo/(\d+)/bigphoto/\d+/(\d+)_', existing[0])
                 if m:
                     ds_id, mls_num = m.group(1), m.group(2)
+            if not mls_num or not ds_id:
+                # fallback: parse from mbphotov3 thumbnails in page HTML
+                mb = re.search(
+                    r'ssl\.cdn-redfin\.com/photo/(\d+)/mbphotov3/\d+/genMid\.(\d+)_',
+                    resp.text,
+                )
+                if mb:
+                    ds_id, mls_num = mb.group(1), mb.group(2)
             photos = _extract_photos_redfin(resp.text, mls_num, ds_id)
         else:
             photos = []
