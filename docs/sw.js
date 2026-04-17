@@ -1,5 +1,5 @@
 // CincyListings Service Worker
-const CACHE = "cincy-v7";
+const CACHE = "cincy-v8";
 const STATIC = [
   "/",
   "/index.html",

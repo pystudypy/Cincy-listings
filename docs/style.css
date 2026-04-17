@@ -656,30 +656,27 @@ select:focus, input[type="text"]:focus {
 }
 .modal-close:hover { background: rgba(0,0,0,.65); }
 
-/* ── Modal prev/next navigation ─────────────────────── */
-/* Side arrows sit outside the modal card, on the overlay itself */
-.modal-side-btn {
-  position: fixed; top: 50%; transform: translateY(-50%);
-  background: rgba(255,255,255,.15); backdrop-filter: blur(6px);
-  color: #fff; border: 1px solid rgba(255,255,255,.25);
-  width: 48px; height: 64px; border-radius: 10px;
-  font-size: 32px; cursor: pointer; z-index: 210;
-  display: flex; align-items: center; justify-content: center;
-  line-height: 1; padding: 0; transition: background .15s;
+/* ── Modal prev/next navigation — sticky footer bar ─── */
+.modal-nav-footer {
+  position: sticky; bottom: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  z-index: 5;
 }
-.modal-side-btn:hover:not(:disabled) { background: rgba(255,255,255,.28); }
-.modal-side-btn:disabled { opacity: .2; cursor: default; }
-.modal-side-prev { left: 12px; }
-.modal-side-next { right: 12px; }
-/* Counter badge — top-center of modal card */
-.modal-nav-counter-wrap {
-  position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
-  z-index: 10; pointer-events: none;
+.modal-nav-prev, .modal-nav-next {
+  background: var(--bg); border: 1px solid var(--border);
+  color: var(--text); border-radius: 8px;
+  padding: 7px 14px; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: background .15s;
 }
+.modal-nav-prev:hover:not(:disabled),
+.modal-nav-next:hover:not(:disabled) { background: #e5e7eb; }
+.modal-nav-prev:disabled,
+.modal-nav-next:disabled { opacity: .3; cursor: default; }
 .modal-nav-counter {
-  font-size: 11px; font-weight: 600; color: rgba(255,255,255,.9);
-  background: rgba(0,0,0,.42); border-radius: 20px;
-  padding: 3px 10px; white-space: nowrap;
+  font-size: 12px; font-weight: 600; color: var(--text-muted);
 }
 
 /* ── Mortgage Calculator ─────────────────────────────── */
@@ -2152,8 +2149,6 @@ select.mtg-input { width: 70px; }
     padding: 0;
     align-items: flex-end;
   }
-  /* Hide side nav arrows on mobile — swipe photos or close & tap instead */
-  .modal-side-btn { display: none; }
   .modal {
     border-radius: 20px 20px 0 0;
     max-height: 92vh;
