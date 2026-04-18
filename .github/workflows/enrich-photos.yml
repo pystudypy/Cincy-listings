@@ -1,0 +1,42 @@
+name: Enrich photos (weekly)
+
+on:
+  schedule:
+    - cron: "0 6 * * 0"   # every Sunday at 6 AM UTC (2 AM ET)
+  workflow_dispatch:        # allow manual trigger anytime
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          playwright install chromium --with-deps
+
+      - name: Enrich photos
+        run: python run_scrapers.py --photos-only
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Commit enriched listings
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/listings.json
+          git diff --cached --quiet && echo "No changes" || \
+            git commit -m "chore: photo enrichment $(date -u '+%Y-%m-%d')" && git push

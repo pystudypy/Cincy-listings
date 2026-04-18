@@ -43,11 +43,11 @@ jobs:
         run: |
           SOURCE="${{ github.event.inputs.source || 'all' }}"
           if [ "$SOURCE" = "all" ]; then
-            # Daily run: scrape fresh listings + photo enrichment only
-            # (--describe and --tag are heavy AI batch jobs run separately)
-            python run_scrapers.py --merge --photos
+            # Daily run: scrape + merge only (fast, reliable)
+            # Photos/describe/tag are heavy — run manually or via separate workflow
+            python run_scrapers.py --merge
           else
-            python run_scrapers.py --source "$SOURCE" --merge --photos
+            python run_scrapers.py --source "$SOURCE" --merge
           fi
 
       - name: Check for changes
