@@ -17,7 +17,7 @@ on:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 360
 
     permissions:
       contents: write   # needed to commit listings.json back to repo
@@ -43,10 +43,11 @@ jobs:
         run: |
           SOURCE="${{ github.event.inputs.source || 'all' }}"
           if [ "$SOURCE" = "all" ]; then
-            # Full daily run: scrape → carry enrichment → describe new → tag new → enrich photos
-            python run_scrapers.py --merge --describe --tag --photos
+            # Daily run: scrape fresh listings + photo enrichment only
+            # (--describe and --tag are heavy AI batch jobs run separately)
+            python run_scrapers.py --merge --photos
           else
-            python run_scrapers.py --source "$SOURCE" --merge --describe --tag --photos
+            python run_scrapers.py --source "$SOURCE" --merge --photos
           fi
 
       - name: Check for changes
