@@ -463,11 +463,22 @@ class Handler(BaseHTTPRequestHandler):
             if not referer:
                 self.send_response(403); self.end_headers(); return
             try:
-                resp = requests.get(raw_url, timeout=10, headers={
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+                resp = requests.get(raw_url, timeout=15, headers={
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
                     "Referer": referer,
-                })
-                resp.raise_for_status()
+                    "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+                    "Accept-Language": "en-US,en;q=0.9",
+                    "Accept-Encoding": "gzip, deflate, br",
+                    "Sec-Fetch-Dest": "image",
+                    "Sec-Fetch-Mode": "no-cors",
+                    "Sec-Fetch-Site": "cross-site",
+                    "sec-ch-ua": '"Chromium";v="124", "Google Chrome";v="124"',
+                    "sec-ch-ua-mobile": "?0",
+                    "sec-ch-ua-platform": '"Windows"',
+                }, verify=True)
+                logger.info(f"img-proxy {resp.status_code} {raw_url[:80]}")
+                if resp.status_code != 200:
+                    self.send_response(resp.status_code); self.end_headers(); return
                 ct = resp.headers.get("Content-Type", "image/jpeg").split(";")[0].strip()
                 data = resp.content
                 self.send_response(200)
@@ -477,7 +488,7 @@ class Handler(BaseHTTPRequestHandler):
                 self.end_headers()
                 self.wfile.write(data)
             except Exception as e:
-                logger.debug(f"img-proxy failed {raw_url[:80]}: {e}")
+                logger.warning(f"img-proxy failed {raw_url[:80]}: {e}")
                 self.send_response(502); self.end_headers()
             return
 
