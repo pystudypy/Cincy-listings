@@ -44,10 +44,17 @@ const state = {
   quiz: {
     budgetMin: "",
     budgetMax: "",
-    lifestyle: "",    // "entertainer" | "retreat" | "estate" | ""
+    lifestyle: "",    // "entertainer"|"retreat"|"estate"|"urban"|"outdoor"|""
     features: [],     // must-have feature tags
     neighborhood: "", // "OH" | "KY" | ""
     completed: false,
+    // v2 fields
+    bedsMin: "",      // "2"|"3"|"4"|"5"
+    bathsMin: "",     // "1"|"2"|"3"
+    buyerType: "",    // "first_timer"|"family"|"investor"|"downsizer"
+    condition: "",    // "move_in_ready"|"light_work"|"project"
+    propertyType: "", // "SINGLE_FAMILY"|"CONDO"|"TOWNHOUSE"|"MULTI_FAMILY"
+    _v: 2,
   },
   saved: new Set(),   // listing IDs saved to localStorage
   compare: [],        // ordered array of listing IDs, max 3
@@ -180,8 +187,42 @@ function compute_luxury_score(listing) {
 }
 
 // ── Match scoring ─────────────────────────────────────
-function compute_match_score(listing, quiz) {
-  if (!quiz.completed) return null;
+// ── Description-based feature detection ──────────────
+const FEATURE_DESC_KEYWORDS = {
+  pool:              ["pool", "swimming pool", "in-ground pool"],
+  master_suite:      ["master suite", "primary suite", "owner's suite", "owners suite"],
+  walk_in_shower:    ["walk-in shower", "walk in shower", "frameless shower", "tile shower"],
+  soaking_tub:       ["soaking tub", "jacuzzi", "jetted tub", "freestanding tub", "clawfoot"],
+  updated_kitchen:   ["chef's kitchen", "gourmet kitchen", "updated kitchen", "quartz counters", "kitchen island", "granite counters", "quartzite"],
+  smart_home:        ["smart home", "home automation", "smart thermostat", "nest", "lutron"],
+  three_car_garage:  ["3-car garage", "3 car garage", "three car garage", "triple car"],
+  in_law_suite:      ["in-law suite", "in law suite", "guest suite", "au pair", "accessory unit", "adu"],
+  ev_charger:        ["ev charger", "electric vehicle", "charging station", "tesla charger"],
+  solar:             ["solar panel", "solar system", "photovoltaic", "solar energy"],
+  fireplace:         ["fireplace", "fire place", "wood burning"],
+  hardwood_floors:   ["hardwood floors", "hardwood flooring", "hardwood", "wood floor", "oak floor"],
+  finished_basement: ["finished basement", "finished lower level", "lower level", "rec room"],
+  walk_in_closet:    ["walk-in closet", "walk in closet", "oversized closet", "custom closet"],
+  deck_patio:        ["deck", "patio", "outdoor entertaining", "covered porch", "pergola"],
+  open_floor_plan:   ["open floor plan", "open concept", "great room", "open layout"],
+  updated_bathrooms: ["updated bathroom", "renovated bathroom", "spa bath", "marble bath", "spa-like"],
+};
+
+function _desc_has_feature(desc, featureKey) {
+  const lower = (desc || "").toLowerCase();
+  return (FEATURE_DESC_KEYWORDS[featureKey] || []).some(kw => lower.includes(kw));
+}
+
+const LIFESTYLE_SIGNALS = {
+  entertainer: ["pool", "deck_patio", "updated_kitchen", "open_floor_plan", "outdoor kitchen", "bar", "wet bar", "theater", "home theater"],
+  retreat:     ["walk_in_shower", "soaking_tub", "master_suite", "updated_bathrooms", "spa", "sauna", "steam"],
+  estate:      ["fireplace", "hardwood_floors", "finished_basement", "walk_in_closet", "wine cellar", "library", "study"],
+  urban:       ["walkable", "walk score", "downtown", "urban", "light rail", "transit", "city view", "rooftop", "loft"],
+  outdoor:     ["hiking", "trail", "acreage", "pond", "lake", "wooded", "privacy", "nature", "creek", "horse"],
+};
+
+// ── Match scoring ─────────────────────────────────────
+function _compute_match_score_v1(listing, quiz) {
   let score = 0;
 
   // ── Budget (25 pts) ──────────────────────────────────
@@ -253,6 +294,152 @@ function compute_match_score(listing, quiz) {
   return Math.min(100, Math.round(score));
 }
 
+function _compute_match_score_v2(listing, quiz) {
+  let score = 0;
+  const desc = (listing.description || "").toLowerCase();
+  const price = listing.price;
+
+  // ── Budget (25 pts) ─────────────────────────────────
+  const pMin = quiz.budgetMin ? +quiz.budgetMin : null;
+  const pMax = quiz.budgetMax ? +quiz.budgetMax : null;
+  if (price == null) {
+    score += 12;
+  } else if (pMin != null && pMax != null) {
+    if (price >= pMin && price <= pMax) score += 25;
+    else if (price > pMax && price <= pMax * 1.2) score += 10;
+    else if (price < pMin && price >= pMin * 0.8) score += 10;
+  } else if (pMax != null) {
+    if (price <= pMax) score += 25;
+    else if (price <= pMax * 1.2) score += 10;
+  } else if (pMin != null) {
+    if (price >= pMin) score += 25;
+  } else {
+    score += 25;
+  }
+
+  // ── Beds (12 pts) ────────────────────────────────────
+  const bedsMin = quiz.bedsMin ? +quiz.bedsMin : null;
+  if (!bedsMin) {
+    score += 12;
+  } else {
+    const beds = listing.beds != null ? +listing.beds : null;
+    if (beds == null) score += 6;
+    else if (beds >= bedsMin) score += 12;
+    else if (beds >= bedsMin - 1) score += 6;
+  }
+
+  // ── Baths (8 pts) ────────────────────────────────────
+  const bathsMin = quiz.bathsMin ? +quiz.bathsMin : null;
+  if (!bathsMin) {
+    score += 8;
+  } else {
+    const baths = listing.baths != null ? +listing.baths : null;
+    if (baths == null) score += 4;
+    else if (baths >= bathsMin) score += 8;
+    else if (baths >= bathsMin - 0.5) score += 4;
+  }
+
+  // ── Neighborhood (8 pts) ────────────────────────────
+  const nbhd = quiz.neighborhood || "";
+  if (!nbhd) {
+    score += 8;
+  } else {
+    const listingState = (listing.state || "").toUpperCase();
+    if ((nbhd === "OH" && listingState === "OH") || (nbhd === "KY" && listingState === "KY")) score += 8;
+    else score += 2;
+  }
+
+  // ── Lifestyle (17 pts) — description-based ──────────
+  const lifestyle = quiz.lifestyle || quiz.style || "";
+  if (!lifestyle) {
+    score += 17;
+  } else {
+    const signals = LIFESTYLE_SIGNALS[lifestyle] || [];
+    const hits = signals.filter(kw => {
+      if (FEATURE_DESC_KEYWORDS[kw]) return _desc_has_feature(desc, kw);
+      return desc.includes(kw);
+    }).length;
+    if      (hits >= 3) score += 17;
+    else if (hits >= 2) score += 12;
+    else if (hits >= 1) score += 7;
+    else                score += 2;
+  }
+
+  // ── Must-haves (15 pts) — description-based ─────────
+  if (!quiz.features.length) {
+    score += 15;
+  } else {
+    const matched = quiz.features.filter(f => _desc_has_feature(desc, f)).length;
+    score += Math.round((matched / quiz.features.length) * 15);
+  }
+
+  // ── Buyer type (8 pts) ───────────────────────────────
+  const buyerType = quiz.buyerType || "";
+  if (!buyerType) {
+    score += 8;
+  } else if (buyerType === "first_timer") {
+    let hits = 0;
+    if (price && price < 400000) hits++;
+    if (desc.includes("move-in ready") || desc.includes("move in ready") || desc.includes("turnkey")) hits++;
+    if (listing.beds && +listing.beds <= 3) hits++;
+    score += hits >= 2 ? 8 : hits >= 1 ? 5 : 3;
+  } else if (buyerType === "family") {
+    let hits = 0;
+    if (listing.beds && +listing.beds >= 3) hits++;
+    if (listing.sqft && +listing.sqft >= 2000) hits++;
+    if (desc.includes("school") || desc.includes("district")) hits++;
+    if (desc.includes("yard") || desc.includes("backyard") || desc.includes("fenced")) hits++;
+    score += hits >= 3 ? 8 : hits >= 2 ? 5 : hits >= 1 ? 3 : 1;
+  } else if (buyerType === "investor") {
+    let hits = 0;
+    if (["MULTI_FAMILY", "DUPLEX", "TRIPLEX"].some(t => (listing.type || "").toUpperCase().includes(t))) hits += 2;
+    if (desc.includes("rental") || desc.includes("tenant") || desc.includes("income")) hits++;
+    if (_desc_has_feature(desc, "in_law_suite")) hits++;
+    score += hits >= 2 ? 8 : hits >= 1 ? 5 : 2;
+  } else if (buyerType === "downsizer") {
+    let hits = 0;
+    if (listing.beds && +listing.beds <= 3) hits++;
+    if (desc.includes("ranch") || desc.includes("one-story") || desc.includes("single story") || desc.includes("main floor")) hits++;
+    if (desc.includes("condo") || desc.includes("townhome") || (listing.type || "").toUpperCase().includes("CONDO")) hits++;
+    if (desc.includes("low maintenance") || desc.includes("maintenance-free")) hits++;
+    score += hits >= 2 ? 8 : hits >= 1 ? 5 : 3;
+  }
+
+  // ── Property type (4 pts) ────────────────────────────
+  const propType = quiz.propertyType || "";
+  if (!propType) {
+    score += 4;
+  } else {
+    const lType = (listing.type || "").toUpperCase().replace(/[\s\-]/g, "_");
+    if (lType === propType || lType.includes(propType.replace(/_/g, ""))) score += 4;
+    else if (propType === "SINGLE_FAMILY" && lType.includes("FAMILY")) score += 4;
+    else score += 1;
+  }
+
+  // ── Condition tolerance (3 pts) ──────────────────────
+  const condition = quiz.condition || "";
+  if (!condition) {
+    score += 3;
+  } else if (condition === "move_in_ready") {
+    if (desc.includes("move-in ready") || desc.includes("move in ready") || desc.includes("turnkey") ||
+        desc.includes("updated") || desc.includes("renovated") || desc.includes("new construction")) score += 3;
+    else score += 1;
+  } else if (condition === "light_work") {
+    score += 2;
+  } else if (condition === "project") {
+    if (desc.includes("as-is") || desc.includes("fixer") || desc.includes("potential") || desc.includes("opportunity")) score += 3;
+    else score += 2;
+  }
+
+  return Math.min(100, Math.round(score));
+}
+
+function compute_match_score(listing, quiz) {
+  if (!quiz.completed) return null;
+  if (quiz._v >= 2) return _compute_match_score_v2(listing, quiz);
+  return _compute_match_score_v1(listing, quiz);
+}
+
 function compute_match_breakdown(listing, quiz) {
   if (!quiz.completed) return null;
   const result = { budget: null, style: null, features: [] };
@@ -276,41 +463,88 @@ function compute_match_breakdown(listing, quiz) {
     }
   }
 
-  // Lifestyle
+  // Lifestyle — description-based
   const lifestyle = quiz.lifestyle || quiz.style || "";
   if (lifestyle) {
-    if (lifestyle === "entertainer") {
-      const signals = ["pool", "kitchen_island", "open_floor_plan", "deck_patio", "updated_kitchen"];
-      const hits = (listing.features || []).filter(f => signals.includes(f)).length;
-      if (hits >= 3) result.style = { status: "match", label: "Great for entertaining" };
-      else if (hits >= 1) result.style = { status: "partial", label: `${hits} entertainer feature${hits > 1 ? "s" : ""} found` };
-      else result.style = { status: "miss", label: "Few entertainer signals" };
-    } else if (lifestyle === "retreat") {
-      const signals = ["walk_in_shower", "soaking_tub", "master_suite", "smart_home", "updated_bathrooms"];
-      const hits = (listing.features || []).filter(f => signals.includes(f)).length;
-      if (hits >= 3) result.style = { status: "match", label: "Retreat features found" };
-      else if (hits >= 1) result.style = { status: "partial", label: `${hits} retreat feature${hits > 1 ? "s" : ""} found` };
-      else result.style = { status: "miss", label: "Few retreat signals" };
-    } else if (lifestyle === "estate") {
-      const signals = ["fireplace", "large_lot", "hardwood_floors", "finished_basement", "walk_in_closet"];
-      const hits = (listing.features || []).filter(f => signals.includes(f)).length;
-      if (hits >= 3) result.style = { status: "match", label: "Classic estate feel" };
-      else if (hits >= 1) result.style = { status: "partial", label: `${hits} estate feature${hits > 1 ? "s" : ""} found` };
-      else result.style = { status: "miss", label: "Few estate signals" };
-    }
+    const signals = LIFESTYLE_SIGNALS[lifestyle] || [];
+    const desc = (listing.description || "").toLowerCase();
+    const hits = signals.filter(kw => FEATURE_DESC_KEYWORDS[kw] ? _desc_has_feature(desc, kw) : desc.includes(kw)).length;
+    const labels = { entertainer: "Great for entertaining", retreat: "Retreat features found", estate: "Classic estate feel", urban: "Urban professional vibe", outdoor: "Outdoor living appeal" };
+    const label = labels[lifestyle] || "Lifestyle match";
+    if (hits >= 3) result.style = { status: "match", label };
+    else if (hits >= 1) result.style = { status: "partial", label: `${hits} ${lifestyle} signal${hits > 1 ? "s" : ""} found` };
+    else result.style = { status: "miss", label: `Few ${lifestyle} signals` };
   }
 
-  // Must-have features
+  // Must-have features — description-based
   if (quiz.features.length) {
-    const listingFeatures = listing.features || [];
+    const desc = (listing.description || "").toLowerCase();
     result.features = quiz.features.map(f => ({
       tag: f,
       label: feature_label(f),
-      matched: listingFeatures.includes(f),
+      matched: _desc_has_feature(desc, f),
     }));
   }
 
   return result;
+}
+
+function generate_why_sentences(listing, quiz) {
+  if (!quiz.completed) return [];
+  const out = [];
+  const desc = (listing.description || "").toLowerCase();
+  const price = listing.price;
+
+  // Budget sentence
+  if (price && quiz.budgetMax && price <= +quiz.budgetMax) {
+    const under = Math.round((+quiz.budgetMax - price) / 1000);
+    if (under >= 20) out.push(`$${under}K under your maximum budget.`);
+    else out.push("Fits within your budget.");
+  } else if (price && quiz.budgetMin && price >= +quiz.budgetMin && !quiz.budgetMax) {
+    out.push("Priced within your stated range.");
+  }
+
+  // Beds sentence
+  if (quiz.bedsMin && listing.beds && +listing.beds >= +quiz.bedsMin) {
+    out.push(`${listing.beds} bedrooms — meets your ${quiz.bedsMin}+ requirement.`);
+  }
+
+  // Lifestyle sentence
+  const lifestyle = quiz.lifestyle || quiz.style || "";
+  if (lifestyle === "entertainer") {
+    const found = ["pool","updated_kitchen","deck_patio","open_floor_plan"].filter(f => _desc_has_feature(desc, f));
+    if (found.length) out.push(`Built for entertaining — ${found.slice(0,2).map(f => feature_label(f)).join(" & ")}.`);
+  } else if (lifestyle === "retreat") {
+    const found = ["walk_in_shower","soaking_tub","master_suite","updated_bathrooms"].filter(f => _desc_has_feature(desc, f));
+    if (found.length) out.push(`Spa-like retreat features — ${found.slice(0,2).map(f => feature_label(f)).join(" & ")}.`);
+  } else if (lifestyle === "estate") {
+    const found = ["fireplace","hardwood_floors","walk_in_closet","finished_basement"].filter(f => _desc_has_feature(desc, f));
+    if (found.length) out.push(`Classic estate touches — ${found.slice(0,2).map(f => feature_label(f)).join(" & ")}.`);
+  } else if (lifestyle === "urban") {
+    if (desc.includes("downtown") || desc.includes("walkable") || desc.includes("urban")) out.push("Walkable urban location.");
+  } else if (lifestyle === "outdoor") {
+    if (desc.includes("acre") || desc.includes("wooded") || desc.includes("trail") || desc.includes("pond")) out.push("Outdoor living and natural privacy.");
+  }
+
+  // Must-have feature sentence
+  if (quiz.features.length) {
+    const matched = quiz.features.filter(f => _desc_has_feature(desc, f));
+    if (matched.length) out.push(`Has your must-haves: ${matched.slice(0,3).map(f => feature_label(f)).join(", ")}.`);
+  }
+
+  // Buyer type fallback sentences
+  if (out.length < 2 && quiz.buyerType === "family" && listing.beds && +listing.beds >= 3) {
+    out.push(`${listing.beds}-bedroom home suited for a growing family.`);
+  }
+  if (out.length < 2 && quiz.buyerType === "investor" && desc.includes("rental")) {
+    out.push("Rental income potential noted in the listing.");
+  }
+  if (out.length < 2 && quiz.buyerType === "downsizer") {
+    if (desc.includes("ranch") || desc.includes("one-story") || desc.includes("main floor"))
+      out.push("Single-level living — low-maintenance lifestyle.");
+  }
+
+  return out.slice(0, 3);
 }
 
 // ── Filtering & sorting ───────────────────────────────
@@ -1919,22 +2153,113 @@ function update_mortgage(listingId, price) {
 }
 
 // ── Quiz ──────────────────────────────────────────────
+// ── Quiz wizard ──────────────────────────────────────
+let _quiz_step = 1;
+const QUIZ_TOTAL_STEPS = 7;
+
+const QZ_THEMES = [
+  "linear-gradient(160deg,#0a1628 0%,#1e3a8a 100%)",   // 1 Budget — deep navy
+  "linear-gradient(160deg,#150d30 0%,#4c1d95 100%)",   // 2 Beds/Baths — violet
+  "linear-gradient(160deg,#032620 0%,#065f46 100%)",   // 3 Buyer Type — emerald
+  "linear-gradient(160deg,#1c0800 0%,#92400e 100%)",   // 4 Lifestyle — amber
+  "linear-gradient(160deg,#0c0a26 0%,#3730a3 100%)",   // 5 Property Type — indigo
+  "linear-gradient(160deg,#031c14 0%,#047857 100%)",   // 6 Condition — teal
+  "linear-gradient(160deg,#120a30 0%,#1e3a8a 100%)",   // 7 Location — dark blue
+];
+
+function quiz_go_step(n) {
+  // Hide old slide
+  const oldSlide = $(`qstep-${_quiz_step}`);
+  if (oldSlide) oldSlide.style.display = "none";
+
+  _quiz_step = n;
+
+  // Show new slide with animation re-trigger
+  const newSlide = $(`qstep-${_quiz_step}`);
+  if (newSlide) {
+    newSlide.style.display = "flex";
+    // Re-trigger the slide-in animation
+    newSlide.style.animation = "none";
+    newSlide.offsetHeight; // reflow
+    newSlide.style.animation = "";
+  }
+
+  // Update overlay background gradient per step
+  const overlay = $("quiz-modal-overlay");
+  if (overlay) overlay.style.background = QZ_THEMES[_quiz_step - 1] || QZ_THEMES[0];
+
+  // Update dots
+  for (let i = 1; i <= QUIZ_TOTAL_STEPS; i++) {
+    const dot = $(`qdot-${i}`);
+    if (!dot) continue;
+    dot.classList.remove("active", "done");
+    if (i < _quiz_step) dot.classList.add("done");
+    else if (i === _quiz_step) dot.classList.add("active");
+  }
+
+  // Update step counter
+  if ($("quiz-step-counter")) $("quiz-step-counter").textContent = `${_quiz_step} / ${QUIZ_TOTAL_STEPS}`;
+
+  // Show/hide nav buttons
+  if ($("quiz-back")) $("quiz-back").style.display = _quiz_step > 1 ? "inline-flex" : "none";
+  if ($("quiz-next")) $("quiz-next").style.display = _quiz_step < QUIZ_TOTAL_STEPS ? "inline-flex" : "none";
+  if ($("quiz-save")) $("quiz-save").style.display = _quiz_step === QUIZ_TOTAL_STEPS ? "inline-flex" : "none";
+
+  // Scroll slides container to top
+  const slides = document.querySelector(".qz-slides");
+  if (slides) slides.scrollTop = 0;
+}
+
 function open_quiz() {
   const q = state.quiz;
-  // Pre-fill from saved state
-  $("quiz-budget-min").value = q.budgetMin;
-  $("quiz-budget-max").value = q.budgetMax;
+
+  // Pre-fill budget button groups
+  ["quiz-budget-min-group", "quiz-budget-max-group"].forEach(gid => {
+    const grp = $(gid); if (!grp) return;
+    const val = gid === "quiz-budget-min-group" ? q.budgetMin : q.budgetMax;
+    grp.querySelectorAll(".qz-price-btn").forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.val === (val || ""));
+    });
+  });
+
+  // Beds/baths chips
+  ["quiz-beds-group","quiz-baths-group"].forEach(gid => {
+    const grp = $(gid); if (!grp) return;
+    const val = gid === "quiz-beds-group" ? q.bedsMin : q.bathsMin;
+    grp.querySelectorAll(".chip").forEach(c => c.classList.toggle("active", c.dataset.val === val));
+  });
+
+  // Buyer type
+  $("quiz-buyer-grid")?.querySelectorAll(".quiz-buyer-card").forEach(c => {
+    c.classList.toggle("active", c.dataset.val === q.buyerType);
+  });
+
+  // Lifestyle
   const lifestyle = q.lifestyle || q.style || "";
   $("quiz-modal-overlay").querySelectorAll(".quiz-style-chip").forEach(c => {
     c.classList.toggle("active", c.dataset.val === lifestyle);
   });
-  $("quiz-features-group").querySelectorAll(".chip").forEach(c => {
-    c.classList.toggle("active", q.features.includes(c.dataset.val));
+
+  // Property type
+  $("quiz-proptype-group")?.querySelectorAll(".chip").forEach(c => {
+    c.classList.toggle("active", c.dataset.val === q.propertyType);
   });
+
+  // Condition
+  $("quiz-condition-grid")?.querySelectorAll(".quiz-condition-card").forEach(c => {
+    c.classList.toggle("active", c.dataset.val === q.condition);
+  });
+
+  // Neighborhood & features
   const neighborhood = q.neighborhood || "";
-  $("quiz-neighborhood").querySelectorAll(".chip").forEach(c => {
+  $("quiz-neighborhood")?.querySelectorAll(".chip").forEach(c => {
     c.classList.toggle("active", c.dataset.val === neighborhood);
   });
+  $("quiz-features-group")?.querySelectorAll(".chip").forEach(c => {
+    c.classList.toggle("active", q.features.includes(c.dataset.val));
+  });
+
+  quiz_go_step(1);
   $("quiz-modal-overlay").style.display = "flex";
   document.body.style.overflow = "hidden";
 }
@@ -1946,30 +2271,38 @@ function close_quiz() {
 
 function save_quiz() {
   const lifestyle = $("quiz-modal-overlay").querySelector(".quiz-style-chip.active")?.dataset.val || "";
-  const features = [...$("quiz-features-group").querySelectorAll(".chip.active")]
+  const features = [...($("quiz-features-group")?.querySelectorAll(".chip.active") || [])]
     .map(c => c.dataset.val).filter(Boolean);
   const neighborhood = $("quiz-neighborhood")?.querySelector(".chip.active")?.dataset.val || "";
+  const bedsMin = $("quiz-beds-group")?.querySelector(".chip.active")?.dataset.val || "";
+  const bathsMin = $("quiz-baths-group")?.querySelector(".chip.active")?.dataset.val || "";
+  const buyerType = $("quiz-buyer-grid")?.querySelector(".quiz-buyer-card.active")?.dataset.val || "";
+  const condition = $("quiz-condition-grid")?.querySelector(".quiz-condition-card.active")?.dataset.val || "";
+  const propertyType = $("quiz-proptype-group")?.querySelector(".chip.active")?.dataset.val || "";
+
+  const budgetMin = $("quiz-budget-min-group")?.querySelector(".qz-price-btn.active")?.dataset.val || "";
+  const budgetMax = $("quiz-budget-max-group")?.querySelector(".qz-price-btn.active")?.dataset.val || "";
 
   state.quiz = {
-    budgetMin: $("quiz-budget-min").value,
-    budgetMax: $("quiz-budget-max").value,
-    lifestyle,
-    features,
-    neighborhood,
-    completed: true,
+    budgetMin, budgetMax,
+    lifestyle, features, neighborhood,
+    bedsMin, bathsMin, buyerType, condition, propertyType,
+    completed: true, _v: 2,
   };
 
-  try {
-    localStorage.setItem("buyer-quiz", JSON.stringify(state.quiz));
-  } catch (_) {}
+  try { localStorage.setItem("buyer-quiz", JSON.stringify(state.quiz)); } catch (_) {}
 
   // Auto-switch sort to Best Match
   state.filters.sort = "match_desc";
   $("filter-sort").value = "match_desc";
 
   $("btn-clear-quiz").style.display = "inline-block";
+
+  // Show My Matches tab and switch to it
+  if ($("tab-matches")) $("tab-matches").style.display = "inline-flex";
   close_quiz();
   apply_filters();
+  set_tab("matches");
 }
 
 function load_quiz_from_storage() {
@@ -1977,13 +2310,24 @@ function load_quiz_from_storage() {
     const saved = localStorage.getItem("buyer-quiz");
     if (saved) {
       const q = JSON.parse(saved);
-      if (q.completed) state.quiz = q;
+      if (q.completed) {
+        // Migrate v1 quiz — new fields default to blank (neutral scoring)
+        if (!q._v || q._v < 2) {
+          q.bedsMin = ""; q.bathsMin = ""; q.buyerType = "";
+          q.condition = ""; q.propertyType = ""; q._v = 2;
+        }
+        state.quiz = q;
+      }
     }
   } catch (_) {}
 }
 
 function clear_quiz() {
-  state.quiz = { budgetMin: "", budgetMax: "", lifestyle: "", features: [], neighborhood: "", completed: false };
+  state.quiz = {
+    budgetMin: "", budgetMax: "", lifestyle: "", features: [], neighborhood: "",
+    bedsMin: "", bathsMin: "", buyerType: "", condition: "", propertyType: "",
+    completed: false, _v: 2,
+  };
   try { localStorage.removeItem("buyer-quiz"); } catch (_) {}
   $("btn-clear-quiz").style.display = "none";
   apply_filters();
@@ -2115,6 +2459,7 @@ function wire_events() {
   $("tab-map"    ).addEventListener("click", () => set_tab("map"));
   $("tab-saved"  ).addEventListener("click", () => set_tab("saved"));
   $("tab-compare").addEventListener("click", () => set_tab("compare"));
+  $("tab-matches")?.addEventListener("click", () => set_tab("matches"));
 
   // Modal close
   $("modal-close").addEventListener("click", close_modal);
@@ -2154,14 +2499,27 @@ function wire_events() {
     apply_filters();
   });
 
-  // Quiz
+  // Quiz — both sidebar button and tab-bar button
   $("btn-find-match").addEventListener("click", open_quiz);
+  $("tab-quiz-btn")?.addEventListener("click", open_quiz);
   $("btn-clear-quiz").addEventListener("click", clear_quiz);
   $("quiz-modal-overlay").addEventListener("click", (e) => {
     if (e.target === $("quiz-modal-overlay")) close_quiz();
   });
   $("quiz-close").addEventListener("click", close_quiz);
   $("quiz-save").addEventListener("click", save_quiz);
+  $("quiz-next")?.addEventListener("click", () => quiz_go_step(_quiz_step + 1));
+  $("quiz-back")?.addEventListener("click", () => quiz_go_step(_quiz_step - 1));
+
+  // Quiz budget button groups (single-select)
+  ["quiz-budget-min-group", "quiz-budget-max-group"].forEach(gid => {
+    $(gid)?.addEventListener("click", (e) => {
+      const btn = e.target.closest(".qz-price-btn");
+      if (!btn) return;
+      $(gid).querySelectorAll(".qz-price-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
+  });
 
   // Quiz style chips (single-select)
   $("quiz-modal-overlay").querySelectorAll(".quiz-style-chip").forEach(chip => {
@@ -2171,15 +2529,43 @@ function wire_events() {
     });
   });
 
+  // Quiz beds/baths/proptype chips (single-select)
+  ["quiz-beds-group","quiz-baths-group","quiz-proptype-group"].forEach(gid => {
+    $(gid)?.addEventListener("click", (e) => {
+      const chip = e.target.closest(".chip");
+      if (!chip) return;
+      $(gid).querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+    });
+  });
+
+  // Quiz buyer type cards (single-select + auto-advance)
+  $("quiz-buyer-grid")?.addEventListener("click", (e) => {
+    const card = e.target.closest(".quiz-buyer-card");
+    if (!card) return;
+    $("quiz-buyer-grid").querySelectorAll(".quiz-buyer-card").forEach(c => c.classList.remove("active"));
+    card.classList.add("active");
+    setTimeout(() => quiz_go_step(4), 350);
+  });
+
+  // Quiz condition cards (single-select + auto-advance)
+  $("quiz-condition-grid")?.addEventListener("click", (e) => {
+    const card = e.target.closest(".quiz-condition-card");
+    if (!card) return;
+    $("quiz-condition-grid").querySelectorAll(".quiz-condition-card").forEach(c => c.classList.remove("active"));
+    card.classList.add("active");
+    setTimeout(() => quiz_go_step(7), 350);
+  });
+
   // Quiz feature chips (multi-select)
-  $("quiz-features-group").addEventListener("click", (e) => {
+  $("quiz-features-group")?.addEventListener("click", (e) => {
     const chip = e.target.closest(".chip");
     if (!chip) return;
     chip.classList.toggle("active");
   });
 
   // Quiz neighborhood chips (single-select)
-  $("quiz-neighborhood").addEventListener("click", (e) => {
+  $("quiz-neighborhood")?.addEventListener("click", (e) => {
     const chip = e.target.closest(".chip");
     if (!chip) return;
     $("quiz-neighborhood").querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
@@ -2219,15 +2605,57 @@ function render_new() {
 }
 
 // ── Tab switching (global so inline onclicks in tray can call it) ─────────────
+function render_matches() {
+  const grid = $("matches-grid");
+  if (!grid) return;
+  if (!state.quiz.completed) {
+    grid.innerHTML = `<div class="matches-empty">Complete the quiz to see your top matches.</div>`;
+    return;
+  }
+  const scored = state.filtered
+    .map(l => ({ l, score: compute_match_score(l, state.quiz) ?? 0 }))
+    .filter(x => x.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 10);
+  if (!scored.length) {
+    grid.innerHTML = `<div class="matches-empty">No matches found — try adjusting your quiz or filters.</div>`;
+    return;
+  }
+  grid.innerHTML = scored.map(({ l, score }, i) => {
+    const why = generate_why_sentences(l, state.quiz);
+    const ring_color = score >= 70 ? "#16a34a" : score >= 40 ? "#d97706" : "#9ca3af";
+    const ring_deg = Math.round(score / 100 * 360);
+    const stats = [l.beds && l.beds + " bd", l.baths && l.baths + " ba", l.sqft && Number(l.sqft).toLocaleString() + " sqft"].filter(Boolean).join(" · ");
+    return `<div class="match-card" data-id="${l.id}" data-rank="${i}">
+      <div class="match-rank-ring" style="background:conic-gradient(${ring_color} ${ring_deg}deg,#e5e7eb ${ring_deg}deg)">
+        <div class="match-ring-inner">${score}<span class="match-ring-pct">%</span></div>
+      </div>
+      <div class="match-card-body">
+        <div class="match-card-addr">${l.address || ""}${l.city ? ", " + l.city : ""}</div>
+        <div class="match-card-price">${fmt_price(l.price)}</div>
+        ${stats ? `<div class="match-card-stats">${stats}</div>` : ""}
+        ${why.length ? `<ul class="match-why">${why.map(s => `<li>${s}</li>`).join("")}</ul>` : ""}
+      </div>
+    </div>`;
+  }).join("");
+  grid.querySelectorAll(".match-card").forEach(el => {
+    el.addEventListener("click", () => {
+      const listing = state.filtered.find(l => l.id === el.dataset.id);
+      if (listing) open_modal(listing, state.filtered, state.filtered.indexOf(listing));
+    });
+  });
+}
+
 function set_tab(tab) {
-  ["tab-new","tab-list","tab-map","tab-saved","tab-compare"].forEach(id => $(id)?.classList.remove("active"));
-  ["view-new","view-list","view-map","view-saved","view-compare"].forEach(id => { if ($(id)) $(id).style.display = "none"; });
+  ["tab-new","tab-list","tab-map","tab-saved","tab-compare","tab-matches"].forEach(id => $(id)?.classList.remove("active"));
+  ["view-new","view-list","view-map","view-saved","view-compare","view-matches"].forEach(id => { if ($(id)) $(id).style.display = "none"; });
   $("tab-" + tab)?.classList.add("active");
   if ($("view-" + tab)) $("view-" + tab).style.display = "block";
   if (tab === "map")     { init_map(); setTimeout(() => map && map.invalidateSize(), 100); }
   if (tab === "saved")   { render_saved(); }
   if (tab === "compare") { render_compare(); }
   if (tab === "new")     { render_new(); }
+  if (tab === "matches") { render_matches(); }
 }
 
 // ── Bootstrap ─────────────────────────────────────────
@@ -2249,6 +2677,11 @@ try {
 
 wire_events();
 load_data();
+
+// Show My Matches tab if quiz was already completed
+if (state.quiz.completed && $("tab-matches")) {
+  $("tab-matches").style.display = "inline-flex";
+}
 
 // ── PWA service worker registration ───────────────────
 if ("serviceWorker" in navigator) {

@@ -1,5 +1,5 @@
 // CincyListings Service Worker
-const CACHE = "cincy-v10";
+const CACHE = "cincy-v13";
 
 // Derive base path from service worker location so this works on any
 // deployment path (GitHub Pages /Cincy-listings/ or Cloud Run /)

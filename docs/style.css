@@ -1066,84 +1066,365 @@ select.mtg-input { width: 70px; }
 }
 .btn-find-match:hover { opacity: .88; }
 
-/* ── Quiz modal ───────────────────────────────────────── */
-.quiz-modal-overlay {
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,.5);
-  z-index: 1100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-}
-.quiz-modal {
-  background: var(--surface);
-  border-radius: 16px;
-  box-shadow: var(--shadow-lg);
-  width: 100%;
-  max-width: 480px;
-  max-height: 90vh;
-  overflow-y: auto;
-  padding: 28px 24px 24px;
-  position: relative;
-}
-.quiz-header { margin-bottom: 22px; }
-.quiz-title {
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--text);
-  margin-bottom: 4px;
-}
-.quiz-subtitle {
-  font-size: 13px;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-.quiz-step {
-  margin-bottom: 22px;
-}
-.quiz-step-label {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.quiz-step-num {
-  background: #6366f1;
-  color: #fff;
-  font-size: 11px;
-  font-weight: 800;
-  width: 20px; height: 20px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.quiz-step-hint {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--text-muted);
-}
-.btn-quiz-save {
-  width: 100%;
+/* ── Quiz button in tab bar ───────────────────────────── */
+.tab-quiz-btn {
+  margin-left: auto;
+  padding: 6px 14px;
   background: linear-gradient(135deg, #6366f1, #1d4ed8);
   color: #fff;
   border: none;
-  border-radius: 10px;
-  padding: 13px;
-  font-size: 15px;
+  border-radius: 20px;
+  font-size: 13px;
   font-weight: 700;
   cursor: pointer;
-  margin-top: 4px;
-  transition: opacity .15s;
+  white-space: nowrap;
+  transition: opacity .15s, transform .15s;
+  flex-shrink: 0;
 }
-.btn-quiz-save:hover { opacity: .88; }
+.tab-quiz-btn:hover { opacity: .88; transform: translateY(-1px); }
 
+/* ═══════════════════════════════════════════════════════
+   IMMERSIVE QUIZ  —  full-screen, one question per step
+   ═══════════════════════════════════════════════════════ */
 
+/* Full-screen overlay */
+.qz-overlay {
+  position: fixed; inset: 0; z-index: 1100;
+  display: flex; flex-direction: column;
+  background: linear-gradient(160deg, #0a1628 0%, #1e3a8a 100%);
+  transition: background 0.55s ease;
+  overflow: hidden;
+}
+
+/* ── Top chrome ── */
+.qz-chrome {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 20px 10px; flex-shrink: 0; z-index: 2;
+}
+.qz-x {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.2);
+  color: rgba(255,255,255,.85); font-size: 14px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s; flex-shrink: 0;
+}
+.qz-x:hover { background: rgba(255,255,255,.22); }
+.qz-dots { display: flex; gap: 7px; align-items: center; }
+.qz-dot {
+  width: 8px; height: 8px; border-radius: 4px;
+  background: rgba(255,255,255,.2); transition: all .35s ease;
+}
+.qz-dot.done  { background: rgba(255,255,255,.55); width: 18px; border-radius: 4px; }
+.qz-dot.active { background: #fff; width: 26px; border-radius: 4px;
+                  box-shadow: 0 0 12px rgba(255,255,255,.55); }
+.qz-num {
+  font-size: 12px; font-weight: 700; color: rgba(255,255,255,.5);
+  min-width: 36px; text-align: right; flex-shrink: 0;
+}
+
+/* ── Slides container ── */
+.qz-slides {
+  flex: 1; overflow-y: auto; overflow-x: hidden;
+  padding: 4px 24px 8px; scrollbar-width: none;
+}
+.qz-slides::-webkit-scrollbar { display: none; }
+
+/* Each slide is a full-content flex column */
+.qz-slide {
+  display: flex; flex-direction: column;
+  align-items: center; text-align: center;
+  padding-top: 12px; padding-bottom: 8px;
+  max-width: 540px; width: 100%; margin: 0 auto;
+  animation: qz-in .35s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes qz-in {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* Step icon circle */
+.qz-icon-wrap { margin-bottom: 18px; }
+.qz-icon-circle {
+  width: 76px; height: 76px; border-radius: 22px;
+  font-size: 38px; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 36px rgba(0,0,0,.45), 0 0 0 10px rgba(255,255,255,.07);
+}
+
+/* Question + hint */
+.qz-q {
+  font-size: clamp(22px, 5vw, 28px); font-weight: 800;
+  color: #fff; line-height: 1.2; margin: 0 0 8px;
+}
+.qz-sub {
+  font-size: 14px; color: rgba(255,255,255,.6);
+  margin: 0 0 22px; line-height: 1.5; max-width: 380px;
+}
+
+/* ── Step 1: Budget ── */
+.qz-budget-wrap {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  width: 100%; text-align: left;
+}
+.qz-col-label {
+  font-size: 10px; font-weight: 800; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.45);
+  margin-bottom: 10px;
+}
+.qz-price-grid { display: flex; flex-wrap: wrap; gap: 7px; }
+.qz-price-btn {
+  padding: 8px 13px; border-radius: 10px;
+  background: rgba(255,255,255,.1); border: 1.5px solid rgba(255,255,255,.14);
+  color: rgba(255,255,255,.7); font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: all .15s;
+}
+.qz-price-btn:hover { background: rgba(255,255,255,.18); color: #fff; }
+.qz-price-btn.active {
+  background: #fff; color: #1e3a8a; border-color: #fff;
+  box-shadow: 0 2px 14px rgba(255,255,255,.3); font-weight: 800;
+}
+
+/* ── Step 2: Beds & Baths ── */
+.qz-rooms-wrap { display: flex; flex-direction: column; gap: 22px; width: 100%; text-align: left; }
+.qz-room-hdr {
+  font-size: 13px; font-weight: 700; color: rgba(255,255,255,.75);
+  margin-bottom: 10px; display: flex; align-items: center; gap: 4px;
+}
+.qz-room-hint { font-size: 11px; font-weight: 400; color: rgba(255,255,255,.4); }
+.qz-count-row { display: flex; gap: 9px; flex-wrap: wrap; }
+.qz-count-btn {
+  min-width: 60px; padding: 11px 6px; border-radius: 12px;
+  background: rgba(255,255,255,.1); border: 2px solid rgba(255,255,255,.14);
+  color: rgba(255,255,255,.7); font-size: 15px; font-weight: 700;
+  cursor: pointer; transition: all .15s; text-align: center;
+}
+.qz-count-btn:hover { background: rgba(255,255,255,.18); color: #fff; }
+.qz-count-btn.active {
+  background: rgba(255,255,255,.22); color: #fff;
+  border-color: rgba(255,255,255,.8);
+  box-shadow: 0 0 18px rgba(255,255,255,.12);
+}
+/* Override .chip appearance inside quiz overlay */
+.qz-overlay .chip {
+  background: rgba(255,255,255,.1) !important;
+  border: 2px solid rgba(255,255,255,.14) !important;
+  color: rgba(255,255,255,.7) !important;
+  border-radius: 12px !important;
+  transition: all .15s !important;
+}
+.qz-overlay .chip:hover {
+  background: rgba(255,255,255,.18) !important; color: #fff !important;
+}
+.qz-overlay .chip.active {
+  background: rgba(255,255,255,.22) !important; color: #fff !important;
+  border-color: rgba(255,255,255,.8) !important;
+  box-shadow: 0 0 18px rgba(255,255,255,.12) !important;
+}
+
+/* ── Step 3: Buyer Type ── */
+.qz-buyer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; }
+.qz-buyer-card {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 22px 14px 18px;
+  background: rgba(255,255,255,.08); border: 2px solid rgba(255,255,255,.12);
+  border-radius: 20px; cursor: pointer; transition: all .22s ease;
+  text-align: center; position: relative;
+}
+.qz-buyer-card:hover {
+  background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.28);
+  transform: translateY(-3px);
+}
+.qz-buyer-card.active {
+  background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.75);
+  box-shadow: 0 0 32px rgba(255,255,255,.13); transform: translateY(-3px);
+}
+.qz-buyer-card.active::after {
+  content: "✓"; position: absolute; top: 10px; right: 12px;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: rgba(255,255,255,.92); color: #1e3a8a;
+  font-size: 11px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+}
+.qz-card-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  font-size: 26px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; box-shadow: 0 4px 16px rgba(0,0,0,.3);
+}
+.qz-buyer-card strong { font-size: 13px; font-weight: 800; color: #fff; display: block; line-height: 1.2; }
+.qz-buyer-card small  { font-size: 11px; color: rgba(255,255,255,.5); display: block; line-height: 1.3; margin-top: 2px; }
+
+/* ── Step 4: Lifestyle ── */
+.qz-lifestyle-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
+.qz-lifestyle-card {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 14px; text-align: left;
+  background: rgba(255,255,255,.08); border: 2px solid rgba(255,255,255,.12);
+  border-radius: 16px; cursor: pointer; transition: all .2s ease; position: relative;
+}
+.qz-lifestyle-card:hover {
+  background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.28);
+  transform: translateY(-2px);
+}
+.qz-lifestyle-card.active {
+  background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.75);
+  box-shadow: 0 0 24px rgba(255,255,255,.1); transform: translateY(-2px);
+}
+.qz-lifestyle-card.active::after {
+  content: "✓"; position: absolute; top: 8px; right: 10px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: rgba(255,255,255,.92); color: #1e3a8a;
+  font-size: 10px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+}
+.qz-lifestyle-card .qz-card-icon { width: 42px; height: 42px; border-radius: 11px; font-size: 20px; }
+.qz-lifestyle-card strong { font-size: 12px; font-weight: 800; color: #fff; display: block; line-height: 1.2; }
+.qz-lifestyle-card small  { font-size: 10px; color: rgba(255,255,255,.5); display: block; line-height: 1.3; margin-top: 2px; }
+
+/* ── Step 5: Property Type ── */
+.qz-prop-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%;
+}
+.qz-prop-card {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 20px 10px;
+  background: rgba(255,255,255,.08); border: 2px solid rgba(255,255,255,.12);
+  border-radius: 18px; cursor: pointer; transition: all .2s ease; position: relative;
+  text-align: center;
+}
+.qz-prop-card:hover {
+  background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.28);
+  transform: translateY(-3px);
+}
+.qz-prop-card.active {
+  background: rgba(255,255,255,.2); border-color: rgba(255,255,255,.8);
+  box-shadow: 0 0 28px rgba(255,255,255,.14); transform: translateY(-3px);
+}
+.qz-prop-card.active::after {
+  content: "✓"; position: absolute; top: 8px; right: 8px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: rgba(255,255,255,.92); color: #1e3a8a;
+  font-size: 10px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+}
+.qz-prop-icon { font-size: 30px; line-height: 1; }
+.qz-prop-card strong { font-size: 11px; font-weight: 700; color: rgba(255,255,255,.9); display: block; line-height: 1.3; }
+
+/* ── Step 6: Condition ── */
+.qz-cond-grid { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+.qz-cond-card {
+  display: flex; align-items: center; gap: 18px;
+  padding: 18px 20px; text-align: left;
+  background: rgba(255,255,255,.08); border: 2px solid rgba(255,255,255,.12);
+  border-radius: 18px; cursor: pointer; transition: all .2s ease; position: relative;
+}
+.qz-cond-card:hover {
+  background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.28);
+  transform: translateX(5px);
+}
+.qz-cond-card.active {
+  background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.8);
+  box-shadow: 0 0 30px rgba(255,255,255,.12); transform: translateX(5px);
+}
+.qz-cond-card.active::after {
+  content: "✓"; position: absolute; top: 50%; right: 18px; transform: translateY(-50%);
+  width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(255,255,255,.92); color: #1e3a8a;
+  font-size: 13px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+}
+.qz-cond-icon { font-size: 34px; flex-shrink: 0; }
+.qz-cond-text strong { font-size: 15px; font-weight: 800; color: #fff; display: block; margin-bottom: 4px; }
+.qz-cond-text small  { font-size: 12px; color: rgba(255,255,255,.55); line-height: 1.4; }
+
+/* ── Step 7: Location + Must-Haves ── */
+.qz-loc-section  { width: 100%; text-align: left; margin-bottom: 20px; }
+.qz-must-section { width: 100%; text-align: left; }
+.qz-sec-label {
+  font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .07em;
+  color: rgba(255,255,255,.55); margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
+}
+.qz-sec-hint { font-size: 10px; font-weight: 400; text-transform: none; letter-spacing: 0; color: rgba(255,255,255,.35); }
+.qz-loc-grid { display: flex; gap: 10px; }
+.qz-loc-card {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 16px 10px; font-size: 22px; cursor: pointer;
+  background: rgba(255,255,255,.08); border: 2px solid rgba(255,255,255,.12);
+  border-radius: 16px; transition: all .15s;
+}
+.qz-loc-card:hover { background: rgba(255,255,255,.15); border-color: rgba(255,255,255,.3); }
+.qz-loc-card.active { background: rgba(255,255,255,.22); border-color: rgba(255,255,255,.8); }
+.qz-loc-card strong { font-size: 11px; font-weight: 700; color: rgba(255,255,255,.9); text-align: center; display: block; }
+.qz-must-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.qz-must-btn {
+  padding: 9px 14px; border-radius: 10px;
+  background: rgba(255,255,255,.09); border: 1.5px solid rgba(255,255,255,.14);
+  color: rgba(255,255,255,.7); font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: all .15s; display: flex; align-items: center; gap: 5px;
+}
+.qz-must-btn:hover { background: rgba(255,255,255,.16); color: #fff; }
+.qz-must-btn.active {
+  background: rgba(255,255,255,.22); border-color: rgba(255,255,255,.8);
+  color: #fff; box-shadow: 0 2px 12px rgba(255,255,255,.1);
+}
+
+/* ── Footer nav ── */
+.qz-footer {
+  flex-shrink: 0; display: flex; align-items: center;
+  justify-content: space-between; padding: 12px 24px 28px; gap: 10px;
+  background: linear-gradient(to top, rgba(0,0,0,.35) 0%, transparent 100%);
+}
+.qz-footer-right { display: flex; align-items: center; gap: 10px; }
+.qz-back {
+  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+  color: rgba(255,255,255,.85); padding: 12px 20px; border-radius: 12px;
+  font-size: 14px; font-weight: 600; cursor: pointer; transition: background .15s;
+  display: inline-flex; align-items: center;
+}
+.qz-back:hover { background: rgba(255,255,255,.2); }
+.qz-next {
+  background: #fff; color: #1e3a8a; border: none;
+  padding: 13px 30px; border-radius: 12px;
+  font-size: 15px; font-weight: 800; cursor: pointer;
+  box-shadow: 0 4px 24px rgba(0,0,0,.35); transition: all .15s;
+  display: inline-flex; align-items: center;
+}
+.qz-next:hover { transform: translateY(-1px); box-shadow: 0 6px 28px rgba(0,0,0,.4); }
+.qz-finish {
+  background: linear-gradient(135deg, #f59e0b, #ec4899);
+  color: #fff; border: none; padding: 13px 24px; border-radius: 12px;
+  font-size: 15px; font-weight: 800; cursor: pointer;
+  box-shadow: 0 4px 24px rgba(236,72,153,.4); transition: all .15s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.qz-finish:hover { transform: translateY(-1px); box-shadow: 0 6px 30px rgba(236,72,153,.5); }
+
+/* ── My Matches tab ────────────────────────────────────── */
+.matches-header { padding: 20px 20px 6px; }
+.matches-grid   { display: flex; flex-direction: column; gap: 10px; padding: 8px 16px 24px; max-width: 700px; }
+.match-card {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 14px 16px; cursor: pointer; transition: box-shadow .15s;
+}
+.match-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+.match-rank-ring {
+  width: 60px; height: 60px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.match-ring-inner {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--surface); display: flex; align-items: center;
+  justify-content: center; font-size: 13px; font-weight: 800; color: var(--text);
+}
+.match-ring-pct   { font-size: 9px; font-weight: 400; align-self: flex-end; margin-bottom: 3px; }
+.match-card-body  { flex: 1; min-width: 0; }
+.match-card-addr  { font-size: 13px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.match-card-price { font-size: 17px; font-weight: 800; color: var(--accent); margin: 2px 0; }
+.match-card-stats { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
+.match-why { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 2px; }
+.match-why li { font-size: 12px; color: var(--text-muted); padding-left: 14px; position: relative; line-height: 1.4; }
+.match-why li::before { content: "✓"; position: absolute; left: 0; color: #16a34a; font-weight: 700; font-size: 11px; }
+.matches-empty { padding: 40px 20px; text-align: center; color: var(--text-muted); font-size: 14px; }
+.tab-matches { }
 
 /* ── Sidebar backdrop (mobile) ────────────────────────── */
 .sidebar-backdrop {

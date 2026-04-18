@@ -274,7 +274,9 @@
       <button class="tab active" id="tab-list">List view</button>
       <button class="tab" id="tab-map">Map view</button>
       <button class="tab tab-saved" id="tab-saved">♡ Saved <span class="tab-badge" id="saved-count"></span></button>
+      <button class="tab tab-matches" id="tab-matches" style="display:none">✨ My Matches</button>
       <button class="tab tab-compare" id="tab-compare">⇄ Compare <span class="tab-badge" id="compare-count"></span></button>
+      <button class="tab-quiz-btn" id="tab-quiz-btn">✨ Find My Match</button>
       <!-- filter-badge kept hidden for JS compat; FAB is the visible trigger on mobile -->
       <span id="filter-badge" class="filter-badge" style="display:none"></span>
       <div class="mobile-filter-toggle" id="mobile-filter-btn" style="display:none"></div>
@@ -317,7 +319,14 @@
       <div id="saved-grid" class="listings-grid"></div>
     </div>
 
-
+    <!-- My Matches view -->
+    <div id="view-matches" style="display:none">
+      <div class="matches-header">
+        <div class="saved-title">✨ My Matches</div>
+        <div class="saved-subtitle">Your top 10 listings ranked by how well they match your quiz answers.</div>
+      </div>
+      <div class="matches-grid" id="matches-grid"></div>
+    </div>
 
   </main>
 </div>
@@ -335,96 +344,278 @@
   </div>
 </div>
 
-<!-- ── QUIZ MODAL ─────────────────────────────────────── -->
-<div class="modal-overlay quiz-modal-overlay" id="quiz-modal-overlay" style="display:none">
-  <div class="modal quiz-modal" id="quiz-modal">
-    <button class="modal-close" id="quiz-close">✕</button>
+<!-- ── QUIZ (full-screen immersive) ───────────────────── -->
+<div class="qz-overlay" id="quiz-modal-overlay" style="display:none">
 
-    <div class="quiz-header">
-      <div class="quiz-title">✨ Find My Match</div>
-      <div class="quiz-subtitle">Answer 4 quick questions and we'll score every listing for you.</div>
+  <!-- Top chrome: close · dots · step counter -->
+  <div class="qz-chrome">
+    <button class="qz-x" id="quiz-close" aria-label="Close quiz">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="qz-dots">
+      <span class="qz-dot active" id="qdot-1"></span>
+      <span class="qz-dot" id="qdot-2"></span>
+      <span class="qz-dot" id="qdot-3"></span>
+      <span class="qz-dot" id="qdot-4"></span>
+      <span class="qz-dot" id="qdot-5"></span>
+      <span class="qz-dot" id="qdot-6"></span>
+      <span class="qz-dot" id="qdot-7"></span>
     </div>
-
-    <!-- Step 1: Budget -->
-    <div class="quiz-step">
-      <div class="quiz-step-label"><span class="quiz-step-num">1</span> What's your budget?</div>
-      <div class="range-row">
-        <div class="range-col">
-          <span class="range-hint">Min</span>
-          <select id="quiz-budget-min">
-            <option value="">Any</option>
-            <option value="50000">$50k</option>
-            <option value="100000">$100k</option>
-            <option value="150000">$150k</option>
-            <option value="200000">$200k</option>
-            <option value="250000">$250k</option>
-            <option value="300000">$300k</option>
-            <option value="400000">$400k</option>
-            <option value="500000">$500k</option>
-            <option value="750000">$750k</option>
-            <option value="1000000">$1M</option>
-          </select>
-        </div>
-        <span class="range-dash">–</span>
-        <div class="range-col">
-          <span class="range-hint">Max</span>
-          <select id="quiz-budget-max">
-            <option value="">Any</option>
-            <option value="100000">$100k</option>
-            <option value="150000">$150k</option>
-            <option value="200000">$200k</option>
-            <option value="250000">$250k</option>
-            <option value="300000">$300k</option>
-            <option value="400000">$400k</option>
-            <option value="500000">$500k</option>
-            <option value="750000">$750k</option>
-            <option value="1000000">$1M</option>
-            <option value="1500000">$1.5M+</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <!-- Step 2: Lifestyle -->
-    <div class="quiz-step">
-      <div class="quiz-step-label"><span class="quiz-step-num">2</span> What's your luxury lifestyle?</div>
-      <div class="chip-group chip-group-wrap">
-        <button class="chip quiz-style-chip active" data-val="">No preference</button>
-        <button class="chip quiz-style-chip" data-val="entertainer">🥂 Entertainer</button>
-        <button class="chip quiz-style-chip" data-val="retreat">🛁 Modern Retreat</button>
-        <button class="chip quiz-style-chip" data-val="estate">🏛 Classic Estate</button>
-      </div>
-    </div>
-
-    <!-- Step 3: Luxury must-haves -->
-    <div class="quiz-step">
-      <div class="quiz-step-label"><span class="quiz-step-num">3</span> Luxury must-haves? <span class="quiz-step-hint">(pick any)</span></div>
-      <div class="chip-group chip-group-wrap" id="quiz-features-group">
-        <button class="chip" data-val="pool">Pool</button>
-        <button class="chip" data-val="master_suite">Master Suite</button>
-        <button class="chip" data-val="walk_in_shower">Walk-in Shower</button>
-        <button class="chip" data-val="soaking_tub">Soaking Tub</button>
-        <button class="chip" data-val="updated_kitchen">Chef's Kitchen</button>
-        <button class="chip" data-val="smart_home">Smart Home</button>
-        <button class="chip" data-val="three_car_garage">3-Car Garage</button>
-        <button class="chip" data-val="in_law_suite">In-Law Suite</button>
-        <button class="chip" data-val="ev_charger">EV Charger</button>
-        <button class="chip" data-val="solar">Solar</button>
-      </div>
-    </div>
-
-    <!-- Step 4: Neighborhood -->
-    <div class="quiz-step">
-      <div class="quiz-step-label"><span class="quiz-step-num">4</span> Where are you looking?</div>
-      <div class="chip-group chip-group-wrap" id="quiz-neighborhood">
-        <button class="chip active" data-val="">No Preference</button>
-        <button class="chip" data-val="OH">Cincinnati (OH)</button>
-        <button class="chip" data-val="KY">Northern Kentucky</button>
-      </div>
-    </div>
-
-    <button class="btn-quiz-save" id="quiz-save">See My Matches →</button>
+    <div class="qz-num" id="quiz-step-counter">1 / 7</div>
   </div>
+
+  <!-- Slides -->
+  <div class="qz-slides">
+
+    <!-- ① Budget -->
+    <div class="qz-slide" id="qstep-1">
+      <div class="qz-icon-wrap">
+        <div class="qz-icon-circle" style="background:linear-gradient(135deg,#2563eb,#1d4ed8)">💎</div>
+      </div>
+      <h2 class="qz-q">What's your budget?</h2>
+      <p class="qz-sub">We'll prioritize listings in your price range</p>
+      <div class="qz-budget-wrap">
+        <div class="qz-budget-col">
+          <div class="qz-col-label">Minimum</div>
+          <div class="qz-price-grid" id="quiz-budget-min-group">
+            <button class="qz-price-btn active" data-val="">No Min</button>
+            <button class="qz-price-btn" data-val="200000">$200k</button>
+            <button class="qz-price-btn" data-val="300000">$300k</button>
+            <button class="qz-price-btn" data-val="400000">$400k</button>
+            <button class="qz-price-btn" data-val="500000">$500k</button>
+            <button class="qz-price-btn" data-val="750000">$750k</button>
+            <button class="qz-price-btn" data-val="1000000">$1M+</button>
+          </div>
+        </div>
+        <div class="qz-budget-col">
+          <div class="qz-col-label">Maximum</div>
+          <div class="qz-price-grid" id="quiz-budget-max-group">
+            <button class="qz-price-btn active" data-val="">No Max</button>
+            <button class="qz-price-btn" data-val="300000">$300k</button>
+            <button class="qz-price-btn" data-val="400000">$400k</button>
+            <button class="qz-price-btn" data-val="500000">$500k</button>
+            <button class="qz-price-btn" data-val="750000">$750k</button>
+            <button class="qz-price-btn" data-val="1000000">$1M</button>
+            <button class="qz-price-btn" data-val="1500000">$1.5M+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② Beds & Baths -->
+    <div class="qz-slide" id="qstep-2" style="display:none">
+      <div class="qz-icon-wrap">
+        <div class="qz-icon-circle" style="background:linear-gradient(135deg,#7c3aed,#5b21b6)">🛏</div>
+      </div>
+      <h2 class="qz-q">Beds &amp; Baths?</h2>
+      <p class="qz-sub">Set your minimum space requirements</p>
+      <div class="qz-rooms-wrap">
+        <div class="qz-room-block">
+          <div class="qz-room-hdr">🛏 &nbsp;Bedrooms <span class="qz-room-hint">(minimum)</span></div>
+          <div class="qz-count-row" id="quiz-beds-group">
+            <button class="qz-count-btn chip active" data-val="">Any</button>
+            <button class="qz-count-btn chip" data-val="2">2+</button>
+            <button class="qz-count-btn chip" data-val="3">3+</button>
+            <button class="qz-count-btn chip" data-val="4">4+</button>
+            <button class="qz-count-btn chip" data-val="5">5+</button>
+          </div>
+        </div>
+        <div class="qz-room-block">
+          <div class="qz-room-hdr">🚿 &nbsp;Bathrooms <span class="qz-room-hint">(minimum)</span></div>
+          <div class="qz-count-row" id="quiz-baths-group">
+            <button class="qz-count-btn chip active" data-val="">Any</button>
+            <button class="qz-count-btn chip" data-val="1">1+</button>
+            <button class="qz-count-btn chip" data-val="2">2+</button>
+            <button class="qz-count-btn chip" data-val="3">3+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ Buyer Type -->
+    <div class="qz-slide" id="qstep-3" style="display:none">
+      <div class="qz-icon-wrap">
+        <div class="qz-icon-circle" style="background:linear-gradient(135deg,#059669,#047857)">🧭</div>
+      </div>
+      <h2 class="qz-q">Who are you?</h2>
+      <p class="qz-sub">We'll tailor results to your buyer profile</p>
+      <div class="qz-buyer-grid" id="quiz-buyer-grid">
+        <button class="qz-buyer-card quiz-buyer-card" data-val="first_timer">
+          <span class="qz-card-icon" style="background:linear-gradient(135deg,#0ea5e9,#2563eb)">🏡</span>
+          <strong>First-Time Buyer</strong>
+          <small>New to ownership, value-focused</small>
+        </button>
+        <button class="qz-buyer-card quiz-buyer-card" data-val="family">
+          <span class="qz-card-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706)">👨‍👩‍👧</span>
+          <strong>Growing Family</strong>
+          <small>Space, schools &amp; safety matter</small>
+        </button>
+        <button class="qz-buyer-card quiz-buyer-card" data-val="investor">
+          <span class="qz-card-icon" style="background:linear-gradient(135deg,#10b981,#059669)">📈</span>
+          <strong>Investor</strong>
+          <small>Rental income &amp; ROI focus</small>
+        </button>
+        <button class="qz-buyer-card quiz-buyer-card" data-val="downsizer">
+          <span class="qz-card-icon" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9)">🌿</span>
+          <strong>Downsizing</strong>
+          <small>Less maintenance, more living</small>
+        </button>
+      </div>
+    </div>
+
+    <!-- ④ Lifestyle -->
+    <div class="qz-slide" id="qstep-4" style="display:none">
+      <div class="qz-icon-wrap">
+        <div class="qz-icon-circle" style="background:linear-gradient(135deg,#f59e0b,#b45309)">✨</div>
+      </div>
+      <h2 class="qz-q">What's your style?</h2>
+      <p class="qz-sub">We'll match listings that fit your vibe</p>
+      <div class="qz-lifestyle-grid">
+        <button class="qz-lifestyle-card quiz-style-chip active" data-val="">
+          <span class="qz-card-icon" style="background:linear-gradient(135deg,#64748b,#475569)">🎯</span>
+          <div><strong>No Preference</strong><small>Show me everything</small></div>
+        </button>
+        <button class="qz-lifestyle-card quiz-style-chip" data-val="entertainer">
+          <span class="qz-card-icon" style="background:linear-gradient(135deg,#f97316,#ea580c)">🥂</span>
+          <div><strong>Entertainer</strong><small>Pools, open spaces, chef's kitchen</small></div>
+        </button>
+        <button class="qz-lifestyle-card quiz-style-chip" data-val="retreat">
+          <span class="qz-card-icon" style="background:linear-gradient(135deg,#06b6d4,#0891b2)">🛁</span>
+          <div><strong>Modern Retreat</strong><small>Spa baths, serenity, master suite</small></div>
+        </button>
+        <button class="qz-lifestyle-card quiz-style-chip" data-val="estate">
+          <span class="qz-card-icon" style="background:linear-gradient(135deg,#ca8a04,#92400e)">🏛</span>
+          <div><strong>Classic Estate</strong><small>Hardwood, fireplaces, grandeur</small></div>
+        </button>
+        <button class="qz-lifestyle-card quiz-style-chip" data-val="urban">
+          <span class="qz-card-icon" style="background:linear-gradient(135deg,#6366f1,#4338ca)">🏙</span>
+          <div><strong>Urban Professional</strong><small>Walkable, downtown, connected</small></div>
+        </button>
+        <button class="qz-lifestyle-card quiz-style-chip" data-val="outdoor">
+          <span class="qz-card-icon" style="background:linear-gradient(135deg,#16a34a,#15803d)">🌲</span>
+          <div><strong>Outdoor Living</strong><small>Acreage, trails, natural beauty</small></div>
+        </button>
+      </div>
+    </div>
+
+    <!-- ⑤ Property Type -->
+    <div class="qz-slide" id="qstep-5" style="display:none">
+      <div class="qz-icon-wrap">
+        <div class="qz-icon-circle" style="background:linear-gradient(135deg,#6366f1,#4338ca)">🏛</div>
+      </div>
+      <h2 class="qz-q">Property type?</h2>
+      <p class="qz-sub">What kind of home are you looking for?</p>
+      <div class="qz-prop-grid" id="quiz-proptype-group">
+        <button class="qz-prop-card chip active" data-val="">
+          <span class="qz-prop-icon">🎯</span>
+          <strong>No Preference</strong>
+        </button>
+        <button class="qz-prop-card chip" data-val="SINGLE_FAMILY">
+          <span class="qz-prop-icon">🏠</span>
+          <strong>Single Family</strong>
+        </button>
+        <button class="qz-prop-card chip" data-val="CONDO">
+          <span class="qz-prop-icon">🏢</span>
+          <strong>Condo</strong>
+        </button>
+        <button class="qz-prop-card chip" data-val="TOWNHOUSE">
+          <span class="qz-prop-icon">🏘</span>
+          <strong>Townhouse</strong>
+        </button>
+        <button class="qz-prop-card chip" data-val="MULTI_FAMILY">
+          <span class="qz-prop-icon">🏗</span>
+          <strong>Multi-Family</strong>
+        </button>
+      </div>
+    </div>
+
+    <!-- ⑥ Condition -->
+    <div class="qz-slide" id="qstep-6" style="display:none">
+      <div class="qz-icon-wrap">
+        <div class="qz-icon-circle" style="background:linear-gradient(135deg,#0d9488,#0f766e)">🔑</div>
+      </div>
+      <h2 class="qz-q">Condition tolerance?</h2>
+      <p class="qz-sub">How much work are you willing to take on?</p>
+      <div class="qz-cond-grid" id="quiz-condition-grid">
+        <button class="qz-cond-card quiz-condition-card" data-val="move_in_ready">
+          <span class="qz-cond-icon">✅</span>
+          <div class="qz-cond-text">
+            <strong>Move-in Ready</strong>
+            <small>Renovated &amp; turnkey. Just bring your boxes.</small>
+          </div>
+        </button>
+        <button class="qz-cond-card quiz-condition-card" data-val="light_work">
+          <span class="qz-cond-icon">🔨</span>
+          <div class="qz-cond-text">
+            <strong>Light Work OK</strong>
+            <small>Minor updates fine. Great bones matter more.</small>
+          </div>
+        </button>
+        <button class="qz-cond-card quiz-condition-card" data-val="project">
+          <span class="qz-cond-icon">🏗</span>
+          <div class="qz-cond-text">
+            <strong>Fixer Upper</strong>
+            <small>Big potential, major value. Ready to invest.</small>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- ⑦ Location + Must-haves -->
+    <div class="qz-slide" id="qstep-7" style="display:none">
+      <div class="qz-icon-wrap">
+        <div class="qz-icon-circle" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9)">📍</div>
+      </div>
+      <h2 class="qz-q">Almost done!</h2>
+      <p class="qz-sub">Location &amp; must-haves — then we'll find your matches</p>
+
+      <div class="qz-loc-section">
+        <div class="qz-sec-label">📍 Where are you looking?</div>
+        <div class="qz-loc-grid" id="quiz-neighborhood">
+          <button class="qz-loc-card chip active" data-val="">
+            <span>🗺</span><strong>No Preference</strong>
+          </button>
+          <button class="qz-loc-card chip" data-val="OH">
+            <span>⭐</span><strong>Cincinnati, OH</strong>
+          </button>
+          <button class="qz-loc-card chip" data-val="KY">
+            <span>🌉</span><strong>Northern KY</strong>
+          </button>
+        </div>
+      </div>
+
+      <div class="qz-must-section">
+        <div class="qz-sec-label">✨ Must-Haves <span class="qz-sec-hint">(pick any)</span></div>
+        <div class="qz-must-grid" id="quiz-features-group">
+          <button class="qz-must-btn chip" data-val="pool">🏊 Pool</button>
+          <button class="qz-must-btn chip" data-val="master_suite">🛏 Master Suite</button>
+          <button class="qz-must-btn chip" data-val="walk_in_shower">🚿 Walk-in Shower</button>
+          <button class="qz-must-btn chip" data-val="soaking_tub">🛁 Soaking Tub</button>
+          <button class="qz-must-btn chip" data-val="updated_kitchen">👨‍🍳 Chef's Kitchen</button>
+          <button class="qz-must-btn chip" data-val="smart_home">🏠 Smart Home</button>
+          <button class="qz-must-btn chip" data-val="three_car_garage">🚗 3-Car Garage</button>
+          <button class="qz-must-btn chip" data-val="in_law_suite">👴 In-Law Suite</button>
+          <button class="qz-must-btn chip" data-val="ev_charger">⚡ EV Charger</button>
+          <button class="qz-must-btn chip" data-val="solar">☀️ Solar</button>
+          <button class="qz-must-btn chip" data-val="fireplace">🔥 Fireplace</button>
+          <button class="qz-must-btn chip" data-val="hardwood_floors">🪵 Hardwood Floors</button>
+          <button class="qz-must-btn chip" data-val="finished_basement">🏠 Finished Basement</button>
+          <button class="qz-must-btn chip" data-val="deck_patio">🌿 Deck / Patio</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /qz-slides -->
+
+  <!-- Footer nav -->
+  <div class="qz-footer">
+    <button class="qz-back" id="quiz-back" style="display:none">← Back</button>
+    <div class="qz-footer-right">
+      <button class="qz-next" id="quiz-next">Continue →</button>
+      <button class="qz-finish" id="quiz-save" style="display:none">✨ See My Matches</button>
+    </div>
+  </div>
+
 </div>
 
 <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
