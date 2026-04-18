@@ -20,6 +20,7 @@ import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from urllib.parse import urlparse, unquote
 
 import requests
 
@@ -28,6 +29,15 @@ logger = logging.getLogger(__name__)
 
 PORT = int(os.environ.get("PORT", 8080))
 MAX_IMAGES   = 20    # Claude Haiku handles up to 20 images reliably
+
+# ── Image proxy whitelist ─────────────────────────────────────────────────────
+# Only these domains are allowed through /img-proxy to prevent SSRF abuse.
+# Referer spoof per-domain so the CDN accepts the request.
+IMG_PROXY_RULES = {
+    "ssl.cdn-redfin.com":  "https://www.redfin.com",
+    "cdn-redfin.com":      "https://www.redfin.com",
+    "redfin.com":          "https://www.redfin.com",
+}
 IMAGE_MAX_PX = 1024  # resize images to this max dimension — keeps quality, slashes transfer size
 DOCS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "docs")
 CLAUDE_MODEL = "claude-haiku-4-5-20251001"
@@ -435,6 +445,42 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         path = self.path.split("?")[0].split("#")[0]
+
+        # ── Image proxy ──────────────────────────────────────────────────────
+        if path == "/img-proxy":
+            qs = self.path[len("/img-proxy"):]
+            raw_url = ""
+            for part in qs.lstrip("?").split("&"):
+                if part.startswith("url="):
+                    raw_url = unquote(part[4:])
+                    break
+            if not raw_url:
+                self.send_response(400); self.end_headers(); return
+            parsed = urlparse(raw_url)
+            # Whitelist check — only allow known CDN domains
+            host = parsed.netloc.lstrip("www.")
+            referer = next((r for d, r in IMG_PROXY_RULES.items() if host.endswith(d)), None)
+            if not referer:
+                self.send_response(403); self.end_headers(); return
+            try:
+                resp = requests.get(raw_url, timeout=10, headers={
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+                    "Referer": referer,
+                })
+                resp.raise_for_status()
+                ct = resp.headers.get("Content-Type", "image/jpeg").split(";")[0].strip()
+                data = resp.content
+                self.send_response(200)
+                self.send_header("Content-Type", ct)
+                self.send_header("Content-Length", str(len(data)))
+                self.send_header("Cache-Control", "public, max-age=86400")
+                self.end_headers()
+                self.wfile.write(data)
+            except Exception as e:
+                logger.debug(f"img-proxy failed {raw_url[:80]}: {e}")
+                self.send_response(502); self.end_headers()
+            return
+
         if path == "/":
             path = "/index.html"
         file_path = os.path.join(DOCS_DIR, path.lstrip("/").replace("/", os.sep))

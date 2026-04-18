@@ -69,6 +69,18 @@ let markers = [];
 // ── Helpers ───────────────────────────────────────────
 const $ = (id) => document.getElementById(id);
 
+// Route hotlink-protected CDN images through our server proxy.
+// Add more domains here as needed — server.py IMG_PROXY_RULES must match.
+const IMG_PROXY_DOMAINS = ["cdn-redfin.com", "redfin.com"];
+function proxy_img(url) {
+  if (!url) return url;
+  const clean = url.replace(/&amp;/g, "&");
+  if (IMG_PROXY_DOMAINS.some(d => clean.includes(d))) {
+    return "/img-proxy?url=" + encodeURIComponent(clean);
+  }
+  return clean;
+}
+
 function debounce(fn, delay) {
   let timer;
   return (...args) => { clearTimeout(timer); timer = setTimeout(() => fn(...args), delay); };
@@ -812,7 +824,7 @@ function _render_compare_tray() {
     const l = state.all.find(x => x.id === id);
     if (!l) return "";
     const img = l.images?.[0]
-      ? `<img src="${l.images[0].replace(/&amp;/g,'&')}" referrerpolicy="no-referrer">`
+      ? `<img src="${proxy_img(l.images[0])}" referrerpolicy="no-referrer">`
       : `<div class="tray-no-img">🏠</div>`;
     return `<div class="compare-tray-chip">
       ${img}
@@ -866,7 +878,7 @@ function render_compare() {
   const home_cards = homes.map((l, i) => {
     const imgs = l.images || [];
     const first_img = imgs[0]
-      ? `<img class="card-nav-img" src="${imgs[0].replace(/&amp;/g,'&')}" referrerpolicy="no-referrer" onerror="this.style.display='none'">`
+      ? `<img class="card-nav-img" src="${proxy_img(imgs[0])}" referrerpolicy="no-referrer" onerror="this.style.display='none'">`
       : `<div class="cmp-no-img">🏠</div>`;
     const imgs_json = JSON.stringify(imgs).replace(/"/g, "&quot;");
     const stats = [
@@ -1096,7 +1108,7 @@ function _nav_img(el, dir) {
   el.dataset.imgIdx = idx;
   const img = el.querySelector("img.card-nav-img");
   if (img) {
-    img.src = imgs[idx].replace(/&amp;/g, "&");
+    img.src = proxy_img(imgs[idx]);
     const dot_wrap = el.querySelector(".card-nav-dots");
     if (dot_wrap) {
       dot_wrap.querySelectorAll(".card-nav-dot").forEach((d, i) =>
@@ -1131,7 +1143,7 @@ function _img_nav_html(images) {
 function card_html(listing, idx) {
   const imgs = listing.images || [];
   const img_html = imgs.length
-    ? `<img class="card-nav-img" src="${(imgs[0] || '').replace(/&amp;/g,'&')}" alt="Property photo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.innerHTML='<div class=no-photo>🏠</div>'">`
+    ? `<img class="card-nav-img" src="${proxy_img(imgs[0] || '')}" alt="Property photo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.innerHTML='<div class=no-photo>🏠</div>'">`
     : `<div class="no-photo">🏠</div>`;
 
   const is_saved = state.saved.has(listing.id);
@@ -1282,7 +1294,7 @@ function source_color(src) {
 
 function popup_html(l) {
   const img = l.images?.[0]
-    ? `<img src="${(l.images[0]||'').replace(/&amp;/g,'&')}" style="width:100%;height:100px;object-fit:cover;border-radius:6px;margin-bottom:8px" loading="lazy" referrerpolicy="no-referrer">`
+    ? `<img src="${proxy_img(l.images[0]||'')}" style="width:100%;height:100px;object-fit:cover;border-radius:6px;margin-bottom:8px" loading="lazy" referrerpolicy="no-referrer">`
     : "";
   return `
     <div style="min-width:200px">
@@ -1356,8 +1368,7 @@ function carousel_html(photos, idx) {
     <button class="carousel-btn carousel-next" onclick="event.stopPropagation();next_photo()" aria-label="Next photo">&#8250;</button>` : "";
   const counter = total > 1
     ? `<div class="carousel-counter">${idx + 1} / ${total}</div>` : "";
-  // Decode any HTML entities in URL (e.g. &amp; → &)
-  const clean_src = src.replace(/&amp;/g, "&");
+  const clean_src = proxy_img(src);
   return `
     <div class="carousel-wrap" id="modal-carousel" onclick="next_photo()">
       <img class="carousel-img" id="carousel-img"
@@ -1478,7 +1489,7 @@ function _render_room_cards(analysis, listing_images) {
 
     const img_html = img_src
       ? `<div class="dd-room-img-wrap">
-           <img src="${img_src.replace(/&amp;/g,'&')}" alt="${label}" loading="lazy" referrerpolicy="no-referrer"
+           <img src="${proxy_img(img_src)}" alt="${label}" loading="lazy" referrerpolicy="no-referrer"
              onerror="this.closest('.dd-room-img-wrap').style.display='none'">
            <span class="dd-room-badge">${icon} ${label}</span>
            ${score_badge}
