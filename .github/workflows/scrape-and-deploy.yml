@@ -1,9 +1,10 @@
 name: Scrape listings & deploy
 
 on:
-  schedule:
-    - cron: "0 8 * * *"   # every day at 8am UTC (4am ET)
-  workflow_dispatch:        # also allow manual trigger from GitHub UI
+  # Disabled — replaced by scrape.yml (daily) + deploy.yml (auto on push)
+  # schedule:
+  #   - cron: "0 8 * * *"
+  workflow_dispatch:        # keep manual trigger available just in case
 
 jobs:
   # ── Job 1: Scrape + photos + deploy ───────────────────
