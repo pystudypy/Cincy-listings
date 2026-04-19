@@ -25,8 +25,20 @@ logger = logging.getLogger(__name__)
 
 GCS_PUBLIC_BASE = "https://storage.googleapis.com"
 
+_GCS_PHOTO_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Referer": "https://www.redfin.com",
+    "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Sec-Fetch-Dest": "image",
+    "Sec-Fetch-Mode": "no-cors",
+    "Sec-Fetch-Site": "cross-site",
+}
+
 def _gcs_upload_photos(photos: list[str], listing_id: str, bucket_name: str) -> list[str]:
-    """Download photo URLs and upload to GCS. Returns list of GCS public URLs."""
+    """Download photo URLs and upload to GCS. Returns list of GCS public URLs.
+    Only returns URLs for photos that were successfully uploaded — never falls back
+    to CDN URLs that may expire or be hotlink-blocked."""
     try:
         from google.cloud import storage as gcs
     except ImportError:
@@ -41,30 +53,32 @@ def _gcs_upload_photos(photos: list[str], listing_id: str, bucket_name: str) -> 
         return photos
 
     gcs_urls = []
+    failed = 0
     for idx, url in enumerate(photos):
         blob_name = f"redfin/{listing_id}/{idx:03d}.jpg"
         blob = bucket.blob(blob_name)
 
-        # Skip if already uploaded
+        # Already uploaded — use existing GCS URL
         if blob.exists():
             gcs_urls.append(f"{GCS_PUBLIC_BASE}/{bucket_name}/{blob_name}")
             continue
 
         try:
-            resp = requests.get(url, timeout=15, headers={
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-                "Referer": "https://www.redfin.com",
-            })
+            time.sleep(0.15)  # polite delay to avoid CDN rate-limiting
+            resp = requests.get(url, timeout=20, headers=_GCS_PHOTO_HEADERS)
             resp.raise_for_status()
             blob.upload_from_file(io.BytesIO(resp.content), content_type="image/jpeg")
             blob.cache_control = "public, max-age=31536000"
             blob.patch()
             gcs_urls.append(f"{GCS_PUBLIC_BASE}/{bucket_name}/{blob_name}")
         except Exception as e:
-            logger.debug(f"GCS upload failed for {url[:60]}: {e}")
-            gcs_urls.append(url)  # fall back to original URL
+            failed += 1
+            logger.debug(f"GCS upload skipped [{idx}] {url[:60]}: {e}")
+            # Do NOT fall back to CDN URL — expired/blocked URLs break the carousel
 
-    return gcs_urls
+    if failed:
+        logger.info(f"GCS upload: {len(gcs_urls)} uploaded, {failed} skipped for {listing_id}")
+    return gcs_urls if gcs_urls else photos  # only return original list if nothing uploaded at all
 
 HEADERS = {
     "User-Agent": (
