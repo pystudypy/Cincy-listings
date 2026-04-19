@@ -60,7 +60,6 @@ def _enrich_redfin_photos_playwright(listing: dict, bucket_name: str | None) -> 
             logger.warning(f"GCS init failed: {e}")
 
     gcs_urls = []
-    photo_urls = []
 
     with sync_playwright() as pw:
         browser = pw.chromium.launch(headless=True)
@@ -101,14 +100,37 @@ def _enrich_redfin_photos_playwright(listing: dict, bucket_name: str | None) -> 
             return []
 
         ds_id, mls_num = mb.group(1), mb.group(2)
-        photo_urls = _extract_photos_redfin(html, mls_num, ds_id)
-        if not photo_urls:
+        last3 = mls_num[-3:]
+        base = f"https://ssl.cdn-redfin.com/photo/{ds_id}/bigphoto/{last3}/{mls_num}"
+
+        # Extract actual photo indices from mbphotov3 thumbnail URLs embedded in the HTML.
+        # Pattern: genMid.{mls}_{idx}_{variant}.jpg  — one thumbnail per real photo.
+        # This gives us only the indices that actually exist, not a synthetic range.
+        indices = sorted({
+            int(m.group(1))
+            for m in re.finditer(rf'genMid\.{re.escape(mls_num)}_(\d+)_', html)
+        })
+        if not indices:
+            logger.debug(f"No thumbnail indices found in HTML for {url}")
             browser.close()
             return []
 
-        logger.debug(f"Redfin playwright: {len(photo_urls)} photos for {listing_id}")
+        # Clamp: if the GIS-API stored images list has more entries, try those too.
+        # Redfin uses two bigphoto URL formats depending on listing age:
+        #   old format (index 0): {mls}_0.jpg
+        #   old format (index N): {mls}_{N}.jpg
+        #   new format (index N≥1): {mls}_{N}_0.jpg
+        # We try new format first, fall back to old — this handles both transparently.
+        max_stored = len(listing.get("images") or [])
+        if max_stored > len(indices):
+            # GIS API hinted more photos; pad up to that count
+            last_idx = max(indices[-1], max_stored - 1) if indices else max_stored - 1
+            indices = list(range(last_idx + 1))
 
-        for idx, photo_url in enumerate(photo_urls):
+        logger.debug(f"Redfin playwright: {len(indices)} photos to fetch for {listing_id}")
+
+        consecutive_misses = 0
+        for idx in indices:
             blob_name = f"redfin/{listing_id}/{idx:03d}.jpg"
 
             # Skip photos already on GCS
@@ -116,21 +138,37 @@ def _enrich_redfin_photos_playwright(listing: dict, bucket_name: str | None) -> 
                 blob = bucket.blob(blob_name)
                 if blob.exists():
                     gcs_urls.append(f"{GCS_PUBLIC_BASE}/{bucket_name}/{blob_name}")
+                    consecutive_misses = 0
                     continue
 
-            # Download the photo through the browser session — Redfin's CDN treats
-            # page.request.get() as a same-session image fetch, not an external scraper.
-            try:
-                resp = page.request.get(photo_url, timeout=15000)
-                if not resp.ok:
-                    logger.debug(f"Photo {idx} HTTP {resp.status} for {listing_id}")
-                    continue
-                data = resp.body()
-                if not data or len(data) < 1000:
-                    continue
-            except Exception as e:
-                logger.debug(f"Photo download failed [{idx}] {listing_id}: {e}")
+            # Build candidate URLs. Index 0 always uses _0.jpg.
+            # Index ≥1: try new format (_N_0.jpg) first, then old format (_N.jpg).
+            if idx == 0:
+                candidates = [f"{base}_0.jpg"]
+            else:
+                candidates = [f"{base}_{idx}_0.jpg", f"{base}_{idx}.jpg"]
+
+            data = None
+            for candidate_url in candidates:
+                try:
+                    resp = page.request.get(candidate_url, timeout=12000)
+                    if resp.ok:
+                        body = resp.body()
+                        if body and len(body) > 1000:
+                            data = body
+                            break
+                except Exception as e:
+                    logger.debug(f"Photo request failed [{idx}] {candidate_url[:60]}: {e}")
+
+            if data is None:
+                consecutive_misses += 1
+                # Stop early if photos stop existing (listing may be off-market)
+                if consecutive_misses >= 3:
+                    logger.debug(f"3 consecutive misses — stopping early at idx={idx} for {listing_id}")
+                    break
                 continue
+
+            consecutive_misses = 0
 
             # Upload bytes to GCS
             if bucket:
@@ -142,14 +180,13 @@ def _enrich_redfin_photos_playwright(listing: dict, bucket_name: str | None) -> 
                 except Exception as e:
                     logger.debug(f"GCS upload failed [{idx}] {listing_id}: {e}")
             else:
-                # No GCS — return original URLs (at least session download confirmed they work)
-                gcs_urls.append(photo_url)
+                gcs_urls.append(candidates[0])
 
         browser.close()
 
-    result = gcs_urls if gcs_urls else photo_urls
+    result = gcs_urls if gcs_urls else []
     logger.info(
-        f"Redfin playwright: {len(result)}/{len(photo_urls)} photos captured for {listing_id}"
+        f"Redfin playwright: {len(result)}/{len(indices)} photos captured for {listing_id}"
     )
     return result
 
