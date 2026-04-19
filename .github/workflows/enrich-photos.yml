@@ -28,10 +28,16 @@ jobs:
           pip install -r requirements.txt
           playwright install chromium --with-deps
 
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
       - name: Enrich photos
         run: python run_scrapers.py --photos-only
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GCS_BUCKET: cincy-listings-photos
 
       - name: Commit enriched listings
         run: |

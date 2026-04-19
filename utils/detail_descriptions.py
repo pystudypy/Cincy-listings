@@ -10,6 +10,7 @@ Usage:
     listings = enrich_descriptions(listings)
 """
 
+import io
 import json
 import logging
 import re
@@ -21,6 +22,49 @@ import requests
 from bs4 import BeautifulSoup
 
 logger = logging.getLogger(__name__)
+
+GCS_PUBLIC_BASE = "https://storage.googleapis.com"
+
+def _gcs_upload_photos(photos: list[str], listing_id: str, bucket_name: str) -> list[str]:
+    """Download photo URLs and upload to GCS. Returns list of GCS public URLs."""
+    try:
+        from google.cloud import storage as gcs
+    except ImportError:
+        logger.warning("google-cloud-storage not installed — skipping GCS upload")
+        return photos
+
+    try:
+        client = gcs.Client()
+        bucket = client.bucket(bucket_name)
+    except Exception as e:
+        logger.warning(f"GCS client init failed: {e}")
+        return photos
+
+    gcs_urls = []
+    for idx, url in enumerate(photos):
+        blob_name = f"redfin/{listing_id}/{idx:03d}.jpg"
+        blob = bucket.blob(blob_name)
+
+        # Skip if already uploaded
+        if blob.exists():
+            gcs_urls.append(f"{GCS_PUBLIC_BASE}/{bucket_name}/{blob_name}")
+            continue
+
+        try:
+            resp = requests.get(url, timeout=15, headers={
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+                "Referer": "https://www.redfin.com",
+            })
+            resp.raise_for_status()
+            blob.upload_from_file(io.BytesIO(resp.content), content_type="image/jpeg")
+            blob.cache_control = "public, max-age=31536000"
+            blob.patch()
+            gcs_urls.append(f"{GCS_PUBLIC_BASE}/{bucket_name}/{blob_name}")
+        except Exception as e:
+            logger.debug(f"GCS upload failed for {url[:60]}: {e}")
+            gcs_urls.append(url)  # fall back to original URL
+
+    return gcs_urls
 
 HEADERS = {
     "User-Agent": (
@@ -680,6 +724,7 @@ def enrich_photos(
     force: bool = False,
     checkpoint_every: int = 100,
     checkpoint_fn=None,
+    gcs_bucket: str | None = None,
 ) -> list[dict]:
     """
     Visit each listing's detail page and extract all gallery photos.
@@ -767,6 +812,10 @@ def enrich_photos(
         nonlocal done, errors, last_checkpoint
         listing["photos_enriched"] = True
         if photos:
+            # Upload Redfin photos to GCS so URLs never expire
+            if gcs_bucket and listing.get("source") == "redfin":
+                listing_id = listing.get("id") or re.sub(r"[^a-z0-9]", "-", (listing.get("address") or "unknown").lower())[:40]
+                photos = _gcs_upload_photos(photos, listing_id, gcs_bucket)
             listing["images"] = photos
             with lock:
                 done += 1

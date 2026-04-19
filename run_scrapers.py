@@ -268,6 +268,7 @@ def main():
             unique,
             checkpoint_every=100,
             checkpoint_fn=save_photos_checkpoint,
+            gcs_bucket=os.environ.get("GCS_BUCKET"),
         )
         enriched = sum(1 for l in unique if l.get("photos_enriched"))
         with_multi = sum(1 for l in unique if len(l.get("images", [])) > 2)
@@ -584,6 +585,7 @@ def main():
             unique,
             checkpoint_every=100,
             checkpoint_fn=save_photos_checkpoint_main,
+            gcs_bucket=os.environ.get("GCS_BUCKET"),
         )
         with_multi = sum(1 for l in unique if len(l.get("images", [])) > 2)
         logger.info(f"Listings with 3+ photos: {with_multi}/{len(unique)}")
