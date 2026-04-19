@@ -60,7 +60,7 @@ def _fetch_redfin_photos_one(page, listing: dict, bucket, bucket_name: str | Non
     # Each thumbnail URL contains the bigphoto index: genMid.{mls}_{idx}_{variant}.jpg
     indices = sorted({
         int(m.group(1))
-        for m in re.finditer(rf'genMid\.{re.escape(mls_num)}_(\d+)_', html)
+        for m in re.finditer(rf'genMid\.{re.escape(mls_num)}_(\d+)', html)
     })
     if not indices:
         logger.info(f"No thumbnail indices found in HTML: {listing.get('address')}")
@@ -145,8 +145,17 @@ def _enrich_redfin_batch(listings: list[dict], bucket_name: str | None,
         except Exception as e:
             logger.warning(f"GCS init failed: {e}")
 
+    # playwright-stealth v2 wraps the sync_playwright() context manager.
+    # v1 had stealth_sync(page); v2 uses Stealth().use_sync(sync_playwright()).
+    def _make_pw_context():
+        try:
+            from playwright_stealth import Stealth
+            return Stealth().use_sync(sync_playwright())
+        except Exception:
+            return sync_playwright()  # fall back to un-stealthed if stealth unavailable
+
     try:
-        with sync_playwright() as pw:
+        with _make_pw_context() as pw:
             browser = pw.chromium.launch(headless=True)
             logger.info("Chromium launched OK")
 
@@ -156,7 +165,7 @@ def _enrich_redfin_batch(listings: list[dict], bucket_name: str | None,
 
                 ctx = browser.new_context(
                     user_agent=(
-                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
                         "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
                     ),
                     extra_http_headers={"Accept-Language": "en-US,en;q=0.9"},
@@ -164,14 +173,8 @@ def _enrich_redfin_batch(listings: list[dict], bucket_name: str | None,
                 page = ctx.new_page()
 
                 try:
-                    from playwright_stealth import stealth_sync
-                    stealth_sync(page)
-                except Exception:
-                    pass  # stealth is optional
-
-                try:
                     photos = _fetch_redfin_photos_one(page, listing, bucket, bucket_name)
-                    logger.info(f"  → {len(photos)} GCS photos uploaded")
+                    logger.info(f"  → {len(photos)} photos")
                 except Exception as e:
                     logger.warning(f"  → ERROR: {e}")
                     photos = []
