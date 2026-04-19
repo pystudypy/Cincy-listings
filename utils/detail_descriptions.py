@@ -25,60 +25,133 @@ logger = logging.getLogger(__name__)
 
 GCS_PUBLIC_BASE = "https://storage.googleapis.com"
 
-_GCS_PHOTO_HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-    "Referer": "https://www.redfin.com",
-    "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
-    "Accept-Language": "en-US,en;q=0.9",
-    "Sec-Fetch-Dest": "image",
-    "Sec-Fetch-Mode": "no-cors",
-    "Sec-Fetch-Site": "cross-site",
-}
+# Max parallel Playwright browsers for Redfin photo enrichment.
+# Each browser loads a full listing page + downloads 15-25 photos through the
+# browser session — heavier than a plain requests call, so keep concurrency low.
+PLAYWRIGHT_WORKERS = 3
 
-def _gcs_upload_photos(photos: list[str], listing_id: str, bucket_name: str) -> list[str]:
-    """Download photo URLs and upload to GCS. Returns list of GCS public URLs.
-    Only returns URLs for photos that were successfully uploaded — never falls back
-    to CDN URLs that may expire or be hotlink-blocked."""
-    try:
-        from google.cloud import storage as gcs
-    except ImportError:
-        logger.warning("google-cloud-storage not installed — skipping GCS upload")
-        return photos
 
-    try:
-        client = gcs.Client()
-        bucket = client.bucket(bucket_name)
-    except Exception as e:
-        logger.warning(f"GCS client init failed: {e}")
-        return photos
+def _enrich_redfin_photos_playwright(listing: dict, bucket_name: str | None) -> list[str]:
+    """
+    Visit a Redfin listing page in a real headless browser, extract all photo URLs,
+    download every photo through the browser's request context (bypasses CDN
+    hotlink / rate-limit restrictions), and upload the bytes to GCS.
+
+    Returns a list of permanent GCS URLs (or the original CDN URLs if GCS is
+    unavailable). Only photos that were actually downloaded are returned, so the
+    carousel never shows a broken image.
+    """
+    from playwright.sync_api import sync_playwright
+
+    url = listing["url"]
+    listing_id = (
+        listing.get("id")
+        or re.sub(r"[^a-z0-9]", "-", (listing.get("address") or "unknown").lower())[:40]
+    )
+
+    # Pre-init GCS client so uploads happen inside the browser session window
+    gcs_client = bucket = None
+    if bucket_name:
+        try:
+            from google.cloud import storage as gcs_lib
+            gcs_client = gcs_lib.Client()
+            bucket = gcs_client.bucket(bucket_name)
+        except Exception as e:
+            logger.warning(f"GCS init failed: {e}")
 
     gcs_urls = []
-    failed = 0
-    for idx, url in enumerate(photos):
-        blob_name = f"redfin/{listing_id}/{idx:03d}.jpg"
-        blob = bucket.blob(blob_name)
+    photo_urls = []
 
-        # Already uploaded — use existing GCS URL
-        if blob.exists():
-            gcs_urls.append(f"{GCS_PUBLIC_BASE}/{bucket_name}/{blob_name}")
-            continue
+    with sync_playwright() as pw:
+        browser = pw.chromium.launch(headless=True)
+        ctx = browser.new_context(
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+            ),
+            extra_http_headers={"Accept-Language": "en-US,en;q=0.9"},
+        )
+        page = ctx.new_page()
 
+        # Apply stealth so Redfin doesn't detect headless Chrome
         try:
-            time.sleep(0.15)  # polite delay to avoid CDN rate-limiting
-            resp = requests.get(url, timeout=20, headers=_GCS_PHOTO_HEADERS)
-            resp.raise_for_status()
-            blob.upload_from_file(io.BytesIO(resp.content), content_type="image/jpeg")
-            blob.cache_control = "public, max-age=31536000"
-            blob.patch()
-            gcs_urls.append(f"{GCS_PUBLIC_BASE}/{bucket_name}/{blob_name}")
-        except Exception as e:
-            failed += 1
-            logger.debug(f"GCS upload skipped [{idx}] {url[:60]}: {e}")
-            # Do NOT fall back to CDN URL — expired/blocked URLs break the carousel
+            from playwright_stealth import stealth_sync
+            stealth_sync(page)
+        except ImportError:
+            pass
 
-    if failed:
-        logger.info(f"GCS upload: {len(gcs_urls)} uploaded, {failed} skipped for {listing_id}")
-    return gcs_urls if gcs_urls else photos  # only return original list if nothing uploaded at all
+        # Navigate to the listing page — this establishes a valid Redfin session
+        # (cookies, fingerprint) that the CDN will accept for image requests.
+        try:
+            page.goto(url, wait_until="domcontentloaded", timeout=30000)
+            page.wait_for_timeout(1500)
+        except Exception as e:
+            logger.debug(f"Playwright listing load failed {url}: {e}")
+            browser.close()
+            return []
+
+        # Extract the MLS number and data-source-id from the rendered page HTML
+        html = page.content()
+        mb = re.search(
+            r'ssl\.cdn-redfin\.com/photo/(\d+)/mbphotov3/\d+/genMid\.(\d+)_', html
+        )
+        if not mb:
+            logger.debug(f"No Redfin photo pattern in page HTML for {url}")
+            browser.close()
+            return []
+
+        ds_id, mls_num = mb.group(1), mb.group(2)
+        photo_urls = _extract_photos_redfin(html, mls_num, ds_id)
+        if not photo_urls:
+            browser.close()
+            return []
+
+        logger.debug(f"Redfin playwright: {len(photo_urls)} photos for {listing_id}")
+
+        for idx, photo_url in enumerate(photo_urls):
+            blob_name = f"redfin/{listing_id}/{idx:03d}.jpg"
+
+            # Skip photos already on GCS
+            if bucket:
+                blob = bucket.blob(blob_name)
+                if blob.exists():
+                    gcs_urls.append(f"{GCS_PUBLIC_BASE}/{bucket_name}/{blob_name}")
+                    continue
+
+            # Download the photo through the browser session — Redfin's CDN treats
+            # page.request.get() as a same-session image fetch, not an external scraper.
+            try:
+                resp = page.request.get(photo_url, timeout=15000)
+                if not resp.ok:
+                    logger.debug(f"Photo {idx} HTTP {resp.status} for {listing_id}")
+                    continue
+                data = resp.body()
+                if not data or len(data) < 1000:
+                    continue
+            except Exception as e:
+                logger.debug(f"Photo download failed [{idx}] {listing_id}: {e}")
+                continue
+
+            # Upload bytes to GCS
+            if bucket:
+                try:
+                    blob.upload_from_file(io.BytesIO(data), content_type="image/jpeg")
+                    blob.cache_control = "public, max-age=31536000"
+                    blob.patch()
+                    gcs_urls.append(f"{GCS_PUBLIC_BASE}/{bucket_name}/{blob_name}")
+                except Exception as e:
+                    logger.debug(f"GCS upload failed [{idx}] {listing_id}: {e}")
+            else:
+                # No GCS — return original URLs (at least session download confirmed they work)
+                gcs_urls.append(photo_url)
+
+        browser.close()
+
+    result = gcs_urls if gcs_urls else photo_urls
+    logger.info(
+        f"Redfin playwright: {len(result)}/{len(photo_urls)} photos captured for {listing_id}"
+    )
+    return result
 
 HEADERS = {
     "User-Agent": (
@@ -725,11 +798,9 @@ def _extract_photos_comey(soup: BeautifulSoup) -> list[str]:
 
 
 # Sources that benefit from photo enrichment and what strategy to use
-# redfin: GIS API provides photo count inline, but new listings may have stale counts;
-#         only enrich listings with < 15 photos to catch under-photographed new listings.
 _PHOTO_SOURCES = {"coldwell_banker", "cincinky", "sibcy_cline", "comey", "redfin"}
-SLOW_PHOTO_SOURCES: set[str] = {"comey"}   # Comey blocks parallel requests
-REDFIN_ENRICH_THRESHOLD = 15  # only enrich Redfin listings with fewer than this many photos
+SLOW_PHOTO_SOURCES: set[str] = {"comey"}       # sequential, 300ms delay — Comey blocks concurrent
+PLAYWRIGHT_SOURCES: set[str] = {"redfin"}      # headless browser — bypasses CDN hotlink/rate-limits
 
 
 def enrich_photos(
@@ -765,14 +836,16 @@ def enrich_photos(
         logger.info("Photo enrichment: all listings already enriched")
         return listings
 
-    # Split into fast (parallel) and slow (sequential) batches
-    fast_batch = [l for l in to_enrich if l.get("source") not in SLOW_PHOTO_SOURCES]
-    slow_batch = [l for l in to_enrich if l.get("source") in SLOW_PHOTO_SOURCES]
+    # Split into three batches by processing strategy
+    playwright_batch = [l for l in to_enrich if l.get("source") in PLAYWRIGHT_SOURCES]
+    slow_batch       = [l for l in to_enrich if l.get("source") in SLOW_PHOTO_SOURCES]
+    fast_batch       = [l for l in to_enrich if l.get("source") not in PLAYWRIGHT_SOURCES | SLOW_PHOTO_SOURCES]
 
     total = len(to_enrich)
     logger.info(
         f"Photo enrichment: {total} listings "
-        f"({len(fast_batch)} parallel, {len(slow_batch)} sequential for {', '.join(SLOW_PHOTO_SOURCES or ['none'])})…"
+        f"({len(fast_batch)} parallel, {len(slow_batch)} sequential, "
+        f"{len(playwright_batch)} playwright)…"
     )
 
     def fetch_one(listing: dict) -> tuple[dict, list[str]]:
@@ -796,24 +869,6 @@ def enrich_photos(
         elif source == "comey":
             soup = BeautifulSoup(resp.text, "html.parser")
             photos = _extract_photos_comey(soup)
-        elif source == "redfin":
-            # Derive MLS number + dataSourceId: try existing image URLs first,
-            # fall back to mbphotov3 URLs embedded in the listing page HTML.
-            existing = (listing.get("images") or [])
-            mls_num = ds_id = ""
-            if existing:
-                m = re.search(r'/photo/(\d+)/bigphoto/\d+/(\d+)_', existing[0])
-                if m:
-                    ds_id, mls_num = m.group(1), m.group(2)
-            if not mls_num or not ds_id:
-                # fallback: parse from mbphotov3 thumbnails in page HTML
-                mb = re.search(
-                    r'ssl\.cdn-redfin\.com/photo/(\d+)/mbphotov3/\d+/genMid\.(\d+)_',
-                    resp.text,
-                )
-                if mb:
-                    ds_id, mls_num = mb.group(1), mb.group(2)
-            photos = _extract_photos_redfin(resp.text, mls_num, ds_id)
         else:
             photos = []
         return listing, photos
@@ -826,10 +881,6 @@ def enrich_photos(
         nonlocal done, errors, last_checkpoint
         listing["photos_enriched"] = True
         if photos:
-            # Upload Redfin photos to GCS so URLs never expire
-            if gcs_bucket and listing.get("source") == "redfin":
-                listing_id = listing.get("id") or re.sub(r"[^a-z0-9]", "-", (listing.get("address") or "unknown").lower())[:40]
-                photos = _gcs_upload_photos(photos, listing_id, gcs_bucket)
             listing["images"] = photos
             with lock:
                 done += 1
@@ -877,6 +928,31 @@ def enrich_photos(
                     errors += 1
                 logger.debug(f"Photo enrich error: {e}")
             time.sleep(0.3)
+
+    # Playwright pass (Redfin) — each listing opens a real headless browser, loads the
+    # listing page to establish a valid session, then downloads every photo through that
+    # session using page.request.get(). The browser context bypasses CDN hotlink checks
+    # and datacenter-IP rate-limits that break plain requests downloads.
+    # PLAYWRIGHT_WORKERS=3 limits parallel browser instances to avoid memory pressure.
+    if playwright_batch:
+        logger.info(
+            f"Photo enrichment: starting Playwright pass for {len(playwright_batch)} "
+            f"Redfin listings ({PLAYWRIGHT_WORKERS} parallel browsers)…"
+        )
+        with ThreadPoolExecutor(max_workers=PLAYWRIGHT_WORKERS) as pool:
+            futures = {
+                pool.submit(_enrich_redfin_photos_playwright, l, gcs_bucket): l
+                for l in playwright_batch
+            }
+            for future in as_completed(futures):
+                l = futures[future]
+                try:
+                    photos = future.result()
+                    _handle_photo_result(l, photos)
+                except Exception as e:
+                    with lock:
+                        errors += 1
+                    logger.debug(f"Playwright enrich error: {e}")
 
     logger.info(f"Photo enrichment complete: {done} enriched, {errors} failed/no-photos")
     return listings
