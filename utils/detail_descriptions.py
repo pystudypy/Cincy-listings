@@ -29,9 +29,16 @@ GCS_PUBLIC_BASE = "https://storage.googleapis.com"
 def _fetch_redfin_photos_one(page, listing: dict, bucket, bucket_name: str | None) -> list[str]:
     """
     Process a single Redfin listing using an already-open Playwright page.
-    Visits the listing URL, extracts photo indices from thumbnail HTML, downloads
-    each photo through the browser session (bypassing CDN restrictions), uploads to GCS.
+    Visits the listing URL, opens the full photo gallery (to bypass lazy-loading),
+    extracts photo indices + exact variant suffixes from thumbnail URLs, downloads
+    each bigphoto through the browser session, uploads to GCS.
     Returns list of GCS URLs (or empty list on failure).
+
+    Redfin CDN URL format:
+      thumbnail: ssl.cdn-redfin.com/photo/{ds_id}/mbphotov3/{xxx}/genMid.{mls}_{idx}_{variant}.jpg
+      bigphoto:  ssl.cdn-redfin.com/photo/{ds_id}/bigphoto/{last3}/{mls}_{idx}_{variant}.jpg
+    The variant number (0, 1, 2 …) varies per listing — we MUST read it from the
+    thumbnail URL rather than hardcoding _0.
     """
     url = listing["url"]
     listing_id = (
@@ -41,13 +48,13 @@ def _fetch_redfin_photos_one(page, listing: dict, bucket, bucket_name: str | Non
 
     try:
         page.goto(url, wait_until="domcontentloaded", timeout=30000)
-        page.wait_for_timeout(1000)
+        page.wait_for_timeout(1500)
     except Exception as e:
         logger.warning(f"Playwright page load failed {url}: {e}")
         return []
 
     html = page.content()
-    mb = re.search(r'ssl\.cdn-redfin\.com/photo/(\d+)/mbphotov3/\d+/genMid\.(\d+)_', html)
+    mb = re.search(r'ssl\.cdn-redfin\.com/photo/(\d+)/mbphotov3/\d+/genMid\.(\d+)', html)
     if not mb:
         logger.info(f"No photo pattern in HTML — listing may be off-market: {listing.get('address')}")
         return []
@@ -56,16 +63,38 @@ def _fetch_redfin_photos_one(page, listing: dict, bucket, bucket_name: str | Non
     last3 = mls_num[-3:]
     base = f"https://ssl.cdn-redfin.com/photo/{ds_id}/bigphoto/{last3}/{mls_num}"
 
-    # Extract actual photo indices from mbphotov3 thumbnail URLs in the HTML.
-    # Each thumbnail URL contains the bigphoto index: genMid.{mls}_{idx}_{variant}.jpg
-    indices = sorted({
-        int(m.group(1))
-        for m in re.finditer(rf'genMid\.{re.escape(mls_num)}_(\d+)', html)
-    })
-    if not indices:
+    # Click the "N photos" button to open the full gallery, which forces Redfin
+    # to render all thumbnail URLs in the DOM (the listing page lazy-loads them).
+    try:
+        btn = page.locator("button:has-text('photo')").first
+        if btn.count() > 0 and btn.is_visible(timeout=2000):
+            btn.click()
+            page.wait_for_timeout(2500)
+            html = page.content()
+            logger.info(f"  → gallery opened, re-extracted HTML")
+    except Exception:
+        pass  # fall back to the initial HTML if button not found / click fails
+
+    # Build {idx: suffix} map from genMid thumbnail URLs.
+    # suffix is everything after mls_num up to ".jpg", e.g. "_16_2" or "_0".
+    # This preserves the exact variant so the bigphoto URL is always correct.
+    suffix_map: dict[int, str] = {}
+    for m in re.finditer(
+        rf'genMid\.{re.escape(mls_num)}(_\d+(?:_\d+)?)',
+        html,
+    ):
+        full_suffix = m.group(1)            # e.g. "_16_2" or "_0"
+        idx_m = re.match(r'_(\d+)', full_suffix)
+        if idx_m:
+            idx = int(idx_m.group(1))
+            if idx not in suffix_map:       # keep first occurrence per index
+                suffix_map[idx] = full_suffix
+
+    if not suffix_map:
         logger.info(f"No thumbnail indices found in HTML: {listing.get('address')}")
         return []
 
+    indices = sorted(suffix_map.keys())
     logger.info(f"  → {len(indices)} photos found (indices {indices[0]}–{indices[-1]})")
 
     gcs_urls = []
@@ -81,12 +110,14 @@ def _fetch_redfin_photos_one(page, listing: dict, bucket, bucket_name: str | Non
                 consecutive_misses = 0
                 continue
 
-        # Redfin uses two bigphoto URL formats:
-        #   index 0:  {mls}_0.jpg  (always)
-        #   index ≥1: {mls}_{N}_0.jpg (new) or {mls}_{N}.jpg (old)
-        candidates = [f"{base}_0.jpg"] if idx == 0 else [
-            f"{base}_{idx}_0.jpg", f"{base}_{idx}.jpg"
-        ]
+        # Build the exact bigphoto URL from the suffix we extracted from the thumbnail.
+        # e.g. suffix "_16_2" → "{base}_16_2.jpg"
+        suffix = suffix_map[idx]
+        candidates = [f"{base}{suffix}.jpg"]
+        # Also try variant _0 and old no-variant format as fallbacks
+        if not suffix.endswith("_0"):
+            candidates.append(f"{base}_{idx}_0.jpg")
+        candidates.append(f"{base}_{idx}.jpg")
 
         data = None
         for candidate_url in candidates:
