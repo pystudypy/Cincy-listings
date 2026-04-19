@@ -376,13 +376,16 @@ def main():
                     # Images: carry over enriched gallery if old had more photos than new scrape.
                     # This preserves full galleries (20+ photos) even when fresh scrape only
                     # returns 1 thumbnail (e.g. Comey, CincinKY initial scrape data).
+                    # Exception: Redfin photo URLs expire — never carry over photos_enriched
+                    # for Redfin so they always get re-enriched with fresh detail-page URLs.
+                    is_redfin = listing.get("source") == "redfin"
                     old_imgs = old.get("images") or []
                     new_imgs = listing.get("images") or []
-                    if len(old_imgs) > len(new_imgs):
+                    if len(old_imgs) > len(new_imgs) and not is_redfin:
                         listing["images"] = old_imgs
                         if old.get("photos_enriched"):
                             listing["photos_enriched"] = True
-                    elif old.get("photos_enriched") and not listing.get("photos_enriched"):
+                    elif old.get("photos_enriched") and not listing.get("photos_enriched") and not is_redfin:
                         listing["photos_enriched"] = True
 
             # Determine which sources returned 0 listings in this scrape (whole-source failure).

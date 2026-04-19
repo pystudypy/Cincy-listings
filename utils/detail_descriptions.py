@@ -698,12 +698,8 @@ def enrich_photos(
         if l.get("source") in sources
         and l.get("url")
         and (force or not l.get("photos_enriched"))
-        # For Redfin: only enrich listings with too few photos (new listings with stale GIS counts)
-        and not (
-            l.get("source") == "redfin"
-            and len(l.get("images") or []) >= REDFIN_ENRICH_THRESHOLD
-            and not force
-        )
+        # Note: Redfin threshold removed — Redfin GIS API URLs expire, so all Redfin listings
+        # must be enriched from the detail page to get stable, non-expiring photo URLs.
     ]
 
     if not to_enrich:
