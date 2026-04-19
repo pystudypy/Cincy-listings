@@ -132,6 +132,16 @@ def main():
         action="store_true",
         help="Skip scraping — only enrich photos for existing listings",
     )
+    parser.add_argument(
+        "--features",
+        action="store_true",
+        help="Extract structured feature tags from listing images using vision AI (requires ANTHROPIC_API_KEY).",
+    )
+    parser.add_argument(
+        "--features-only",
+        action="store_true",
+        help="Skip scraping — only extract vision features for existing listings",
+    )
     args = parser.parse_args()
 
     # --describe-only: fetch descriptions without re-scraping
@@ -273,6 +283,46 @@ def main():
         enriched = sum(1 for l in unique if l.get("photos_enriched"))
         with_multi = sum(1 for l in unique if len(l.get("images", [])) > 2)
         logger.info(f"Photo enrichment complete: {enriched} processed, {with_multi} with 3+ images")
+
+        if not args.dry_run:
+            existing["listings"] = unique
+            existing["last_updated"] = datetime.now(timezone.utc).isoformat()
+            DATA_FILE.write_text(json.dumps(existing, indent=2, ensure_ascii=False))
+            logger.info(f"Wrote updated listings → {DATA_FILE}")
+        return
+
+    # --features-only: extract vision features without re-scraping
+    if args.features_only:
+        if not DATA_FILE.exists():
+            logger.error("No listings.json found — run without --features-only first")
+            return
+        existing = json.loads(DATA_FILE.read_text())
+        unique = existing.get("listings", [])
+        logger.info(f"Loaded {len(unique)} existing listings for feature extraction")
+
+        api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+        if not api_key:
+            logger.error("--features-only requires ANTHROPIC_API_KEY env var")
+            return
+
+        def save_features_checkpoint(listings):
+            if args.dry_run:
+                return
+            existing["listings"] = listings
+            existing["last_updated"] = datetime.now(timezone.utc).isoformat()
+            DATA_FILE.write_text(json.dumps(existing, indent=2, ensure_ascii=False))
+            with_features = sum(1 for l in listings if l.get("features"))
+            logger.info(f"Checkpoint saved — {with_features} listings with features")
+
+        from utils.image_analyzer import extract_features
+        unique = extract_features(
+            unique,
+            api_key=api_key,
+            checkpoint_every=25,
+            checkpoint_fn=save_features_checkpoint,
+        )
+        with_features = sum(1 for l in unique if l.get("features"))
+        logger.info(f"Feature extraction complete: {with_features}/{len(unique)} listings have features")
 
         if not args.dry_run:
             existing["listings"] = unique
@@ -562,6 +612,37 @@ def main():
         )
         tagged = sum(1 for l in unique if l.get("features") is not None)
         logger.info(f"Listings with features: {tagged}/{len(unique)}")
+
+    # Vision feature extraction (--features flag)
+    if args.features:
+        logger.info("=" * 50)
+        logger.info("Extracting structured vision features from listing images…")
+        api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+        if not api_key:
+            logger.warning("--features passed but ANTHROPIC_API_KEY not set — skipping")
+        else:
+            from utils.image_analyzer import extract_features
+
+            def save_features_checkpoint_main(listings):
+                if args.dry_run:
+                    return
+                out = {
+                    "last_updated": datetime.now(timezone.utc).isoformat(),
+                    "total_count": len(listings),
+                    "source_counts": source_counts,
+                    "listings": listings,
+                    "off_market": off_market,
+                }
+                DATA_FILE.write_text(json.dumps(out, indent=2, ensure_ascii=False))
+
+            unique = extract_features(
+                unique,
+                api_key=api_key,
+                checkpoint_every=25,
+                checkpoint_fn=save_features_checkpoint_main,
+            )
+            with_features = sum(1 for l in unique if l.get("features"))
+            logger.info(f"Listings with features: {with_features}/{len(unique)}")
 
     # Photo gallery enrichment (--photos flag)
     if args.photos:

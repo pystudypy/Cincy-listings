@@ -225,6 +225,20 @@ function _desc_has_feature(desc, featureKey) {
   return (FEATURE_DESC_KEYWORDS[featureKey] || []).some(kw => lower.includes(kw));
 }
 
+// Vision-backed feature check: checks structured tags from image analysis first,
+// falls back to description keyword scan if not yet vision-analyzed.
+function _has_feature(listing, featureKey) {
+  if (listing.features && listing.features.includes(featureKey)) return true;
+  return _desc_has_feature(listing.description, featureKey);
+}
+
+// Returns "photos" if matched via vision tags, "description" if matched via text, null if no match.
+function _feature_source(listing, featureKey) {
+  if (listing.features && listing.features.includes(featureKey)) return "photos";
+  if (_desc_has_feature(listing.description, featureKey)) return "description";
+  return null;
+}
+
 const LIFESTYLE_SIGNALS = {
   entertainer: ["pool", "deck_patio", "updated_kitchen", "open_floor_plan", "outdoor kitchen", "bar", "wet bar", "theater", "home theater"],
   retreat:     ["walk_in_shower", "soaking_tub", "master_suite", "updated_bathrooms", "spa", "sauna", "steam"],
@@ -368,7 +382,7 @@ function _compute_match_score_v2(listing, quiz) {
   } else {
     const signals = LIFESTYLE_SIGNALS[lifestyle] || [];
     const hits = signals.filter(kw => {
-      if (FEATURE_DESC_KEYWORDS[kw]) return _desc_has_feature(desc, kw);
+      if (FEATURE_DESC_KEYWORDS[kw]) return _has_feature(listing, kw);
       return desc.includes(kw);
     }).length;
     if      (hits >= 3) score += 17;
@@ -381,7 +395,7 @@ function _compute_match_score_v2(listing, quiz) {
   if (!quiz.features.length) {
     score += 15;
   } else {
-    const matched = quiz.features.filter(f => _desc_has_feature(desc, f)).length;
+    const matched = quiz.features.filter(f => _has_feature(listing, f)).length;
     score += Math.round((matched / quiz.features.length) * 15);
   }
 
@@ -406,7 +420,7 @@ function _compute_match_score_v2(listing, quiz) {
     let hits = 0;
     if (["MULTI_FAMILY", "DUPLEX", "TRIPLEX"].some(t => (listing.type || "").toUpperCase().includes(t))) hits += 2;
     if (desc.includes("rental") || desc.includes("tenant") || desc.includes("income")) hits++;
-    if (_desc_has_feature(desc, "in_law_suite")) hits++;
+    if (_has_feature(listing, "in_law_suite")) hits++;
     score += hits >= 2 ? 8 : hits >= 1 ? 5 : 2;
   } else if (buyerType === "downsizer") {
     let hits = 0;
@@ -480,7 +494,7 @@ function compute_match_breakdown(listing, quiz) {
   if (lifestyle) {
     const signals = LIFESTYLE_SIGNALS[lifestyle] || [];
     const desc = (listing.description || "").toLowerCase();
-    const hits = signals.filter(kw => FEATURE_DESC_KEYWORDS[kw] ? _desc_has_feature(desc, kw) : desc.includes(kw)).length;
+    const hits = signals.filter(kw => FEATURE_DESC_KEYWORDS[kw] ? _has_feature(listing, kw) : desc.includes(kw)).length;
     const labels = { entertainer: "Great for entertaining", retreat: "Retreat features found", estate: "Classic estate feel", urban: "Urban professional vibe", outdoor: "Outdoor living appeal" };
     const label = labels[lifestyle] || "Lifestyle match";
     if (hits >= 3) result.style = { status: "match", label };
@@ -494,7 +508,8 @@ function compute_match_breakdown(listing, quiz) {
     result.features = quiz.features.map(f => ({
       tag: f,
       label: feature_label(f),
-      matched: _desc_has_feature(desc, f),
+      matched: _has_feature(listing, f),
+      source: _feature_source(listing, f),
     }));
   }
 
@@ -524,13 +539,13 @@ function generate_why_sentences(listing, quiz) {
   // Lifestyle sentence
   const lifestyle = quiz.lifestyle || quiz.style || "";
   if (lifestyle === "entertainer") {
-    const found = ["pool","updated_kitchen","deck_patio","open_floor_plan"].filter(f => _desc_has_feature(desc, f));
+    const found = ["inground_pool","updated_kitchen","deck_patio","open_floor_plan","outdoor_kitchen"].filter(f => _has_feature(listing, f));
     if (found.length) out.push(`Built for entertaining — ${found.slice(0,2).map(f => feature_label(f)).join(" & ")}.`);
   } else if (lifestyle === "retreat") {
-    const found = ["walk_in_shower","soaking_tub","master_suite","updated_bathrooms"].filter(f => _desc_has_feature(desc, f));
+    const found = ["walk_in_shower","soaking_tub","master_suite","updated_bathrooms","spa_bathroom"].filter(f => _has_feature(listing, f));
     if (found.length) out.push(`Spa-like retreat features — ${found.slice(0,2).map(f => feature_label(f)).join(" & ")}.`);
   } else if (lifestyle === "estate") {
-    const found = ["fireplace","hardwood_floors","walk_in_closet","finished_basement"].filter(f => _desc_has_feature(desc, f));
+    const found = ["fireplace","hardwood_floors","walk_in_closet","finished_basement","built_ins","coffered_ceiling"].filter(f => _has_feature(listing, f));
     if (found.length) out.push(`Classic estate touches — ${found.slice(0,2).map(f => feature_label(f)).join(" & ")}.`);
   } else if (lifestyle === "urban") {
     if (desc.includes("downtown") || desc.includes("walkable") || desc.includes("urban")) out.push("Walkable urban location.");
@@ -540,8 +555,12 @@ function generate_why_sentences(listing, quiz) {
 
   // Must-have feature sentence
   if (quiz.features.length) {
-    const matched = quiz.features.filter(f => _desc_has_feature(desc, f));
-    if (matched.length) out.push(`Has your must-haves: ${matched.slice(0,3).map(f => feature_label(f)).join(", ")}.`);
+    const matched = quiz.features.filter(f => _has_feature(listing, f));
+    if (matched.length) {
+      const fromPhotos = matched.filter(f => _feature_source(listing, f) === "photos");
+      const prefix = fromPhotos.length > 0 ? "Confirmed in listing photos:" : "Has your must-haves:";
+      out.push(`${prefix} ${matched.slice(0,3).map(f => feature_label(f)).join(", ")}.`);
+    }
   }
 
   // Buyer type fallback sentences
